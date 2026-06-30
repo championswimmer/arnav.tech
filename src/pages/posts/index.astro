@@ -8,10 +8,10 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft)).sort(
 );
 ---
 
-<BaseLayout title="Writing · Arnav Gupta" description="Technical writing by Arnav Gupta.">
+<BaseLayout title="Tech Posts · Arnav Gupta" description="Technical posts by Arnav Gupta — how-tos, guides, and code.">
 	<header class="page-head">
-		<p class="kicker">Writing</p>
-		<p class="blurb">Technical notes, deep dives, and things I figured out the hard way.</p>
+		<p class="kicker">Tech Posts</p>
+		<p class="blurb">How-tos, guides, and deep dives — with code samples and repos.</p>
 	</header>
 	<ul class="list reading-tech">
 		{

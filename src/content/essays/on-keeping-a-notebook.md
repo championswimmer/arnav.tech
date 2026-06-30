@@ -25,4 +25,4 @@ generous italics, on a sepia page. It is meant to feel *written* rather than
 
 Essays are for the slow ideas. The ones that don't fit in a code block and
 don't need a diagram. If a piece needs syntax highlighting or a chart, it
-probably belongs in [Writing](/posts) instead.
+probably belongs in [Tech Posts](/posts) instead.
