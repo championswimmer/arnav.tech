@@ -2,6 +2,7 @@
 title: The Content Rendering Pipeline
 description: How code, diagrams, and math flow from Markdown to the page on this site.
 pubDate: 2026-06-15
+heroImage: ../../assets/covers/rendering-pipeline.png
 tags: ['astro', 'markdown', 'tooling']
 draft: false
 ---
