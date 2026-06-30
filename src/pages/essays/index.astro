@@ -1,0 +1,78 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+
+const essays = (await getCollection('essays', ({ data }) => !data.draft)).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<BaseLayout title="Essays · Arnav Gupta" description="Long-form essays by Arnav Gupta.">
+	<header class="page-head">
+		<p class="kicker">Essays</p>
+		<p class="blurb">Slower, written pieces — ideas worth more than a tweet.</p>
+	</header>
+	<ul class="list reading-essay">
+		{
+			essays.map((e) => (
+				<li>
+					<a href={`/essays/${e.id}/`}>
+						<h2>{e.data.title}</h2>
+						<p class="desc">{e.data.description}</p>
+						<FormattedDate date={e.data.pubDate} />
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</BaseLayout>
+
+<style>
+	.kicker {
+		font-family: var(--font-sans);
+		text-transform: uppercase;
+		letter-spacing: 0.18em;
+		font-size: 0.8rem;
+		color: var(--accent);
+		margin-bottom: 0.2em;
+	}
+	.blurb {
+		font-family: var(--font-essay);
+		font-style: italic;
+		font-size: 1.25rem;
+		color: var(--ink-soft);
+		margin-bottom: 2em;
+	}
+	.list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	.list li {
+		padding: 1.5em 0;
+		border-bottom: 1px solid var(--rule);
+	}
+	.list a {
+		text-decoration: none;
+		color: inherit;
+		display: block;
+	}
+	.list h2 {
+		font-family: var(--font-essay);
+		font-size: 1.7rem;
+		margin: 0 0 0.2em;
+	}
+	.list a:hover h2 {
+		color: var(--accent);
+	}
+	.desc {
+		color: var(--ink-soft);
+		margin: 0 0 0.3em;
+	}
+	.list :global(time) {
+		font-family: var(--font-sans);
+		font-size: 0.8rem;
+		color: var(--ink-faint);
+	}
+</style>

@@ -1,0 +1,39 @@
+---
+// Renders any <pre class="mermaid"> blocks produced by the remark-mermaid
+// plugin. Include this once in a layout that may contain diagrams.
+---
+
+<script>
+	import mermaid from 'mermaid';
+
+	function renderMermaid() {
+		const nodes = document.querySelectorAll<HTMLElement>('pre.mermaid[data-mermaid]');
+		if (nodes.length === 0) return;
+
+		mermaid.initialize({
+			startOnLoad: false,
+			securityLevel: 'strict',
+			fontFamily: 'var(--font-mono)',
+			theme: 'base',
+			themeVariables: {
+				// Match the sepia paper palette.
+				background: '#f4ecd8',
+				primaryColor: '#faf3e0',
+				primaryBorderColor: '#9c5a34',
+				primaryTextColor: '#2b2117',
+				lineColor: '#8a7a64',
+				secondaryColor: '#e8dcc0',
+				tertiaryColor: '#f4ecd8',
+			},
+		});
+
+		// `data-mermaid` is removed after a successful render so re-runs (e.g.
+		// client-side navigation) don't double-process the same node.
+		nodes.forEach((node) => node.removeAttribute('data-mermaid'));
+		mermaid.run({ nodes: Array.from(nodes) });
+	}
+
+	renderMermaid();
+	// Re-run after Astro view-transition navigations.
+	document.addEventListener('astro:page-load', renderMermaid);
+</script>

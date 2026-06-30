@@ -1,0 +1,32 @@
+---
+title: arnav.tech
+description: This website — a sepia, written personal site built with Astro.
+pubDate: 2026-06-30
+tags: ['web', 'astro']
+stack: ['Astro', 'Vue', 'TypeScript', 'KaTeX', 'Mermaid']
+repo: https://github.com/championswimmer/arnav.tech
+url: https://arnav.tech
+status: active
+featured: true
+order: 100
+draft: false
+---
+
+import Counter from '../../components/vue/Counter.vue';
+
+Project pages are written in **MDX**, so they can mix prose with live,
+interactive components. Below is a Vue island — fully interactive in the
+browser, hydrated on load:
+
+<Counter client:visible start={3} label="Stars" />
+
+Because projects are MDX, anything you can express as a Vue component can live
+inline: demos, playgrounds, charts, embeds.
+
+## How it's built
+
+- **Essays** are Markdown, set in an editorial serif on sepia paper.
+- **Writing** is Markdown/MDX with syntax highlighting, Mermaid, and KaTeX.
+- **Projects** (like this one) are MDX with embedded Vue components.
+
+The whole thing is static, fast, and content-first.

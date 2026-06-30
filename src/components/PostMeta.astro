@@ -1,0 +1,44 @@
+---
+import FormattedDate from './FormattedDate.astro';
+
+interface Props {
+	pubDate: Date;
+	updatedDate?: Date;
+	tags?: string[];
+}
+
+const { pubDate, updatedDate, tags = [] } = Astro.props;
+---
+
+<div class="meta">
+	<FormattedDate date={pubDate} />
+	{updatedDate && <span class="updated">· updated <FormattedDate date={updatedDate} /></span>}
+	{
+		tags.length > 0 && (
+			<span class="tags">
+				{tags.map((tag) => (
+					<span class="tag">#{tag}</span>
+				))}
+			</span>
+		)
+	}
+</div>
+<style>
+	.meta {
+		color: var(--ink-faint);
+		font-family: var(--font-sans);
+		font-size: 0.9rem;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5em;
+		align-items: center;
+	}
+	.tags {
+		display: flex;
+		gap: 0.5em;
+		flex-wrap: wrap;
+	}
+	.tag {
+		color: var(--accent);
+	}
+</style>

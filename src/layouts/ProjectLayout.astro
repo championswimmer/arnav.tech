@@ -1,0 +1,116 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import Mermaid from '../components/Mermaid.astro';
+
+type Props = CollectionEntry<'projects'>['data'];
+
+const { title, description, heroImage, tags, stack, repo, url, status } = Astro.props;
+
+const statusLabel: Record<string, string> = {
+	active: 'Active',
+	wip: 'Work in progress',
+	archived: 'Archived',
+};
+---
+
+<BaseLayout title={title} description={description} image={heroImage}>
+	<article class="project">
+		<header class="project-header">
+			<p class="kicker">Project · {statusLabel[status]}</p>
+			<h1>{title}</h1>
+			<p class="lede">{description}</p>
+			<div class="actions">
+				{url && <a class="btn" href={url} target="_blank" rel="noopener">Visit ↗</a>}
+				{repo && <a class="btn ghost" href={repo} target="_blank" rel="noopener">Source ↗</a>}
+			</div>
+		</header>
+
+		{
+			heroImage && (
+				<Image class="hero" width={1280} height={720} src={heroImage} alt="" />
+			)
+		}
+
+		{
+			stack.length > 0 && (
+				<div class="stack">
+					{stack.map((item) => (
+						<span class="chip">{item}</span>
+					))}
+				</div>
+			)
+		}
+
+		<div class="reading-tech">
+			<slot />
+		</div>
+	</article>
+	<Mermaid />
+</BaseLayout>
+
+<style>
+	.project-header {
+		margin-bottom: 1.5em;
+	}
+	.kicker {
+		font-family: var(--font-sans);
+		text-transform: uppercase;
+		letter-spacing: 0.16em;
+		font-size: 0.75rem;
+		color: var(--accent);
+		margin: 0 0 0.4em;
+	}
+	.project-header h1 {
+		font-family: var(--font-sans);
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		font-size: 2.6rem;
+	}
+	.lede {
+		font-family: var(--font-sans);
+		font-size: 1.15rem;
+		color: var(--ink-soft);
+		margin: 0.4em 0 1em;
+	}
+	.actions {
+		display: flex;
+		gap: 0.75em;
+		flex-wrap: wrap;
+	}
+	.btn {
+		font-family: var(--font-sans);
+		font-size: 0.9rem;
+		text-decoration: none;
+		padding: 0.5em 1em;
+		border-radius: 6px;
+		background: var(--accent);
+		color: var(--paper);
+	}
+	.btn.ghost {
+		background: transparent;
+		color: var(--accent);
+		border: 1px solid var(--accent);
+	}
+	.hero {
+		width: 100%;
+		margin: 1.5em 0;
+		box-shadow: var(--box-shadow);
+	}
+	.stack {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5em;
+		margin: 1.5em 0;
+	}
+	.chip {
+		font-family: var(--font-mono);
+		font-size: 0.8rem;
+		padding: 0.25em 0.6em;
+		border: 1px solid var(--rule);
+		border-radius: 999px;
+		color: var(--ink-soft);
+		background: var(--paper-raised);
+	}
+</style>

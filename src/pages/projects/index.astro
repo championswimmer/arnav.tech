@@ -1,0 +1,105 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort(
+	(a, b) =>
+		b.data.order - a.data.order || b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<BaseLayout title="Projects · Arnav Gupta" description="Projects by Arnav Gupta." wide>
+	<header class="page-head">
+		<p class="kicker">Projects</p>
+		<p class="blurb">Things I've built — shipped, in progress, and archived.</p>
+	</header>
+	<div class="grid">
+		{
+			projects.map((p) => (
+				<a class="card" href={`/projects/${p.id}/`}>
+					{p.data.heroImage && (
+						<Image class="thumb" width={640} height={360} src={p.data.heroImage} alt="" />
+					)}
+					<div class="body">
+						<h2>{p.data.title}</h2>
+						<p class="desc">{p.data.description}</p>
+						<div class="stack">
+							{p.data.stack.slice(0, 4).map((s) => (
+								<span class="chip">{s}</span>
+							))}
+						</div>
+					</div>
+				</a>
+			))
+		}
+	</div>
+</BaseLayout>
+
+<style>
+	.kicker {
+		font-family: var(--font-sans);
+		text-transform: uppercase;
+		letter-spacing: 0.18em;
+		font-size: 0.8rem;
+		color: var(--accent);
+		margin-bottom: 0.2em;
+	}
+	.blurb {
+		font-family: var(--font-sans);
+		font-size: 1.15rem;
+		color: var(--ink-soft);
+		margin-bottom: 2em;
+	}
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+		gap: 1.5em;
+	}
+	.card {
+		display: block;
+		text-decoration: none;
+		color: inherit;
+		border: 1px solid var(--rule);
+		border-radius: 10px;
+		overflow: hidden;
+		background: var(--paper-raised);
+		transition: box-shadow 0.2s ease, transform 0.2s ease;
+	}
+	.card:hover {
+		box-shadow: var(--box-shadow);
+		transform: translateY(-2px);
+	}
+	.thumb {
+		width: 100%;
+		display: block;
+		border-radius: 0;
+	}
+	.body {
+		padding: 1.2em;
+	}
+	.body h2 {
+		font-family: var(--font-sans);
+		font-weight: 700;
+		font-size: 1.35rem;
+		margin: 0 0 0.3em;
+	}
+	.desc {
+		color: var(--ink-soft);
+		font-size: 0.95rem;
+		margin: 0 0 0.8em;
+	}
+	.stack {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4em;
+	}
+	.chip {
+		font-family: var(--font-mono);
+		font-size: 0.72rem;
+		padding: 0.2em 0.5em;
+		border: 1px solid var(--rule);
+		border-radius: 999px;
+		color: var(--ink-faint);
+	}
+</style>

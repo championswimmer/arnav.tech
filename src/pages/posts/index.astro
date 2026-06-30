@@ -1,0 +1,74 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostMeta from '../../components/PostMeta.astro';
+
+const posts = (await getCollection('posts', ({ data }) => !data.draft)).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<BaseLayout title="Writing · Arnav Gupta" description="Technical writing by Arnav Gupta.">
+	<header class="page-head">
+		<p class="kicker">Writing</p>
+		<p class="blurb">Technical notes, deep dives, and things I figured out the hard way.</p>
+	</header>
+	<ul class="list reading-tech">
+		{
+			posts.map((p) => (
+				<li>
+					<a href={`/posts/${p.id}/`}>
+						<h2>{p.data.title}</h2>
+						<p class="desc">{p.data.description}</p>
+					</a>
+					<PostMeta pubDate={p.data.pubDate} tags={p.data.tags} />
+				</li>
+			))
+		}
+	</ul>
+</BaseLayout>
+
+<style>
+	.kicker {
+		font-family: var(--font-sans);
+		text-transform: uppercase;
+		letter-spacing: 0.18em;
+		font-size: 0.8rem;
+		color: var(--accent);
+		margin-bottom: 0.2em;
+	}
+	.blurb {
+		font-family: var(--font-sans);
+		font-size: 1.15rem;
+		color: var(--ink-soft);
+		margin-bottom: 2em;
+	}
+	.list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	.list li {
+		padding: 1.5em 0;
+		border-bottom: 1px solid var(--rule);
+	}
+	.list a {
+		text-decoration: none;
+		color: inherit;
+		display: block;
+	}
+	.list h2 {
+		font-family: var(--font-sans);
+		font-weight: 700;
+		letter-spacing: -0.01em;
+		font-size: 1.5rem;
+		margin: 0 0 0.2em;
+	}
+	.list a:hover h2 {
+		color: var(--accent);
+	}
+	.desc {
+		color: var(--ink-soft);
+		margin: 0 0 0.5em;
+	}
+</style>

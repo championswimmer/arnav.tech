@@ -1,0 +1,71 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+
+type Props = CollectionEntry<'essays'>['data'];
+
+const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} image={heroImage}>
+	<article class="essay">
+		<header class="essay-header">
+			<p class="kicker">Essay</p>
+			<h1>{title}</h1>
+			<p class="lede">{description}</p>
+			<p class="byline">
+				<FormattedDate date={pubDate} />
+				{updatedDate && <span> · revised <FormattedDate date={updatedDate} /></span>}
+			</p>
+		</header>
+		{
+			heroImage && (
+				<Image class="hero" width={1280} height={640} src={heroImage} alt="" />
+			)
+		}
+		<div class="reading-essay">
+			<slot />
+		</div>
+	</article>
+</BaseLayout>
+
+<style>
+	.essay-header {
+		text-align: center;
+		margin-bottom: 2.5em;
+	}
+	.kicker {
+		font-family: var(--font-sans);
+		text-transform: uppercase;
+		letter-spacing: 0.18em;
+		font-size: 0.75rem;
+		color: var(--accent);
+		margin: 0 0 0.5em;
+	}
+	.essay-header h1 {
+		font-family: var(--font-essay);
+		font-weight: 600;
+		font-size: 2.8rem;
+		line-height: 1.1;
+	}
+	.lede {
+		font-family: var(--font-essay);
+		font-style: italic;
+		font-size: 1.3rem;
+		color: var(--ink-soft);
+		max-width: 32ch;
+		margin: 0.6em auto 1em;
+	}
+	.byline {
+		font-family: var(--font-sans);
+		font-size: 0.85rem;
+		color: var(--ink-faint);
+	}
+	.hero {
+		width: 100%;
+		margin-bottom: 2em;
+		box-shadow: var(--box-shadow);
+	}
+</style>

@@ -1,0 +1,55 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import PostMeta from '../components/PostMeta.astro';
+import Mermaid from '../components/Mermaid.astro';
+
+type Props = CollectionEntry<'posts'>['data'];
+
+const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} image={heroImage}>
+	<article class="post">
+		<header class="post-header">
+			<h1>{title}</h1>
+			<p class="lede">{description}</p>
+			<PostMeta pubDate={pubDate} updatedDate={updatedDate} tags={tags} />
+		</header>
+		{
+			heroImage && (
+				<Image class="hero" width={1280} height={640} src={heroImage} alt="" />
+			)
+		}
+		<div class="reading-tech">
+			<slot />
+		</div>
+	</article>
+	<Mermaid />
+</BaseLayout>
+
+<style>
+	.post-header {
+		margin-bottom: 2em;
+		border-bottom: 1px solid var(--rule);
+		padding-bottom: 1.5em;
+	}
+	.post-header h1 {
+		font-family: var(--font-sans);
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		font-size: 2.6rem;
+	}
+	.lede {
+		font-family: var(--font-sans);
+		font-size: 1.15rem;
+		color: var(--ink-soft);
+		margin: 0.4em 0 1em;
+	}
+	.hero {
+		width: 100%;
+		margin-bottom: 2em;
+		box-shadow: var(--box-shadow);
+	}
+</style>
