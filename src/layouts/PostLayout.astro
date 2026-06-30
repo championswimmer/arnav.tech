@@ -4,10 +4,15 @@ import type { CollectionEntry } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import PostMeta from '../components/PostMeta.astro';
 import Mermaid from '../components/Mermaid.astro';
+import AiUsage from '../components/vue/AiUsage.vue';
 
 type Props = CollectionEntry<'posts'>['data'];
 
 const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.props;
+
+const AI_USAGE_TAGS = ['ai-free', 'ai-assisted', 'ai-generated'] as const;
+type AiUsageType = typeof AI_USAGE_TAGS[number];
+const aiUsage = tags.find((t): t is AiUsageType => AI_USAGE_TAGS.includes(t as AiUsageType)) ?? null;
 ---
 
 <BaseLayout title={title} description={description} image={heroImage}>
@@ -23,6 +28,7 @@ const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.prop
 			)
 		}
 		<div class="reading-tech">
+			{aiUsage && <AiUsage type={aiUsage} client:load />}
 			<slot />
 		</div>
 	</article>
