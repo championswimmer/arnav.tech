@@ -3,8 +3,10 @@
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import vue from '@astrojs/vue';
+import icon from 'astro-icon';
 import { defineConfig, fontProviders } from 'astro/config';
 import { unified } from '@astrojs/markdown-remark';
+import yaml from '@rollup/plugin-yaml';
 
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
@@ -13,7 +15,12 @@ import { remarkMermaid } from './src/plugins/remark-mermaid.mjs';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://arnav.tech',
-	integrations: [mdx(), sitemap(), vue()],
+	integrations: [mdx(), sitemap(), vue(), icon()],
+
+	// Lets us `import ... from '*.yaml'` (e.g. src/data/social.yaml).
+	vite: {
+		plugins: [yaml()],
+	},
 
 	markdown: {
 		// Custom unified processor (Astro v7 way of adding remark/rehype plugins).

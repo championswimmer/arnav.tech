@@ -1,0 +1,29 @@
+# Social profiles & essential links for arnav.tech
+#
+# This is the single source of truth — components read from here, nothing is
+# hardcoded. Add/remove/reorder entries freely. Each `platform` must have a
+# matching definition in src/lib/social.ts (label, icon, and URL pattern).
+#
+# `primary: true` marks a profile shown in compact places (e.g. the header).
+
+profiles:
+  - platform: twitter
+    handle: championswimmer
+    primary: true
+
+  - platform: github
+    handle: championswimmer
+    primary: true
+
+  - platform: linkedin
+    handle: arnavgupta
+    primary: true
+
+  - platform: instagram
+    handle: arnavgupta31
+
+  - platform: youtube
+    handle: "@championswimmer"
+
+  - platform: substack
+    handle: championswimmer

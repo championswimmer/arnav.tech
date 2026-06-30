@@ -1,21 +1,30 @@
 ---
-import { SITE_AUTHOR, SOCIAL_LINKS } from '../consts';
+import { Icon } from 'astro-icon/components';
+import { SITE_AUTHOR } from '../consts';
+import { socialLinks } from '../lib/social';
 const today = new Date();
 ---
 
 <footer>
 	<div class="rule"></div>
+	<div class="social-links">
+		{
+			socialLinks.map((link) => (
+				<a href={link.url} target="_blank" rel="me noopener" title={link.label}>
+					<span class="sr-only">{link.label}</span>
+					<Icon name={link.icon} width={22} height={22} />
+				</a>
+			))
+		}
+		<a href="/rss.xml" title="RSS">
+			<span class="sr-only">RSS</span>
+			<Icon name="simple-icons:rss" width={22} height={22} />
+		</a>
+	</div>
 	<p>
 		&copy; {today.getFullYear()} {SITE_AUTHOR}. Set in Newsreader, Space Grotesk &amp; JetBrains
 		Mono.
 	</p>
-	<div class="social-links">
-		<a href={SOCIAL_LINKS.github} target="_blank" rel="me noopener">GitHub</a>
-		<span>·</span>
-		<a href={SOCIAL_LINKS.twitter} target="_blank" rel="me noopener">Twitter</a>
-		<span>·</span>
-		<a href="/rss.xml">RSS</a>
-	</div>
 </footer>
 <style>
 	footer {
@@ -33,12 +42,15 @@ const today = new Date();
 	.social-links {
 		display: flex;
 		justify-content: center;
-		gap: 0.6em;
-		margin-top: 0.5em;
+		align-items: center;
+		gap: 1em;
+		margin-bottom: 1.5em;
 	}
 	.social-links a {
 		color: var(--ink-soft);
 		text-decoration: none;
+		display: inline-flex;
+		transition: color 0.15s ease;
 	}
 	.social-links a:hover {
 		color: var(--accent);

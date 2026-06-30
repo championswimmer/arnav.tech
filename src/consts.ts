@@ -13,7 +13,4 @@ export const NAV_LINKS = [
 	{ href: '/about', label: 'About' },
 ] as const;
 
-export const SOCIAL_LINKS = {
-	github: 'https://github.com/championswimmer',
-	twitter: 'https://twitter.com/championswimmer',
-} as const;
+// Social links live in src/data/social.yaml — import from '../lib/social'.

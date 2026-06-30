@@ -1,6 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { SOCIAL_LINKS } from '../consts';
+import { socialLinks } from '../lib/social';
+
+const find = (platform: string) => socialLinks.find((l) => l.platform === platform);
+const github = find('github');
+const twitter = find('twitter');
 ---
 
 <BaseLayout title="About · Arnav Gupta" description="About Arnav Gupta.">
@@ -17,8 +21,8 @@ import { SOCIAL_LINKS } from '../consts';
 			Grotesk, and code in JetBrains Mono.
 		</p>
 		<p>
-			Find me on <a href={SOCIAL_LINKS.github}>GitHub</a> and
-			<a href={SOCIAL_LINKS.twitter}>Twitter</a>.
+			Find me on {github && <a href={github.url}>GitHub</a>} and
+			{twitter && <a href={twitter.url}>Twitter</a>}, or anywhere linked in the footer.
 		</p>
 	</article>
 </BaseLayout>
