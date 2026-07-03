@@ -60,14 +60,30 @@ e.g. `<Counter client:visible />`. See `src/content/projects/this-website.mdx`.
 
 ## Development
 
-When starting the dev server, use background mode:
+The package manager is **bun**. All commands run from the project root:
+
+| Command           | Action                                        |
+| ------------------ | ---------------------------------------------- |
+| `bun install`       | Install dependencies                          |
+| `bun run dev`       | Start local dev server at `localhost:4321`    |
+| `bun run build`     | Build the production site to `./dist/`        |
+| `bun run preview`   | Preview the build locally before deploying    |
+
+When starting the dev server yourself (not the user), use background mode:
 
 ```
 astro dev --background
 ```
 
 Manage the background server with `astro dev stop`, `astro dev status`, and
-`astro dev logs`. Build with `bun run build`; the package manager is **bun**.
+`astro dev logs`.
+
+## Deployment
+
+`.github/workflows/deploy.yml` builds with `bun run build` and publishes
+`./dist` to GitHub Pages (custom domain `arnav.tech`) on every push to
+`main`. There's no manual deploy step — commit and push after every change
+(see the Git workflow note above) and CI handles the rest.
 
 ## Authoring new content
 
