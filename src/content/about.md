@@ -1,0 +1,14 @@
+---
+title: About
+description: About Arnav Gupta.
+---
+
+I'm Arnav Gupta — an engineer and writer. This is my corner of the web: a place for
+[essays](/essays), [technical writing](/posts), and [projects](/projects) I care
+enough about to document.
+
+Replace this copy with your own story. The site is built with
+[Astro](https://astro.build); essays are set in Newsreader, tech writing in Space
+Grotesk, and code in JetBrains Mono.
+
+Find me on GitHub and Twitter, or anywhere linked in the footer.

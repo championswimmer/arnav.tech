@@ -77,6 +77,11 @@ Slash commands scaffold front-matter-correct files:
 - `/new-post <title>` — a tech post in `src/content/posts/`
 - `/new-project <title>` — an MDX project page in `src/content/projects/`
 
+## Git workflow
+
+Always commit and push after making changes — don't leave work uncommitted
+on `main`.
+
 ## Documentation
 
 Full Astro documentation: https://docs.astro.build

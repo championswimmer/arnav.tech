@@ -1,28 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { socialLinks } from '../lib/social';
-
-const find = (platform: string) => socialLinks.find((l) => l.platform === platform);
-const github = find('github');
-const twitter = find('twitter');
+import { Content, frontmatter } from '../content/about.md';
 ---
 
-<BaseLayout title="About · Arnav Gupta" description="About Arnav Gupta.">
+<BaseLayout title={`${frontmatter.title} · Arnav Gupta`} description={frontmatter.description}>
 	<article class="reading-essay">
-		<h1>About</h1>
-		<p>
-			I'm Arnav Gupta — an engineer and writer. This is my corner of the web: a place for
-			<a href="/essays">essays</a>, <a href="/posts">technical writing</a>, and
-			<a href="/projects">projects</a> I care enough about to document.
-		</p>
-		<p>
-			Replace this copy with your own story. The site is built with
-			<a href="https://astro.build">Astro</a>; essays are set in Newsreader, tech writing in Space
-			Grotesk, and code in JetBrains Mono.
-		</p>
-		<p>
-			Find me on {github && <a href={github.url}>GitHub</a>} and
-			{twitter && <a href={twitter.url}>Twitter</a>}, or anywhere linked in the footer.
-		</p>
+		<h1>{frontmatter.title}</h1>
+		<Content />
 	</article>
 </BaseLayout>
