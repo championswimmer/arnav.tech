@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import FormattedDate from '../components/FormattedDate.astro';
+import { cleanSlug } from '../lib/slug';
 
 const notDraft = ({ data }: { data: { draft: boolean } }) => !data.draft;
 
@@ -34,7 +35,7 @@ const projects = (await getCollection('projects', notDraft))
 			{
 				essays.map((e) => (
 					<li>
-						<a href={`/essays/${e.id}/`}>{e.data.title}</a>
+						<a href={`/essays/${cleanSlug(e.id)}/`}>{e.data.title}</a>
 						<FormattedDate date={e.data.pubDate} />
 					</li>
 				))
@@ -51,7 +52,7 @@ const projects = (await getCollection('projects', notDraft))
 			{
 				posts.map((p) => (
 					<li>
-						<a href={`/posts/${p.id}/`}>{p.data.title}</a>
+						<a href={`/posts/${cleanSlug(p.id)}/`}>{p.data.title}</a>
 						<FormattedDate date={p.data.pubDate} />
 					</li>
 				))
@@ -68,7 +69,7 @@ const projects = (await getCollection('projects', notDraft))
 			{
 				projects.map((p) => (
 					<li>
-						<a href={`/projects/${p.id}/`}>{p.data.title}</a>
+						<a href={`/projects/${cleanSlug(p.id)}/`}>{p.data.title}</a>
 						<span class="muted">{p.data.description}</span>
 					</li>
 				))

@@ -24,4 +24,6 @@ Steps:
    KaTeX math (`$...$`, `$$...$$`). Add a brief intro paragraph.
 4. Posts render with the `.reading-tech` treatment (Space Grotesk body,
    JetBrains Mono code). Leave `draft: true` until ready.
-5. Report the path and the URL (`/posts/<YYYY-MM-DD>-<slug>/`).
+5. The date prefix is stripped from the URL at build time (see
+   `src/lib/slug.ts`) — it only exists so files sort chronologically on disk.
+   Report the path and the URL (`/posts/<slug>/`).

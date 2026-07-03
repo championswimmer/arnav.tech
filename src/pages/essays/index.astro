@@ -2,13 +2,14 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import EntryList from '../../components/EntryList.astro';
+import { cleanSlug } from '../../lib/slug';
 
 const essays = (await getCollection('essays', ({ data }) => !data.draft)).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 
 const items = essays.map((e) => ({
-	href: `/essays/${e.id}/`,
+	href: `/essays/${cleanSlug(e.id)}/`,
 	title: e.data.title,
 	description: e.data.description,
 	pubDate: e.data.pubDate,

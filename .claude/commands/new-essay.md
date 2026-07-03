@@ -23,4 +23,6 @@ Steps:
 3. Add a short opening paragraph placeholder below the frontmatter.
 4. Essays render with the serif `.reading-essay` treatment — write prose, no
    code blocks. Leave `draft: true` until ready to publish.
-5. Report the path and the URL it will publish at (`/essays/<YYYY-MM-DD>-<slug>/`).
+5. The date prefix is stripped from the URL at build time (see
+   `src/lib/slug.ts`) — it only exists so files sort chronologically on disk.
+   Report the path and the URL it will publish at (`/essays/<slug>/`).

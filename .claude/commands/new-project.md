@@ -35,4 +35,6 @@ Steps:
    <Counter client:visible />
    ```
 
-4. Report the path and the URL (`/projects/<YYYY-MM-DD>-<slug>/`).
+4. The date prefix is stripped from the URL at build time (see
+   `src/lib/slug.ts`) — it only exists so files sort chronologically on disk.
+   Report the path and the URL (`/projects/<slug>/`).
