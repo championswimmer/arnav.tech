@@ -1,56 +1,108 @@
 ---
-// Cycles light -> dark -> system. Persists to localStorage; BaseHead's
-// inline script applies the stored choice before paint to avoid a flash.
+// Three-way segmented control: light / system / dark. Persists to
+// localStorage; BaseHead's inline script applies the stored choice before
+// paint to avoid a flash.
 ---
 
-<button id="theme-toggle" class="theme-toggle" type="button" title="Toggle theme">
-	<span class="sr-only">Toggle color theme</span>
-	<svg class="icon icon-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-		<circle cx="12" cy="12" r="4"></circle>
-		<path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
-	</svg>
-	<svg class="icon icon-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-		<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-	</svg>
-	<svg class="icon icon-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-		<rect x="2" y="4" width="20" height="13" rx="2"></rect>
-		<path d="M8 21h8M12 17v4"></path>
-	</svg>
-</button>
+<div class="theme-toggle" role="radiogroup" aria-label="Theme">
+	<span class="thumb" aria-hidden="true"></span>
+	<button
+		type="button"
+		class="segment"
+		data-mode="light"
+		role="radio"
+		title="Light"
+	>
+		<span class="sr-only">Light</span>
+		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+			<circle cx="12" cy="12" r="4"></circle>
+			<path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+		</svg>
+	</button>
+	<button
+		type="button"
+		class="segment"
+		data-mode="system"
+		role="radio"
+		title="System"
+	>
+		<span class="sr-only">System</span>
+		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+			<rect x="2" y="4" width="20" height="13" rx="2"></rect>
+			<path d="M8 21h8M12 17v4"></path>
+		</svg>
+	</button>
+	<button
+		type="button"
+		class="segment"
+		data-mode="dark"
+		role="radio"
+		title="Dark"
+	>
+		<span class="sr-only">Dark</span>
+		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+			<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+		</svg>
+	</button>
+</div>
 
 <style>
 	.theme-toggle {
+		position: relative;
+		display: inline-grid;
+		grid-template-columns: repeat(3, 1.7em);
+		align-items: center;
+		border: 1px solid var(--rule);
+		border-radius: 999px;
+		padding: 0.2em;
+		background: var(--paper-raised);
+	}
+	.thumb {
+		position: absolute;
+		top: 0.2em;
+		left: 0.2em;
+		width: 1.7em;
+		height: 1.7em;
+		border-radius: 999px;
+		background: var(--highlight);
+		transition: transform 0.2s ease;
+	}
+	.theme-toggle[data-active='system'] .thumb {
+		transform: translateX(100%);
+	}
+	.theme-toggle[data-active='dark'] .thumb {
+		transform: translateX(200%);
+	}
+	.segment {
+		position: relative;
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
+		width: 1.7em;
+		height: 1.7em;
+		padding: 0;
 		border: none;
 		background: transparent;
-		color: var(--ink-soft);
+		color: var(--ink-faint);
 		cursor: pointer;
-		line-height: 0;
 	}
-	.theme-toggle:hover {
+	.segment:hover {
 		color: var(--accent);
 	}
-	.icon {
-		width: 20px;
-		height: 20px;
-		display: none;
+	.segment svg {
+		width: 15px;
+		height: 15px;
 	}
-	:root[data-theme='light'] .icon-light {
-		display: block;
-	}
-	:root[data-theme='dark'] .icon-dark {
-		display: block;
-	}
-	:root:not([data-theme]) .icon-system {
-		display: block;
+	.theme-toggle[data-active='light'] .segment[data-mode='light'],
+	.theme-toggle[data-active='system'] .segment[data-mode='system'],
+	.theme-toggle[data-active='dark'] .segment[data-mode='dark'] {
+		color: var(--accent);
 	}
 </style>
 
 <script>
 	const STORAGE_KEY = 'theme';
-	const order = ['light', 'dark', 'system'];
+	const toggle = document.querySelector('.theme-toggle');
 
 	function apply(mode) {
 		if (mode === 'system') {
@@ -60,14 +112,18 @@
 			document.documentElement.setAttribute('data-theme', mode);
 			localStorage.setItem(STORAGE_KEY, mode);
 		}
+		toggle?.setAttribute('data-active', mode);
 	}
 
-	function current() {
-		return document.documentElement.getAttribute('data-theme') ?? 'system';
-	}
+	toggle?.setAttribute(
+		'data-active',
+		document.documentElement.getAttribute('data-theme') ?? 'system'
+	);
 
-	document.getElementById('theme-toggle')?.addEventListener('click', () => {
-		const next = order[(order.indexOf(current()) + 1) % order.length];
-		apply(next);
+	toggle?.querySelectorAll('.segment').forEach((btn) => {
+		btn.addEventListener('click', () => {
+			const mode = btn.getAttribute('data-mode');
+			if (mode) apply(mode);
+		});
 	});
 </script>
