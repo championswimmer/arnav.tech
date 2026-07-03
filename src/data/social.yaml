@@ -26,4 +26,4 @@ profiles:
     handle: "@6etime"
 
   - platform: substack
-    handle: championswimmer
+    handle: "https://threads.championswimmer.in/"

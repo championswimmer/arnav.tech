@@ -51,7 +51,8 @@ const PLATFORMS: Record<Platform, PlatformDef> = {
 	substack: {
 		label: 'Substack',
 		icon: 'simple-icons:substack',
-		url: (h) => `https://${h}.substack.com`,
+		// Handle is the full URL (custom domain, not a *.substack.com subdomain).
+		url: (h) => h,
 	},
 };
 
