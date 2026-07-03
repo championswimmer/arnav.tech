@@ -1,0 +1,554 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-z4jru4n3><head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" href="/favicon.ico"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="Arnav Gupta" href="https://arnav.tech/rss.xml"><meta name="generator" content="Astro v7.0.3"><!-- Fonts --><style>@font-face{font-family:Newsreader-0c220608bcaeb4cf;src:url("/_astro/fonts/c728506809b66a81.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:400;font-style:italic;}@font-face{font-family:Newsreader-0c220608bcaeb4cf;src:url("/_astro/fonts/c728506809b66a81.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:500;font-style:italic;}@font-face{font-family:Newsreader-0c220608bcaeb4cf;src:url("/_astro/fonts/c728506809b66a81.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:600;font-style:italic;}@font-face{font-family:Newsreader-0c220608bcaeb4cf;src:url("/_astro/fonts/c728506809b66a81.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:700;font-style:italic;}@font-face{font-family:Newsreader-0c220608bcaeb4cf;src:url("/_astro/fonts/7958be14d56477d6.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:400;font-style:normal;}@font-face{font-family:Newsreader-0c220608bcaeb4cf;src:url("/_astro/fonts/7958be14d56477d6.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:500;font-style:normal;}@font-face{font-family:Newsreader-0c220608bcaeb4cf;src:url("/_astro/fonts/7958be14d56477d6.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:600;font-style:normal;}@font-face{font-family:Newsreader-0c220608bcaeb4cf;src:url("/_astro/fonts/7958be14d56477d6.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:700;font-style:normal;}@font-face{font-family:"Newsreader-0c220608bcaeb4cf fallback: Times New Roman";src:local("Times New Roman");font-display:swap;font-weight:400;font-style:italic;size-adjust:98.9538%;ascent-override:74.2771%;descent-override:26.7802%;line-gap-override:0%;}@font-face{font-family:"Newsreader-0c220608bcaeb4cf fallback: Times New Roman";src:local("Times New Roman");font-display:swap;font-weight:500;font-style:italic;size-adjust:98.9538%;ascent-override:74.2771%;descent-override:26.7802%;line-gap-override:0%;}@font-face{font-family:"Newsreader-0c220608bcaeb4cf fallback: Times New Roman";src:local("Times New Roman");font-display:swap;font-weight:600;font-style:italic;size-adjust:98.9538%;ascent-override:74.2771%;descent-override:26.7802%;line-gap-override:0%;}@font-face{font-family:"Newsreader-0c220608bcaeb4cf fallback: Times New Roman Bold";src:local("Times New Roman Bold");font-display:swap;font-weight:700;font-style:italic;size-adjust:92.9228%;ascent-override:79.0979%;descent-override:28.5183%;line-gap-override:0%;}@font-face{font-family:"Newsreader-0c220608bcaeb4cf fallback: Times New Roman";src:local("Times New Roman");font-display:swap;font-weight:400;font-style:normal;size-adjust:98.9538%;ascent-override:74.2771%;descent-override:26.7802%;line-gap-override:0%;}@font-face{font-family:"Newsreader-0c220608bcaeb4cf fallback: Times New Roman";src:local("Times New Roman");font-display:swap;font-weight:500;font-style:normal;size-adjust:98.9538%;ascent-override:74.2771%;descent-override:26.7802%;line-gap-override:0%;}@font-face{font-family:"Newsreader-0c220608bcaeb4cf fallback: Times New Roman";src:local("Times New Roman");font-display:swap;font-weight:600;font-style:normal;size-adjust:98.9538%;ascent-override:74.2771%;descent-override:26.7802%;line-gap-override:0%;}@font-face{font-family:"Newsreader-0c220608bcaeb4cf fallback: Times New Roman Bold";src:local("Times New Roman Bold");font-display:swap;font-weight:700;font-style:normal;size-adjust:92.9228%;ascent-override:79.0979%;descent-override:28.5183%;line-gap-override:0%;}:root{--font-essay:Newsreader-0c220608bcaeb4cf,"Newsreader-0c220608bcaeb4cf fallback: Times New Roman","Newsreader-0c220608bcaeb4cf fallback: Times New Roman Bold",Georgia,serif;}</style><link rel="preload" href="/_astro/fonts/c728506809b66a81.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/fonts/7958be14d56477d6.woff2" as="font" type="font/woff2" crossorigin><style>@font-face{font-family:"Space Grotesk-4d74656afb5ce3ad";src:url("/_astro/fonts/68c4c61e5cf389d9.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:400;font-style:normal;}@font-face{font-family:"Space Grotesk-4d74656afb5ce3ad";src:url("/_astro/fonts/68c4c61e5cf389d9.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:500;font-style:normal;}@font-face{font-family:"Space Grotesk-4d74656afb5ce3ad";src:url("/_astro/fonts/68c4c61e5cf389d9.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:600;font-style:normal;}@font-face{font-family:"Space Grotesk-4d74656afb5ce3ad";src:url("/_astro/fonts/68c4c61e5cf389d9.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:700;font-style:normal;}@font-face{font-family:"Space Grotesk-4d74656afb5ce3ad fallback: Arial";src:local("Arial");font-display:swap;font-weight:400;font-style:normal;size-adjust:109.4659%;ascent-override:89.891%;descent-override:26.675%;line-gap-override:0%;}@font-face{font-family:"Space Grotesk-4d74656afb5ce3ad fallback: Arial";src:local("Arial");font-display:swap;font-weight:500;font-style:normal;size-adjust:109.4659%;ascent-override:89.891%;descent-override:26.675%;line-gap-override:0%;}@font-face{font-family:"Space Grotesk-4d74656afb5ce3ad fallback: Arial";src:local("Arial");font-display:swap;font-weight:600;font-style:normal;size-adjust:109.4659%;ascent-override:89.891%;descent-override:26.675%;line-gap-override:0%;}@font-face{font-family:"Space Grotesk-4d74656afb5ce3ad fallback: Arial Bold";src:local("Arial Bold");font-display:swap;font-weight:700;font-style:normal;size-adjust:101.6708%;ascent-override:96.7829%;descent-override:28.7201%;line-gap-override:0%;}:root{--font-sans:"Space Grotesk-4d74656afb5ce3ad","Space Grotesk-4d74656afb5ce3ad fallback: Arial","Space Grotesk-4d74656afb5ce3ad fallback: Arial Bold",system-ui,sans-serif;}</style><link rel="preload" href="/_astro/fonts/68c4c61e5cf389d9.woff2" as="font" type="font/woff2" crossorigin><style>@font-face{font-family:"JetBrains Mono-9bfca9be8cd38759";src:url("/_astro/fonts/d767dad80444f27b.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:400;font-style:italic;}@font-face{font-family:"JetBrains Mono-9bfca9be8cd38759";src:url("/_astro/fonts/d767dad80444f27b.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:500;font-style:italic;}@font-face{font-family:"JetBrains Mono-9bfca9be8cd38759";src:url("/_astro/fonts/d767dad80444f27b.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:700;font-style:italic;}@font-face{font-family:"JetBrains Mono-9bfca9be8cd38759";src:url("/_astro/fonts/d39725b5b6a6f2ec.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:400;font-style:normal;}@font-face{font-family:"JetBrains Mono-9bfca9be8cd38759";src:url("/_astro/fonts/d39725b5b6a6f2ec.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:500;font-style:normal;}@font-face{font-family:"JetBrains Mono-9bfca9be8cd38759";src:url("/_astro/fonts/d39725b5b6a6f2ec.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:700;font-style:normal;}@font-face{font-family:"JetBrains Mono-9bfca9be8cd38759 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:400;font-style:italic;size-adjust:99.9837%;ascent-override:102.0166%;descent-override:30.0049%;}@font-face{font-family:"JetBrains Mono-9bfca9be8cd38759 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:500;font-style:italic;size-adjust:99.9837%;ascent-override:102.0166%;descent-override:30.0049%;}@font-face{font-family:"JetBrains Mono-9bfca9be8cd38759 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:700;font-style:italic;size-adjust:99.9837%;ascent-override:102.0166%;descent-override:30.0049%;}@font-face{font-family:"JetBrains Mono-9bfca9be8cd38759 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:400;font-style:normal;size-adjust:99.9837%;ascent-override:102.0166%;descent-override:30.0049%;}@font-face{font-family:"JetBrains Mono-9bfca9be8cd38759 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:500;font-style:normal;size-adjust:99.9837%;ascent-override:102.0166%;descent-override:30.0049%;}@font-face{font-family:"JetBrains Mono-9bfca9be8cd38759 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:700;font-style:normal;size-adjust:99.9837%;ascent-override:102.0166%;descent-override:30.0049%;}:root{--font-mono:"JetBrains Mono-9bfca9be8cd38759","JetBrains Mono-9bfca9be8cd38759 fallback: Courier New",ui-monospace,monospace;}</style><!-- Canonical URL --><link rel="canonical" href="https://arnav.tech/posts/2026-03-08-under-the-hood-how-totp-works-and-how-twofac-generates-your-2fa-codes/"><!-- Primary Meta Tags --><title>Under the Hood: How 2FA TOTP Authenticator Apps Work</title><meta name="title" content="Under the Hood: How 2FA TOTP Authenticator Apps Work"><meta name="description" content="In the previous article, I walked through how TwoFac is structured as a Kotlin Multiplatform project. Now that the architecture is in place, it's time to zoom into one of the most important pieces ..."><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://arnav.tech/posts/2026-03-08-under-the-hood-how-totp-works-and-how-twofac-generates-your-2fa-codes/"><meta property="og:title" content="Under the Hood: How 2FA TOTP Authenticator Apps Work"><meta property="og:description" content="In the previous article, I walked through how TwoFac is structured as a Kotlin Multiplatform project. Now that the architecture is in place, it's time to zoom into one of the most important pieces ..."><meta property="og:image" content="https://arnav.tech/_astro/a892724b-811e-4c96-aafb-4d49bc1f927f.GWfXa2Cb.png"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://arnav.tech/posts/2026-03-08-under-the-hood-how-totp-works-and-how-twofac-generates-your-2fa-codes/"><meta property="twitter:title" content="Under the Hood: How 2FA TOTP Authenticator Apps Work"><meta property="twitter:description" content="In the previous article, I walked through how TwoFac is structured as a Kotlin Multiplatform project. Now that the architecture is in place, it's time to zoom into one of the most important pieces ..."><meta property="twitter:image" content="https://arnav.tech/_astro/a892724b-811e-4c96-aafb-4d49bc1f927f.GWfXa2Cb.png"><link rel="stylesheet" href="/_astro/BaseLayout.qml4VNpd.css"><style>.meta[data-astro-cid-vk7tuqbn]{color:var(--ink-faint);font-family:var(--font-sans);flex-wrap:wrap;align-items:center;gap:.5em;font-size:.9rem;display:flex}.tags[data-astro-cid-vk7tuqbn]{flex-wrap:wrap;gap:.5em;display:flex}.tag[data-astro-cid-vk7tuqbn]{color:var(--accent)}.post-header[data-astro-cid-ssdmjifj]{border-bottom:1px solid var(--rule);margin-bottom:2em;padding-bottom:1.5em}.post-header[data-astro-cid-ssdmjifj] h1[data-astro-cid-ssdmjifj]{font-family:var(--font-sans);letter-spacing:-.02em;font-size:2.6rem;font-weight:700}.lede[data-astro-cid-ssdmjifj]{font-family:var(--font-sans);color:var(--ink-soft);margin:.4em 0 1em;font-size:1.15rem}.hero[data-astro-cid-ssdmjifj]{width:100%;box-shadow:var(--box-shadow);margin-bottom:2em}
+.ai-usage[data-v-9b64a0d0]{font-family:var(--font-sans,sans-serif);border-left:4px solid;border-radius:8px;align-items:flex-start;gap:.85em;margin:0 0 2em;padding:.9em 1.1em;display:flex}.ai-usage__icon[data-v-9b64a0d0]{flex-shrink:0;font-size:1.4em;line-height:1.2}.ai-usage__text[data-v-9b64a0d0]{flex-direction:column;gap:.15em;display:flex}.ai-usage__label[data-v-9b64a0d0]{text-transform:uppercase;letter-spacing:.1em;font-size:.82rem;font-weight:700}.ai-usage__body[data-v-9b64a0d0]{color:inherit;opacity:.85;margin:0;font-size:.88rem;line-height:1.55}.ai-usage--ai-free[data-v-9b64a0d0]{color:#2d4f38;background:#eef4ee;border-color:#4a7c59}.ai-usage--ai-assisted[data-v-9b64a0d0]{color:#6b450e;background:#fdf4e3;border-color:#b07320}.ai-usage--ai-generated[data-v-9b64a0d0]{color:#6f3d20;background:#faf0e8;border-color:#9c5a34}
+</style></head><body data-astro-cid-z4jru4n3><header data-astro-cid-nen7h5rs><nav data-astro-cid-nen7h5rs><a class="brand" href="/" data-astro-cid-nen7h5rs>Arnav Gupta</a><div class="internal-links" data-astro-cid-nen7h5rs><a href="/" data-astro-cid-nen7h5rs="true" data-astro-cid-evkijfd6>Home</a><a href="/essays" data-astro-cid-nen7h5rs="true" data-astro-cid-evkijfd6>Essays</a><a href="/posts" class="active" data-astro-cid-nen7h5rs="true" data-astro-cid-evkijfd6>Tech Posts</a><a href="/projects" data-astro-cid-nen7h5rs="true" data-astro-cid-evkijfd6>Projects</a><a href="/about" data-astro-cid-nen7h5rs="true" data-astro-cid-evkijfd6>About</a></div><div class="social-links" data-astro-cid-nen7h5rs><a href="https://x.com/championswimmer" target="_blank" rel="me noopener" title="Twitter" data-astro-cid-nen7h5rs><span class="sr-only" data-astro-cid-nen7h5rs>Twitter</span><svg width="20" height="20" data-astro-cid-nen7h5rs="true" data-icon="simple-icons:x"><symbol id="ai:simple-icons:x" viewBox="0 0 24 24"><path fill="currentColor" d="M14.234 10.162L22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299l-.929-1.329L3.076 1.56h3.182l5.965 8.532l.929 1.329l7.754 11.09h-3.182z"/></symbol><use href="#ai:simple-icons:x"></use></svg></a><a href="https://github.com/championswimmer" target="_blank" rel="me noopener" title="GitHub" data-astro-cid-nen7h5rs><span class="sr-only" data-astro-cid-nen7h5rs>GitHub</span><svg width="20" height="20" data-astro-cid-nen7h5rs="true" data-icon="simple-icons:github"><symbol id="ai:simple-icons:github" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol><use href="#ai:simple-icons:github"></use></svg></a><a href="https://www.linkedin.com/in/arnavgupta" target="_blank" rel="me noopener" title="LinkedIn" data-astro-cid-nen7h5rs><span class="sr-only" data-astro-cid-nen7h5rs>LinkedIn</span><svg width="20" height="20" data-astro-cid-nen7h5rs="true" data-icon="simple-icons:linkedin"><symbol id="ai:simple-icons:linkedin" viewBox="0 0 24 24"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037c-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85c3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.06 2.06 0 0 1-2.063-2.065a2.064 2.064 0 1 1 2.063 2.065m1.782 13.019H3.555V9h3.564zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"/></symbol><use href="#ai:simple-icons:linkedin"></use></svg></a></div></nav></header><main class data-astro-cid-z4jru4n3><article class="post" data-astro-cid-ssdmjifj><header class="post-header" data-astro-cid-ssdmjifj><h1 data-astro-cid-ssdmjifj>Under the Hood: How 2FA TOTP Authenticator Apps Work</h1><p class="lede" data-astro-cid-ssdmjifj>In the previous article, I walked through how TwoFac is structured as a Kotlin Multiplatform project. Now that the architecture is in place, it&#39;s time to zoom into one of the most important pieces ...</p><div class="meta" data-astro-cid-vk7tuqbn><time datetime="2026-03-08T00:00:00.000Z">Mar 8, 2026</time><span class="tags" data-astro-cid-vk7tuqbn><span class="tag" data-astro-cid-vk7tuqbn>#kotlin</span><span class="tag" data-astro-cid-vk7tuqbn>#cryptography</span><span class="tag" data-astro-cid-vk7tuqbn>#otp</span><span class="tag" data-astro-cid-vk7tuqbn>#security</span><span class="tag" data-astro-cid-vk7tuqbn>#two-factor authentication</span><span class="tag" data-astro-cid-vk7tuqbn>#2fa</span></span></div></header><img src="/_astro/a892724b-811e-4c96-aafb-4d49bc1f927f.GWfXa2Cb_Z1eDY9O.webp" alt data-astro-cid-ssdmjifj="true" loading="lazy" decoding="async" width="1280" height="640" class="hero"><div class="reading-tech" data-astro-cid-ssdmjifj><h1 id="under-the-hood-how-2fa-totp-authenticator-apps-work">Under the Hood: How 2FA TOTP Authenticator Apps Work</h1>
+<p>In the <a href="https://arnav.tech/architecting-twofac-my-journey-into-kotlin-multiplatform-module-structure">previous article</a>, I walked through how TwoFac is structured as a Kotlin Multiplatform project. Now that the architecture is in place, it’s time to zoom into one of the most important pieces inside that shared core: the actual OTP generation. Ever wondered what actually happens when you open your authenticator app and see a 6-digit code counting down? Most of us just copy-paste it and move on, but there’s some pretty elegant cryptography happening behind the scenes. In this post, I’m going to crack open the hood on <strong>TOTP</strong> — Time-based One-Time Passwords — explain the math, walk through the RFCs, and then show you exactly how we implement it in TwoFac.</p>
+<blockquote>
+<p><strong>Note:</strong> This post focuses only on OTP generation — how we take a shared secret and turn it into those familiar 6-digit codes. How we <em>store</em> secrets securely (PBKDF2, AES-GCM, the <code>accounts.json</code> file) is a story for the next post.</p>
+</blockquote>
+<h2 id="why-do-we-even-need-a-second-factor"><strong>Why Do We Even Need a “Second Factor”?</strong></h2>
+<p>Passwords alone are fundamentally brittle. They get reused, phished, leaked in data breaches, and brute-forced. The core idea behind two-factor authentication (2FA) is to combine <strong>something you know</strong> (your password) with <strong>something you have</strong> (your phone/authenticator app).</p>
+<p>Even if an attacker steals your password, they’d also need physical access to your device to get the current OTP. And because the OTP changes every 30 seconds, a stolen code becomes useless almost immediately.</p>
+<p>The beauty of TOTP-based 2FA is that it works <strong>offline</strong> — your authenticator app doesn’t need to call any server. Both your app and the server independently compute the same code from a shared secret and the current time. No SMS, no push notification, no network dependency. Just math.</p>
+<h2 id="starting-from-the-foundation-hotp"><strong>Starting from the Foundation: HOTP</strong></h2>
+<p>Before we can understand TOTP, we need to understand <strong>HOTP</strong> — HMAC-based One-Time Password, defined in <a href="https://datatracker.ietf.org/doc/html/rfc4226">RFC 4226</a>.</p>
+<p>HOTP is conceptually simple: you have a <strong>shared secret</strong> and a <strong>counter</strong>. You feed both into an HMAC function, then extract a human-friendly number from the result.</p>
+<h3 id="the-hotp-algorithm-step-by-step"><strong>The HOTP Algorithm Step-by-Step</strong></h3>
+<p>Here’s the formula:</p>
+<pre class="astro-code rose-pine-dawn" style="background-color:#faf4ed;color:#575279; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>HOTP(K, C) = Truncate(HMAC-SHA1(K, C)) mod 10^d</span></span></code></pre>
+<p>Where:</p>
+<ul>
+<li>
+<p><strong>K</strong> = the shared secret key (a byte array)</p>
+</li>
+<li>
+<p><strong>C</strong> = an 8-byte counter value (big-endian)</p>
+</li>
+<li>
+<p><strong>d</strong> = the number of digits in the output (usually 6)</p>
+</li>
+</ul>
+<p>Let’s break each step down.</p>
+<h4 id="step-1-counter-to-bytes"><strong>Step 1: Counter to Bytes</strong></h4>
+<p>The counter is a 64-bit integer. We convert it to an 8-byte array in big-endian order. So counter <code>5</code> becomes:</p>
+<pre class="astro-code rose-pine-dawn" style="background-color:#faf4ed;color:#575279; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>[0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x05]</span></span></code></pre>
+<h4 id="step-2-hmac-sha1"><strong>Step 2: HMAC-SHA1</strong></h4>
+<p>We compute <a href="https://datatracker.ietf.org/doc/html/rfc2104">HMAC</a> using the shared secret as the key and the counter bytes as the message. HMAC-SHA1 produces a <strong>20-byte</strong> (160-bit) hash.</p>
+<p>HMAC itself is defined as:</p>
+<pre class="astro-code rose-pine-dawn" style="background-color:#faf4ed;color:#575279; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>HMAC(K, text) = H((K' ⊕ opad) || H((K' ⊕ ipad) || text))</span></span></code></pre>
+<p>Where <code>ipad</code> = <code>0x36</code> repeated, <code>opad</code> = <code>0x5c</code> repeated, and <code>K'</code> is the key padded to the hash’s block size (64 bytes for SHA-1). Don’t worry if this looks intimidating — in practice, every crypto library handles this for you.</p>
+<h4 id="step-3-dynamic-truncation"><strong>Step 3: Dynamic Truncation</strong></h4>
+<p>Here’s where it gets clever. We have a 20-byte HMAC result, but we need a 6-digit number. RFC 4226 defines a <strong>dynamic truncation</strong> algorithm:</p>
+<ol>
+<li>
+<p>Take the <strong>last byte</strong> of the HMAC and look at its lowest 4 bits. This gives you an <strong>offset</strong> (0–15).</p>
+</li>
+<li>
+<p>Starting at that offset, extract <strong>4 consecutive bytes</strong>.</p>
+</li>
+<li>
+<p>Mask off the most significant bit (to avoid sign issues), giving you a <strong>31-bit unsigned integer</strong>.</p>
+</li>
+</ol>
+<pre class="astro-code rose-pine-dawn" style="background-color:#faf4ed;color:#575279; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>offset = hmac[19] &#x26; 0x0F</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>code = ((hmac[offset]     &#x26; 0x7F) &#x3C;&#x3C; 24)</span></span>
+<span class="line"><span>     | ((hmac[offset + 1] &#x26; 0xFF) &#x3C;&#x3C; 16)</span></span>
+<span class="line"><span>     | ((hmac[offset + 2] &#x26; 0xFF) &#x3C;&#x3C; 8)</span></span>
+<span class="line"><span>     |  (hmac[offset + 3] &#x26; 0xFF)</span></span></code></pre>
+<h4 id="step-4-modulo"><strong>Step 4: Modulo</strong></h4>
+<p>Finally, take that 31-bit integer modulo <code>10^digits</code> and pad with leading zeros:</p>
+<pre class="astro-code rose-pine-dawn" style="background-color:#faf4ed;color:#575279; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>otp = code % 1000000  →  "038314"</span></span></code></pre>
+<h3 id="visualizing-the-hotp-flow"><strong>Visualizing the HOTP Flow</strong></h3>
+<p><img alt="" loading="lazy" decoding="async" width="1408" height="768" src="/_astro/1ed8f45d-a950-44d2-9a7a-6f28c6e22415.Bc98F584_1j847h.webp" srcset=""></p>
+<h3 id="hotps-limitation-the-counter-sync-problem"><strong>HOTP’s Limitation: The Counter Sync Problem</strong></h3>
+<p>With HOTP, both the client and server maintain a synchronized counter. Every time you generate a code, the counter increments. But what if you generate a code and <em>don’t</em> use it? Your counter advances, but the server’s doesn’t. Now they’re out of sync.</p>
+<p>Servers deal with this by checking a “look-ahead window” — they’ll try counter values <code>C</code>, <code>C+1</code>, <code>C+2</code>, … up to some limit. But it’s fragile. And a stolen HOTP code remains valid indefinitely until it’s used or the counter advances past it.</p>
+<p>This is exactly the problem TOTP solves.</p>
+<h2 id="enter-totp-time-as-the-counter"><strong>Enter TOTP: Time as the Counter</strong></h2>
+<p><strong>TOTP</strong> (<a href="https://datatracker.ietf.org/doc/html/rfc6238">RFC 6238</a>) is HOTP, but with one elegant twist: instead of maintaining a counter, we <strong>derive the counter from the current time</strong>.</p>
+<pre class="astro-code rose-pine-dawn" style="background-color:#faf4ed;color:#575279; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>T = floor((CurrentUnixTime - T0) / TimeStep)</span></span></code></pre>
+<p>Where:</p>
+<ul>
+<li>
+<p><strong>CurrentUnixTime</strong> = seconds since the Unix epoch (1970-01-01 00:00:00 UTC)</p>
+</li>
+<li>
+<p><strong>T0</strong> = the reference time (usually 0, i.e., the epoch itself)</p>
+</li>
+<li>
+<p><strong>TimeStep</strong> = how often the code changes (usually <strong>30 seconds</strong>)</p>
+</li>
+</ul>
+<p>Then we simply call HOTP with <code>T</code> as the counter:</p>
+<pre class="astro-code rose-pine-dawn" style="background-color:#faf4ed;color:#575279; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>TOTP(K, T) = HOTP(K, T)</span></span></code></pre>
+<p>That’s it. The entire TOTP algorithm is just “replace the counter with a time-derived value.”</p>
+<h3 id="why-30-seconds"><strong>Why 30 Seconds?</strong></h3>
+<p>The 30-second window is a balance between security and usability. Shorter windows (like 10 seconds) would be more secure but give users barely enough time to read and type the code. Longer windows (like 60 seconds) give attackers more time to use a stolen code. 30 seconds is the sweet spot recommended by <a href="https://datatracker.ietf.org/doc/html/rfc6238">RFC 6238</a>.</p>
+<h3 id="clock-drift-tolerance"><strong>Clock Drift Tolerance</strong></h3>
+<p>What if the user’s phone clock is slightly off? Servers typically accept OTPs from the <strong>previous</strong>, <strong>current</strong>, and <strong>next</strong> time windows — effectively creating a 90-second acceptance window. This is enough to handle minor clock drift without meaningfully reducing security.</p>
+<p><img alt="" loading="lazy" decoding="async" width="1408" height="768" src="/_astro/48c75c63-f0c5-416f-bfb6-4e604d5f5172.B3zfRg67_ZcfXt8.webp" srcset=""></p>
+<h3 id="totp-supports-more-hash-algorithms"><strong>TOTP Supports More Hash Algorithms</strong></h3>
+<p>While HOTP (RFC 4226) was specified with SHA-1 only, TOTP (RFC 6238) explicitly supports:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Algorithm</th><th>HMAC Output</th><th>RFC 6238 Test Vectors</th></tr></thead><tbody><tr><td>HMAC-SHA1</td><td>20 bytes</td><td>✅ Yes</td></tr><tr><td>HMAC-SHA256</td><td>32 bytes</td><td>✅ Yes</td></tr><tr><td>HMAC-SHA512</td><td>64 bytes</td><td>✅ Yes</td></tr></tbody></table>
+<p>The dynamic truncation algorithm works the same regardless of hash output size — it always uses the last byte to find the offset, then extracts 4 bytes. The only difference is the range of possible offsets (0–15 for SHA-1 with 20 bytes, 0–15 for SHA-256 with 32 bytes, 0–15 for SHA-512 with 64 bytes — the offset is always 4 bits, so always 0–15).</p>
+<p>In practice, the overwhelming majority of services use SHA-1. But some security-conscious services (like some crypto exchanges) use SHA-256 or SHA-512 for a larger HMAC output.</p>
+<h2 id="how-totp-provisioning-works-qr-codes-andotpauthuris"><strong>How TOTP Provisioning Works: QR Codes and</strong> <code>otpauth://</code> <strong>URIs</strong></h2>
+<p>When you enable 2FA on a website, this is what happens under the hood:</p>
+<p><img alt="" loading="lazy" decoding="async" width="1408" height="768" src="/_astro/0d7eff05-2fea-4682-aaaf-9d6a4e8b58e4.QPqzbxCY_2bgx5T.webp" srcset=""></p>
+<h3 id="anatomy-of-anotpauthuri"><strong>Anatomy of an</strong> <code>otpauth://</code> <strong>URI</strong></h3>
+<p>The QR code encodes a URI in the <code>otpauth://</code> <a href="https://github.com/google/google-authenticator/wiki/Key-Uri-Format">format</a>, formalized in the IETF draft <a href="https://datatracker.ietf.org/doc/draft-linuxgemini-otpauth-uri/">draft-linuxgemini-otpauth-uri</a>:</p>
+<pre class="astro-code rose-pine-dawn" style="background-color:#faf4ed;color:#575279; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>otpauth://totp/GitHub:alice@example.com?secret=JBSWY3DPEHPK3PXP&#x26;issuer=GitHub&#x26;algorithm=SHA1&#x26;digits=6&#x26;period=30</span></span></code></pre>
+<p>Let’s break it down:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Component</th><th>Example</th><th>Description</th></tr></thead><tbody><tr><td><strong>Scheme</strong></td><td><code>otpauth://</code></td><td>The URI scheme — tells the app this is an OTP credential</td></tr><tr><td><strong>Type</strong></td><td><code>totp</code></td><td>Either <code>totp</code> or <code>hotp</code></td></tr><tr><td><strong>Label</strong></td><td><code>GitHub:alice@example.com</code></td><td>The issuer and account, separated by <code>:</code></td></tr><tr><td><strong>secret</strong></td><td><code>JBSWY3DPEHPK3PXP</code></td><td>The shared secret, <a href="https://datatracker.ietf.org/doc/html/rfc4648">Base32</a>-encoded (no padding)</td></tr><tr><td><strong>issuer</strong></td><td><code>GitHub</code></td><td>The service name (displayed in the app)</td></tr><tr><td><strong>algorithm</strong></td><td><code>SHA1</code></td><td>Hash algorithm: <code>SHA1</code>, <code>SHA256</code>, or <code>SHA512</code> (default: SHA1)</td></tr><tr><td><strong>digits</strong></td><td><code>6</code></td><td>Number of digits: 6 or 8 (default: 6)</td></tr><tr><td><strong>period</strong></td><td><code>30</code></td><td>TOTP time step in seconds (default: 30)</td></tr><tr><td><strong>counter</strong></td><td><em>(HOTP only)</em></td><td>Initial counter value for HOTP</td></tr></tbody></table>
+<p>The <code>secret</code> parameter is the star of the show — it’s the shared secret that both the server and your authenticator app use to independently generate matching codes. It’s Base32-encoded because Base32 uses only uppercase letters and digits 2–7, making it easy to display and manually type if QR scanning fails.</p>
+<h2 id="how-do-other-authenticator-apps-store-secrets"><strong>How Do Other Authenticator Apps Store Secrets?</strong></h2>
+<p>I found it really interesting to research how different authenticator apps handle OTP secret storage and backup. There’s a <strong>huge</strong> range — from “barely encrypted” to “enterprise-grade security”:</p>
+<h3 id="google-authenticator"><strong>Google Authenticator</strong></h3>
+<p>Google Authenticator originally stored secrets in a <strong>plaintext SQLite database</strong> on Android — no encryption at all. If your device was rooted, anyone could read all your 2FA secrets directly. Their cloud sync feature (added in 2023) <a href="https://www.androidauthority.com/google-authenticator-e2e-encryption-3317498/">initially transferred secrets without end-to-end encryption</a>, meaning Google’s servers could theoretically read them. They’ve since <a href="https://security.googleblog.com/2023/04/google-authenticator-now-supports.html">added E2EE to cloud sync</a>, but the local storage on Android still relies on the OS-level sandboxing rather than application-level encryption.</p>
+<h3 id="microsoft-authenticator"><strong>Microsoft Authenticator</strong></h3>
+<p>Microsoft Authenticator takes security more seriously. On iOS, secrets are stored in the <a href="https://developer.apple.com/documentation/security/keychain-services">Keychain</a>, and on Android they use <a href="https://developer.android.com/reference/androidx/security/crypto/EncryptedSharedPreferences">encrypted shared preferences</a>. Cloud backups are encrypted — iCloud backups are protected by Keychain, and Android backups go to Microsoft’s servers with account-based encryption.</p>
+<h3 id="authy-twilio"><strong>Authy (Twilio)</strong></h3>
+<p>Authy was one of the first authenticator apps to offer cloud backup. They encrypt secrets using a user-provided “backups password” (processed via <a href="https://datatracker.ietf.org/doc/html/rfc2898">PBKDF2</a> or similar KDF) before uploading. The downside? The app is proprietary and <a href="https://www.twilio.com/docs/authy">was sunset in 2024</a>, with users urged to migrate. Also, in 2024, Twilio <a href="https://techcrunch.com/2024/07/03/twilio-says-hackers-identified-cell-phone-numbers-of-two-factor-app-authy-users/">disclosed a breach</a> where phone numbers associated with Authy accounts were leaked (though not the secrets themselves).</p>
+<h3 id="1password--bitwarden"><strong>1Password &#x26; Bitwarden</strong></h3>
+<p>Both 1Password and Bitwarden store TOTP secrets as part of their broader encrypted vault. They use <a href="https://csrc.nist.gov/publications/detail/sp/800-38d/final">AES-256-GCM</a> with keys derived from your master password via <a href="https://datatracker.ietf.org/doc/html/rfc2898">PBKDF2</a> (Bitwarden) or <a href="https://www.rfc-editor.org/rfc/rfc9106.html">Argon2</a> (1Password). The secrets are just another encrypted field in your vault item. Both have been <a href="https://bitwarden.com/help/is-bitwarden-audited/">independently audited</a> and are open-source (Bitwarden fully, 1Password’s crypto components partially).</p>
+<h3 id="2fas"><strong>2FAS</strong></h3>
+<p><a href="https://2fas.com/">2FAS</a> is fully open-source and stores secrets encrypted on the device. They use a user-provided password to derive an encryption key. Backups are encrypted files that you control — no mandatory cloud. Their <a href="https://github.com/twofas">source code is available on GitHub</a>, which is a huge plus for auditability.</p>
+<h3 id="ente-auth"><strong>Ente Auth</strong></h3>
+<p><a href="https://ente.io/auth/">Ente Auth</a> is another open-source contender. They use end-to-end encryption with <a href="https://doc.libsodium.org/secret-key_cryptography/aead/chacha20-poly1305/xchacha20-poly1305_construction">XChaCha20-Poly1305</a> for their cloud sync, with keys derived from the user’s password via Argon2. Their code is <a href="https://github.com/ente-io/ente">fully open-source</a> and has been independently audited.</p>
+<h3 id="summary-table"><strong>Summary Table</strong></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>App</th><th>Encryption at Rest</th><th>Cloud Backup</th><th>Backup Encryption</th><th>Open Source</th></tr></thead><tbody><tr><td>Google Authenticator</td><td>OS sandbox only</td><td>Optional (Google)</td><td>E2EE (added later)</td><td>❌</td></tr><tr><td>Microsoft Authenticator</td><td>Keychain / EncryptedPrefs</td><td>iCloud/Microsoft</td><td>Account-based</td><td>❌</td></tr><tr><td>Authy</td><td>Encrypted</td><td>Yes (Twilio)</td><td>Password-based</td><td>❌</td></tr><tr><td>1Password</td><td>AES-256-GCM</td><td>Yes (1Password)</td><td>Master password</td><td>Partial</td></tr><tr><td>Bitwarden</td><td>AES-256-GCM</td><td>Yes (Bitwarden)</td><td>Master password</td><td>✅</td></tr><tr><td>2FAS</td><td>Encrypted</td><td>Optional (file)</td><td>Password-based</td><td>✅</td></tr><tr><td>Ente Auth</td><td>XChaCha20-Poly1305</td><td>Yes (Ente)</td><td>E2EE (Argon2)</td><td>✅</td></tr><tr><td><strong>TwoFac</strong></td><td>AES-256-GCM</td><td>Optional (file)</td><td>Password-based (PBKDF2)</td><td>✅</td></tr></tbody></table>
+<h2 id="diving-into-our-codebase"><strong>Diving Into Our Codebase</strong></h2>
+<p>Now that we understand the theory, let’s look at how TwoFac implements all of this. All the OTP logic lives in our <code>sharedLib</code> module — the pure Kotlin Multiplatform library that powers every platform (Android, iOS, Desktop, Web, CLI, Wear OS).</p>
+<h3 id="the-crypto-layercryptography-kotlin"><strong>The Crypto Layer:</strong> <code>cryptography-kotlin</code></h3>
+<p>We use <a href="https://github.com/whyoleg/cryptography-kotlin">cryptography-kotlin</a> by <a href="https://github.com/whyoleg">whyoleg</a> — specifically <code>dev.whyoleg.cryptography</code> v0.5.0 — for all our cryptographic primitives. The beauty of this library is that it wraps <strong>platform-native</strong> crypto providers:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Platform</th><th>Crypto Provider</th></tr></thead><tbody><tr><td>JVM (Android, Desktop, Wear OS)</td><td>JDK (<code>java.security</code> / <code>javax.crypto</code>)</td></tr><tr><td>Native (iOS, macOS, Linux CLI)</td><td>OpenSSL 3</td></tr><tr><td>Web (Wasm)</td><td><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API">Web Crypto API</a></td></tr></tbody></table>
+<p>This means we’re not shipping a custom crypto implementation — on each platform, we’re delegating to the <strong>battle-tested, OS-level crypto</strong> that’s already there. Here’s how the dependencies are configured in <code>sharedLib/build.gradle.kts</code>:</p>
+<pre class="astro-code rose-pine-dawn" style="background-color:#faf4ed;color:#575279; overflow-x: auto;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#9893A5;font-style:italic">// commonMain</span></span>
+<span class="line"><span style="color:#D7827E">implementation</span><span style="color:#575279">(libs.crypto.kt.core)       </span><span style="color:#9893A5;font-style:italic">// Core API</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9893A5;font-style:italic">// jvmMain</span></span>
+<span class="line"><span style="color:#D7827E">implementation</span><span style="color:#575279">(libs.crypto.kt.jdk)        </span><span style="color:#9893A5;font-style:italic">// → java.security / javax.crypto</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9893A5;font-style:italic">// nativeMain (iOS, macOS, Linux)</span></span>
+<span class="line"><span style="color:#D7827E">implementation</span><span style="color:#575279">(libs.crypto.kt.openssl)    </span><span style="color:#9893A5;font-style:italic">// → OpenSSL 3</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9893A5;font-style:italic">// wasmJsMain (Web, Browser Extension)</span></span>
+<span class="line"><span style="color:#D7827E">implementation</span><span style="color:#575279">(libs.crypto.kt.web)        </span><span style="color:#9893A5;font-style:italic">// → Web Crypto API</span></span></code></pre>
+<h3 id="the-cryptotools-interface"><strong>The CryptoTools Interface</strong></h3>
+<p>All cryptographic operations are abstracted behind a <code>CryptoTools</code> interface:</p>
+<pre class="astro-code rose-pine-dawn" style="background-color:#faf4ed;color:#575279; overflow-x: auto;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#286983">interface</span><span style="color:#56949F"> CryptoTools</span><span style="color:#575279"> {</span></span>
+<span class="line"><span style="color:#286983">    enum</span><span style="color:#286983"> class</span><span style="color:#56949F"> Algo</span><span style="color:#575279"> { SHA1, SHA256, SHA512 }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#286983">    suspend</span><span style="color:#286983"> fun</span><span style="color:#D7827E"> hmacSha</span><span style="color:#575279">(algorithm: </span><span style="color:#56949F">Algo</span><span style="color:#575279">, key: </span><span style="color:#56949F">ByteString</span><span style="color:#575279">, </span><span style="color:#286983">data</span><span style="color:#575279">: </span><span style="color:#56949F">ByteString</span><span style="color:#575279">): </span><span style="color:#56949F">ByteString</span></span>
+<span class="line"><span style="color:#286983">    suspend</span><span style="color:#286983"> fun</span><span style="color:#D7827E"> createSigningKey</span><span style="color:#575279">(passKey: </span><span style="color:#56949F">String</span><span style="color:#575279">, salt: </span><span style="color:#56949F">ByteString</span><span style="color:#575279">? </span><span style="color:#286983">=</span><span style="color:#D7827E"> null</span><span style="color:#575279">): </span><span style="color:#56949F">SigningKey</span></span>
+<span class="line"><span style="color:#286983">    suspend</span><span style="color:#286983"> fun</span><span style="color:#D7827E"> encrypt</span><span style="color:#575279">(key: </span><span style="color:#56949F">ByteString</span><span style="color:#575279">, secret: </span><span style="color:#56949F">ByteString</span><span style="color:#575279">): </span><span style="color:#56949F">ByteString</span></span>
+<span class="line"><span style="color:#286983">    suspend</span><span style="color:#286983"> fun</span><span style="color:#D7827E"> decrypt</span><span style="color:#575279">(encryptedData: </span><span style="color:#56949F">ByteString</span><span style="color:#575279">, key: </span><span style="color:#56949F">ByteString</span><span style="color:#575279">): </span><span style="color:#56949F">ByteString</span></span>
+<span class="line"><span style="color:#575279">}</span></span></code></pre>
+<p>Notice everything is a <code>suspend fun</code> — this isn’t just a Kotlin convention. On some platforms (especially WebCrypto), cryptographic operations are <strong>inherently asynchronous</strong>. By making the interface suspend-based, we can use the native async crypto APIs without blocking.</p>
+<p>The <code>DefaultCryptoTools</code> implementation wires everything to <code>cryptography-kotlin</code>:</p>
+<pre class="astro-code rose-pine-dawn" style="background-color:#faf4ed;color:#575279; overflow-x: auto;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#286983">class</span><span style="color:#56949F"> DefaultCryptoTools</span><span style="color:#575279">(</span><span style="color:#286983">val</span><span style="color:#575279"> cryptoProvider: </span><span style="color:#56949F">CryptographyProvider</span><span style="color:#575279">) : </span><span style="color:#56949F">CryptoTools</span><span style="color:#575279"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#286983">    val</span><span style="color:#575279"> hmac </span><span style="color:#286983">=</span><span style="color:#575279"> cryptoProvider.</span><span style="color:#D7827E">get</span><span style="color:#575279">(HMAC)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#286983">    override</span><span style="color:#286983"> suspend</span><span style="color:#286983"> fun</span><span style="color:#D7827E"> hmacSha</span><span style="color:#575279">(</span></span>
+<span class="line"><span style="color:#575279">        algorithm: </span><span style="color:#56949F">CryptoTools</span><span style="color:#575279">.Algo,</span></span>
+<span class="line"><span style="color:#575279">        key: </span><span style="color:#56949F">ByteString</span><span style="color:#575279">,</span></span>
+<span class="line"><span style="color:#286983">        data</span><span style="color:#575279">: </span><span style="color:#56949F">ByteString</span></span>
+<span class="line"><span style="color:#575279">    ): </span><span style="color:#56949F">ByteString</span><span style="color:#575279"> {</span></span>
+<span class="line"><span style="color:#286983">        val</span><span style="color:#575279"> keyDecoder </span><span style="color:#286983">=</span><span style="color:#286983"> when</span><span style="color:#575279"> (algorithm) {</span></span>
+<span class="line"><span style="color:#575279">            CryptoTools.Algo.SHA1 </span><span style="color:#286983">-></span><span style="color:#575279"> hmac.</span><span style="color:#D7827E">keyDecoder</span><span style="color:#575279">(SHA1)</span></span>
+<span class="line"><span style="color:#575279">            CryptoTools.Algo.SHA256 </span><span style="color:#286983">-></span><span style="color:#575279"> hmac.</span><span style="color:#D7827E">keyDecoder</span><span style="color:#575279">(SHA256)</span></span>
+<span class="line"><span style="color:#575279">            CryptoTools.Algo.SHA512 </span><span style="color:#286983">-></span><span style="color:#575279"> hmac.</span><span style="color:#D7827E">keyDecoder</span><span style="color:#575279">(SHA512)</span></span>
+<span class="line"><span style="color:#575279">        }</span></span>
+<span class="line"><span style="color:#286983">        val</span><span style="color:#575279"> hmacKey </span><span style="color:#286983">=</span><span style="color:#575279"> keyDecoder.</span><span style="color:#D7827E">decodeFromByteString</span><span style="color:#575279">(HMAC.Key.Format.RAW, key)</span></span>
+<span class="line"><span style="color:#286983">        val</span><span style="color:#575279"> signature </span><span style="color:#286983">=</span><span style="color:#575279"> hmacKey.</span><span style="color:#D7827E">signatureGenerator</span><span style="color:#575279">().</span><span style="color:#D7827E">generateSignature</span><span style="color:#575279">(</span><span style="color:#286983">data</span><span style="color:#575279">.</span><span style="color:#D7827E">toByteArray</span><span style="color:#575279">())</span></span>
+<span class="line"><span style="color:#286983">        return</span><span style="color:#D7827E"> ByteString</span><span style="color:#575279">(signature)</span></span>
+<span class="line"><span style="color:#575279">    }</span></span>
+<span class="line"><span style="color:#575279">}</span></span></code></pre>
+<h3 id="the-otp-interface"><strong>The OTP Interface</strong></h3>
+<p>Both HOTP and TOTP implement a common <code>OTP</code> interface:</p>
+<pre class="astro-code rose-pine-dawn" style="background-color:#faf4ed;color:#575279; overflow-x: auto;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#286983">interface</span><span style="color:#56949F"> OTP</span><span style="color:#575279"> {</span></span>
+<span class="line"><span style="color:#286983">    val</span><span style="color:#575279"> digits: </span><span style="color:#56949F">Int</span><span style="color:#9893A5;font-style:italic">                      // 6 or 8</span></span>
+<span class="line"><span style="color:#286983">    val</span><span style="color:#575279"> algorithm: </span><span style="color:#56949F">CryptoTools</span><span style="color:#575279">.Algo      </span><span style="color:#9893A5;font-style:italic">// SHA1, SHA256, SHA512</span></span>
+<span class="line"><span style="color:#286983">    val</span><span style="color:#575279"> secret: </span><span style="color:#56949F">String</span><span style="color:#9893A5;font-style:italic">                   // Base32-encoded</span></span>
+<span class="line"><span style="color:#286983">    val</span><span style="color:#575279"> accountName: </span><span style="color:#56949F">String</span><span style="color:#9893A5;font-style:italic">              // e.g. "alice@example.com"</span></span>
+<span class="line"><span style="color:#286983">    val</span><span style="color:#575279"> issuer: </span><span style="color:#56949F">String</span><span style="color:#575279">?                  </span><span style="color:#9893A5;font-style:italic">// e.g. "GitHub"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#286983">    suspend</span><span style="color:#286983"> fun</span><span style="color:#D7827E"> generateOTP</span><span style="color:#575279">(counter: </span><span style="color:#56949F">Long</span><span style="color:#575279">): </span><span style="color:#56949F">String</span></span>
+<span class="line"><span style="color:#286983">    suspend</span><span style="color:#286983"> fun</span><span style="color:#D7827E"> validateOTP</span><span style="color:#575279">(otp: </span><span style="color:#56949F">String</span><span style="color:#575279">, counter: </span><span style="color:#56949F">Long</span><span style="color:#575279">): </span><span style="color:#56949F">Boolean</span></span>
+<span class="line"><span style="color:#575279">}</span></span></code></pre>
+<h3 id="our-hotp-implementation"><strong>Our HOTP Implementation</strong></h3>
+<p>The <code>HOTP</code> class is a direct implementation of RFC 4226:</p>
+<pre class="astro-code rose-pine-dawn" style="background-color:#faf4ed;color:#575279; overflow-x: auto;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#286983">class</span><span style="color:#56949F"> HOTP</span><span style="color:#575279">(</span></span>
+<span class="line"><span style="color:#286983">    override</span><span style="color:#286983"> val</span><span style="color:#575279"> digits: </span><span style="color:#56949F">Int</span><span style="color:#286983"> =</span><span style="color:#D7827E"> 6</span><span style="color:#575279">,</span></span>
+<span class="line"><span style="color:#286983">    override</span><span style="color:#286983"> val</span><span style="color:#575279"> algorithm: </span><span style="color:#56949F">CryptoTools</span><span style="color:#575279">.Algo </span><span style="color:#286983">=</span><span style="color:#575279"> CryptoTools.Algo.SHA1,</span></span>
+<span class="line"><span style="color:#286983">    override</span><span style="color:#286983"> val</span><span style="color:#575279"> secret: </span><span style="color:#56949F">String</span><span style="color:#575279">,</span></span>
+<span class="line"><span style="color:#286983">    override</span><span style="color:#286983"> val</span><span style="color:#575279"> accountName: </span><span style="color:#56949F">String</span><span style="color:#575279">,</span></span>
+<span class="line"><span style="color:#286983">    override</span><span style="color:#286983"> val</span><span style="color:#575279"> issuer: </span><span style="color:#56949F">String</span><span style="color:#575279">?,</span></span>
+<span class="line"><span style="color:#575279">) : </span><span style="color:#56949F">OTP</span><span style="color:#575279"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#286983">    private</span><span style="color:#286983"> val</span><span style="color:#575279"> cryptoTools </span><span style="color:#286983">=</span><span style="color:#D7827E"> DefaultCryptoTools</span><span style="color:#575279">(CryptographyProvider.Default)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#286983">    override</span><span style="color:#286983"> suspend</span><span style="color:#286983"> fun</span><span style="color:#D7827E"> generateOTP</span><span style="color:#575279">(counter: </span><span style="color:#56949F">Long</span><span style="color:#575279">): </span><span style="color:#56949F">String</span><span style="color:#575279"> {</span></span>
+<span class="line"><span style="color:#9893A5;font-style:italic">        // 1. Counter → 8 bytes (big-endian)</span></span>
+<span class="line"><span style="color:#286983">        val</span><span style="color:#575279"> counterBytes </span><span style="color:#286983">=</span><span style="color:#D7827E"> ByteArray</span><span style="color:#575279">(</span><span style="color:#D7827E">8</span><span style="color:#575279">) { i </span><span style="color:#286983">-></span></span>
+<span class="line"><span style="color:#575279">            ((counter </span><span style="color:#D7827E">shr</span><span style="color:#575279"> ((</span><span style="color:#D7827E">7</span><span style="color:#286983"> -</span><span style="color:#575279"> i) </span><span style="color:#286983">*</span><span style="color:#D7827E"> 8</span><span style="color:#575279">)) and </span><span style="color:#D7827E">0xFF</span><span style="color:#575279">).</span><span style="color:#D7827E">toByte</span><span style="color:#575279">()</span></span>
+<span class="line"><span style="color:#575279">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9893A5;font-style:italic">        // 2. Decode the Base32 secret</span></span>
+<span class="line"><span style="color:#286983">        val</span><span style="color:#575279"> secretBytes </span><span style="color:#286983">=</span><span style="color:#575279"> Encoding.</span><span style="color:#D7827E">decodeBase32</span><span style="color:#575279">(secret)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9893A5;font-style:italic">        // 3. HMAC</span></span>
+<span class="line"><span style="color:#286983">        val</span><span style="color:#575279"> hmac </span><span style="color:#286983">=</span><span style="color:#575279"> cryptoTools.</span><span style="color:#D7827E">hmacSha</span><span style="color:#575279">(</span></span>
+<span class="line"><span style="color:#575279">            algorithm,</span></span>
+<span class="line"><span style="color:#D7827E">            ByteString</span><span style="color:#575279">(secretBytes),</span></span>
+<span class="line"><span style="color:#D7827E">            ByteString</span><span style="color:#575279">(counterBytes)</span></span>
+<span class="line"><span style="color:#575279">        )</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9893A5;font-style:italic">        // 4. Dynamic Truncation</span></span>
+<span class="line"><span style="color:#286983">        val</span><span style="color:#575279"> fourBytes </span><span style="color:#286983">=</span><span style="color:#D7827E"> dynamicTruncate</span><span style="color:#575279">(hmac)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9893A5;font-style:italic">        // 5. Modulo → pad with zeros</span></span>
+<span class="line"><span style="color:#286983">        val</span><span style="color:#575279"> otp </span><span style="color:#286983">=</span><span style="color:#575279"> fourBytes </span><span style="color:#286983">%</span><span style="color:#D7827E"> 10.0</span><span style="color:#575279">.</span><span style="color:#D7827E">pow</span><span style="color:#575279">(digits.</span><span style="color:#D7827E">toDouble</span><span style="color:#575279">()).</span><span style="color:#D7827E">toInt</span><span style="color:#575279">()</span></span>
+<span class="line"><span style="color:#286983">        return</span><span style="color:#575279"> otp.</span><span style="color:#D7827E">toString</span><span style="color:#575279">().</span><span style="color:#D7827E">padStart</span><span style="color:#575279">(digits, </span><span style="color:#EA9D34">'0'</span><span style="color:#575279">)</span></span>
+<span class="line"><span style="color:#575279">    }</span></span>
+<span class="line"><span style="color:#575279">}</span></span></code></pre>
+<p>The dynamic truncation method follows the RFC exactly:</p>
+<pre class="astro-code rose-pine-dawn" style="background-color:#faf4ed;color:#575279; overflow-x: auto;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#286983">internal</span><span style="color:#286983"> fun</span><span style="color:#D7827E"> dynamicTruncate</span><span style="color:#575279">(hmac: </span><span style="color:#56949F">ByteString</span><span style="color:#575279">): </span><span style="color:#56949F">Int</span><span style="color:#575279"> {</span></span>
+<span class="line"><span style="color:#9893A5;font-style:italic">    // Last byte's lowest 4 bits = offset (0-15)</span></span>
+<span class="line"><span style="color:#286983">    val</span><span style="color:#575279"> offset </span><span style="color:#286983">=</span><span style="color:#575279"> (hmac.</span><span style="color:#D7827E">get</span><span style="color:#575279">(hmac.size </span><span style="color:#286983">-</span><span style="color:#D7827E"> 1</span><span style="color:#575279">) and </span><span style="color:#D7827E">0x0F</span><span style="color:#575279">).</span><span style="color:#D7827E">toInt</span><span style="color:#575279">()</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9893A5;font-style:italic">    // Extract 4 bytes, mask the MSB for a 31-bit unsigned int</span></span>
+<span class="line"><span style="color:#286983">    return</span><span style="color:#575279"> ((hmac.</span><span style="color:#D7827E">get</span><span style="color:#575279">(offset).</span><span style="color:#D7827E">toInt</span><span style="color:#575279">() and </span><span style="color:#D7827E">0x7F</span><span style="color:#575279">) shl </span><span style="color:#D7827E">24</span><span style="color:#575279">) or</span></span>
+<span class="line"><span style="color:#575279">           ((hmac.</span><span style="color:#D7827E">get</span><span style="color:#575279">(offset </span><span style="color:#286983">+</span><span style="color:#D7827E"> 1</span><span style="color:#575279">).</span><span style="color:#D7827E">toInt</span><span style="color:#575279">() and </span><span style="color:#D7827E">0xFF</span><span style="color:#575279">) shl </span><span style="color:#D7827E">16</span><span style="color:#575279">) or</span></span>
+<span class="line"><span style="color:#575279">           ((hmac.</span><span style="color:#D7827E">get</span><span style="color:#575279">(offset </span><span style="color:#286983">+</span><span style="color:#D7827E"> 2</span><span style="color:#575279">).</span><span style="color:#D7827E">toInt</span><span style="color:#575279">() and </span><span style="color:#D7827E">0xFF</span><span style="color:#575279">) shl </span><span style="color:#D7827E">8</span><span style="color:#575279">) or</span></span>
+<span class="line"><span style="color:#575279">            (hmac.</span><span style="color:#D7827E">get</span><span style="color:#575279">(offset </span><span style="color:#286983">+</span><span style="color:#D7827E"> 3</span><span style="color:#575279">).</span><span style="color:#D7827E">toInt</span><span style="color:#575279">() and </span><span style="color:#D7827E">0xFF</span><span style="color:#575279">)</span></span>
+<span class="line"><span style="color:#575279">}</span></span></code></pre>
+<p>One thing I want to highlight: our <code>dynamicTruncate</code> uses <code>hmac.size - 1</code> instead of hardcoding <code>19</code> (like you’d see in SHA-1-only implementations). This makes it work correctly with SHA-256 (32 bytes) and SHA-512 (64 bytes) too.</p>
+<h3 id="our-totp-implementation"><strong>Our TOTP Implementation</strong></h3>
+<p>The <code>TOTP</code> class is remarkably simple because it just wraps HOTP:</p>
+<pre class="astro-code rose-pine-dawn" style="background-color:#faf4ed;color:#575279; overflow-x: auto;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#286983">class</span><span style="color:#56949F"> TOTP</span><span style="color:#575279">(</span></span>
+<span class="line"><span style="color:#286983">    override</span><span style="color:#286983"> val</span><span style="color:#575279"> digits: </span><span style="color:#56949F">Int</span><span style="color:#286983"> =</span><span style="color:#D7827E"> 6</span><span style="color:#575279">,</span></span>
+<span class="line"><span style="color:#286983">    override</span><span style="color:#286983"> val</span><span style="color:#575279"> algorithm: </span><span style="color:#56949F">CryptoTools</span><span style="color:#575279">.Algo </span><span style="color:#286983">=</span><span style="color:#575279"> CryptoTools.Algo.SHA1,</span></span>
+<span class="line"><span style="color:#286983">    override</span><span style="color:#286983"> val</span><span style="color:#575279"> secret: </span><span style="color:#56949F">String</span><span style="color:#575279">,</span></span>
+<span class="line"><span style="color:#286983">    override</span><span style="color:#286983"> val</span><span style="color:#575279"> accountName: </span><span style="color:#56949F">String</span><span style="color:#575279">,</span></span>
+<span class="line"><span style="color:#286983">    override</span><span style="color:#286983"> val</span><span style="color:#575279"> issuer: </span><span style="color:#56949F">String</span><span style="color:#575279">?,</span></span>
+<span class="line"><span style="color:#286983">    private</span><span style="color:#286983"> val</span><span style="color:#575279"> baseTime: </span><span style="color:#56949F">Long</span><span style="color:#286983"> =</span><span style="color:#D7827E"> 0</span><span style="color:#575279">,    </span><span style="color:#9893A5;font-style:italic">// Unix epoch</span></span>
+<span class="line"><span style="color:#286983">    val</span><span style="color:#575279"> timeInterval: </span><span style="color:#56949F">Long</span><span style="color:#286983"> =</span><span style="color:#D7827E"> 30</span><span style="color:#9893A5;font-style:italic">        // 30 seconds</span></span>
+<span class="line"><span style="color:#575279">) : </span><span style="color:#56949F">OTP</span><span style="color:#575279"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9893A5;font-style:italic">    // Reuse HOTP internally!</span></span>
+<span class="line"><span style="color:#286983">    private</span><span style="color:#286983"> val</span><span style="color:#575279"> hotp </span><span style="color:#286983">=</span><span style="color:#D7827E"> HOTP</span><span style="color:#575279">(digits, algorithm, secret, accountName, issuer)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#286983">    private</span><span style="color:#286983"> fun</span><span style="color:#D7827E"> timeToCounter</span><span style="color:#575279">(currentTime: </span><span style="color:#56949F">Long</span><span style="color:#575279">): </span><span style="color:#56949F">Long</span><span style="color:#575279"> {</span></span>
+<span class="line"><span style="color:#286983">        return</span><span style="color:#575279"> (currentTime </span><span style="color:#286983">-</span><span style="color:#575279"> baseTime) </span><span style="color:#286983">/</span><span style="color:#575279"> timeInterval</span></span>
+<span class="line"><span style="color:#575279">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#286983">    override</span><span style="color:#286983"> suspend</span><span style="color:#286983"> fun</span><span style="color:#D7827E"> generateOTP</span><span style="color:#575279">(currentTime: </span><span style="color:#56949F">Long</span><span style="color:#575279">): </span><span style="color:#56949F">String</span><span style="color:#575279"> {</span></span>
+<span class="line"><span style="color:#286983">        val</span><span style="color:#575279"> counter </span><span style="color:#286983">=</span><span style="color:#D7827E"> timeToCounter</span><span style="color:#575279">(currentTime)</span></span>
+<span class="line"><span style="color:#286983">        return</span><span style="color:#575279"> hotp.</span><span style="color:#D7827E">generateOTP</span><span style="color:#575279">(counter)</span></span>
+<span class="line"><span style="color:#575279">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#286983">    override</span><span style="color:#286983"> suspend</span><span style="color:#286983"> fun</span><span style="color:#D7827E"> validateOTP</span><span style="color:#575279">(otp: </span><span style="color:#56949F">String</span><span style="color:#575279">, currentTime: </span><span style="color:#56949F">Long</span><span style="color:#575279">): </span><span style="color:#56949F">Boolean</span><span style="color:#575279"> {</span></span>
+<span class="line"><span style="color:#286983">        val</span><span style="color:#575279"> counter </span><span style="color:#286983">=</span><span style="color:#D7827E"> timeToCounter</span><span style="color:#575279">(currentTime)</span></span>
+<span class="line"><span style="color:#9893A5;font-style:italic">        // Check previous, current, and next windows (±1)</span></span>
+<span class="line"><span style="color:#286983">        return</span><span style="color:#575279"> hotp.</span><span style="color:#D7827E">validateOTP</span><span style="color:#575279">(otp, counter </span><span style="color:#286983">-</span><span style="color:#D7827E"> 1</span><span style="color:#575279">) </span><span style="color:#286983">||</span></span>
+<span class="line"><span style="color:#575279">               hotp.</span><span style="color:#D7827E">validateOTP</span><span style="color:#575279">(otp, counter) </span><span style="color:#286983">||</span></span>
+<span class="line"><span style="color:#575279">               hotp.</span><span style="color:#D7827E">validateOTP</span><span style="color:#575279">(otp, counter </span><span style="color:#286983">+</span><span style="color:#D7827E"> 1</span><span style="color:#575279">)</span></span>
+<span class="line"><span style="color:#575279">    }</span></span>
+<span class="line"><span style="color:#575279">}</span></span></code></pre>
+<p>This is one of my favorite parts of the codebase. The <code>TOTP</code> class doesn’t duplicate <em>any</em> crypto logic — it just converts time into a counter and delegates to <code>HOTP</code>. The <code>validateOTP</code> method checks ±1 time windows (the standard tolerance for clock drift).</p>
+<p><img alt="" loading="lazy" decoding="async" width="1408" height="768" src="/_astro/19d51e2e-7627-4f4b-8419-2699ebd738c1.CKzyyzOY_UQE15.webp" srcset=""></p>
+<h3 id="parsingotpauthuris"><strong>Parsing</strong> <code>otpauth://</code> <strong>URIs</strong></h3>
+<p>When you scan a QR code, we need to parse the <code>otpauth://</code> URI and create the right OTP object. This is handled by <code>OtpAuthURI</code>:</p>
+<pre class="astro-code rose-pine-dawn" style="background-color:#faf4ed;color:#575279; overflow-x: auto;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#286983">object</span><span style="color:#56949F"> OtpAuthURI</span><span style="color:#575279"> {</span></span>
+<span class="line"><span style="color:#286983">    fun</span><span style="color:#D7827E"> parse</span><span style="color:#575279">(uri: </span><span style="color:#56949F">String</span><span style="color:#575279">): </span><span style="color:#56949F">OTP</span><span style="color:#575279"> {</span></span>
+<span class="line"><span style="color:#D7827E">        require</span><span style="color:#575279">(uri.</span><span style="color:#D7827E">startsWith</span><span style="color:#575279">(</span><span style="color:#EA9D34">"otpauth://"</span><span style="color:#575279">))</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9893A5;font-style:italic">        // Extract type: "totp" or "hotp"</span></span>
+<span class="line"><span style="color:#286983">        val</span><span style="color:#575279"> typeStr </span><span style="color:#286983">=</span><span style="color:#575279"> uri.</span><span style="color:#D7827E">substring</span><span style="color:#575279">(</span><span style="color:#D7827E">10</span><span style="color:#575279">, uri.</span><span style="color:#D7827E">indexOf</span><span style="color:#575279">(</span><span style="color:#EA9D34">"/"</span><span style="color:#575279">, </span><span style="color:#D7827E">10</span><span style="color:#575279">))</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9893A5;font-style:italic">        // Extract label: "GitHub:alice@example.com"</span></span>
+<span class="line"><span style="color:#286983">        val</span><span style="color:#575279"> label </span><span style="color:#286983">=</span><span style="color:#575279"> uri.</span><span style="color:#D7827E">substring</span><span style="color:#575279">(uri.</span><span style="color:#D7827E">indexOf</span><span style="color:#575279">(</span><span style="color:#EA9D34">"/"</span><span style="color:#575279">, </span><span style="color:#D7827E">10</span><span style="color:#575279">) </span><span style="color:#286983">+</span><span style="color:#D7827E"> 1</span><span style="color:#575279">, uri.</span><span style="color:#D7827E">indexOf</span><span style="color:#575279">(</span><span style="color:#EA9D34">"?"</span><span style="color:#575279">))</span></span>
+<span class="line"><span style="color:#286983">        val</span><span style="color:#575279"> labelIssuer </span><span style="color:#286983">=</span><span style="color:#575279"> label.</span><span style="color:#D7827E">substringBefore</span><span style="color:#575279">(</span><span style="color:#EA9D34">":"</span><span style="color:#575279">, </span><span style="color:#EA9D34">""</span><span style="color:#575279">)</span></span>
+<span class="line"><span style="color:#286983">        val</span><span style="color:#575279"> accountName </span><span style="color:#286983">=</span><span style="color:#575279"> label.</span><span style="color:#D7827E">substringAfter</span><span style="color:#575279">(</span><span style="color:#EA9D34">":"</span><span style="color:#575279">, label).</span><span style="color:#D7827E">trim</span><span style="color:#575279">()</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9893A5;font-style:italic">        // Parse query parameters</span></span>
+<span class="line"><span style="color:#286983">        val</span><span style="color:#575279"> params </span><span style="color:#286983">=</span><span style="color:#575279"> paramsStr.</span><span style="color:#D7827E">split</span><span style="color:#575279">(</span><span style="color:#EA9D34">"&#x26;"</span><span style="color:#575279">).</span><span style="color:#D7827E">associate</span><span style="color:#575279"> { </span><span style="color:#9893A5;font-style:italic">/* ... */</span><span style="color:#575279"> }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#286983">        val</span><span style="color:#575279"> secret </span><span style="color:#286983">=</span><span style="color:#575279"> params[</span><span style="color:#EA9D34">"secret"</span><span style="color:#575279">]</span><span style="color:#286983">!!</span></span>
+<span class="line"><span style="color:#286983">        val</span><span style="color:#575279"> algorithm </span><span style="color:#286983">=</span><span style="color:#286983"> when</span><span style="color:#575279"> (params[</span><span style="color:#EA9D34">"algorithm"</span><span style="color:#575279">]?.</span><span style="color:#D7827E">uppercase</span><span style="color:#575279">()) {</span></span>
+<span class="line"><span style="color:#EA9D34">            "SHA256"</span><span style="color:#286983"> -></span><span style="color:#575279"> CryptoTools.Algo.SHA256</span></span>
+<span class="line"><span style="color:#EA9D34">            "SHA512"</span><span style="color:#286983"> -></span><span style="color:#575279"> CryptoTools.Algo.SHA512</span></span>
+<span class="line"><span style="color:#286983">            else</span><span style="color:#286983"> -></span><span style="color:#575279"> CryptoTools.Algo.SHA1  </span><span style="color:#9893A5;font-style:italic">// Default</span></span>
+<span class="line"><span style="color:#575279">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#286983">        return</span><span style="color:#286983"> when</span><span style="color:#575279"> (type) {</span></span>
+<span class="line"><span style="color:#575279">            Type.TOTP </span><span style="color:#286983">-></span><span style="color:#D7827E"> TOTP</span><span style="color:#575279">(</span></span>
+<span class="line"><span style="color:#575279">                digits </span><span style="color:#286983">=</span><span style="color:#575279"> params[</span><span style="color:#EA9D34">"digits"</span><span style="color:#575279">]?.</span><span style="color:#D7827E">toIntOrNull</span><span style="color:#575279">() ?: </span><span style="color:#D7827E">6</span><span style="color:#575279">,</span></span>
+<span class="line"><span style="color:#575279">                algorithm </span><span style="color:#286983">=</span><span style="color:#575279"> algorithm,</span></span>
+<span class="line"><span style="color:#575279">                secret </span><span style="color:#286983">=</span><span style="color:#575279"> secret,</span></span>
+<span class="line"><span style="color:#575279">                timeInterval </span><span style="color:#286983">=</span><span style="color:#575279"> params[</span><span style="color:#EA9D34">"period"</span><span style="color:#575279">]?.</span><span style="color:#D7827E">toLongOrNull</span><span style="color:#575279">() ?: </span><span style="color:#D7827E">30L</span><span style="color:#575279">,</span></span>
+<span class="line"><span style="color:#575279">                accountName </span><span style="color:#286983">=</span><span style="color:#575279"> accountName,</span></span>
+<span class="line"><span style="color:#575279">                issuer </span><span style="color:#286983">=</span><span style="color:#575279"> issuer</span></span>
+<span class="line"><span style="color:#575279">            )</span></span>
+<span class="line"><span style="color:#575279">            Type.HOTP </span><span style="color:#286983">-></span><span style="color:#D7827E"> HOTP</span><span style="color:#575279">(</span><span style="color:#9893A5;font-style:italic">/* ... */</span><span style="color:#575279">)</span></span>
+<span class="line"><span style="color:#575279">        }</span></span>
+<span class="line"><span style="color:#575279">    }</span></span>
+<span class="line"><span style="color:#575279">}</span></span></code></pre>
+<p>The parser also has a <code>Builder</code> that works in reverse — given an <code>OTP</code> object, it constructs the <code>otpauth://</code> URI. This is used when exporting or backing up accounts.</p>
+<h3 id="base32-encoding"><strong>Base32 Encoding</strong></h3>
+<p>OTP secrets in the <code>otpauth://</code> URI are Base32-encoded per <a href="https://datatracker.ietf.org/doc/html/rfc4648">RFC 4648</a>. We implement our own Base32 encoder/decoder in <code>Encoding.kt</code>:</p>
+<pre class="astro-code rose-pine-dawn" style="background-color:#faf4ed;color:#575279; overflow-x: auto;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#286983">object</span><span style="color:#56949F"> Encoding</span><span style="color:#575279"> {</span></span>
+<span class="line"><span style="color:#286983">    const</span><span style="color:#286983"> val</span><span style="color:#575279"> ALPHABET </span><span style="color:#286983">=</span><span style="color:#EA9D34"> "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#286983">    fun</span><span style="color:#D7827E"> decodeBase32</span><span style="color:#575279">(base32: </span><span style="color:#56949F">String</span><span style="color:#575279">): </span><span style="color:#56949F">ByteArray</span><span style="color:#575279"> {</span></span>
+<span class="line"><span style="color:#286983">        val</span><span style="color:#575279"> cleanInput </span><span style="color:#286983">=</span><span style="color:#575279"> base32.</span><span style="color:#D7827E">replace</span><span style="color:#575279">(</span><span style="color:#EA9D34">"="</span><span style="color:#575279">, </span><span style="color:#EA9D34">""</span><span style="color:#575279">).</span><span style="color:#D7827E">uppercase</span><span style="color:#575279">()</span></span>
+<span class="line"><span style="color:#9893A5;font-style:italic">        // Each Base32 character represents 5 bits</span></span>
+<span class="line"><span style="color:#9893A5;font-style:italic">        // We accumulate bits in a buffer and emit bytes when we have 8+</span></span>
+<span class="line"><span style="color:#286983">        var</span><span style="color:#575279"> buffer </span><span style="color:#286983">=</span><span style="color:#D7827E"> 0</span></span>
+<span class="line"><span style="color:#286983">        var</span><span style="color:#575279"> bitsLeft </span><span style="color:#286983">=</span><span style="color:#D7827E"> 0</span></span>
+<span class="line"><span style="color:#9893A5;font-style:italic">        /* ... */</span></span>
+<span class="line"><span style="color:#575279">    }</span></span>
+<span class="line"><span style="color:#575279">}</span></span></code></pre>
+<p>Why Base32 instead of Base64? Base32 uses only uppercase letters and digits 2–7, so there’s no ambiguity between <code>0</code>/<code>O</code>, <code>1</code>/<code>l</code>/<code>I</code>, or <code>+</code>/<code>/</code>. This matters because users might need to manually type the secret if QR scanning fails.</p>
+<h3 id="how-we-store-otp-accounts"><strong>How We Store OTP Accounts</strong></h3>
+<p>Each OTP account is stored as a <code>StoredAccount</code>:</p>
+<pre class="astro-code rose-pine-dawn" style="background-color:#faf4ed;color:#575279; overflow-x: auto;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#56949F">@Serializable</span></span>
+<span class="line"><span style="color:#286983">data</span><span style="color:#286983"> class</span><span style="color:#56949F"> StoredAccount</span><span style="color:#575279">(</span></span>
+<span class="line"><span style="color:#286983">    val</span><span style="color:#575279"> accountID: </span><span style="color:#56949F">Uuid</span><span style="color:#575279">,          </span><span style="color:#9893A5;font-style:italic">// Unique identifier</span></span>
+<span class="line"><span style="color:#286983">    val</span><span style="color:#575279"> accountLabel: </span><span style="color:#56949F">String</span><span style="color:#575279">,     </span><span style="color:#9893A5;font-style:italic">// Display name (e.g. "GitHub - alice")</span></span>
+<span class="line"><span style="color:#286983">    val</span><span style="color:#575279"> salt: </span><span style="color:#56949F">String</span><span style="color:#575279">,             </span><span style="color:#9893A5;font-style:italic">// Salt for key derivation</span></span>
+<span class="line"><span style="color:#286983">    val</span><span style="color:#575279"> encryptedURI: </span><span style="color:#56949F">String</span><span style="color:#575279">,     </span><span style="color:#9893A5;font-style:italic">// The otpauth:// URI, encrypted with AES-GCM</span></span>
+<span class="line"><span style="color:#575279">)</span></span></code></pre>
+<p>Notice that we store the <strong>encrypted</strong> <code>otpauth://</code> URI, not the raw secret. The entire URI (which contains the secret, algorithm, issuer, etc.) is encrypted with AES-256-GCM using a key derived from the user’s password via PBKDF2. Each account gets its own salt.</p>
+<p>This means even if someone gets access to the storage file, they can’t read any OTP secrets without the user’s password. But that’s a topic for the next post — where we’ll dive deep into PBKDF2, AES-GCM, and the <code>accounts.json</code> storage format.</p>
+<h2 id="verifying-against-the-rfcs"><strong>Verifying Against the RFCs</strong></h2>
+<p>One thing I’m particularly proud of is that our test suite validates against the <strong>official RFC test vectors</strong>. Here’s a snippet from our <a href="https://github.com/championswimmer/TwoFac/tree/main/sharedLib/src/commonTest/kotlin/tech/arnav/twofac/lib/otp/HOTPTest.kt">HOTP tests</a>:</p>
+<pre class="astro-code rose-pine-dawn" style="background-color:#faf4ed;color:#575279; overflow-x: auto;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#9893A5;font-style:italic">// Secret: "12345678901234567890" (ASCII)</span></span>
+<span class="line"><span style="color:#9893A5;font-style:italic">// Base32: "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ"</span></span>
+<span class="line"><span style="color:#286983">val</span><span style="color:#575279"> expectedOTPs </span><span style="color:#286983">=</span><span style="color:#D7827E"> listOf</span><span style="color:#575279">(</span></span>
+<span class="line"><span style="color:#EA9D34">    "755224"</span><span style="color:#575279">, </span><span style="color:#9893A5;font-style:italic">// Counter = 0</span></span>
+<span class="line"><span style="color:#EA9D34">    "287082"</span><span style="color:#575279">, </span><span style="color:#9893A5;font-style:italic">// Counter = 1</span></span>
+<span class="line"><span style="color:#EA9D34">    "359152"</span><span style="color:#575279">, </span><span style="color:#9893A5;font-style:italic">// Counter = 2</span></span>
+<span class="line"><span style="color:#EA9D34">    "969429"</span><span style="color:#575279">, </span><span style="color:#9893A5;font-style:italic">// Counter = 3</span></span>
+<span class="line"><span style="color:#EA9D34">    "338314"</span><span style="color:#575279">, </span><span style="color:#9893A5;font-style:italic">// Counter = 4</span></span>
+<span class="line"><span style="color:#EA9D34">    "254676"</span><span style="color:#575279">, </span><span style="color:#9893A5;font-style:italic">// Counter = 5</span></span>
+<span class="line"><span style="color:#EA9D34">    "287922"</span><span style="color:#575279">, </span><span style="color:#9893A5;font-style:italic">// Counter = 6</span></span>
+<span class="line"><span style="color:#EA9D34">    "162583"</span><span style="color:#575279">, </span><span style="color:#9893A5;font-style:italic">// Counter = 7</span></span>
+<span class="line"><span style="color:#EA9D34">    "399871"</span><span style="color:#575279">, </span><span style="color:#9893A5;font-style:italic">// Counter = 8</span></span>
+<span class="line"><span style="color:#EA9D34">    "520489"</span><span style="color:#9893A5;font-style:italic">  // Counter = 9</span></span>
+<span class="line"><span style="color:#575279">)</span></span></code></pre>
+<p>These are the exact test vectors from <a href="https://datatracker.ietf.org/doc/html/rfc4226#appendix-D">RFC 4226 Appendix D</a>. Our <a href="https://github.com/championswimmer/TwoFac/tree/main/sharedLib/src/commonTest/kotlin/tech/arnav/twofac/lib/otp/TOTPTest.kt">TOTP tests</a> go even further, validating against <a href="https://datatracker.ietf.org/doc/html/rfc6238#appendix-B">RFC 6238’s test vectors</a> with all three hash algorithms:</p>
+<pre class="astro-code rose-pine-dawn" style="background-color:#faf4ed;color:#575279; overflow-x: auto;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#9893A5;font-style:italic">// RFC 6238 test vectors with 8-digit codes</span></span>
+<span class="line"><span style="color:#D7827E">RFC6238TestVector</span><span style="color:#575279">(</span><span style="color:#D7827E">59</span><span style="color:#575279">, </span><span style="color:#EA9D34">"1970-01-01 00:00:59"</span><span style="color:#575279">, key_sha1, SHA1, </span><span style="color:#EA9D34">"94287082"</span><span style="color:#575279">),</span></span>
+<span class="line"><span style="color:#D7827E">RFC6238TestVector</span><span style="color:#575279">(</span><span style="color:#D7827E">59</span><span style="color:#575279">, </span><span style="color:#EA9D34">"1970-01-01 00:00:59"</span><span style="color:#575279">, key_sha256, SHA256, </span><span style="color:#EA9D34">"46119246"</span><span style="color:#575279">),</span></span>
+<span class="line"><span style="color:#D7827E">RFC6238TestVector</span><span style="color:#575279">(</span><span style="color:#D7827E">59</span><span style="color:#575279">, </span><span style="color:#EA9D34">"1970-01-01 00:00:59"</span><span style="color:#575279">, key_sha512, SHA512, </span><span style="color:#EA9D34">"90693936"</span><span style="color:#575279">),</span></span>
+<span class="line"><span style="color:#9893A5;font-style:italic">// ... and more timestamps across decades</span></span></code></pre>
+<p>If our implementation matches the RFC test vectors on every platform (JVM, Native, Wasm), we can be confident we’re computing OTPs correctly.</p>
+<h2 id="the-full-picture"><strong>The Full Picture</strong></h2>
+<p>Here’s how everything fits together in TwoFac — from scanning a QR code to displaying the 6-digit code on your screen:</p>
+<p><img alt="" loading="lazy" decoding="async" width="1408" height="768" src="/_astro/b8821533-7a62-46ba-add8-7d63c8dd08e8.C2w5hXe8_Z1PAJnh.webp" srcset=""></p>
+<h2 id="whats-next"><strong>What’s Next?</strong></h2>
+<p>In this post we covered the <em>generation</em> side of things — how a shared secret and the current time produce those familiar 6-digit codes. But generation is only half the story.</p>
+<p>In the next post, we’ll explore the <em>storage</em> side: how TwoFac protects your secrets at rest using <strong>PBKDF2</strong> for key derivation and <strong>AES-256-GCM</strong> for authenticated encryption. We’ll walk through the <code>accounts.json</code> format, why we chose the iteration counts we did, and how the encryption pipeline works across all platforms.</p>
+<hr>
+<h3 id="links-and-references"><strong>Links and References</strong></h3>
+<ul>
+<li>
+<p><a href="https://github.com/championswimmer/TwoFac">TwoFac GitHub Repository</a></p>
+</li>
+<li>
+<p><a href="https://datatracker.ietf.org/doc/html/rfc4226">RFC 4226 — HOTP: An HMAC-Based One-Time Password Algorithm</a></p>
+</li>
+<li>
+<p><a href="https://datatracker.ietf.org/doc/html/rfc6238">RFC 6238 — TOTP: Time-Based One-Time Password Algorithm</a></p>
+</li>
+<li>
+<p><a href="https://datatracker.ietf.org/doc/html/rfc2104">RFC 2104 — HMAC: Keyed-Hashing for Message Authentication</a></p>
+</li>
+<li>
+<p><a href="https://datatracker.ietf.org/doc/html/rfc4648">RFC 4648 — Base Encodings (Base32)</a></p>
+</li>
+<li>
+<p><a href="https://datatracker.ietf.org/doc/draft-linuxgemini-otpauth-uri/">draft-linuxgemini-otpauth-uri — The otpauth URI Format</a></p>
+</li>
+<li>
+<p><a href="https://github.com/google/google-authenticator/wiki/Key-Uri-Format">Google Authenticator Key URI Format</a></p>
+</li>
+<li>
+<p><a href="https://github.com/whyoleg/cryptography-kotlin">cryptography-kotlin by whyoleg</a></p>
+</li>
+<li>
+<p><a href="https://csrc.nist.gov/publications/detail/sp/800-38d/final">NIST SP 800-38D — AES-GCM</a></p>
+</li>
+</ul></div></article><script type="module" src="/_astro/Mermaid.astro_astro_type_script_index_0_lang.DS6MHV3s.js"></script></main><footer data-astro-cid-jo6i4kqk><div class="rule" data-astro-cid-jo6i4kqk></div><div class="social-links" data-astro-cid-jo6i4kqk><a href="https://x.com/championswimmer" target="_blank" rel="me noopener" title="Twitter" data-astro-cid-jo6i4kqk><span class="sr-only" data-astro-cid-jo6i4kqk>Twitter</span><svg width="22" height="22" viewBox="0 0 24 24" data-astro-cid-jo6i4kqk="true" data-icon="simple-icons:x"><use href="#ai:simple-icons:x"></use></svg></a><a href="https://github.com/championswimmer" target="_blank" rel="me noopener" title="GitHub" data-astro-cid-jo6i4kqk><span class="sr-only" data-astro-cid-jo6i4kqk>GitHub</span><svg width="22" height="22" viewBox="0 0 24 24" data-astro-cid-jo6i4kqk="true" data-icon="simple-icons:github"><use href="#ai:simple-icons:github"></use></svg></a><a href="https://www.linkedin.com/in/arnavgupta" target="_blank" rel="me noopener" title="LinkedIn" data-astro-cid-jo6i4kqk><span class="sr-only" data-astro-cid-jo6i4kqk>LinkedIn</span><svg width="22" height="22" viewBox="0 0 24 24" data-astro-cid-jo6i4kqk="true" data-icon="simple-icons:linkedin"><use href="#ai:simple-icons:linkedin"></use></svg></a><a href="https://instagram.com/arnavgupta31" target="_blank" rel="me noopener" title="Instagram" data-astro-cid-jo6i4kqk><span class="sr-only" data-astro-cid-jo6i4kqk>Instagram</span><svg width="22" height="22" data-astro-cid-jo6i4kqk="true" data-icon="simple-icons:instagram"><symbol id="ai:simple-icons:instagram" viewBox="0 0 24 24"><path fill="currentColor" d="M7.03.084c-1.277.06-2.149.264-2.91.563a5.9 5.9 0 0 0-2.124 1.388a5.9 5.9 0 0 0-1.38 2.127C.321 4.926.12 5.8.064 7.076s-.069 1.688-.063 4.947s.021 3.667.083 4.947c.061 1.277.264 2.149.563 2.911c.308.789.72 1.457 1.388 2.123a5.9 5.9 0 0 0 2.129 1.38c.763.295 1.636.496 2.913.552c1.278.056 1.689.069 4.947.063s3.668-.021 4.947-.082c1.28-.06 2.147-.265 2.91-.563a5.9 5.9 0 0 0 2.123-1.388a5.9 5.9 0 0 0 1.38-2.129c.295-.763.496-1.636.551-2.912c.056-1.28.07-1.69.063-4.948c-.006-3.258-.02-3.667-.081-4.947c-.06-1.28-.264-2.148-.564-2.911a5.9 5.9 0 0 0-1.387-2.123a5.9 5.9 0 0 0-2.128-1.38c-.764-.294-1.636-.496-2.914-.55C15.647.009 15.236-.006 11.977 0S8.31.021 7.03.084m.14 21.693c-1.17-.05-1.805-.245-2.228-.408a3.7 3.7 0 0 1-1.382-.895a3.7 3.7 0 0 1-.9-1.378c-.165-.423-.363-1.058-.417-2.228c-.06-1.264-.072-1.644-.08-4.848c-.006-3.204.006-3.583.061-4.848c.05-1.169.246-1.805.408-2.228c.216-.561.477-.96.895-1.382a3.7 3.7 0 0 1 1.379-.9c.423-.165 1.057-.361 2.227-.417c1.265-.06 1.644-.072 4.848-.08c3.203-.006 3.583.006 4.85.062c1.168.05 1.804.244 2.227.408c.56.216.96.475 1.382.895s.681.817.9 1.378c.165.422.362 1.056.417 2.227c.06 1.265.074 1.645.08 4.848c.005 3.203-.006 3.583-.061 4.848c-.051 1.17-.245 1.805-.408 2.23c-.216.56-.477.96-.896 1.38a3.7 3.7 0 0 1-1.378.9c-.422.165-1.058.362-2.226.418c-1.266.06-1.645.072-4.85.079s-3.582-.006-4.848-.06m9.783-16.192a1.44 1.44 0 1 0 1.437-1.442a1.44 1.44 0 0 0-1.437 1.442M5.839 12.012a6.161 6.161 0 1 0 12.323-.024a6.162 6.162 0 0 0-12.323.024M8 12.008A4 4 0 1 1 12.008 16A4 4 0 0 1 8 12.008"/></symbol><use href="#ai:simple-icons:instagram"></use></svg></a><a href="https://www.youtube.com/@6etime" target="_blank" rel="me noopener" title="YouTube" data-astro-cid-jo6i4kqk><span class="sr-only" data-astro-cid-jo6i4kqk>YouTube</span><svg width="22" height="22" data-astro-cid-jo6i4kqk="true" data-icon="simple-icons:youtube"><symbol id="ai:simple-icons:youtube" viewBox="0 0 24 24"><path fill="currentColor" d="M23.498 6.186a3.02 3.02 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.02 3.02 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.02 3.02 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.02 3.02 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814M9.545 15.568V8.432L15.818 12z"/></symbol><use href="#ai:simple-icons:youtube"></use></svg></a><a href="https://championswimmer.substack.com" target="_blank" rel="me noopener" title="Substack" data-astro-cid-jo6i4kqk><span class="sr-only" data-astro-cid-jo6i4kqk>Substack</span><svg width="22" height="22" data-astro-cid-jo6i4kqk="true" data-icon="simple-icons:substack"><symbol id="ai:simple-icons:substack" viewBox="0 0 24 24"><path fill="currentColor" d="M22.539 8.242H1.46V5.406h21.08zM1.46 10.812V24L12 18.11L22.54 24V10.812zM22.54 0H1.46v2.836h21.08z"/></symbol><use href="#ai:simple-icons:substack"></use></svg></a><a href="/rss.xml" title="RSS" data-astro-cid-jo6i4kqk><span class="sr-only" data-astro-cid-jo6i4kqk>RSS</span><svg width="22" height="22" data-astro-cid-jo6i4kqk="true" data-icon="simple-icons:rss"><symbol id="ai:simple-icons:rss" viewBox="0 0 24 24"><path fill="currentColor" d="M19.199 24C19.199 13.467 10.533 4.8 0 4.8V0c13.165 0 24 10.835 24 24zM3.291 17.415a3.3 3.3 0 0 1 3.293 3.295A3.303 3.303 0 0 1 3.283 24C1.47 24 0 22.526 0 20.71s1.475-3.294 3.291-3.295M15.909 24h-4.665c0-6.169-5.075-11.245-11.244-11.245V8.09c8.727 0 15.909 7.184 15.909 15.91"/></symbol><use href="#ai:simple-icons:rss"></use></svg></a></div><p data-astro-cid-jo6i4kqk>&copy; 2026 Arnav Gupta. Set in Newsreader, Space Grotesk &amp; JetBrains Mono.</p></footer></body></html>
