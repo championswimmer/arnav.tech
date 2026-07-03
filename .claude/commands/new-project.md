@@ -5,8 +5,9 @@ description: Scaffold a new MDX project page in src/content/projects/
 Create a new project showcase for arnav.tech from the title: **$ARGUMENTS**
 
 Steps:
-1. Slugify the title (kebab-case) for the filename.
-2. Create `src/content/projects/<slug>.mdx` with this frontmatter (projects are
+1. Slugify the title (kebab-case) for the filename, then prefix it with
+   today's date so the filename reads `<YYYY-MM-DD>-<slug>`.
+2. Create `src/content/projects/<YYYY-MM-DD>-<slug>.mdx` with this frontmatter (projects are
    always MDX so they can embed Vue islands):
 
    ```mdx
@@ -34,4 +35,4 @@ Steps:
    <Counter client:visible />
    ```
 
-4. Report the path and the URL (`/projects/<slug>/`).
+4. Report the path and the URL (`/projects/<YYYY-MM-DD>-<slug>/`).
