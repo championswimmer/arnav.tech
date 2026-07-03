@@ -28,8 +28,39 @@
 	--wide-width: 960px;
 }
 
+/* Dark mode — same warm sepia hue, inverted toward a dark ink page */
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme='light']) {
+		--paper: #211a13;
+		--paper-raised: #2a2117;
+		--ink: #eee3cf;
+		--ink-soft: #c2b299;
+		--ink-faint: #8f8069;
+		--rule: #43382a;
+		--accent: #e0a374;
+		--accent-dark: #f0c19b;
+		--highlight: #3a2f21;
+		--box-shadow:
+			0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 18px rgba(0, 0, 0, 0.3);
+	}
+}
+:root[data-theme='dark'] {
+	--paper: #211a13;
+	--paper-raised: #2a2117;
+	--ink: #eee3cf;
+	--ink-soft: #c2b299;
+	--ink-faint: #8f8069;
+	--rule: #43382a;
+	--accent: #e0a374;
+	--accent-dark: #f0c19b;
+	--highlight: #3a2f21;
+	--box-shadow:
+		0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
 html {
 	scroll-behavior: smooth;
+	color-scheme: light dark;
 }
 
 body {
@@ -50,6 +81,9 @@ body {
 	font-size: 18px;
 	line-height: 1.7;
 	-webkit-font-smoothing: antialiased;
+	transition:
+		background-color 0.2s ease,
+		color 0.2s ease;
 }
 
 main {

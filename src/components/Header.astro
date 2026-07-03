@@ -3,6 +3,7 @@ import { Icon } from 'astro-icon/components';
 import { SITE_TITLE, NAV_LINKS } from '../consts';
 import { primarySocialLinks } from '../lib/social';
 import HeaderLink from './HeaderLink.astro';
+import ThemeToggle from './ThemeToggle.astro';
 ---
 
 <header>
@@ -11,15 +12,18 @@ import HeaderLink from './HeaderLink.astro';
 		<div class="internal-links">
 			{NAV_LINKS.map((link) => <HeaderLink href={link.href}>{link.label}</HeaderLink>)}
 		</div>
-		<div class="social-links">
-			{
-				primarySocialLinks.map((link) => (
-					<a href={link.url} target="_blank" rel="me noopener" title={link.label}>
-						<span class="sr-only">{link.label}</span>
-						<Icon name={link.icon} width={20} height={20} />
-					</a>
-				))
-			}
+		<div class="right-links">
+			<div class="social-links">
+				{
+					primarySocialLinks.map((link) => (
+						<a href={link.url} target="_blank" rel="me noopener" title={link.label}>
+							<span class="sr-only">{link.label}</span>
+							<Icon name={link.icon} width={20} height={20} />
+						</a>
+					))
+				}
+			</div>
+			<ThemeToggle />
 		</div>
 	</nav>
 </header>
@@ -64,6 +68,11 @@ import HeaderLink from './HeaderLink.astro';
 	.internal-links :global(a.active) {
 		color: var(--accent);
 		font-weight: 600;
+	}
+	.right-links {
+		display: flex;
+		align-items: center;
+		gap: 0.75em;
 	}
 	.social-links {
 		display: flex;
