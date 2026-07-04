@@ -1,7 +1,7 @@
 ---
 title: On Keeping a Notebook
 description: Why the act of writing things down is worth more than the things written down.
-pubDate: 2026-06-01
+pubDate: 2022-06-01
 draft: false
 ---
 
