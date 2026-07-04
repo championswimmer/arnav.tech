@@ -1,0 +1,145 @@
+---
+import timeline from '../data/timeline.yaml';
+
+interface Entry {
+	company: string;
+	role: string;
+	team?: string;
+	start: string;
+	end: string;
+	location?: string;
+	url?: string;
+	highlights?: string[];
+}
+
+const entries = (timeline.entries ?? []) as Entry[];
+---
+
+<ol class="timeline">
+	{
+		entries.map((entry) => (
+			<li class="entry" class:list={{ current: entry.end === 'Present' }}>
+				<div class="marker" aria-hidden="true" />
+				<div class="content">
+					<p class="period">
+						{entry.start} <span class="dash">–</span> {entry.end}
+					</p>
+					<h3 class="heading">
+						<span class="role">{entry.role}</span>
+						<span class="at"> at </span>
+						{entry.url ? (
+							<a class="company" href={entry.url} target="_blank" rel="noopener">
+								{entry.company}
+							</a>
+						) : (
+							<span class="company">{entry.company}</span>
+						)}
+					</h3>
+					{(entry.team || entry.location) && (
+						<p class="meta">
+							{entry.team}
+							{entry.team && entry.location && <span class="sep"> · </span>}
+							{entry.location}
+						</p>
+					)}
+					{entry.highlights && entry.highlights.length > 0 && (
+						<ul class="highlights">
+							{entry.highlights.map((h) => (
+								<li>{h}</li>
+							))}
+						</ul>
+					)}
+				</div>
+			</li>
+		))
+	}
+</ol>
+
+<style>
+	.timeline {
+		list-style: none;
+		margin: 2.5em 0;
+		padding: 0;
+	}
+	.entry {
+		position: relative;
+		padding: 0 0 2.25em 1.75em;
+		/* The spine: a hairline running down the left, drawn on each entry so
+		   it stops naturally at the last one. */
+		border-left: 1px solid var(--rule);
+	}
+	.entry:last-child {
+		padding-bottom: 0;
+		/* Fade the spine out below the final marker. */
+		border-image: linear-gradient(var(--rule), var(--rule) 1.4em, transparent 1.4em) 1;
+	}
+	.marker {
+		position: absolute;
+		left: -5px;
+		top: 0.35em;
+		width: 9px;
+		height: 9px;
+		border-radius: 50%;
+		background: var(--paper);
+		border: 2px solid var(--ink-faint);
+	}
+	.entry.current .marker {
+		background: var(--accent);
+		border-color: var(--accent);
+		box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent);
+	}
+	.period {
+		font-family: var(--font-mono);
+		font-size: 0.78rem;
+		letter-spacing: 0.02em;
+		color: var(--ink-faint);
+		margin: 0 0 0.25em;
+	}
+	.dash {
+		opacity: 0.6;
+	}
+	.heading {
+		font-family: var(--font-sans);
+		font-size: 1.05rem;
+		font-weight: 600;
+		line-height: 1.3;
+		margin: 0;
+		color: var(--ink);
+	}
+	.at {
+		font-weight: 400;
+		color: var(--ink-faint);
+	}
+	.company {
+		color: var(--ink);
+	}
+	a.company {
+		text-decoration: none;
+		border-bottom: 1px solid var(--rule);
+		transition: color 0.15s ease, border-color 0.15s ease;
+	}
+	a.company:hover {
+		color: var(--accent);
+		border-color: var(--accent);
+	}
+	.meta {
+		font-family: var(--font-sans);
+		font-size: 0.85rem;
+		color: var(--ink-soft);
+		margin: 0.2em 0 0;
+	}
+	.highlights {
+		margin: 0.75em 0 0;
+		padding-left: 1.1em;
+	}
+	.highlights li {
+		font-size: 0.92rem;
+		line-height: 1.55;
+		color: var(--ink-soft);
+		margin: 0.3em 0;
+		padding-left: 0.15em;
+	}
+	.highlights li::marker {
+		color: var(--ink-faint);
+	}
+</style>

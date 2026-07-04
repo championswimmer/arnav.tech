@@ -1,0 +1,81 @@
+# Career timeline for the About page.
+#
+# Single source of truth — the <Timeline /> component reads from here, nothing
+# is hardcoded. Entries should be listed newest-first; that's the order they
+# render. Each entry:
+#
+#   company    Where you worked (required)
+#   role       Your title (required)
+#   team       Optional sub-line — org, team, or focus area
+#   start      Free-text start, e.g. "March 2019"
+#   end        Free-text end, or "Present" for the current role
+#   location   Optional city/region
+#   url        Optional link on the company name
+#   highlights List of key things you did there
+
+entries:
+  - company: Meta
+    role: Engineering Manager
+    team: Hardware Placement · Core Systems
+    start: December 2024
+    end: Present
+    location: London, UK
+    url: https://meta.com
+    highlights:
+      - I help decide where millions of servers physically go. Tetris, but the blocks are datacenters.
+      - Turns out all that AI needs a gigawatt of compute to live somewhere. I'm part of the somewhere.
+
+  - company: Viacom18
+    role: Director of Engineering
+    team: Platform & Engagement
+    start: March 2023
+    end: December 2024
+    location: India
+    highlights:
+      - We took JioCinema from 0 to 400M users in six months. My sleep schedule did not survive.
+      - Ran two teams and ~35 engineers building the fun stuff — game stats, 360 views, VR, and stickers you could buy mid-match.
+      - Grew from 400M to 620M users between two IPL seasons and somehow cut crashes by 80% doing it.
+      - Snuck Kotlin Multiplatform into iOS and Web because writing the same code twice is a sin.
+
+  - company: Scaler
+    role: Product & Strategy
+    team: CEO's Office
+    start: April 2021
+    end: March 2023
+    location: India
+    highlights:
+      - Hung out in the CEO's office during the wild 10x-growth years.
+      - Built a team from nothing and shipped the Scaler app.
+      - Bought three companies, launched a learning program, and started a podcast where I got to grill top CTOs.
+
+  - company: Target
+    role: Lead Engineer
+    team: Android
+    start: March 2020
+    end: April 2021
+    location: India
+    highlights:
+      - Reshaped the India mobile team from "we support things" into "we own things."
+      - Built our own chat-support and FAQ platforms mostly to stop paying Salesforce.
+      - Dragged the login flow into the OAuth2 era.
+
+  - company: Zomato
+    role: Engineering Lead
+    team: Mobile Platform
+    start: March 2019
+    end: March 2020
+    location: India
+    highlights:
+      - Made the Android app smaller and faster, and cut our build times by 95% so nobody had time for coffee anymore.
+      - Handled moving Uber Eats users over after the acquisition.
+      - Built and open-sourced Sushi, Zomato's design library.
+
+  - company: Coding Blocks
+    role: Co-Founder & CTO
+    start: June 2016
+    end: March 2019
+    location: India
+    highlights:
+      - Started a company, bootstrapped it to ~$1.9M ARR, and actually made money doing it.
+      - Built the SSO, an online IDE, and a code judge that ran everyone's questionable code in Docker.
+      - Taught a lot of people Android and Node, and wrote the courses too.
