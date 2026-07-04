@@ -25,6 +25,11 @@ const today = new Date();
 		&copy; {today.getFullYear()} {SITE_AUTHOR}. Set in Newsreader, Space Grotesk &amp; JetBrains
 		Mono.
 	</p>
+	<p>
+		<a href="https://github.com/championswimmer/arnav.tech" target="_blank" rel="noopener">
+			Source on GitHub
+		</a>
+	</p>
 </footer>
 <style>
 	footer {
@@ -53,6 +58,15 @@ const today = new Date();
 		transition: color 0.15s ease;
 	}
 	.social-links a:hover {
+		color: var(--accent);
+	}
+	footer p a {
+		color: var(--ink-soft);
+		text-decoration: none;
+		border-bottom: 1px solid var(--rule);
+		transition: color 0.15s ease;
+	}
+	footer p a:hover {
 		color: var(--accent);
 	}
 </style>
