@@ -51,14 +51,16 @@ const PLATFORMS: Record<Platform, PlatformDef> = {
 	substack: {
 		label: 'Substack',
 		icon: 'simple-icons:substack',
-		// Handle is the full URL (custom domain, not a *.substack.com subdomain).
-		url: (h) => h,
+		url: (h) => `https://${h}.substack.com`,
 	},
 };
 
 interface RawProfile {
 	platform: Platform;
-	handle: string;
+	/** Platform handle, expanded into a URL via the platform's pattern. */
+	handle?: string;
+	/** Full URL, used verbatim. Takes precedence over `handle` if both are set. */
+	url?: string;
 	primary?: boolean;
 }
 
@@ -80,16 +82,22 @@ export const socialLinks: SocialLink[] = raw
 			console.warn(`[social] unknown platform "${p.platform}" — skipping`);
 			return false;
 		}
+		if (!p.url && !p.handle) {
+			console.warn(`[social] "${p.platform}" has neither url nor handle — skipping`);
+			return false;
+		}
 		return true;
 	})
 	.map((p) => {
 		const def = PLATFORMS[p.platform];
+		// `url` wins over `handle` when both are present.
+		const url = p.url ?? def.url(p.handle as string);
 		return {
 			platform: p.platform,
 			label: def.label,
 			icon: def.icon,
-			handle: p.handle,
-			url: def.url(p.handle),
+			handle: p.handle ?? '',
+			url,
 			primary: p.primary ?? false,
 		};
 	});
