@@ -31,6 +31,7 @@ entries:
     start: March 2023
     end: December 2024
     location: Bangalore, India
+    url: https://www.jiostar.com
     highlights:
       - We took JioCinema from 0 to 400M users in six months. My sleep schedule did not survive.
       - Ran two teams and ~35 engineers building the fun stuff — game stats, 360 views, VR, and stickers you could buy mid-match.
@@ -43,6 +44,7 @@ entries:
     start: April 2021
     end: March 2023
     location: Bangalore, India
+    url: https://www.scaler.com
     highlights:
       - Hung out in the CEO's office during the wild 10x-growth years.
       - Built a team from nothing and shipped the Scaler app.
@@ -54,6 +56,7 @@ entries:
     start: March 2020
     end: April 2021
     location: India
+    url: https://www.target.com
     highlights:
       - Reshaped the India mobile team from "we support things" into "we own things."
       - Built our own chat-support and FAQ platforms mostly to stop paying Salesforce.
@@ -65,6 +68,7 @@ entries:
     start: March 2019
     end: March 2020
     location: New Delhi, India
+    url: https://www.zomato.com
     highlights:
       - Made the Android app smaller and faster, and cut our build times by 95% so nobody had time for coffee anymore.
       - Handled moving Uber Eats users over after the acquisition.
@@ -75,6 +79,7 @@ entries:
     start: June 2016
     end: March 2019
     location: New Delhi, India
+    url: https://www.codingblocks.com
     highlights:
       - Started a company, bootstrapped it to ~$1.9M ARR, and actually made money doing it.
       - Built the SSO, an online IDE, and a code judge that ran everyone's questionable code in Docker.

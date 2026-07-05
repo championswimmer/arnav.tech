@@ -96,7 +96,8 @@ Slash commands scaffold front-matter-correct files:
 ## Git workflow
 
 Always commit and push after making changes — don't leave work uncommitted
-on `main`.
+on `main`. Do this by default without waiting to be asked, unless the change
+looks incomplete or half-finished; in that case hold off and confirm first.
 
 ## Documentation
 
