@@ -33,7 +33,27 @@ const twitterHandle = socialLinks.find((l) => l.platform === 'twitter')?.handle;
 const twitterSite = twitterHandle ? `@${twitterHandle}` : '@championswimmer';
 
 const articleAuthor = author ?? SITE_AUTHOR;
+
+const GA_ID = 'G-47V2DPE6GS';
+const isProd = import.meta.env.PROD;
 ---
+
+<!-- Google Analytics (GA4) — production only -->
+{
+	isProd && (
+		<>
+			<script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
+			<script is:inline define:vars={{ GA_ID }}>
+				window.dataLayer = window.dataLayer || [];
+				function gtag() {
+					dataLayer.push(arguments);
+				}
+				gtag('js', new Date());
+				gtag('config', GA_ID);
+			</script>
+		</>
+	)
+}
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
