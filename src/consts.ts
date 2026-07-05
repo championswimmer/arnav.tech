@@ -11,8 +11,8 @@ export const NAV_LINKS = [
 	{
 		label: 'Contents',
 		children: [
-			{ href: '/projects', label: 'Projects' },
-			{ href: '/slides', label: 'Slides' },
+			{ href: '/projects', label: 'Projects', icon: 'tabler:folder-code' },
+			{ href: '/slides', label: 'Slides', icon: 'tabler:presentation' },
 		],
 	},
 	{ href: '/about', label: 'About' },
