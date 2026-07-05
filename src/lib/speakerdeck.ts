@@ -27,6 +27,8 @@ export interface Slide {
 	title: string;
 	/** Cover-slide preview image (hosted on files.speakerdeck.com). */
 	cover: string;
+	/** Publish date (ISO `YYYY-MM-DD`), scraped from the deck page. */
+	date?: string;
 }
 
 /** Parse the `<div class="card deck-preview" …>` blocks out of a profile page. */
@@ -66,6 +68,27 @@ async function fetchPage(page: number): Promise<Slide[]> {
 	return parseDecks(await res.text());
 }
 
+/** Scrape a deck's publish date (ISO). Dates live on the deck page, not the
+ *  profile listing, so this costs one request per deck — only paid for decks
+ *  not already in the cache. */
+async function fetchDate(url: string): Promise<string | undefined> {
+	try {
+		const res = await fetch(url, {
+			headers: { 'User-Agent': 'arnav.tech build (+https://arnav.tech)' },
+		});
+		if (!res.ok) return undefined;
+		const m = (await res.text()).match(/"datePublished":"([^"]+)"/);
+		return m?.[1];
+	} catch {
+		return undefined;
+	}
+}
+
+/** Attach publish dates to freshly imported decks (parallel requests). */
+async function withDates(decks: Slide[]): Promise<Slide[]> {
+	return Promise.all(decks.map(async (d) => ({ ...d, date: await fetchDate(d.url) })));
+}
+
 /** Read the committed cache; an empty/missing/corrupt file yields []. */
 function readCache(): Slide[] {
 	try {
@@ -102,8 +125,9 @@ export async function getSlides(): Promise<Slide[]> {
 					all.push(d);
 				}
 			}
-			writeCache(all, cache);
-			return all;
+			const dated = await withDates(all);
+			writeCache(dated, cache);
+			return dated;
 		}
 
 		// Warm cache → only new decks (at the top) can be missing. Fetch page 1;
@@ -115,7 +139,7 @@ export async function getSlides(): Promise<Slide[]> {
 		const additions = page1.filter((d) => !cachedUrls.has(d.url));
 		if (additions.length === 0) return cache;
 
-		const merged = [...additions, ...cache];
+		const merged = [...(await withDates(additions)), ...cache];
 		writeCache(merged, cache);
 		return merged;
 	} catch (err) {
