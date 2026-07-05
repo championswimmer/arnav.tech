@@ -12,7 +12,7 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft)).so
 
 <BaseLayout title="Projects · Arnav Gupta" description="Projects by Arnav Gupta." wide>
 	<header class="page-head">
-		<p class="kicker">Projects</p>
+		<h1 class="kicker">Projects</h1>
 		<p class="blurb">Things I've built — shipped, in progress, and archived.</p>
 	</header>
 	<div class="grid">
@@ -43,8 +43,9 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft)).so
 		text-transform: uppercase;
 		letter-spacing: 0.18em;
 		font-size: 0.8rem;
+		font-weight: normal;
 		color: var(--accent);
-		margin-bottom: 0.2em;
+		margin: 0 0 0.2em;
 	}
 	.blurb {
 		font-family: var(--font-sans);

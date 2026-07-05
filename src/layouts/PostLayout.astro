@@ -5,6 +5,8 @@ import BaseLayout from './BaseLayout.astro';
 import PostMeta from '../components/PostMeta.astro';
 import Mermaid from '../components/Mermaid.astro';
 import AiUsage from '../components/vue/AiUsage.vue';
+import JsonLd from '../components/JsonLd.astro';
+import { SITE_AUTHOR } from '../consts';
 
 type Props = CollectionEntry<'posts'>['data'];
 
@@ -13,9 +15,49 @@ const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.prop
 const AI_USAGE_TAGS = ['ai-free', 'ai-assisted', 'ai-generated'] as const;
 type AiUsageType = typeof AI_USAGE_TAGS[number];
 const aiUsage = tags.find((t): t is AiUsageType => AI_USAGE_TAGS.includes(t as AiUsageType)) ?? null;
+
+const pageURL = new URL(Astro.url.pathname, Astro.site);
+const heroURL = heroImage ? new URL(heroImage.src, Astro.url).toString() : undefined;
+
+const blogPosting = {
+	'@context': 'https://schema.org',
+	'@type': 'BlogPosting',
+	headline: title,
+	description,
+	datePublished: pubDate.toISOString(),
+	...(updatedDate && { dateModified: updatedDate.toISOString() }),
+	author: { '@type': 'Person', name: SITE_AUTHOR, url: Astro.site?.toString() },
+	...(heroURL && { image: heroURL }),
+	mainEntityOfPage: { '@type': 'WebPage', '@id': pageURL.toString() },
+	...(tags.length > 0 && { keywords: tags.join(', ') }),
+};
+
+const breadcrumbs = {
+	'@context': 'https://schema.org',
+	'@type': 'BreadcrumbList',
+	itemListElement: [
+		{ '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).toString() },
+		{
+			'@type': 'ListItem',
+			position: 2,
+			name: 'Tech',
+			item: new URL('/posts', Astro.site).toString(),
+		},
+		{ '@type': 'ListItem', position: 3, name: title, item: pageURL.toString() },
+	],
+};
 ---
 
-<BaseLayout title={title} description={description} image={heroImage}>
+<BaseLayout
+	title={title}
+	description={description}
+	image={heroImage}
+	type="article"
+	pubDate={pubDate}
+	updatedDate={updatedDate}
+	tags={tags}
+>
+	<JsonLd data={[blogPosting, breadcrumbs]} />
 	<article class="post">
 		<header class="post-header">
 			<h1>{title}</h1>

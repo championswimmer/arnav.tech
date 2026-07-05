@@ -1,0 +1,11 @@
+---
+// Renders a single JSON-LD <script> block. Pass any Schema.org-shaped object
+// (or array of objects) via `data` — it's serialized as-is.
+interface Props {
+	data: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const { data } = Astro.props;
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(data)} />

@@ -19,7 +19,7 @@ const items = essays.map((e) => ({
 
 <BaseLayout title="Essays · Arnav Gupta" description="Long-form essays by Arnav Gupta.">
 	<header class="page-head">
-		<p class="kicker">Essays</p>
+		<h1 class="kicker">Essays</h1>
 		<p class="blurb">On thinking, life, and the questions worth sitting with.</p>
 	</header>
 	<EntryList items={items} variant="essay" />
@@ -31,8 +31,9 @@ const items = essays.map((e) => ({
 		text-transform: uppercase;
 		letter-spacing: 0.18em;
 		font-size: 0.8rem;
+		font-weight: normal;
 		color: var(--accent);
-		margin-bottom: 0.2em;
+		margin: 0 0 0.2em;
 	}
 	.blurb {
 		font-family: var(--font-essay);

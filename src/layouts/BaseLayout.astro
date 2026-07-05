@@ -11,6 +11,12 @@ interface Props {
 	image?: ImageMetadata | string;
 	/** Widen the main column (used for index/listing pages). */
 	wide?: boolean;
+	/** `article` for essays/posts/projects; defaults to `website`. */
+	type?: 'website' | 'article';
+	pubDate?: Date;
+	updatedDate?: Date;
+	tags?: string[];
+	author?: string;
 }
 
 const {
@@ -18,13 +24,27 @@ const {
 	description = SITE_DESCRIPTION,
 	image,
 	wide = false,
+	type,
+	pubDate,
+	updatedDate,
+	tags,
+	author,
 } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={title} description={description} image={image} />
+		<BaseHead
+			title={title}
+			description={description}
+			image={image}
+			type={type}
+			pubDate={pubDate}
+			updatedDate={updatedDate}
+			tags={tags}
+			author={author}
+		/>
 	</head>
 	<body>
 		<Header />

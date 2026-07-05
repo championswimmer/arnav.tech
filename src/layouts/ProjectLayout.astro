@@ -6,7 +6,8 @@ import Mermaid from '../components/Mermaid.astro';
 
 type Props = CollectionEntry<'projects'>['data'];
 
-const { title, description, heroImage, tags, stack, repo, url, status } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, tags, stack, repo, url, status } =
+	Astro.props;
 
 const statusLabel: Record<string, string> = {
 	active: 'Active',
@@ -15,7 +16,15 @@ const statusLabel: Record<string, string> = {
 };
 ---
 
-<BaseLayout title={title} description={description} image={heroImage}>
+<BaseLayout
+	title={title}
+	description={description}
+	image={heroImage}
+	type="article"
+	pubDate={pubDate}
+	updatedDate={updatedDate}
+	tags={tags}
+>
 	<article class="project">
 		<header class="project-header">
 			<p class="kicker">Project · {statusLabel[status]}</p>

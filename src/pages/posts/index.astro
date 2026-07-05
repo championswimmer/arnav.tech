@@ -22,7 +22,7 @@ const items = posts.map((p) => ({
 	description="Technical posts by Arnav Gupta — how-tos, guides, and code."
 >
 	<header class="page-head">
-		<p class="kicker">Tech Posts</p>
+		<h1 class="kicker">Tech Posts</h1>
 		<p class="blurb">How-tos, guides, and deep dives — with code samples and repos.</p>
 	</header>
 	<EntryList items={items} variant="tech" />
@@ -34,8 +34,9 @@ const items = posts.map((p) => ({
 		text-transform: uppercase;
 		letter-spacing: 0.18em;
 		font-size: 0.8rem;
+		font-weight: normal;
 		color: var(--accent);
-		margin-bottom: 0.2em;
+		margin: 0 0 0.2em;
 	}
 	.blurb {
 		font-family: var(--font-sans);
