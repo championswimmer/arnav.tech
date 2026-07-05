@@ -3,7 +3,7 @@ title: "Under the Hood: How 2FA TOTP Authenticator Apps Work"
 description: "In the previous article, I walked through how TwoFac is structured as a Kotlin Multiplatform project. Now that the architecture is in place, it's time to zoom into one of the most important pieces ..."
 pubDate: 2026-03-08
 heroImage: ./images/a892724b-811e-4c96-aafb-4d49bc1f927f.png
-tags: [kotlin, cryptography, otp, security, "two-factor authentication", 2fa]
+tags: [kotlin, cryptography, otp, security, "two-factor authentication", 2fa, ai-assisted]
 ---
 # Under the Hood: How 2FA TOTP Authenticator Apps Work
 

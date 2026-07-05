@@ -30,7 +30,7 @@ entries:
     team: Platform & Engagement
     start: March 2023
     end: December 2024
-    location: India
+    location: Bangalore, India
     highlights:
       - We took JioCinema from 0 to 400M users in six months. My sleep schedule did not survive.
       - Ran two teams and ~35 engineers building the fun stuff — game stats, 360 views, VR, and stickers you could buy mid-match.
@@ -42,7 +42,7 @@ entries:
     team: CEO's Office
     start: April 2021
     end: March 2023
-    location: India
+    location: Bangalore, India
     highlights:
       - Hung out in the CEO's office during the wild 10x-growth years.
       - Built a team from nothing and shipped the Scaler app.
@@ -64,7 +64,7 @@ entries:
     team: Mobile Platform
     start: March 2019
     end: March 2020
-    location: India
+    location: New Delhi, India
     highlights:
       - Made the Android app smaller and faster, and cut our build times by 95% so nobody had time for coffee anymore.
       - Handled moving Uber Eats users over after the acquisition.
@@ -74,7 +74,7 @@ entries:
     role: Co-Founder & CTO
     start: June 2016
     end: March 2019
-    location: India
+    location: New Delhi, India
     highlights:
       - Started a company, bootstrapped it to ~$1.9M ARR, and actually made money doing it.
       - Built the SSO, an online IDE, and a code judge that ran everyone's questionable code in Docker.

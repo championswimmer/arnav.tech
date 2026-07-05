@@ -3,7 +3,7 @@ title: "How Personal AI Agents and Agent Orchestrators like OpenClaw or GasTown 
 description: "Over the last few months, projects like Gas Town by Steve Yegge and OpenClaw by Peter Steinberger have made “AI agent orchestrators” feel suddenly mainstream. It is tempting to treat them as a new ..."
 pubDate: 2026-02-18
 heroImage: ./images/79e3e11b-f27c-4c84-9f8c-c128bac53344.jpeg
-tags: [skills, ai-agent, llmagents, openclaw, agent-orchestration]
+tags: [skills, ai-agent, llmagents, openclaw, agent-orchestration, ai-assisted]
 ---
 Over the last few months, projects like [**Gas Town**](https://github.com/steveyegge/gastown) by Steve Yegge and [**OpenClaw**](https://docs.openclaw.ai/concepts/architecture) by Peter Steinberger have made “AI agent orchestrators” feel suddenly mainstream. It is tempting to treat them as a new kind of intelligence, but under the hood they are still a small set of primitives wired together with discipline: an LLM API call, a state loop, tools, memory, and orchestration.
 

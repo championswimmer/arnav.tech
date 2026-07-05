@@ -3,7 +3,7 @@ title: "My Next Project: Building the Open-Source, Cross-Platform Authenticator 
 description: "Like many of you, I have a workflow. It’s a finely tuned set of tools and habits that lets me move between my different machines—a Mac for primary development, a Windows machine for gaming and test..."
 pubDate: 2025-06-21
 heroImage: ./images/742b92c6-38ae-4dcd-bad4-b5f156b2edd5.png
-tags: [authentication, opensource, authorization]
+tags: [authentication, opensource, authorization, ai-assisted]
 ---
 Like many of you, I have a workflow. It’s a finely tuned set of tools and habits that lets me move between my different machines—a Mac for primary development, a Windows machine for gaming and testing—without missing a beat. For years, a key piece of that workflow was the Authy desktop app. It was simple, it was reliable, and it was *there*. Need a 2FA code on my desktop? Click, copy, paste. Done. It was a perfect little piece of utility software.
 
