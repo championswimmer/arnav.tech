@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
+import { Icon } from 'astro-icon/components';
 import BaseLayout from './BaseLayout.astro';
 import Mermaid from '../components/Mermaid.astro';
 
@@ -31,8 +32,8 @@ const statusLabel: Record<string, string> = {
 			<h1>{title}</h1>
 			<p class="lede">{description}</p>
 			<div class="actions">
-				{url && <a class="btn" href={url} target="_blank" rel="noopener">Visit ↗</a>}
-				{repo && <a class="btn ghost" href={repo} target="_blank" rel="noopener">Source ↗</a>}
+				{url && <a class="btn" href={url} target="_blank" rel="noopener">Visit <Icon name="tabler:arrow-up-right" /></a>}
+				{repo && <a class="btn ghost" href={repo} target="_blank" rel="noopener">Source <Icon name="tabler:arrow-up-right" /></a>}
 			</div>
 		</header>
 
@@ -89,6 +90,9 @@ const statusLabel: Record<string, string> = {
 		flex-wrap: wrap;
 	}
 	.btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35em;
 		font-family: var(--font-sans);
 		font-size: 0.9rem;
 		text-decoration: none;
@@ -96,6 +100,10 @@ const statusLabel: Record<string, string> = {
 		border-radius: 6px;
 		background: var(--accent);
 		color: var(--paper);
+	}
+	.btn [data-icon] {
+		width: 1.05em;
+		height: 1.05em;
 	}
 	.btn.ghost {
 		background: transparent;
