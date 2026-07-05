@@ -1,0 +1,127 @@
+[
+  {
+    "cover": "https://files.speakerdeck.com/presentations/0e8d191e447a4d11875dcf87a501f513/preview_slide_0.jpg?22319277",
+    "url": "https://speakerdeck.com/championswimmer/startups-monoliths-and-microservices",
+    "title": "Startups, Monoliths and Microservices"
+  },
+  {
+    "cover": "https://files.speakerdeck.com/presentations/64ada6b2438e4909a4fdcb711ba0a85a/preview_slide_0.jpg?21696897",
+    "url": "https://speakerdeck.com/championswimmer/mobile-product-engineering",
+    "title": "Mobile Product Engineering"
+  },
+  {
+    "cover": "https://files.speakerdeck.com/presentations/8d358c28754047838ab064c7680fc4a1/preview_slide_0.jpg?13798667",
+    "url": "https://speakerdeck.com/championswimmer/what-is-new-in-android-10-a-developer-preview",
+    "title": "What is new in Android 10 - A developer preview"
+  },
+  {
+    "cover": "https://files.speakerdeck.com/presentations/0df99399c15b40bfaadc7379daf669d7/preview_slide_0.jpg?13836782",
+    "url": "https://speakerdeck.com/championswimmer/building-plugins-for-vue-and-vuex",
+    "title": "Building plugins for Vue and Vuex"
+  },
+  {
+    "cover": "https://files.speakerdeck.com/presentations/275b52c9f73c4ebe9a9da53ac2f7f177/preview_slide_0.jpg?12967728",
+    "url": "https://speakerdeck.com/championswimmer/kotlin-vs-nativescript-vs-flutter-building-the-same-app-in-all-platforms",
+    "title": "Kotlin vs NativeScript vs Flutter - Building the same app in all platforms"
+  },
+  {
+    "cover": "https://files.speakerdeck.com/presentations/38e9230e19d74992ae4bccd28e3d3059/preview_slide_0.jpg?11062175",
+    "url": "https://speakerdeck.com/championswimmer/authentication-done-right-consuming-and-serving-oauth2-dot-0",
+    "title": "Authentication done right: Consuming (and Serving) Oauth2.0"
+  },
+  {
+    "cover": "https://files.speakerdeck.com/presentations/631d316c9e6d4b6ab16448dd57b266db/preview_slide_0.jpg?9938958",
+    "url": "https://speakerdeck.com/championswimmer/nativescript-vue-at-vue-bangalore-number-7",
+    "title": "Nativescript-Vue @ Vue Bangalore #7"
+  },
+  {
+    "cover": "https://files.speakerdeck.com/presentations/96855d5e2a5b4fadbd9c62f78896f945/preview_slide_0.jpg?8751204",
+    "url": "https://speakerdeck.com/championswimmer/sharesource",
+    "title": "shaResource"
+  },
+  {
+    "cover": "https://files.speakerdeck.com/presentations/a7751afebe76430eb6a56698e700ddfc/preview_slide_0.jpg?8697957",
+    "url": "https://speakerdeck.com/championswimmer/your-own-google-home-with-android-things-on-raspberry-pi",
+    "title": "Your own Google Home with Android Things on Raspberry Pi"
+  },
+  {
+    "cover": "https://files.speakerdeck.com/presentations/72dc9b91f40144a4816a6ca7fcd701f0/preview_slide_0.jpg?8697896",
+    "url": "https://speakerdeck.com/championswimmer/cd-with-zero-infrastructure",
+    "title": "Android CI/CD with Zero Infrastructure"
+  },
+  {
+    "cover": "https://files.speakerdeck.com/presentations/a08ebe5b315b4e10bb47f1a354b65156/preview_slide_0.jpg?8488353",
+    "url": "https://speakerdeck.com/championswimmer/learning-to-code-in-c-plus-plus",
+    "title": "Learning to Code in C++"
+  },
+  {
+    "cover": "https://files.speakerdeck.com/presentations/05d31f50b3c54b5097954b4682b3c2af/preview_slide_0.jpg?8487464",
+    "url": "https://speakerdeck.com/championswimmer/blockchain-unblocked",
+    "title": "Blockchain Unblocked"
+  },
+  {
+    "cover": "https://files.speakerdeck.com/presentations/2b8c03f8a2c0462b93966a0bfc008d81/preview_slide_0.jpg?7467668",
+    "url": "https://speakerdeck.com/championswimmer/everyone-can-see-your-credit-card-details-seriously",
+    "title": "Everyone can see your credit card details. Seriously."
+  },
+  {
+    "cover": "https://files.speakerdeck.com/presentations/73c727e0cb27403da67a380719117ee2/preview_slide_0.jpg?6954526",
+    "url": "https://speakerdeck.com/championswimmer/its-2016-and-we-need-to-start-coding",
+    "title": "It's 2016 - And we need to start coding"
+  },
+  {
+    "cover": "https://files.speakerdeck.com/presentations/2bf7d74d029c4608b03dfeb5263e2993/preview_slide_0.jpg?6846971",
+    "url": "https://speakerdeck.com/championswimmer/nfc-one-small-tap-for-mankind",
+    "title": "NFC - One Small Tap for Mankind"
+  },
+  {
+    "cover": "https://files.speakerdeck.com/presentations/104624dfb77a4865a8e0a0d75d366305/preview_slide_0.jpg?6842822",
+    "url": "https://speakerdeck.com/championswimmer/building-apps-for-android-auto",
+    "title": "Building Apps for Android Auto"
+  },
+  {
+    "cover": "https://files.speakerdeck.com/presentations/9917f217214348cf9b6ff5f6e93eb95f/preview_slide_0.jpg?6833110",
+    "url": "https://speakerdeck.com/championswimmer/electron-desktop-gui-with-node-dot-js",
+    "title": "Electron - Desktop GUI with Node.js "
+  },
+  {
+    "cover": "https://files.speakerdeck.com/presentations/a61c8db03d0e455980ab09201ab0c802/preview_slide_0.jpg?5728546",
+    "url": "https://speakerdeck.com/championswimmer/setting-up-an-android-os-project",
+    "title": "Setting up an Android OS Project"
+  },
+  {
+    "cover": "https://files.speakerdeck.com/presentations/e331c4bf3b224a13afc3ff9071fbd795/preview_slide_0.jpg?5414038",
+    "url": "https://speakerdeck.com/championswimmer/home-automation-with-javascript",
+    "title": "Home Automation with Javascript"
+  },
+  {
+    "cover": "https://files.speakerdeck.com/presentations/51322401ff9f4f0c84cd02df8869d016/preview_slide_0.jpg?5018121",
+    "url": "https://speakerdeck.com/championswimmer/software-development-the-open-source-way",
+    "title": "Software Development: The Open Source Way"
+  },
+  {
+    "cover": "https://files.speakerdeck.com/presentations/fd02f2008c5a4f5dae85cf5c2dcc49e2/preview_slide_0.jpg?4744713",
+    "url": "https://speakerdeck.com/championswimmer/full-stack-development",
+    "title": "Full-stack Development"
+  },
+  {
+    "cover": "https://files.speakerdeck.com/presentations/a419052035370132eb590e038ae4b986/preview_slide_0.jpg?3713130",
+    "url": "https://speakerdeck.com/championswimmer/android-rooting",
+    "title": "Android Rooting"
+  },
+  {
+    "cover": "https://files.speakerdeck.com/presentations/c3d2860035380132eb5b0e038ae4b986/preview_slide_0.jpg?3713216",
+    "url": "https://speakerdeck.com/championswimmer/enhancing-and-modifying-the-core-android-os",
+    "title": "Enhancing and Modifying the core Android OS"
+  },
+  {
+    "cover": "https://files.speakerdeck.com/presentations/052bc07035380132dd967e083072a8be/preview_slide_0.jpg?3713202",
+    "url": "https://speakerdeck.com/championswimmer/android-libraries-and-apis",
+    "title": "Android Libraries and APIs"
+  },
+  {
+    "cover": "https://files.speakerdeck.com/presentations/18bfd100353701328a4766ded83ef86d/preview_slide_0.jpg?3713110",
+    "url": "https://speakerdeck.com/championswimmer/what-to-do-after-rooting",
+    "title": "What to do after Rooting ?"
+  }
+]
