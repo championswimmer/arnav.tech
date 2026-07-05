@@ -10,7 +10,25 @@ import ThemeToggle from './ThemeToggle.astro';
 	<nav>
 		<a class="brand" href="/">{SITE_TITLE}</a>
 		<div class="internal-links">
-			{NAV_LINKS.map((link) => <HeaderLink href={link.href}>{link.label}</HeaderLink>)}
+			{
+				NAV_LINKS.map((link) =>
+					'children' in link ? (
+						<div class="dropdown">
+							<button type="button" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+								{link.label}
+								<span class="caret" aria-hidden="true">▾</span>
+							</button>
+							<div class="dropdown-menu">
+								{link.children.map((child) => (
+									<HeaderLink href={child.href}>{child.label}</HeaderLink>
+								))}
+							</div>
+						</div>
+					) : (
+						<HeaderLink href={link.href}>{link.label}</HeaderLink>
+					),
+				)
+			}
 		</div>
 		<div class="right-links">
 			<div class="social-links">
@@ -69,6 +87,58 @@ import ThemeToggle from './ThemeToggle.astro';
 		color: var(--accent);
 		font-weight: 600;
 	}
+	.dropdown {
+		position: relative;
+	}
+	.dropdown-toggle {
+		font: inherit;
+		background: none;
+		border: none;
+		cursor: pointer;
+		color: var(--ink-soft);
+		padding: 0.5em 0.6em;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.3em;
+	}
+	.dropdown-toggle:hover {
+		color: var(--accent);
+	}
+	.caret {
+		font-size: 0.7em;
+		transition: transform 0.15s ease;
+	}
+	.dropdown-menu {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		min-width: 10em;
+		background: var(--paper-raised);
+		border: 1px solid var(--rule);
+		border-radius: 8px;
+		box-shadow: var(--box-shadow);
+		padding: 0.35em;
+		display: none;
+		flex-direction: column;
+		z-index: 20;
+	}
+	.dropdown-menu :global(a) {
+		padding: 0.5em 0.6em;
+		border-radius: 5px;
+	}
+	.dropdown-menu :global(a:hover) {
+		color: var(--accent);
+		background: color-mix(in srgb, var(--accent) 8%, transparent);
+	}
+	/* Open on hover (desktop) or when toggled via keyboard/click. */
+	.dropdown:hover .dropdown-menu,
+	.dropdown.open .dropdown-menu {
+		display: flex;
+	}
+	.dropdown:hover .caret,
+	.dropdown.open .caret {
+		transform: rotate(180deg);
+	}
 	.right-links {
 		display: flex;
 		align-items: center;
@@ -101,3 +171,29 @@ import ThemeToggle from './ThemeToggle.astro';
 		}
 	}
 </style>
+
+<script>
+	// Click/keyboard toggle for nav dropdowns (hover handles desktop pointer use).
+	document.querySelectorAll<HTMLElement>('.dropdown').forEach((dropdown) => {
+		const toggle = dropdown.querySelector<HTMLButtonElement>('.dropdown-toggle');
+		if (!toggle) return;
+		toggle.addEventListener('click', (e) => {
+			e.stopPropagation();
+			const open = dropdown.classList.toggle('open');
+			toggle.setAttribute('aria-expanded', String(open));
+		});
+	});
+	document.addEventListener('click', () => {
+		document.querySelectorAll('.dropdown.open').forEach((d) => {
+			d.classList.remove('open');
+			d.querySelector('.dropdown-toggle')?.setAttribute('aria-expanded', 'false');
+		});
+	});
+	document.addEventListener('keydown', (e) => {
+		if (e.key !== 'Escape') return;
+		document.querySelectorAll('.dropdown.open').forEach((d) => {
+			d.classList.remove('open');
+			d.querySelector('.dropdown-toggle')?.setAttribute('aria-expanded', 'false');
+		});
+	});
+</script>

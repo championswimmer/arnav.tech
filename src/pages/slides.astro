@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getSlides } from '../lib/speakerdeck.ts';
+
+// Fetched at build time — new decks on SpeakerDeck appear here automatically.
+const slides = await getSlides();
+---
+
+<BaseLayout
+	title="Slides · Arnav Gupta"
+	description="Talks and presentations by Arnav Gupta, from SpeakerDeck."
+	wide
+>
+	<header class="page-head">
+		<h1 class="kicker">Slides</h1>
+		<p class="blurb">
+			Talks I've given at meetups and conferences — synced from
+			<a href="https://speakerdeck.com/championswimmer" target="_blank" rel="noopener"
+				>SpeakerDeck</a
+			>.
+		</p>
+	</header>
+
+	{
+		slides.length === 0 ? (
+			<p class="empty">Decks couldn't be loaded right now. See them on <a href="https://speakerdeck.com/championswimmer" target="_blank" rel="noopener">SpeakerDeck</a>.</p>
+		) : (
+			<div class="grid">
+				{slides.map((s) => (
+					<a class="card" href={s.url} target="_blank" rel="noopener" title={s.title}>
+						<div class="thumb">
+							<img src={s.cover} alt="" loading="lazy" width="710" height="399" />
+						</div>
+						<h2>{s.title}</h2>
+					</a>
+				))}
+			</div>
+		)
+	}
+</BaseLayout>
+
+<style>
+	.kicker {
+		font-family: var(--font-sans);
+		text-transform: uppercase;
+		letter-spacing: 0.18em;
+		font-size: 0.8rem;
+		font-weight: normal;
+		color: var(--accent);
+		margin: 0 0 0.2em;
+	}
+	.blurb {
+		font-family: var(--font-sans);
+		font-size: 1.15rem;
+		color: var(--ink-soft);
+		margin-bottom: 2em;
+	}
+	.empty {
+		font-family: var(--font-sans);
+		color: var(--ink-soft);
+	}
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+		gap: 1.5em;
+	}
+	.card {
+		display: block;
+		text-decoration: none;
+		color: inherit;
+		border: 1px solid var(--rule);
+		border-radius: 10px;
+		overflow: hidden;
+		background: var(--paper-raised);
+		transition: box-shadow 0.2s ease, transform 0.2s ease;
+	}
+	.card:hover {
+		box-shadow: var(--box-shadow);
+		transform: translateY(-2px);
+	}
+	.thumb {
+		aspect-ratio: 710 / 399;
+		background: var(--paper);
+		border-bottom: 1px solid var(--rule);
+	}
+	.thumb img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+	.card h2 {
+		font-family: var(--font-sans);
+		font-weight: 700;
+		font-size: 1.05rem;
+		line-height: 1.3;
+		margin: 0;
+		padding: 0.9em 1em 1.1em;
+	}
+	.card:hover h2 {
+		color: var(--accent);
+	}
+</style>

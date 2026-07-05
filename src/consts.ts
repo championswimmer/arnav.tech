@@ -8,7 +8,13 @@ export const SITE_AUTHOR = 'Arnav Gupta';
 export const NAV_LINKS = [
 	{ href: '/essays', label: 'Writing' },
 	{ href: '/posts', label: 'Tech' },
-	{ href: '/projects', label: 'Projects' },
+	{
+		label: 'Contents',
+		children: [
+			{ href: '/projects', label: 'Projects' },
+			{ href: '/slides', label: 'Slides' },
+		],
+	},
 	{ href: '/about', label: 'About' },
 ] as const;
 
