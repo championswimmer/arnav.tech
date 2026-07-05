@@ -80,17 +80,17 @@ const { icon, label, body } = config[props.type];
 	color: #2d4f38;
 }
 
-/* ai-assisted — warm amber */
+/* ai-assisted — slate teal, offset from the warm paper */
 .ai-usage--ai-assisted {
-	background: #fdf4e3;
-	border-color: #b07320;
-	color: #6b450e;
+	background: #e8f0f0;
+	border-color: #3d7a7a;
+	color: #234b4b;
 }
 
-/* ai-generated — burnt sienna (matches site accent) */
+/* ai-generated — muted violet, clearly distinct from sepia */
 .ai-usage--ai-generated {
-	background: #faf0e8;
-	border-color: #9c5a34;
-	color: #6f3d20;
+	background: #efeaf5;
+	border-color: #6d5296;
+	color: #43315f;
 }
 </style>
