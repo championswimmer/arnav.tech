@@ -87,6 +87,11 @@ Manage the background server with `astro dev stop`, `astro dev status`, and
 
 ## Authoring new content
 
+Write website copy for external visitors, not for the coding agent or project maintainers.
+Do not put implementation instructions, prompt text, task descriptions, or other
+meta commentary about what the agent was asked to build into site content unless
+the user explicitly wants that surfaced on the public site.
+
 Slash commands scaffold front-matter-correct files:
 
 - `/new-essay <title>` — a Markdown essay in `src/content/essays/`
