@@ -7,34 +7,15 @@ import icon from 'astro-icon';
 import { defineConfig, fontProviders } from 'astro/config';
 import { unified } from '@astrojs/markdown-remark';
 import yaml from '@rollup/plugin-yaml';
-import { readdirSync } from 'node:fs';
 
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import { remarkMermaid } from './src/plugins/remark-mermaid.mjs';
 
-// The old arnav.tech (Hashnode) served every article flat at the root
-// (`/<slug>`), whereas this site namespaces them under their collection
-// (`/posts/<slug>`, `/essays/<slug>`, `/projects/<slug>`, `/slides/<slug>`).
-// To keep every existing inbound link and search result alive, emit a 301 from
-// each flat legacy URL to its new home. Built from the content dirs so it stays
-// in sync as content is added — mirrors `cleanSlug` in src/lib/slug.ts.
-const DATE_PREFIX = /^\d{4}-\d{2}-\d{2}-/;
-const legacyRedirects = Object.fromEntries(
-	['essays', 'posts', 'projects', 'slides'].flatMap((collection) =>
-		readdirSync(`./src/content/${collection}`).map((entry) => {
-			const base = entry.replace(/\.(md|mdx)$/, '');
-			const slug = base.replace(DATE_PREFIX, '');
-			return [`/${slug}`, `/${collection}/${slug}`];
-		}),
-	),
-);
-
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://arnav.tech',
 	integrations: [mdx(), sitemap(), vue(), icon()],
-	redirects: legacyRedirects,
 
 	// Lets us `import ... from '*.yaml'` (e.g. src/data/social.yaml).
 	vite: {
