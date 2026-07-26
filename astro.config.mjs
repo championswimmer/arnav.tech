@@ -15,13 +15,13 @@ import { remarkMermaid } from './src/plugins/remark-mermaid.mjs';
 
 // The old arnav.tech (Hashnode) served every article flat at the root
 // (`/<slug>`), whereas this site namespaces them under their collection
-// (`/posts/<slug>`, `/essays/<slug>`, `/projects/<slug>`). To keep every
-// existing inbound link and search result alive, emit a 301 from each flat
-// legacy URL to its new home. Built from the content dirs so it stays in
-// sync as content is added — mirrors `cleanSlug` in src/lib/slug.ts.
+// (`/posts/<slug>`, `/essays/<slug>`, `/projects/<slug>`, `/slides/<slug>`).
+// To keep every existing inbound link and search result alive, emit a 301 from
+// each flat legacy URL to its new home. Built from the content dirs so it stays
+// in sync as content is added — mirrors `cleanSlug` in src/lib/slug.ts.
 const DATE_PREFIX = /^\d{4}-\d{2}-\d{2}-/;
 const legacyRedirects = Object.fromEntries(
-	['essays', 'posts', 'projects'].flatMap((collection) =>
+	['essays', 'posts', 'projects', 'slides'].flatMap((collection) =>
 		readdirSync(`./src/content/${collection}`).map((entry) => {
 			const base = entry.replace(/\.(md|mdx)$/, '');
 			const slug = base.replace(DATE_PREFIX, '');

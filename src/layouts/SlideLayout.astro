@@ -1,0 +1,121 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import PostMeta from '../components/PostMeta.astro';
+import SpeakerDeckEmbed from '../components/SpeakerDeckEmbed.astro';
+import JsonLd from '../components/JsonLd.astro';
+import { SITE_AUTHOR } from '../consts';
+import { getCachedSlide } from '../lib/speakerdeck';
+
+interface Props {
+	title: string;
+	description: string;
+	pubDate: Date;
+	updatedDate?: Date;
+	speakerdeck_link: string;
+}
+
+const { title, description, pubDate, updatedDate, speakerdeck_link } = Astro.props;
+const slide = getCachedSlide(speakerdeck_link);
+const pageURL = new URL(Astro.url.pathname, Astro.site);
+
+const presentation = {
+	'@context': 'https://schema.org',
+	'@type': 'PresentationDigitalDocument',
+	name: title,
+	description,
+	url: pageURL.toString(),
+	sameAs: speakerdeck_link,
+	datePublished: pubDate.toISOString(),
+	...(updatedDate && { dateModified: updatedDate.toISOString() }),
+	author: { '@type': 'Person', name: SITE_AUTHOR, url: Astro.site?.toString() },
+	...(slide?.cover && { image: slide.cover, thumbnailUrl: slide.cover }),
+};
+
+const breadcrumbs = {
+	'@context': 'https://schema.org',
+	'@type': 'BreadcrumbList',
+	itemListElement: [
+		{ '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).toString() },
+		{
+			'@type': 'ListItem',
+			position: 2,
+			name: 'Slides',
+			item: new URL('/slides', Astro.site).toString(),
+		},
+		{ '@type': 'ListItem', position: 3, name: title, item: pageURL.toString() },
+	],
+};
+---
+
+<BaseLayout
+	title={title}
+	description={description}
+	image={slide?.cover}
+	type="article"
+	pubDate={pubDate}
+	updatedDate={updatedDate}
+	author={SITE_AUTHOR}
+>
+	<JsonLd data={[presentation, breadcrumbs]} />
+	<article class="slide-page">
+		<header class="slide-header">
+			<p class="eyebrow">Talk</p>
+			<h1>{title}</h1>
+			<p class="lede">{description}</p>
+			<div class="meta-row">
+				<PostMeta pubDate={pubDate} updatedDate={updatedDate} />
+				<a class="deck-link" href={speakerdeck_link} target="_blank" rel="noopener">
+					Open on SpeakerDeck
+				</a>
+			</div>
+		</header>
+
+		<SpeakerDeckEmbed url={speakerdeck_link} title={title} />
+
+		<div class="reading-tech notes">
+			<slot />
+		</div>
+	</article>
+</BaseLayout>
+
+<style>
+	.slide-header {
+		margin-bottom: 2rem;
+		border-bottom: 1px solid var(--rule);
+		padding-bottom: 1.5rem;
+	}
+	.eyebrow {
+		margin: 0 0 0.35rem;
+		font-family: var(--font-sans);
+		text-transform: uppercase;
+		letter-spacing: 0.18em;
+		font-size: 0.78rem;
+		color: var(--accent);
+	}
+	.slide-header h1 {
+		font-family: var(--font-sans);
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		font-size: 2.6rem;
+	}
+	.lede {
+		font-family: var(--font-sans);
+		font-size: 1.1rem;
+		color: var(--ink-soft);
+		margin: 0.45rem 0 1rem;
+	}
+	.meta-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.8rem 1rem;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.deck-link {
+		font-size: 0.9rem;
+		text-decoration: none;
+	}
+	.notes {
+		margin-top: 2rem;
+	}
+</style>

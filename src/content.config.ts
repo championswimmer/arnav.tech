@@ -60,4 +60,20 @@ const projects = defineCollection({
 		}),
 });
 
-export const collections = { essays, posts, projects };
+/**
+ * Slides — talk pages backed by SpeakerDeck embeds, with room for event notes.
+ */
+const slides = defineCollection({
+	loader: glob({ base: './src/content/slides', pattern: '**/*.mdx' }),
+	schema: () =>
+		z.object({
+			title: z.string(),
+			description: z.string(),
+			pubDate: z.coerce.date(),
+			updatedDate: z.coerce.date().optional(),
+			speakerdeck_link: z.string().url(),
+			draft: z.boolean().default(false),
+		}),
+});
+
+export const collections = { essays, posts, projects, slides };

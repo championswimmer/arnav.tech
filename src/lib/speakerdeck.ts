@@ -19,6 +19,8 @@ const PROFILE_URL = `https://speakerdeck.com/${SPEAKERDECK_USER}`;
 // Anchor to the repo root (build cwd), not the bundled module location, so the
 // committed cache is read and updated in `src/`, not inside `dist/`.
 const CACHE_PATH = join(process.cwd(), 'src/data/slides.json');
+const FETCH_HEADERS = { 'User-Agent': 'arnav.tech build (+https://arnav.tech)' };
+const embedCache = new Map<string, SpeakerDeckEmbed | null>();
 
 export interface Slide {
 	/** Full URL to the deck on SpeakerDeck. */
@@ -29,6 +31,19 @@ export interface Slide {
 	cover: string;
 	/** Publish date (ISO `YYYY-MM-DD`), scraped from the deck page. */
 	date?: string;
+}
+
+export interface SpeakerDeckEmbed {
+	/** Canonical deck URL on SpeakerDeck. */
+	url: string;
+	/** Deck id used by SpeakerDeck's official embeds/player. */
+	id: string;
+	/** Aspect ratio exposed on the deck page's official embed snippet. */
+	ratio: number;
+	/** Human-readable deck name from the page embed markup. */
+	title?: string;
+	/** Direct iframe/player source. */
+	src: string;
 }
 
 /** Parse the `<div class="card deck-preview" …>` blocks out of a profile page. */
@@ -60,9 +75,32 @@ function decodeHtml(s: string): string {
 		.replace(/&gt;/g, '>');
 }
 
+function readAttr(tag: string, name: string): string | undefined {
+	const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+	return tag.match(new RegExp(`${escaped}="([^"]+)"`))?.[1];
+}
+
+function parseEmbedTag(html: string): Omit<SpeakerDeckEmbed, 'url'> | null {
+	const tag =
+		html.match(/<div class="speakerdeck-embed"[^>]*>/)?.[0] ??
+		html.match(/<script[^>]*class="speakerdeck-embed"[^>]*><\/script>/)?.[0];
+	if (!tag) return null;
+
+	const id = readAttr(tag, 'data-id');
+	const ratio = Number(readAttr(tag, 'data-ratio'));
+	if (!id || !Number.isFinite(ratio)) return null;
+
+	return {
+		id,
+		ratio,
+		title: decodeHtml(readAttr(tag, 'data-name') ?? ''),
+		src: `https://speakerdeck.com/player/${id}`,
+	};
+}
+
 async function fetchPage(page: number): Promise<Slide[]> {
 	const res = await fetch(page === 1 ? PROFILE_URL : `${PROFILE_URL}?page=${page}`, {
-		headers: { 'User-Agent': 'arnav.tech build (+https://arnav.tech)' },
+		headers: FETCH_HEADERS,
 	});
 	if (!res.ok) throw new Error(`SpeakerDeck page ${page} returned ${res.status}`);
 	return parseDecks(await res.text());
@@ -73,9 +111,7 @@ async function fetchPage(page: number): Promise<Slide[]> {
  *  not already in the cache. */
 async function fetchDate(url: string): Promise<string | undefined> {
 	try {
-		const res = await fetch(url, {
-			headers: { 'User-Agent': 'arnav.tech build (+https://arnav.tech)' },
-		});
+		const res = await fetch(url, { headers: FETCH_HEADERS });
 		if (!res.ok) return undefined;
 		const m = (await res.text()).match(/"datePublished":"([^"]+)"/);
 		return m?.[1];
@@ -106,6 +142,37 @@ function writeCache(slides: Slide[], previous: Slide[]): void {
 		writeFileSync(CACHE_PATH, JSON.stringify(slides, null, 2) + '\n');
 	} catch (err) {
 		console.warn('[speakerdeck] could not write cache:', err);
+	}
+}
+
+export function normalizeSpeakerDeckUrl(url: string): string {
+	const parsed = new URL(url);
+	const pathname = parsed.pathname.replace(/\/+$/, '');
+	return new URL(pathname, 'https://speakerdeck.com').href;
+}
+
+export function getCachedSlide(url: string): Slide | undefined {
+	const normalized = normalizeSpeakerDeckUrl(url);
+	return readCache().find((slide) => normalizeSpeakerDeckUrl(slide.url) === normalized);
+}
+
+export async function getSpeakerDeckEmbed(url: string): Promise<SpeakerDeckEmbed | null> {
+	const normalized = normalizeSpeakerDeckUrl(url);
+	if (embedCache.has(normalized)) return embedCache.get(normalized) ?? null;
+
+	try {
+		const res = await fetch(normalized, { headers: FETCH_HEADERS });
+		if (!res.ok) throw new Error(`SpeakerDeck deck returned ${res.status}`);
+		const embed = parseEmbedTag(await res.text());
+		if (!embed) throw new Error('SpeakerDeck embed markup not found');
+
+		const resolved = { ...embed, url: normalized };
+		embedCache.set(normalized, resolved);
+		return resolved;
+	} catch (err) {
+		console.warn(`[speakerdeck] could not load embed for ${normalized}:`, err);
+		embedCache.set(normalized, null);
+		return null;
 	}
 }
 
