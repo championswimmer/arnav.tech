@@ -2,6 +2,7 @@
 title: "Hustle Culture is Killing Us"
 description: "Side projects, creator economy, remote work — the hustle got loud enough to move the median. This is what it costs the people who can't afford to keep up."
 pubDate: 2022-01-26
+heroImage: ./images/hustle-culture.jpeg
 tags: [culture, work]
 ---
 
