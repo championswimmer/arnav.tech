@@ -6,6 +6,8 @@ heroImage: ./images/cover.jpg
 tags: [ai-assisted, saas, arr, artificial-intelligence, startups]
 ---
 
+import GrowthSlopes from '../../../components/figures/GrowthSlopes.astro';
+
 Over the last two years, AI application companies have started hitting revenue milestones that used to take a full SaaS generation. The old benchmark was \$100M ARR. In classic SaaS, that usually took years. In AI coding and app-building tools, some teams now claim it in months. [Bessemer's Centaur Report](https://www.bvp.com/atlas/the-centaur-report) treated \$100M ARR as a meaningful operating milestone for private SaaS companies, and [Sacra's benchmark work](https://sacra.com/research/cursor-at-100m-arr/) shows how rare that speed used to be.
 
 The reaction is predictable. Some of these numbers are real. Some come from usage-based pricing. Some come from how ARR is defined. All three can be true at once.
@@ -60,11 +62,19 @@ The first slope is ordinary. Sell to more companies and revenue goes up. Flat-pr
 
 This slope is still labor-bound. Enterprise sales need demos, procurement, security review, and implementation. Even product-led companies usually add a sales motion once deal size rises. [SaaStr's coverage of enterprise AI go-to-market](https://www.saastr.com/cursor-hit-1b-arr-in-17-months-the-fastest-b2b-to-scale-ever-and-its-not-even-close/) shows how quickly the best AI companies add enterprise muscle after the initial bottom-up wave.
 
+<GrowthSlopes stage={1}>
+First slope. Flat-price SaaS grows by logo count alone. The steps are identical, so the envelope is a straight line — and every step costs a sales cycle.
+</GrowthSlopes>
+
 ### Second slope: seat expansion
 
 Per-seat pricing adds a second slope. If the customer grows, your revenue grows with it. GitHub Copilot charges per seat. Slack charges per seat. Linear charges per seat. [GitHub's Copilot Enterprise launch post](https://github.blog/news-insights/product-news/github-copilot-enterprise-is-now-generally-available/), [Slack pricing references](https://learn.g2.com/slack-pricing), and [Linear's price update](https://subinflation.com/linear-standard-price-increase) show the standard structure.
 
 If you sell to startups, you inherit their hiring curve. A company that doubles its engineering headcount can double your revenue without an upsell call. SaaS operators usually measure this through net revenue retention. [Slack's peak NRR](https://www.growth-letter.com/p/inside-slacks-4-billion-growth-system), [Snowflake's long-run NRR profile](https://seekingalpha.com/article/4870382-snowflake-from-overhyped-to-fairly-valued-but-not-out-of-the-woods-upgrade), and [Datadog's expansion-driven growth](https://nanalyze.com/2026/02/datadog-sees-massive-growth-opportunity-in-ai/) show how valuable this second slope is.
+
+<GrowthSlopes stage={2}>
+Second slope. Per-seat pricing inherits the customer's hiring curve, so the same signed logos keep adding revenue. The staircase bends away from the flat-price line without a single new deal.
+</GrowthSlopes>
 
 There is a limit. Seat expansion only tracks the functions that use your tool. GitHub benefits when engineering grows. It does not benefit when finance grows. Atlassian spent years widening Jira's footprint across departments for exactly this reason. [Atlassian's shareholder letter](https://www.atlassian.com/blog/announcements/shareholder-letter-q2fy25) and [commentary on its user mix](https://seekingalpha.com/article/4769067-atlassian-a-compelling-path-forward-to-growth) explain the strategy.
 
@@ -75,6 +85,10 @@ This is the new piece. Traditional SaaS usually charges the same amount whether 
 Lovable prices by credits. Cursor gives users a credit pool. Bolt.new prices by token volume. Heavy users move up the pricing ladder on their own. [Lovable's credit FAQ](https://lovable.dev/faq/credits/how-it-works/what-is-credit), [Cursor pricing](https://cursor.com/pricing), and [Sacra's Bolt.new profile](https://sacra.com/c/bolt-new/) show three versions of the same pattern.
 
 Once a user depends on one of these tools, usage often rises. [Alger's writeup on OpenAI's momentum](https://www.alger.com/Pages/OnTheMoney.aspx?pageLabel=AOM-Mapping-AI-Momentum) cites average token consumption per organization growing about 320x over a twelve-month period, and [Entree Capital's analysis](https://entreecap.com/blog/the-saas-reckoning-surviving-the-ai-token-revolution) notes the jump in total API throughput. That is the third slope in the wild: more usage from the same seat inside the same account.
+
+<GrowthSlopes stage={3}>
+Third slope. Credit and token pricing lets revenue rise inside a seat that was already sold. The curve bends hardest where nothing about the customer count changed.
+</GrowthSlopes>
 
 ### When the third derivative appears
 
@@ -89,6 +103,10 @@ In AI SaaS, there is often one more term:
 ```text
 ARR = accounts x seats per account x consumption per seat x price per unit
 ```
+
+<GrowthSlopes stage={4}>
+The same revenue, decomposed. Classic SaaS gets the bottom band and, if it prices per seat, the middle one. Usage pricing adds the top band — the part that grows without a new deal or a new hire.
+</GrowthSlopes>
 
 That extra variable is what gives you the third derivative of growth. [SaaStr on Cursor's pace](https://www.saastr.com/cursor-hit-1b-arr-in-17-months-the-fastest-b2b-to-scale-ever-and-its-not-even-close/), [Sacra on Lovable](https://sacra.com/c/lovable/), and [Sacra on Bolt.new](https://sacra.com/research/bolt-new-at-40m-arr/) show how quickly the curve bends once usage expands inside each seat.
 

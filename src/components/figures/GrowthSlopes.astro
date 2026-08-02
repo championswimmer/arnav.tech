@@ -1,0 +1,242 @@
+---
+/**
+ * Growth slope figures for "New ARR Formulas in AI SaaS".
+ *
+ * Four stages of one progressive illustration, drawn on a shared frame:
+ *   1 — accounts: equal steps, a straight envelope
+ *   2 — seats: steps that grow taller
+ *   3 — usage: the curve bending above both
+ *   4 — stacked: the same revenue split into three bands
+ *
+ * Plot geometry: x spans 70 → 690, baseline y = 250, full height 220.
+ * The three envelopes are exact Bézier forms of t, t² and t³ — first, second
+ * and third order growth from a common origin.
+ */
+type Stage = 1 | 2 | 3 | 4;
+
+interface Props {
+	stage: Stage;
+}
+
+const { stage } = Astro.props;
+
+const LINEAR = 'M 70 250 L 690 173';
+const QUADRATIC = 'M 70 250 Q 380 250 690 113.6';
+const CUBIC = 'M 70 250 C 276.7 250 483.3 250 690 30';
+
+/** Bands: under linear, linear→quadratic, quadratic→cubic. */
+const BAND_ACCOUNTS = 'M 70 250 L 690 173 L 690 250 Z';
+const BAND_SEATS = 'M 70 250 Q 380 250 690 113.6 L 690 173 Z';
+const BAND_USAGE = 'M 70 250 C 276.7 250 483.3 250 690 30 L 690 113.6 Q 380 250 70 250 Z';
+
+/** Riser x-positions, shared by both staircases. */
+const RISERS = [144.4, 237.4, 330.4, 423.4, 516.4, 609.4];
+/** Tread heights: six equal steps, then six that grow. */
+const EQUAL = [237.2, 224.3, 211.5, 198.7, 185.8, 173];
+const GROWING = [243.5, 230.5, 211, 185, 152.6, 113.6];
+
+const stairPath = (tops: number[]) =>
+	RISERS.reduce(
+		(d, x, i) => `${d} L ${x} ${i ? tops[i - 1] : 250} L ${x} ${tops[i]}`,
+		'M 70 250',
+	) + ` L 690 ${tops[tops.length - 1]}`;
+
+const meta: Record<Stage, { title: string; desc: string; notes: [string, string] }> = {
+	1: {
+		title: 'First slope: revenue rises one logo at a time',
+		desc: 'A staircase of equal-height steps climbing to the right, hugging a straight dashed line. Each new customer adds the same amount of revenue, so the trend is linear.',
+		notes: ['one new logo = one step', 'every step the same height'],
+	},
+	2: {
+		title: 'Second slope: each account grows its own seat count',
+		desc: 'A staircase whose steps get taller over time, bending above the straight flat-price line from the previous figure.',
+		notes: ['same logos, more seats', 'each step taller than the last'],
+	},
+	3: {
+		title: 'Third slope: each seat consumes more every month',
+		desc: 'Three curves from a common origin. A straight flat-price line, a gently bending seat-expansion curve above it, and a sharply bending usage-expansion curve above both.',
+		notes: ['same seat, more tokens', 'no new deal, no new hire'],
+	},
+	4: {
+		title: 'The three slopes stacked',
+		desc: 'The area under the growth curve split into three shaded bands: a straight-edged band for new accounts, a wider band above it for seat expansion, and the widest band on top for usage expansion.',
+		notes: ['sales adds the first band', 'the other two compound on their own'],
+	},
+};
+
+const { title, desc, notes } = meta[stage];
+const titleId = `slope-${stage}-title`;
+const descId = `slope-${stage}-desc`;
+---
+
+<figure class="slope-fig">
+	<svg viewBox="0 0 720 300" role="img" aria-labelledby={`${titleId} ${descId}`}>
+		<title id={titleId}>{title}</title>
+		<desc id={descId}>{desc}</desc>
+
+		{/* Frame: unitless axes — the shape is the point, not the numbers. */}
+		<path class="axis" d="M 70 20 L 70 250 L 700 250" />
+		<path class="axis" d="M 64 28 L 70 18 L 76 28" />
+		<path class="axis" d="M 694 244 L 704 250 L 694 256" />
+		<text class="tick" x="86" y="17">ARR</text>
+		<text class="tick" x="700" y="274" text-anchor="end">time</text>
+
+		{
+			stage === 4 && (
+				<>
+					<path class="band" fill-opacity="0.12" d={BAND_ACCOUNTS} />
+					<path class="band" fill-opacity="0.24" d={BAND_SEATS} />
+					<path class="band" fill-opacity="0.4" d={BAND_USAGE} />
+					<path class="past" d={LINEAR} />
+					<path class="past" d={QUADRATIC} />
+					<path class="now" d={CUBIC} />
+					<text class="band-lbl" x="672" y="215" text-anchor="end">
+						new accounts
+					</text>
+					<text class="band-lbl" x="672" y="153" text-anchor="end">
+						seat expansion
+					</text>
+					<text class="band-lbl" x="672" y="90" text-anchor="end">
+						usage expansion
+					</text>
+				</>
+			)
+		}
+
+		{
+			stage === 1 && (
+				<>
+					<path class="past" stroke-dasharray="5 6" d={LINEAR} />
+					<path class="now" d={stairPath(EQUAL)} />
+					{EQUAL.map((y, i) => (
+						<circle class="step" cx={RISERS[i]} cy={y} r="3.5" />
+					))}
+					<text class="now-lbl" x="690" y="160" text-anchor="end">
+						accounts × price
+					</text>
+				</>
+			)
+		}
+
+		{
+			stage === 2 && (
+				<>
+					<path class="past" stroke-dasharray="5 6" d={LINEAR} />
+					<text class="past-lbl" x="690" y="202" text-anchor="end">
+						flat price
+					</text>
+					<path class="now" d={stairPath(GROWING)} />
+					{GROWING.map((y, i) => (
+						<circle class="step" cx={RISERS[i]} cy={y} r="3.5" />
+					))}
+					<text class="now-lbl" x="690" y="101" text-anchor="end">
+						× seats per account
+					</text>
+				</>
+			)
+		}
+
+		{
+			stage === 3 && (
+				<>
+					<path class="past" stroke-dasharray="5 6" d={LINEAR} />
+					<text class="past-lbl" x="690" y="202" text-anchor="end">
+						flat price
+					</text>
+					<path class="past" d={QUADRATIC} />
+					<text class="past-lbl" x="690" y="174" text-anchor="end">
+						+ seat expansion
+					</text>
+					<path class="now" d={CUBIC} />
+					<circle class="step" cx="690" cy="30" r="4" />
+					<text class="now-lbl" x="690" y="21" text-anchor="end">
+						× consumption per seat
+					</text>
+				</>
+			)
+		}
+
+		<text class="note" x="92" y="64">{notes[0]}</text>
+		<text class="note" x="92" y="86">{notes[1]}</text>
+	</svg>
+	<figcaption><slot /></figcaption>
+</figure>
+
+<style>
+	.slope-fig {
+		margin: 2.4em 0;
+	}
+	svg {
+		display: block;
+		width: 100%;
+		height: auto;
+		overflow: visible;
+	}
+	figcaption {
+		font-family: var(--font-sans);
+		font-size: 0.82rem;
+		line-height: 1.5;
+		color: var(--ink-faint);
+		text-align: center;
+		margin-top: 0.7em;
+	}
+	/* The caption arrives from MDX as a paragraph. */
+	figcaption :global(p) {
+		margin: 0;
+	}
+	.axis {
+		stroke: var(--rule);
+		stroke-width: 1.5;
+		fill: none;
+	}
+	.tick {
+		fill: var(--ink-faint);
+		font-family: var(--font-mono);
+		font-size: 12px;
+		letter-spacing: 0.04em;
+	}
+	.note {
+		fill: var(--ink-faint);
+		font-family: var(--font-mono);
+		font-size: 13px;
+	}
+	/* Slopes already established, kept as a faint reference. */
+	.past {
+		stroke: var(--ink-faint);
+		opacity: 0.65;
+		stroke-width: 1.75;
+		fill: none;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+	.past-lbl {
+		fill: var(--ink-faint);
+		font-family: var(--font-mono);
+		font-size: 13px;
+	}
+	/* The slope this figure is about. */
+	.now {
+		stroke: var(--accent);
+		stroke-width: 2.5;
+		fill: none;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+	.now-lbl {
+		fill: var(--accent);
+		font-family: var(--font-mono);
+		font-size: 13px;
+	}
+	.step {
+		fill: var(--accent);
+	}
+	.band {
+		stroke: none;
+		fill: var(--accent);
+	}
+	.band-lbl {
+		fill: var(--ink-soft);
+		font-family: var(--font-mono);
+		font-size: 13px;
+	}
+</style>

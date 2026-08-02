@@ -2,11 +2,12 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 /**
- * Essays — long-form, "written" pieces. Markdown only, rendered with the
- * sepia/serif essay treatment.
+ * Essays — long-form, "written" pieces, rendered with the sepia/serif essay
+ * treatment. Markdown by default; MDX when a piece needs to embed a figure
+ * or other component.
  */
 const essays = defineCollection({
-	loader: glob({ base: './src/content/essays', pattern: '**/*.md' }),
+	loader: glob({ base: './src/content/essays', pattern: '**/*.{md,mdx}' }),
 	schema: ({ image }) =>
 		z.object({
 			title: z.string(),

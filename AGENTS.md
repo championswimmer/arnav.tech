@@ -28,11 +28,12 @@ Three content collections, defined in `src/content.config.ts`:
 
 | Collection | Format    | Location                | Layout                | Notes                            |
 | ---------- | --------- | ----------------------- | --------------------- | -------------------------------- |
-| `essays`   | Markdown  | `src/content/essays/`   | `EssayLayout.astro`   | Long-form writing, serif         |
+| `essays`   | MD or MDX | `src/content/essays/`   | `EssayLayout.astro`   | Long-form writing, serif         |
 | `posts`    | MD or MDX | `src/content/posts/`    | `PostLayout.astro`    | Tech articles; code/math/mermaid |
 | `projects` | MDX       | `src/content/projects/` | `ProjectLayout.astro` | Showcases; embed Vue islands     |
 
-- **Essays and posts** are the written word — prefer Markdown.
+- **Essays and posts** are the written word — prefer Markdown. Switch a piece to
+  `.mdx` only when it needs to embed a component; Markdown cannot import one.
 - **Projects** are MDX so they can embed live interactive components.
 - All schemas support `draft: true`, which excludes an entry from listings,
   routes, and RSS. Routes are generated in `src/pages/<collection>/[...slug].astro`.
@@ -57,6 +58,15 @@ Note: remark/rehype plugins are passed through `markdown.processor = unified({..
 Live web components are **Vue** (`@astrojs/vue`), kept in `src/components/vue/`.
 Embed them in `.mdx` project pages and hydrate with a `client:*` directive,
 e.g. `<Counter client:visible />`. See `src/content/projects/this-website.mdx`.
+
+## Figures
+
+Hand-drawn SVG illustrations for a piece of writing live in
+`src/components/figures/` as `.astro` components — never as raw `<svg>` in the
+content file. Keep the SVG unitless and style it with the palette variables in a
+scoped `<style>` so it follows light and dark mode; take the caption as a
+`<slot />` so the prose stays in the article. See
+`src/components/figures/GrowthSlopes.astro`.
 
 ## Development
 
