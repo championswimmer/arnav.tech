@@ -1,0 +1,202 @@
+---
+title: "New ARR Formulas in AI SaaS"
+description: "Why AI application companies are hitting $100M ARR in months, what they actually mean when they say ARR, and whether the unit economics can hold once the subsidies thin out."
+pubDate: 2026-06-14
+heroImage: ./images/cover.jpg
+tags: [ai-assisted, saas, arr, artificial-intelligence, startups]
+---
+
+Over the last two years, AI application companies have started hitting revenue milestones that used to take a full SaaS generation. The old benchmark was \$100M ARR. In classic SaaS, that usually took years. In AI coding and app-building tools, some teams now claim it in months. [Bessemer's Centaur Report](https://www.bvp.com/atlas/the-centaur-report) treated \$100M ARR as a meaningful operating milestone for private SaaS companies, and [Sacra's benchmark work](https://sacra.com/research/cursor-at-100m-arr/) shows how rare that speed used to be.
+
+The reaction is predictable. Some of these numbers are real. Some come from usage-based pricing. Some come from how ARR is defined. All three can be true at once.
+
+This post looks at four questions. Why does \$100M ARR matter? Why are AI application companies reaching it so fast? What do they mean when they say ARR? And can the economics hold once subsidies thin out?
+
+## 1. Why \$100M ARR matters
+
+Bessemer coined the term "Centaur" for a private SaaS company that crosses \$100M in ARR. The term matters because revenue is harder to fake than valuation. It implies paying customers, some retention, and a repeatable distribution engine. [The original BVP framing](https://www.bvp.com/atlas/the-centaur-report) still holds.
+
+Historically, \$100M ARR was a slow climb. Salesforce took a little over five years to cross \$100M in revenue. Slack did it in roughly two and a half years. Wiz reset the benchmark at about 18 months. Even that looked extreme at the time. [Sacra's review of the leaderboard](https://sacra.com/research/cursor-at-100m-arr/) and [EquityZen's summary of the AI-era compression](https://blog.equityzen.com/the-new-speed-of-light-ai-valuations-margins-and-the-race-to-100m-arr) show how unusual the new pace is.
+
+The milestone also used to bundle together several hard things: product-market fit, go-to-market discipline, retention, and scale. AI application companies sometimes reach the same top-line number faster because demand is steeper and the pricing model is different. [L.E.K.'s analysis of AI SaaS metrics](https://www.lek.com/sites/default/files/insights/pdf-attachments/ai-saas-metrics.pdf) and [Metronome's work on usage-heavy SaaS](https://metronome.com/blog/arr-usage-heavy-saas) both point to that shift.
+
+## 2. Recent examples
+
+### Cursor
+
+Cursor is the clearest example. It started as a fork of VS Code with a much stronger AI workflow. [Sacra's timeline](https://sacra.com/research/cursor-at-100m-arr/) shows the jump from roughly \$1M ARR in December 2023 to \$100M ARR in January 2025. [SaaStr later covered Cursor's rise to \$1B ARR](https://www.saastr.com/cursor-hit-1b-arr-in-17-months-the-fastest-b2b-to-scale-ever-and-its-not-even-close/) and argued that no B2B software company had scaled faster.
+
+The product also changed as it grew. Autocomplete mattered at first. Agentic workflows mattered more later. Cursor's Composer mode pushed the product from assistant toward operator. That made heavier usage rational and enterprise budgets easier to justify. [Cursor's pricing](https://cursor.com/pricing) and [its Series D announcement](https://cursor.com/blog/series-d) show the shift from individual users to a large enterprise mix.
+
+### Lovable
+
+Lovable followed a similar curve in a different market. The pitch was simple: describe an app in English, get a working full-stack project back. [Entrepreneur's reporting on Lovable](https://www.entrepreneur.com/business-news/how-ai-startup-lovable-hit-a-66b-valuation/501077) places the company at \$10M ARR within months of launch and at \$100M ARR by mid-2025. [SiliconAngle's coverage of its Series B](https://siliconangle.com/2025/12/18/ai-coding-startup-lovable-raises-330m-round-backed-nvidia-tech-heavyweights/) describes a company growing quickly with a very small team.
+
+Lovable also shows how broad the buyer base can be. The user is often not just an engineer. Product people, designers, founders, and operators can all generate usage. That matters for the revenue model. [Lovable's credit documentation](https://lovable.dev/faq/credits/how-it-works/what-is-credit) makes the pricing structure explicit.
+
+### Replit
+
+Replit is older and should be read differently. It spent years building distribution, community, and an in-browser development environment before the AI wave. The big jump came after Replit Agent. [Wikipedia's company history](https://en.wikipedia.org/wiki/Replit), [SaaStr's writeup on the \$100M milestone](https://www.saastr.com/100mreplit/), and [Sacra's analysis of Replit at \$253M ARR](https://sacra.com/research/replit-at-253m-arr-growing-2352-yoy/) point to the same pattern: an established product found a steeper slope when the interface shifted from editor to agent.
+
+That distinction matters. Replit did not appear from nowhere. The AI agent wave was an accelerant, not the whole story.
+
+### Emergent
+
+Emergent is the most contested case. [Economic Times reported](https://m.economictimes.com/tech/startups/emergent-crosses-100-million-in-arr-as-demand-for-vibe-coding-picks-up/articleshow/128465948.cms) that the company went from launch to \$15M ARR in about 90 days, then to \$50M ARR, then to \$100M ARR very quickly. [Business Standard's interview with Mukund Jha](https://www.business-standard.com/companies/start-ups/emergent-ceo-mukund-jha-emergent-went-from-zero-to-usd-50-million-7-months-126020401195_1.html) gives the company's own account of that growth.
+
+The Emergent debate matters even without accusing anyone of anything. It forced a more useful question: what exactly counts as ARR in AI SaaS? [Outlook Business covered that debate directly](https://www.outlookbusiness.com/corporate/the-100-million-question-how-emergents-arr-debate-is-forcing-re-evaluation-of-saas-metrics), and [Business Insider's broader analysis](https://www.businessinsider.com/software-arr-ai-saas-valuation-metrics-alixpartners-2025-12) captured the core concern: consumption spikes can look like recurring revenue when annualized aggressively.
+
+## 3. The third derivative of growth
+
+The fastest AI SaaS companies have a different revenue curve because they add one more slope to the system.
+
+In classic SaaS, the first slope is simple: win more accounts. Per-seat SaaS adds a second slope: each account can grow its seat count over time. AI SaaS adds a third slope: each seat can consume more every month. I am using "third derivative" loosely here, as shorthand for one more slope stacked on top of the last one.
+
+That is the key idea. A normal SaaS company can grow because it signs more customers. A better SaaS company can also grow because those customers hire more people. An AI SaaS company can grow on both of those axes and then grow again because each user consumes more credits, tokens, or actions over time.
+
+### First slope: account growth
+
+The first slope is ordinary. Sell to more companies and revenue goes up. Flat-price SaaS lives here. A tool with one fixed plan grows only when logo count grows. Product-led growth can reduce acquisition cost, but it does not change the math. [Atlassian's writing on its flywheel](https://www.atlassian.com/blog/strategy/flywheel-growth-levers) is a clean example.
+
+This slope is still labor-bound. Enterprise sales need demos, procurement, security review, and implementation. Even product-led companies usually add a sales motion once deal size rises. [SaaStr's coverage of enterprise AI go-to-market](https://www.saastr.com/cursor-hit-1b-arr-in-17-months-the-fastest-b2b-to-scale-ever-and-its-not-even-close/) shows how quickly the best AI companies add enterprise muscle after the initial bottom-up wave.
+
+### Second slope: seat expansion
+
+Per-seat pricing adds a second slope. If the customer grows, your revenue grows with it. GitHub Copilot charges per seat. Slack charges per seat. Linear charges per seat. [GitHub's Copilot Enterprise launch post](https://github.blog/news-insights/product-news/github-copilot-enterprise-is-now-generally-available/), [Slack pricing references](https://learn.g2.com/slack-pricing), and [Linear's price update](https://subinflation.com/linear-standard-price-increase) show the standard structure.
+
+If you sell to startups, you inherit their hiring curve. A company that doubles its engineering headcount can double your revenue without an upsell call. SaaS operators usually measure this through net revenue retention. [Slack's peak NRR](https://www.growth-letter.com/p/inside-slacks-4-billion-growth-system), [Snowflake's long-run NRR profile](https://seekingalpha.com/article/4870382-snowflake-from-overhyped-to-fairly-valued-but-not-out-of-the-woods-upgrade), and [Datadog's expansion-driven growth](https://nanalyze.com/2026/02/datadog-sees-massive-growth-opportunity-in-ai/) show how valuable this second slope is.
+
+There is a limit. Seat expansion only tracks the functions that use your tool. GitHub benefits when engineering grows. It does not benefit when finance grows. Atlassian spent years widening Jira's footprint across departments for exactly this reason. [Atlassian's shareholder letter](https://www.atlassian.com/blog/announcements/shareholder-letter-q2fy25) and [commentary on its user mix](https://seekingalpha.com/article/4769067-atlassian-a-compelling-path-forward-to-growth) explain the strategy.
+
+### Third slope: usage expansion
+
+This is the new piece. Traditional SaaS usually charges the same amount whether a user touches the product once a week or all day. AI products often cannot do that because inference has a real marginal cost. That pushes the category toward credits, tokens, actions, or hybrid pricing. [Ordway's work on cloud usage-based ARR](https://ordwaylabs.com/blog/cloud-usage-based-pricing-report-arr/), [Metronome's usage-heavy SaaS notes](https://metronome.com/blog/arr-usage-heavy-saas), and [L.E.K.'s AI pricing analysis](https://www.lek.com/sites/default/files/insights/pdf-attachments/ai-saas-metrics.pdf) all describe the shift.
+
+Lovable prices by credits. Cursor gives users a credit pool. Bolt.new prices by token volume. Heavy users move up the pricing ladder on their own. [Lovable's credit FAQ](https://lovable.dev/faq/credits/how-it-works/what-is-credit), [Cursor pricing](https://cursor.com/pricing), and [Sacra's Bolt.new profile](https://sacra.com/c/bolt-new/) show three versions of the same pattern.
+
+Once a user depends on one of these tools, usage often rises. [Alger's writeup on OpenAI's momentum](https://www.alger.com/Pages/OnTheMoney.aspx?pageLabel=AOM-Mapping-AI-Momentum) cites average token consumption per organization growing about 320x over a twelve-month period, and [Entree Capital's analysis](https://entreecap.com/blog/the-saas-reckoning-surviving-the-ai-token-revolution) notes the jump in total API throughput. That is the third slope in the wild: more usage from the same seat inside the same account.
+
+### When the third derivative appears
+
+The ARR formula in classic SaaS is usually close to this:
+
+```text
+ARR = accounts x seats per account x price per seat
+```
+
+In AI SaaS, there is often one more term:
+
+```text
+ARR = accounts x seats per account x consumption per seat x price per unit
+```
+
+That extra variable is what gives you the third derivative of growth. [SaaStr on Cursor's pace](https://www.saastr.com/cursor-hit-1b-arr-in-17-months-the-fastest-b2b-to-scale-ever-and-its-not-even-close/), [Sacra on Lovable](https://sacra.com/c/lovable/), and [Sacra on Bolt.new](https://sacra.com/research/bolt-new-at-40m-arr/) show how quickly the curve bends once usage expands inside each seat.
+
+That is why the current wave looks so unusual. These companies are often acquiring customers, selling into growing teams, and seeing each user consume more over time. The first slope comes from sales. The second and third slopes can compound with much less direct effort.
+## 4. How ARR gets calculated
+
+Once you accept that the growth can be real, the next question gets harder: what exactly does the ARR number measure?
+
+### ARR and annualized run rate
+
+The acronym ARR is used for two related but different ideas. Annual Recurring Revenue is the annual value of live recurring contracts. Annualized Run Rate takes a recent revenue period and multiplies it forward. Last month times twelve. Last week times fifty-two. Yesterday times three hundred sixty-five. [Stripe's guides on ARR](https://stripe.com/resources/more/what-is-annual-recurring-revenue-a-guide-for-saas-businesses), [annualized run rate](https://stripe.com/resources/more/what-is-annualized-run-rate-arr-how-to-calculate-arr-and-use-it-strategically), and [ChartMogul's ARR definition](https://chartmogul.com/saas-metrics/arr/) make the distinction clear.
+
+In a stable subscription business, the gap between the two may be small. In a fast-growing usage-based business, it can be huge. A spike month tells you something about demand. It does not tell you next year's recurring revenue.
+
+### Bookings, CARR, live ARR, and GAAP revenue
+
+A signed contract becomes several different numbers before it becomes recognized revenue. Bookings counts contract value when the deal is signed. CARR counts the annualized committed value of signed contracts, including deals that are not live yet. Live ARR counts what customers are actually being billed for now. GAAP revenue recognizes the subscription over time as service is delivered. [Corporate Finance Institute on bookings versus ARR](https://corporatefinanceinstitute.com/resources/valuation/bookings-vs-arr/), [Stripe on CARR](https://stripe.com/resources/more/committed-annual-recurring-revenue-explained), [Tremendous on contracted versus live ARR](https://tremendous.blog/2025/08/07/the-key-difference-investors-miss-contracted-vs-live-arr/), and [Sensiba on ARR versus GAAP revenue](https://sensiba.com/resources/insights/what-you-need-to-know-about-annual-recurring-revenue-and-gaap-revenue-recognition/) explain the stack.
+
+Each figure can be presented honestly. Trouble starts when the company does not say which one it is using.
+
+### Discounts and trial users
+
+Discounting widens the gap further. Suppose a \$20 monthly plan is sold for \$1 in month one. Cash collected today is \$1. A very aggressive ARR calculation can still count that user at \$240 of annual value if the product reverts to full price next month. Sign up 100 such users and the company can claim \$24,000 of ARR with only \$100 collected so far. [Burkland's discussion of early-stage ARR nuance](https://burklandassociates.com/2024/01/30/the-nuances-of-measuring-arr-at-early-stage-saas-startups/) and [HubiFi's ARR versus revenue explainer](https://www.hubifi.com/blog/arr-vs-revenue-guide) show why investors discount heavily promoted cohorts.
+
+Free trials push the same issue further. If no payment has happened, the cleanest ARR treatment is zero. Some companies count trial users as future pipeline or committed ARR. Others blend them into headline ARR. [The SaaS CFO's guidance](https://www.thesaascfo.com/how-to-define-and-calculate-arr/) and [CFO Pro Analytics on ASC 606 and free trials](https://cfoproanalytics.com/cfo-blog/f/navigating-asc-606-in-the-saas-world-strategies-for-mrr-and-arr-recognition/) explain why conservative finance teams avoid that.
+
+### Usage-based revenue
+
+Usage-based revenue breaks old SaaS intuition. A customer can spend \$8,000 in January, \$15,000 in February, and \$9,000 in March. Annualize February and you get a far larger ARR number than if you annualize March. The customer has not changed. The usage pattern has. [The SaaS CFO's review of SEC methodologies](https://www.thesaascfo.com/how-to-define-and-calculate-arr/) shows that public companies like MongoDB, Datadog, and Confluent use different formulas for exactly this reason.
+
+There is no single standard. Some annualize the last month. Some use the trailing three-month average. Some count only committed minimums. Each method answers a different question. [Ordway's summary of cloud usage ARR methods](https://ordwaylabs.com/blog/cloud-usage-based-pricing-report-arr/) is useful here.
+
+This matters a lot in AI. Early usage is often exploratory. A team can try a tool intensely for two weeks and then stop. If you annualize that spike, you get a large number that looks recurring even when the behavior was temporary. [Sifted's reporting on AI startups and run-rate culture](https://sifted.eu/articles/inside-startups-mad-dash-to-keep-up-with-ai) captures how common this became in 2024 and 2025.
+
+### Layered assumptions
+
+The most misleading cases stack several assumptions. Discounted signups get counted at full annual value. A high-usage day gets annualized. Then the daily ARR addition gets projected across a full year. Each step has a logic. The combined result can drift very far from cash reality. [Baremetrics on annual run rate](https://baremetrics.com/academy/annual-run-rate) and [Stripe on annualized run rate](https://stripe.com/resources/more/what-is-annualized-run-rate-arr-how-to-calculate-arr-and-use-it-strategically) warn against exactly this pattern.
+
+That does not prove any specific headline is wrong. It does mean the method matters as much as the number. Without the method, the number is hard to interpret.
+
+### What good reporting looks like
+
+The cleanest way to inspect ARR quality is the ARR bridge. Start with beginning ARR. Add new ARR. Add expansion ARR. Subtract contraction and churn. What remains is ending ARR. [HubiFi's ARR waterfall guide](https://www.hubifi.com/blog/waterfall-revenue-guide) and [Prospeo's ARR waterfall explainer](https://prospeo.io/s/arr-waterfall) give the standard structure.
+
+Then ask for net revenue retention. If no new customers arrived, would revenue from the existing base rise, stay flat, or shrink? World-class SaaS usually keeps NRR above 120%. [Allison Pickens on Growth Endurance](https://allisonpickens.substack.com/p/sky-high-valuation-why-growth-endurance) and [CFI on GRR versus NRR](https://corporatefinanceinstitute.com/resources/valuation/grr-vs-nrr-saas-retention-metrics/) explain why investors care.
+
+For AI products, NRR is central. If customers use the product more each month and stay, the high ARR multiple has a foundation. If churn is high and growth comes mostly from new acquisition, the headline ARR deserves much less trust.
+
+## 5. Can the economics hold?
+
+So far the story has focused on demand and reporting. The harder question is cost. Heavy AI usage feels cheap at the keyboard. It is expensive somewhere in the stack.
+
+### Token costs
+
+Agentic coding workloads consume a lot of tokens because they carry long prompts, codebase context, tool calls, and large outputs. Frontier model prices have fallen, but heavy daily usage still creates meaningful cost. [Anthropic's pricing page](https://www.anthropic.com/pricing), [ZDNet's note on falling GPT-4 class prices](https://zdnet.com/article/openai-offers-gpt-4o-mini-to-slash-cost-of-applications/), and [Introl's inference cost breakdown](https://introl.com/blog/inference-unit-economics-true-cost-per-million-tokens-guide) help bound the economics.
+
+At light usage, the cost is manageable. At organizational scale, it grows quickly. A company with many engineers using AI deeply each day can end up spending millions a year in token-equivalent costs.
+
+### Subsidies
+
+A large share of present-day AI usage is subsidized somewhere. Model labs have often priced below full serving cost. API credits from cloud providers and investors are common. AI startups receive compute credits. Enterprises often buy seats without metering internal usage closely. The effective price paid by the end user can be far below the system cost. [WheresYoured on AI losses](https://wheresyoured.at/why-everybody-is-losing-money-on-ai/), [the LessWrong summary of OpenAI's 2024 economics](https://lesswrong.com/posts/CCQsQnCMWhJcCFY9x/openai-lost-usd5-billion-in-2024-and-its-losses-are), [Intuition Labs on LLM pricing and margins](https://intuitionlabs.ai/articles/llm-api-pricing-comparison-2025), and [a16z's investment list and ecosystem support](https://a16z.com/investment-list/) show different layers of that chain.
+
+Subsidies help markets form. They also hide the steady-state economics.
+
+### Gross margins
+
+The application companies in the middle have a harder margin problem than classic SaaS. Their cost of goods sold rises each time a user runs a powerful model. [Sacra on Replit](https://sacra.com/c/replit/), [Sacra on Cursor](https://sacra.com/research/cursor/), and [Entrepreneur Loop on Lovable's economics](https://entrepreneurloop.com/lovable-ai-startup-6-billion-valuation-series-b-funding/) suggest gross margins well below traditional SaaS at comparable stages.
+
+The hopeful case is clear. Token costs keep falling faster than subscription prices, so gross margins improve over time. [GetLago's analysis of AI coding tool pricing](https://getlago.substack.com/p/why-every-ai-coding-tool-gets-pricing) explains why many investors are underwriting that bet. Timing matters, though. If users churn before model costs fall enough, the business looks much weaker.
+
+### Productivity evidence
+
+The buyer case depends on productivity. The evidence is real but mixed. Some studies show large gains for coding tasks. A [Microsoft, MIT, and Wharton trial summarized by InfoQ](https://infoq.com/news/2024/09/copilot-developer-productivity/) found a 26% increase in pull requests per week with GitHub Copilot. [UC San Diego's study](https://blink.ucsd.edu/technology/about/news/posts/2024-08-01-github-copilot.html) found faster code commit completion. [GitHub's own research](https://github.blog/news-insights/research/research-quantifying-github-copilots-impact-on-developer-productivity-and-happiness/) also found meaningful task-level benefits.
+
+The counterpoint is important. [METR's 2025 randomized trial](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/) on experienced open-source developers working in large existing codebases found the AI-assisted group was slower. The developers still believed they were faster. [McKinsey's analysis of AI in software development](https://mckinsey.com/industries/technology-media-and-telecommunications/our-insights/unlocking-the-value-of-ai-in-software-development) points to the same issue on harder work: local task speed can be offset by review overhead, integration problems, and AI-induced tech debt.
+
+Greenfield work and brownfield work are different. Boilerplate and architecture are different. AI helps more in some parts of software work than others.
+
+### Enterprise budgets
+
+Large companies spent the last two years running AI pilots. Finance teams are now asking what moved on the income statement. The answers have been mixed. [Gartner's 2025 GenAI spending forecast](https://www.gartner.com/en/newsroom/press-releases/2025-03-31-gartner-forecasts-worldwide-genai-spending-to-reach-644-billion-in-2025), [Deloitte-linked ROI reporting summarized here](https://tiersnews.com/premium/stacker/stories/why-95-of-enterprise-ai-projects-fail-to-deliver-roi-a-data-analysis,108416), and [Old National's summary of CFO pressure for measurable returns](https://oldnational.com/resources/insights/cfos-want-ai-that-pays-real-metrics-not-marketing-demos/) all show the same shift from experimentation to proof.
+
+CFOs now care about net value. If employees save time but spend a large share of that time reviewing and correcting AI output, the economic gain shrinks. [CFO Brew's coverage of the "workslop tax"](https://cfobrew.com/stories/2026/01/22/to-measure-the-roi-of-ai-take-workslop-into-account) is a good shorthand for that problem.
+
+### Retention
+
+Many self-serve AI tools attract tourists. Users sign up, generate a few artifacts, then disappear. Enterprise contracts hold better when the product becomes part of a daily workflow. [L.E.K.'s retention discussion for AI SaaS](https://lek.com/insights/tmt/global/ar/how-ai-changing-saas-pricing) and [GitHub's enterprise Copilot research with Accenture](https://github.blog/news-insights/research/research-quantifying-github-copilots-impact-in-the-enterprise-with-accenture/) suggest that embedded products retain better than novelty products.
+
+At the same time, overall daily workplace AI usage may be flattening among casual users even while heavy users go deeper. [This analysis of Census and Federal Reserve data](https://medium.com/@markchen69/is-u-s-ai-adoption-plateauing-a-comprehensive-analysis-cf5c1beef8cf) suggests daily use stabilized in a narrow band. If depth comes from a small power-user segment, the total market is smaller than broad cultural interest in AI would suggest.
+
+### The macro question
+
+Eventually the gains should show up in macro data. So far they barely have. [Goldman Sachs argues](https://goldmansachs.com/insights/articles/AI-is-showing-very-positive-signs-of-boosting-gdp) that measurable GDP effects are still ahead. [Goldman's longer-range bullish projection](https://goldmansachs.com/insights/articles/generative-ai-could-raise-global-gdp-by-7-percent) is far from [Daron Acemoglu's much more cautious estimate](https://economics.mit.edu/news/daron-acemoglu-what-do-we-know-about-economics-ai). The gap matters because it is really a dispute about whether present spending is building enduring productivity or financing expensive experiments.
+
+That macro signal will lag. Buyers cannot wait forever for it. At some point the budget owner needs a simpler answer: did this tool create more value than it cost?
+
+## 6. What to watch
+
+The current AI ARR wave becomes easier to read once you separate four layers.
+
+First, the growth can be real. Account growth, seat expansion, and usage expansion can compound together. That was rare in classic SaaS. It is common in AI tools with credit or token pricing. [Metronome](https://metronome.com/blog/arr-usage-heavy-saas), [L.E.K.](https://www.lek.com/sites/default/files/insights/pdf-attachments/ai-saas-metrics.pdf), and [Sacra's company profiles](https://sacra.com/research/cursor-at-100m-arr/) support that view.
+
+Second, the metric can still mislead. ARR is not a GAAP term. It can mean live recurring contracts, contracted value, or an annualized run rate based on a short recent window. That difference matters much more in usage-heavy AI businesses than it did in traditional seat-based SaaS. [The SaaS CFO's review](https://www.thesaascfo.com/how-to-define-and-calculate-arr/) is useful here.
+
+Third, the economics are still forming. Heavy AI usage is expensive somewhere in the stack even when it looks cheap to the user. Model providers, startup balance sheets, cloud credits, and enterprise budgets are all absorbing parts of that cost today. [WheresYoured](https://wheresyoured.at/why-everybody-is-losing-money-on-ai/), [Intuition Labs](https://intuitionlabs.ai/articles/llm-api-pricing-comparison-2025), and [GetLago](https://getlago.substack.com/p/why-every-ai-coding-tool-gets-pricing) make that visible.
+
+Fourth, durability will depend on retention and realized productivity, not only on top-line velocity. The key metrics are cohort retention, NRR, gross margin improvement, and whether customer output rises enough to support the spend. [Bessemer's SaaS benchmarks](https://www.bvp.com/atlas/the-centaur-report), [Allison Pickens on Growth Endurance](https://allisonpickens.substack.com/p/sky-high-valuation-why-growth-endurance), and [METR's field evidence](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/) all point in that direction.
+
+The right move is simple. Ask what part of the revenue is contractual. Ask how much comes from usage spikes. Ask what the cohorts do six months later. Ask what gross margin looks like after subsidies. Ask whether the buyer is truly better off.
+
+That is where the new ARR formulas in AI SaaS will either harden into a lasting software category or unwind into a short-lived accounting story.
