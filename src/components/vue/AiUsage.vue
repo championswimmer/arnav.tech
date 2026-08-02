@@ -60,6 +60,9 @@ const { label, body } = config[props.type];
 	border-left: 4px solid;
 	margin: 0 0 2em;
 	font-family: var(--font-sans, sans-serif);
+	background: var(--usage-bg);
+	border-color: var(--usage-border);
+	color: var(--usage-fg);
 }
 
 .ai-usage__icon {
@@ -93,22 +96,66 @@ const { label, body } = config[props.type];
 
 /* ai-free — forest green tint */
 .ai-usage--ai-free {
-	background: #eef4ee;
-	border-color: #4a7c59;
-	color: #2d4f38;
+	--usage-bg: #eef4ee;
+	--usage-border: #4a7c59;
+	--usage-fg: #2d4f38;
 }
 
 /* ai-assisted — slate teal, offset from the warm paper */
 .ai-usage--ai-assisted {
-	background: #e8f0f0;
-	border-color: #3d7a7a;
-	color: #234b4b;
+	--usage-bg: #e8f0f0;
+	--usage-border: #3d7a7a;
+	--usage-fg: #234b4b;
 }
 
 /* ai-generated — muted violet, clearly distinct from sepia */
 .ai-usage--ai-generated {
-	background: #efeaf5;
-	border-color: #6d5296;
-	color: #43315f;
+	--usage-bg: #efeaf5;
+	--usage-border: #6d5296;
+	--usage-fg: #43315f;
+}
+
+/*
+  Dark mode — the same three hues, darkened toward the dark sepia page.
+  Mirrors the two-selector strategy in global.css: the OS preference applies
+  unless the reader has explicitly picked light, and [data-theme='dark'] wins
+  outright.
+*/
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme='light']) .ai-usage--ai-free {
+		--usage-bg: #1b2a20;
+		--usage-border: #5f9c72;
+		--usage-fg: #b3d8be;
+	}
+
+	:root:not([data-theme='light']) .ai-usage--ai-assisted {
+		--usage-bg: #16282a;
+		--usage-border: #4f9a9a;
+		--usage-fg: #a6d2d2;
+	}
+
+	:root:not([data-theme='light']) .ai-usage--ai-generated {
+		--usage-bg: #241d33;
+		--usage-border: #8f78bd;
+		--usage-fg: #c6b6e2;
+	}
+}
+
+:root[data-theme='dark'] .ai-usage--ai-free {
+	--usage-bg: #1b2a20;
+	--usage-border: #5f9c72;
+	--usage-fg: #b3d8be;
+}
+
+:root[data-theme='dark'] .ai-usage--ai-assisted {
+	--usage-bg: #16282a;
+	--usage-border: #4f9a9a;
+	--usage-fg: #a6d2d2;
+}
+
+:root[data-theme='dark'] .ai-usage--ai-generated {
+	--usage-bg: #241d33;
+	--usage-border: #8f78bd;
+	--usage-fg: #c6b6e2;
 }
 </style>
