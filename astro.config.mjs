@@ -30,8 +30,15 @@ export default defineConfig({
 			rehypePlugins: [rehypeKatex],
 		}),
 		shikiConfig: {
-			// Warm, inky light theme that sits well on the sepia page.
-			theme: 'rose-pine-dawn',
+			// Warm, inky themes that sit well on the sepia page — one per mode.
+			// `defaultColor: false` makes Shiki emit only --shiki-light/--shiki-dark
+			// CSS variables instead of baking one theme's colors into `style`,
+			// so global.css can pick the mode (see "Shiki code blocks" there).
+			themes: {
+				light: 'rose-pine-dawn',
+				dark: 'gruvbox-dark-medium',
+			},
+			defaultColor: false,
 			wrap: false,
 		},
 	},
