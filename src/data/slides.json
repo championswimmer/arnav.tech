@@ -8,6 +8,14 @@
     "date": "2026-08-20"
   },
   {
+    "id": "how-llms-began-to-code",
+    "slug": "how-llms-began-to-code",
+    "type": "revealjs",
+    "title": "How LLMs Began to Code",
+    "description": "From next-token prediction to tool-using software agents — IIT Gandhinagar lecture deck.",
+    "date": "2026-08-17"
+  },
+  {
     "id": "startups-monoliths-and-microservices",
     "slug": "startups-monoliths-and-microservices",
     "type": "speakerdeck",

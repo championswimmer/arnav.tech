@@ -1,0 +1,778 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+/* Base reveal.js styles
+ *
+ * Copy this file as styles.css for each new presentation.
+ * Customize the CSS variables (especially colors) for your theme.
+ *
+ * IMPORTANT: All font sizes use pt (points) for predictable sizing.
+ * Base text is intentionally small (16pt) to fit content-heavy slides.
+ * Use .text-lg, .text-xl, etc. classes when slides have less content.
+ */
+
+/* ===========================================
+   CSS VARIABLES - Customize these for each presentation
+   =========================================== */
+:root {
+  /* ===========================================
+     BACKGROUND COLORS
+     For dark presentations, change to dark colors (e.g., #1a1a2e, #0d1117)
+     Then update --text-color and --muted-color to light colors below.
+     =========================================== */
+  --background-color: #0b1020;
+  --section-divider-bg: #070a12;
+
+  /* Typography - ALWAYS use pt for font sizes */
+  --heading-font: "Space Grotesk", Arial, sans-serif;
+  --body-font: "IBM Plex Sans", Arial, sans-serif;
+  --base-font-size: 32px;   /* Only px value - sets reveal.js base */
+  --text-size: 17pt;
+  --h1-size: 48pt;
+  --h2-size: 31pt;
+  --h3-size: 21pt;
+  --footnote-size: 9.5pt;
+
+  /* Colors - CUSTOMIZE THESE */
+  --primary-color: #59d9ff;
+  --secondary-color: #ffbd59;
+  --agent-color: #f472b6;
+  --good-color: #67e8a5;
+  --text-color: #f4f7ff;
+  --muted-color: #9facbf;
+  --line-color: #2b3b59;
+
+  /* Layout */
+  --slide-padding: 62px;
+  --slide-padding-top: 38px;
+  --content-gap: 24px;
+
+  /* Border radius for custom components */
+  --box-radius: 14px;
+}
+
+/* ===========================================
+   BASE STYLES - Override reveal.js defaults
+   =========================================== */
+
+.reveal {
+  font-family: var(--body-font);
+  font-size: var(--base-font-size);
+}
+
+/* Restore bold after reset.css strips it with font: inherit */
+.reveal strong,
+.reveal b {
+  font-weight: bold;
+}
+
+/* Apply background colors */
+.reveal-viewport {
+  background-color: var(--background-color);
+}
+
+/* Section divider background via data-state */
+.reveal-viewport.is-section-divider .slide-background.present {
+  background-color: var(--section-divider-bg) !important;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  font-family: var(--heading-font);
+  text-transform: none;
+  color: var(--text-color);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.reveal h1 { font-size: var(--h1-size); }
+.reveal h2 { font-size: var(--h2-size); margin-bottom: 0; }
+.reveal h3 { font-size: var(--h3-size); }
+
+.reveal p,
+.reveal li,
+.reveal td,
+.reveal th,
+.reveal blockquote {
+  font-size: var(--text-size);
+  color: var(--text-color);
+  line-height: 1.5;
+}
+
+/* ===========================================
+   LISTS
+   =========================================== */
+
+.reveal ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 15px 0;
+}
+
+.reveal ul li {
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 10px;
+}
+
+.reveal ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 8px;
+  height: 8px;
+  background: var(--text-color);
+  border-radius: 50%;
+}
+
+.reveal ul ul li::before {
+  background: var(--muted-color);
+  width: 6px;
+  height: 6px;
+}
+
+/* Prevent double-sizing for nested elements */
+.reveal blockquote p {
+  font-size: inherit;
+}
+
+/* ===========================================
+   SLIDE LAYOUT
+   =========================================== */
+
+.reveal .slides section {
+  height: 100%;
+  display: flex !important;
+  flex-direction: column !important;
+  padding: var(--slide-padding-top) var(--slide-padding) var(--slide-padding) var(--slide-padding) !important;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+/* Vertical stack wrapper - no padding, just pass through */
+.reveal .slides section.stack {
+  padding: 0 !important;
+}
+
+/* Content area - fills remaining space */
+.reveal .slides section > .content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: var(--content-gap);
+  text-align: left;
+}
+
+/* Footnotes at bottom */
+.reveal .slides section > .footnote {
+  position: absolute;
+  bottom: 15px;
+  left: var(--slide-padding);
+  right: var(--slide-padding);
+  font-size: var(--footnote-size);
+  color: var(--muted-color);
+}
+
+/* ===========================================
+   SECTION DIVIDERS - Centered title slides
+   =========================================== */
+
+.reveal .slides section.section-divider {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center;
+}
+
+.reveal .slides section.section-divider h1 {
+  font-size: 56pt;
+  text-align: center;
+}
+
+.reveal .slides section.section-divider p {
+  font-size: 20pt;
+  color: var(--muted-color);
+}
+
+/* ===========================================
+   TEXT SIZE UTILITIES
+
+   Base text is 16pt - use these to scale UP when
+   slides have less content and you want to fill space.
+   =========================================== */
+
+.text-lg { font-size: 18pt !important; }   /* Slightly larger */
+.text-xl { font-size: 20pt !important; }   /* Medium emphasis */
+.text-2xl { font-size: 24pt !important; }  /* Strong emphasis */
+.text-3xl { font-size: 28pt !important; }  /* Very large */
+.text-4xl { font-size: 32pt !important; }  /* Maximum body text */
+
+/* Other text utilities */
+.text-muted { color: var(--muted-color) !important; }
+.text-center { text-align: center !important; }
+.text-uppercase { text-transform: uppercase; letter-spacing: 0.1em; }
+.font-light { font-weight: 300; }
+.font-bold { font-weight: 600; }
+
+/* ===========================================
+   BLOCKQUOTES
+   =========================================== */
+
+.reveal blockquote {
+  border-left: 4px solid var(--primary-color);
+  padding-left: 20px;
+  margin: 20px 0;
+  font-style: italic;
+  background: none;
+  box-shadow: none;
+  width: 100%;
+  max-width: none;
+}
+
+.reveal blockquote cite {
+  display: block;
+  margin-top: 10px;
+  font-style: normal;
+  color: var(--muted-color);
+}
+
+/* ===========================================
+   OPTIONAL: TITLE WITH UNDERLINE
+
+   Add this to presentations where you want
+   a line under the slide title.
+   =========================================== */
+
+/*
+.reveal .slides section > h1,
+.reveal .slides section > h2 {
+  flex-shrink: 0;
+  margin: 0;
+  padding-bottom: 15px;
+  border-bottom: 2px solid var(--line-color);
+}
+*/
+
+/* ===========================================
+   OPTIONAL: DECORATIVE ELEMENTS
+   =========================================== */
+
+/* Top decorative line on all slides */
+/*
+.reveal .slides section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--primary-color);
+}
+*/
+
+/* Bottom decorative line */
+/*
+.reveal .slides section::after {
+  content: '';
+  position: absolute;
+  bottom: 40px;
+  left: var(--slide-padding);
+  right: var(--slide-padding);
+  height: 2px;
+  background: var(--line-color);
+}
+*/
+
+/* ===========================================
+   CODE-ARCHAEOLOGY THEME
+   =========================================== */
+
+.reveal-viewport {
+  background:
+    radial-gradient(circle at 85% 8%, rgba(89, 217, 255, 0.13), transparent 27%),
+    radial-gradient(circle at 8% 92%, rgba(244, 114, 182, 0.10), transparent 25%),
+    var(--background-color);
+}
+
+.reveal .slides section:not(.section-divider)::after {
+  content: '';
+  position: absolute;
+  left: var(--slide-padding);
+  right: var(--slide-padding);
+  bottom: 36px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--primary-color), transparent 45%, var(--agent-color));
+  opacity: 0.35;
+}
+
+.reveal .slides section > h2 {
+  flex-shrink: 0;
+  margin: 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line-color);
+}
+
+.reveal .slides section > h2::before {
+  content: '// ';
+  color: var(--primary-color);
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 500;
+}
+
+.reveal .slides section.section-divider {
+  background:
+    linear-gradient(rgba(89,217,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(89,217,255,.035) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+
+.reveal .slides section.section-divider h1 {
+  max-width: 1060px;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+
+.reveal .slides section.section-divider .kicker,
+.reveal .kicker {
+  margin: 0 0 14px 0;
+  color: var(--secondary-color);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12pt;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.reveal .slides section.section-divider .subtitle {
+  max-width: 900px;
+  margin: 18px 0 0 0;
+  color: var(--muted-color);
+  font-size: 22pt;
+}
+
+.reveal .slides section.section-divider .course {
+  margin-top: 34px;
+  color: var(--primary-color);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12pt;
+}
+
+.reveal a { color: var(--primary-color); }
+.reveal a:hover { color: var(--secondary-color); }
+
+.reveal code,
+.reveal pre {
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.reveal pre {
+  width: 100%;
+  margin: 0;
+  padding: 18px 22px;
+  box-sizing: border-box;
+  background: #060914;
+  border: 1px solid #283653;
+  border-radius: var(--box-radius);
+  box-shadow: 0 16px 38px rgba(0,0,0,.28);
+}
+
+.reveal pre code {
+  max-height: none;
+  padding: 0;
+  color: #d9e5ff;
+  font-size: 14pt;
+  line-height: 1.45;
+}
+
+.reveal .code-key { color: var(--primary-color); }
+.reveal .code-string { color: var(--good-color); }
+.reveal .code-comment { color: #70809b; }
+.reveal .code-accent { color: var(--secondary-color); }
+
+.reveal .content {
+  min-height: 0;
+}
+
+.reveal .card {
+  padding: 24px 26px;
+  border: 1px solid var(--line-color);
+  border-radius: var(--box-radius);
+  background: linear-gradient(145deg, rgba(22,31,53,.94), rgba(12,18,33,.95));
+  box-shadow: 0 18px 44px rgba(0,0,0,.18);
+}
+
+.reveal .card h3,
+.reveal .artifact-note h3 {
+  margin: 0 0 12px 0;
+  color: var(--primary-color);
+}
+
+.reveal .card p:last-child,
+.reveal .artifact-note p:last-child { margin-bottom: 0; }
+
+.reveal .card.amber { border-color: rgba(255,189,89,.48); }
+.reveal .card.amber h3 { color: var(--secondary-color); }
+.reveal .card.magenta { border-color: rgba(244,114,182,.48); }
+.reveal .card.magenta h3 { color: var(--agent-color); }
+.reveal .card.green { border-color: rgba(103,232,165,.48); }
+.reveal .card.green h3 { color: var(--good-color); }
+
+.reveal .metric {
+  margin: 0;
+  color: var(--secondary-color);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 42pt;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.reveal .metric-label {
+  margin: 2px 0 16px 0;
+  color: var(--muted-color);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11pt;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.reveal .pill {
+  display: inline-block;
+  padding: 7px 11px;
+  margin: 0 6px 6px 0;
+  border: 1px solid rgba(89,217,255,.38);
+  border-radius: 999px;
+  color: var(--primary-color);
+  background: rgba(89,217,255,.08);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10pt;
+}
+
+.reveal .artifact-frame {
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255,189,89,.54);
+  border-radius: 18px;
+  background: #f4f1e8;
+  box-shadow: 0 20px 55px rgba(0,0,0,.38), 0 0 0 6px rgba(255,189,89,.06);
+}
+
+.reveal .artifact-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  object-fit: contain;
+  max-height: none;
+}
+
+.reveal .artifact-frame.crop img {
+  object-fit: cover;
+}
+
+.reveal .artifact-note {
+  padding: 23px 26px;
+  border-left: 4px solid var(--secondary-color);
+  background: linear-gradient(90deg, rgba(255,189,89,.11), transparent);
+}
+
+.reveal .quote-big {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 28px 34px;
+  border-left: 5px solid var(--secondary-color);
+  color: var(--text-color);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 25pt;
+  font-style: normal;
+  line-height: 1.35;
+}
+
+.reveal .branch-label {
+  margin: 0 0 14px 0;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11pt;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.reveal .branch-label.completion { color: var(--primary-color); }
+.reveal .branch-label.instruct { color: var(--secondary-color); }
+
+.reveal .vs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted-color);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12pt;
+}
+
+.reveal .timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  padding-top: 32px;
+}
+
+.reveal .timeline::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: 4%;
+  right: 4%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--agent-color));
+}
+
+.reveal .timeline-item {
+  position: relative;
+  padding: 18px 16px;
+  border: 1px solid var(--line-color);
+  border-radius: 12px;
+  background: rgba(14,21,38,.88);
+}
+
+.reveal .timeline-item::before {
+  content: '';
+  position: absolute;
+  top: -25px;
+  left: calc(50% - 6px);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--secondary-color);
+  box-shadow: 0 0 0 5px rgba(255,189,89,.13);
+}
+
+.reveal .timeline-item h3 {
+  margin: 0 0 7px 0;
+  color: var(--secondary-color);
+  font-size: 17pt;
+}
+
+.reveal .timeline-item p {
+  margin: 0;
+  color: var(--muted-color);
+  font-size: 12pt;
+  line-height: 1.35;
+}
+
+.reveal .step-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  align-items: stretch;
+}
+
+.reveal .step {
+  position: relative;
+  padding: 20px 16px;
+  border: 1px solid var(--line-color);
+  border-radius: 12px;
+  background: rgba(16,24,43,.9);
+}
+
+.reveal .step:not(:last-child)::after {
+  content: '→';
+  position: absolute;
+  right: -13px;
+  top: 40%;
+  z-index: 2;
+  color: var(--primary-color);
+  font-size: 18pt;
+}
+
+.reveal .step .num {
+  margin: 0 0 7px 0;
+  color: var(--primary-color);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11pt;
+}
+
+.reveal .step h3 { margin: 0 0 7px 0; font-size: 17pt; }
+.reveal .step p { margin: 0; color: var(--muted-color); font-size: 12pt; line-height: 1.35; }
+
+.reveal table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border: 1px solid var(--line-color);
+  border-radius: 12px;
+  background: rgba(9,14,27,.68);
+}
+
+.reveal table th {
+  padding: 12px 15px;
+  color: var(--primary-color);
+  background: rgba(89,217,255,.08);
+  border-bottom: 1px solid var(--line-color);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12pt;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.reveal table td {
+  padding: 10px 15px;
+  border-bottom: 1px solid rgba(43,59,89,.66);
+  font-size: 13pt;
+  line-height: 1.25;
+}
+
+.reveal table tr:last-child td { border-bottom: 0; }
+
+.reveal .footnote a { color: var(--muted-color); text-decoration-color: rgba(159,172,191,.45); }
+
+.reveal .mermaid {
+  width: 100%;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+.reveal .mermaid svg {
+  max-width: 100% !important;
+  max-height: 100% !important;
+}
+
+.reveal .mermaid p,
+.reveal .mermaid span {
+  margin: 0;
+  font-size: 10pt;
+  line-height: 1.15;
+}
+
+.reveal .big-equation {
+  margin: 0;
+  padding: 24px 30px;
+  border: 1px solid rgba(244,114,182,.45);
+  border-radius: 14px;
+  background: rgba(244,114,182,.07);
+  color: #fff;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 20pt;
+  line-height: 1.55;
+}
+
+.reveal .warning {
+  padding: 18px 22px;
+  border: 1px solid rgba(255,189,89,.45);
+  border-radius: 12px;
+  background: rgba(255,189,89,.08);
+}
+
+.reveal .warning p { margin: 0; color: #ffe7ba; }
+
+.reveal .source-tag {
+  color: var(--secondary-color);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9pt;
+}
+
+.reveal .protocol-ladder,
+.reveal .rl-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.reveal .protocol-node,
+.reveal .rl-node {
+  width: 82%;
+  padding: 10px 14px;
+  border: 1px solid var(--line-color);
+  border-radius: 9px;
+  background: rgba(16,24,43,.94);
+  text-align: center;
+}
+
+.reveal .protocol-node p,
+.reveal .rl-node p {
+  margin: 0;
+  font-size: 12pt;
+  line-height: 1.2;
+}
+
+.reveal .protocol-node.model { border-color: rgba(89,217,255,.55); }
+.reveal .protocol-node.host { border-color: rgba(255,189,89,.55); }
+.reveal .protocol-node.mcp { border-color: rgba(244,114,182,.55); }
+.reveal .rl-node.reward { border-color: rgba(103,232,165,.55); }
+
+.reveal .protocol-arrow,
+.reveal .rl-arrow {
+  margin: 0;
+  color: var(--secondary-color);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9pt;
+  line-height: 1;
+  text-align: center;
+}
+
+/* Reliable one-slide-per-page export when printing directly from Chrome. */
+@page {
+  size: 1280px 720px;
+  margin: 0;
+}
+
+@media print {
+  html,
+  body,
+  .reveal,
+  .reveal .slides {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    transform: none !important;
+    background: #0b1020 !important;
+  }
+
+  .reveal .slides section {
+    position: relative !important;
+    inset: auto !important;
+    width: 1280px !important;
+    height: 720px !important;
+    min-height: 720px !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid-page !important;
+    background:
+      radial-gradient(circle at 85% 8%, rgba(89, 217, 255, 0.13), transparent 27%),
+      radial-gradient(circle at 8% 92%, rgba(244, 114, 182, 0.10), transparent 25%),
+      #0b1020 !important;
+  }
+
+  .reveal .slides section.section-divider {
+    background:
+      linear-gradient(rgba(89,217,255,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(89,217,255,.035) 1px, transparent 1px),
+      #070a12 !important;
+    background-size: 42px 42px !important;
+  }
+
+  .reveal .controls,
+  .reveal .progress,
+  .reveal .slide-number {
+    display: none !important;
+  }
+}

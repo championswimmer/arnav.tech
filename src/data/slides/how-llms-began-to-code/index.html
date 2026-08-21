@@ -1,0 +1,685 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How LLMs Began to Code</title>
+
+  <!-- Reveal.js core -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Chart.js for data visualization -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <section id="title" class="section-divider" data-state="is-section-divider">
+        <p class="kicker">A code archaeology</p>
+        <h1>How LLMs Began to Code</h1>
+        <p class="subtitle">From next-token prediction to tool-using software agents</p>
+        <p class="course">IIT Gandhinagar · Agentic Engineering</p>
+        <aside class="notes">Frame this as a history of capability, interface, and feedback—not a parade of model names.</aside>
+      </section>
+
+      <section id="thesis">
+        <h2>The thesis</h2>
+        <div class="content" style="justify-content: center; gap: 28px;">
+          <blockquote class="quote-big"><strong>LLMs did not suddenly “become programmers.”</strong> A text-prediction engine was specialized, given better interfaces, trained on feedback, and placed inside an execution loop.</blockquote>
+          <div class="step-row">
+            <div class="step"><p class="num">01</p><h3>Predict</h3><p>Continue text</p></div>
+            <div class="step"><p class="num">02</p><h3>Specialize</h3><p>Learn code's distribution</p></div>
+            <div class="step"><p class="num">03</p><h3>Instruct</h3><p>Follow intent</p></div>
+            <div class="step"><p class="num">04</p><h3>Call tools</h3><p>Emit structured actions</p></div>
+            <div class="step"><p class="num">05</p><h3>Close loop</h3><p>Act, observe, retry</p></div>
+          </div>
+        </div>
+        <aside class="notes">Ask students to distinguish model capability from product capability throughout the deck.</aside>
+      </section>
+
+      <section id="next-token-primitive">
+        <h2>The original primitive: continue the sequence</h2>
+        <div class="content" style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: stretch;">
+          <div class="card">
+            <p class="branch-label completion">Training</p>
+            <pre><code><span class="code-comment">context</span>                  <span class="code-accent">target</span>
+The quick brown fox   →   jumps
+def add(a, b):        →   return</code></pre>
+            <p class="text-lg">Minimize next-token prediction error across huge text corpora.</p>
+          </div>
+          <div class="card amber">
+            <p class="branch-label instruct">Inference</p>
+            <pre><code>prompt + generated tokens
+          ↓
+  next-token distribution
+          ↓ sample
+   one more token ↺</code></pre>
+            <p class="text-lg">Code is text with unusually strong structure—and executable semantics.</p>
+          </div>
+        </div>
+        <aside class="notes">A token is not necessarily a word. Autoregressive models see their own generated tokens as context for the next prediction.</aside>
+      </section>
+
+      <section id="gpt2">
+        <h2>2019 · GPT-2: tasks emerge from continuation</h2>
+        <div class="content" style="display: grid; grid-template-columns: .8fr 1.2fr; gap: 30px; align-items: center;">
+          <div class="card amber text-center">
+            <p class="metric">1.5B</p>
+            <p class="metric-label">parameters</p>
+            <p class="metric">1,024</p>
+            <p class="metric-label">token context</p>
+            <p><span class="pill">WebText</span><span class="pill">8M pages</span><span class="pill">causal LM</span></p>
+          </div>
+          <div>
+            <blockquote class="quote-big">Diverse web text contains naturally occurring demonstrations: question → answer, English → French, comment → code.</blockquote>
+            <p class="text-xl"><strong>Key idea:</strong> a sufficiently broad continuation model begins to behave like a multitask learner—without a labeled dataset for every task.</p>
+            <div class="warning"><p><strong>But:</strong> GPT-2's paper did not claim serious production-quality code generation.</p></div>
+          </div>
+        </div>
+        <div class="footnote"><a href="https://openai.com/index/better-language-models/">OpenAI, 14 Feb 2019</a> · <a href="https://cdn.openai.com/better-language-models/language-models.pdf">Technical paper</a></div>
+        <aside class="notes">GPT-2 was not marketed as a code model. Code capability was a consequence of the distribution and objective.</aside>
+      </section>
+
+      <section id="deep-tabnine">
+        <h2>2019 · GPT-2 already found the Tab key</h2>
+        <div class="content" style="display: grid; grid-template-columns: 1.05fr .95fr; gap: 30px; align-items: center;">
+          <div>
+            <p class="kicker">An early bridge</p>
+            <h3 class="text-3xl" style="color: var(--primary-color); margin: 0 0 18px 0;">Deep TabNine</h3>
+            <p class="text-xl">A GPT-2-based, all-language code completer put a language model behind editor autocomplete in July 2019.</p>
+            <ul>
+              <li>Code before the cursor became the prompt.</li>
+              <li>The product optimized for latency and acceptance.</li>
+              <li>The developer stayed in control: accept, edit, reject.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <pre><code><span class="code-key">function</span> slugify(input) {
+  <span class="code-comment">// cursor ▌</span>
+}</code></pre>
+            <p class="text-center text-2xl" style="color: var(--primary-color); margin: 22px 0 6px 0;">↓ TAB</p>
+            <pre><code><span class="code-key">return</span> input
+  .toLowerCase()
+  .replace(/\s+/g, <span class="code-string">'-'</span>);</code></pre>
+          </div>
+        </div>
+        <div class="footnote"><a href="https://openai.com/index/gpt-2-6-month-follow-up/">OpenAI GPT-2 follow-up</a> · <a href="https://news.ycombinator.com/item?id=20442606">15 Jul 2019 launch discussion</a></div>
+        <aside class="notes">Use this as the hook that completion UX predated Codex. It does not imply GPT-2 matched later code-specialized models.</aside>
+      </section>
+
+      <section id="gpt3">
+        <h2>2020 · GPT-3: scale turns prompting into an interface</h2>
+        <div class="content" style="display: grid; grid-template-columns: .82fr 1.18fr; gap: 30px; align-items: center;">
+          <div class="card amber text-center">
+            <p class="metric">175B</p><p class="metric-label">parameters</p>
+            <p class="metric">2,048</p><p class="metric-label">token context</p>
+            <p><span class="pill">zero-shot</span><span class="pill">one-shot</span><span class="pill">few-shot</span></p>
+          </div>
+          <div>
+            <pre><code><span class="code-comment">Description:</span> red button saying Stop
+<span class="code-key">Code:</span> &lt;button style=...&gt;Stop&lt;/button&gt;
+
+<span class="code-comment">Description:</span> blue box with 3 circles
+<span class="code-key">Code:</span> ...
+
+<span class="code-comment">Description:</span> rainbow buttons
+<span class="code-key">Code:</span> <span class="code-accent">[model continues]</span></code></pre>
+            <p class="text-lg">The task is specified <strong>inside the context</strong>; model weights do not change at use time.</p>
+          </div>
+        </div>
+        <div class="footnote"><a href="https://arxiv.org/abs/2005.14165">Brown et al., “Language Models are Few-Shot Learners,” 28 May 2020</a></div>
+        <aside class="notes">GPT-3 retained the causal objective. Its product shift was in-context learning: task specification became prompt text.</aside>
+      </section>
+
+      <section id="sharif-demo">
+        <h2>13 July 2020 · “Describe a layout” → JSX</h2>
+        <div class="content" style="display: grid; grid-template-columns: 1.18fr .82fr; gap: 28px; min-height: 0;">
+          <div style="display: grid; grid-template-rows: .8fr 1.2fr; gap: 14px; min-height: 0;">
+            <div class="artifact-frame crop"><img src="assets/sharif-shameem-gpt3-jsx-tweet.png" alt="Sharif Shameem's July 2020 X thread showing a GPT-3 JSX layout generator" style="object-position: top left;"></div>
+            <div class="artifact-frame crop"><img src="assets/sharif-shameem-two-shot-context.png" alt="The two description-to-JSX examples used as in-context demonstrations" style="object-position: top center;"></div>
+          </div>
+          <div style="display: flex; flex-direction: column; justify-content: center; gap: 18px;">
+            <div class="artifact-note">
+              <p class="source-tag">PRIMARY-SOURCE SCREENSHOT</p>
+              <h3>Sharif Shameem's demo</h3>
+              <ul>
+                <li>Natural language → JSX</li>
+                <li>Only two in-context examples</li>
+                <li>A human-built app rendered the output</li>
+                <li>512-token limit broke some larger tables</li>
+              </ul>
+            </div>
+            <p class="text-xl"><strong>Spectacular generation.</strong><br>Not yet a repository-aware agent.</p>
+          </div>
+        </div>
+        <div class="footnote"><a href="https://x.com/sharifshameem/status/1282676454690451457">Original X thread</a> · <a href="https://x.com/sharifshameem/status/1282692481608331265">Two-example follow-up</a> · Correct spelling: <strong>Sharif Shameem</strong></div>
+        <aside class="notes">The screenshot preserves the follow-up with two examples and the 512-token caveat. Do not call this Codex; Shameem described it as GPT-3.</aside>
+      </section>
+
+      <section id="capability-before-product">
+        <h2>Capability discovered before the coding product</h2>
+        <div class="content" style="justify-content: center; gap: 22px;">
+          <div class="step-row" style="grid-template-columns: repeat(4, 1fr);">
+            <div class="step"><p class="num">HUMAN</p><h3>Describe</h3><p>“Three colorful buttons”</p></div>
+            <div class="step"><p class="num">MODEL</p><h3>Complete</h3><p>GPT-3 continues the pattern</p></div>
+            <div class="step"><p class="num">TEXT</p><h3>Return JSX</h3><p>Plausible code response</p></div>
+            <div class="step"><p class="num">HUMAN</p><h3>Integrate</h3><p>Paste · render · debug · retry</p></div>
+          </div>
+          <blockquote class="quote-big text-center" style="border-left: 0; border-top: 2px solid var(--secondary-color);">GPT-3 could emit code. It could not inspect your repository, run the build, see the failure, or repair it.</blockquote>
+          <p class="text-center text-xl" style="color: var(--secondary-color);"><strong>The human was the integration layer and the feedback loop.</strong></p>
+        </div>
+        <aside class="notes">Do not dismiss the demo: it revealed the natural-language-to-code interface that later products industrialized.</aside>
+      </section>
+
+      <section id="github-openai-timeline">
+        <h2>A parallel track: GitHub × OpenAI</h2>
+        <div class="content" style="justify-content: center; gap: 28px;">
+          <div class="timeline">
+            <div class="timeline-item"><h3>Jun 2020</h3><p>GPT-3 API preview; GitHub begins experimenting after release.</p></div>
+            <div class="timeline-item"><h3>2020 H2</h3><p>Question→snippet prototype gives way to inline IDE completion.</p></div>
+            <div class="timeline-item"><h3>29 Jun 2021</h3><p>Copilot technical preview—Codex under the hood.</p></div>
+            <div class="timeline-item"><h3>7 Jul 2021</h3><p>Codex paper: GPT-family models fine-tuned on public GitHub code.</p></div>
+            <div class="timeline-item"><h3>10 Aug 2021</h3><p>Codex API beta: natural-language instructions to code.</p></div>
+          </div>
+          <div class="warning"><p><strong>Parallel histories:</strong> independent GPT-3 demos revealed a capability; GitHub and OpenAI specialized it into a model + editor product. The exact collaboration start date is not public.</p></div>
+        </div>
+        <div class="footnote"><a href="https://github.blog/ai-and-ml/github-copilot/inside-github-working-with-the-llms-behind-github-copilot/">GitHub inside history</a> · <a href="https://github.blog/ai-and-ml/github-copilot/how-github-copilot-is-getting-better-at-understanding-your-code/">GitHub on input to Codex</a> · <a href="https://arxiv.org/abs/2107.03374">Codex paper</a></div>
+        <aside class="notes">The Codex paper was submitted after Copilot's preview. GitHub says it gave OpenAI product input while Codex was built.</aside>
+      </section>
+
+      <section id="codex-paper">
+        <h2>Codex: code changes the prior</h2>
+        <div class="content" style="display: grid; grid-template-columns: 1.05fr .95fr; gap: 28px; min-height: 0;">
+          <div class="artifact-frame"><img src="assets/codex-paper-2021.png" alt="ArXiv abstract page for Evaluating Large Language Models Trained on Code" style="object-position: top left;"></div>
+          <div style="display: flex; flex-direction: column; justify-content: center;">
+            <p><span class="pill">up to 12B</span><span class="pill">HumanEval</span><span class="pill">GitHub code</span></p>
+            <ul>
+              <li>GPT-family models fine-tuned on public GitHub code</li>
+              <li>HumanEval measured functional correctness with unit tests</li>
+              <li>Codex-12B: <strong>28.8% pass@1</strong>; tested GPT-3 baseline: <strong>0%</strong></li>
+              <li>A distinct production descendant powered early Copilot</li>
+            </ul>
+            <div class="warning"><p><strong>Still a probability model:</strong> specialization raises the probability of valid code; it does not install a compiler inside the weights.</p></div>
+          </div>
+        </div>
+        <div class="footnote"><a href="https://arxiv.org/abs/2107.03374">Chen et al., “Evaluating Large Language Models Trained on Code,” 2021</a></div>
+        <aside class="notes">Avoid implying that the research checkpoint and the Copilot production model were identical.</aside>
+      </section>
+
+      <section id="two-worlds">
+        <h2>One capability, two product worlds</h2>
+        <div class="content" style="display: grid; grid-template-columns: 1fr 70px 1fr; gap: 18px; align-items: stretch;">
+          <div class="card">
+            <p class="branch-label completion">A · Tab-complete world</p>
+            <pre><code>code before cursor
+       <span class="code-accent">▌</span>
+code after cursor</code></pre>
+            <ul>
+              <li>milliseconds matter</li>
+              <li>suggestion must fit local intent</li>
+              <li>accept / edit / reject</li>
+              <li>developer stays in the editor</li>
+            </ul>
+          </div>
+          <div class="vs"><p>VS</p></div>
+          <div class="card amber">
+            <p class="branch-label instruct">B · Instruct → copy world</p>
+            <pre><code><span class="code-string">“Write a React component…”</span>
+            ↓
+        code block
+            ↓
+       copy / paste / run</code></pre>
+            <ul>
+              <li>conversation matters</li>
+              <li>longer, task-shaped outputs</li>
+              <li>human transfers state and errors</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">These worlds coexisted. They optimized different interfaces, latency budgets, and post-training targets.</aside>
+      </section>
+
+      <section id="edit-insert-bridge">
+        <h2>March 2022 · even one API exposed both worlds</h2>
+        <div class="content" style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: stretch;">
+          <div class="card">
+            <p class="branch-label completion">Insert</p>
+            <p class="text-2xl"><strong>prefix + suffix → insertion</strong></p>
+            <pre><code><span class="code-key">prompt:</span>  code before cursor
+<span class="code-key">suffix:</span>  code after cursor
+<span class="code-accent">output:</span>  missing middle</code></pre>
+            <p>Completion track: constrain the generated span with both sides.</p>
+          </div>
+          <div class="card amber">
+            <p class="branch-label instruct">Edit</p>
+            <p class="text-2xl"><strong>instruction + input → edited copy</strong></p>
+            <pre><code><span class="code-key">input:</span>        existing text
+<span class="code-key">instruction:</span>  “fix the bug”
+<span class="code-accent">output:</span>       rewritten text</code></pre>
+            <p>Instruction track: state a desired transformation in natural language.</p>
+          </div>
+        </div>
+        <div class="footnote"><a href="https://openai.com/news/product-releases/?limit=18&sortBy=old">OpenAI product chronology, 15 Mar 2022</a> · <a href="https://community.openai.com/t/introducing-insert-and-edits-capabilities/15993">Contemporaneous announcement</a></div>
+        <aside class="notes">This launch cleanly foreshadowed the split between suffix-conditioned insertion and instruction-driven editing.</aside>
+      </section>
+
+      <section id="tab-completion">
+        <h2>Tab completion: the cursor is the prompt</h2>
+        <div class="content" style="display: grid; grid-template-columns: 1.1fr .9fr; gap: 30px; min-height: 0;">
+          <div class="artifact-frame"><img src="assets/github-copilot-launch-2021.png" alt="GitHub Blog page announcing GitHub Copilot" style="object-position: top left;"></div>
+          <div style="display: flex; flex-direction: column; justify-content: center; gap: 18px;">
+            <div class="card">
+              <p class="source-tag">PRODUCT EVIDENCE</p>
+              <h3>29 June 2021</h3>
+              <p>GitHub described Copilot as suggesting <strong>whole lines or entire functions</strong> as the developer typed.</p>
+            </div>
+            <pre><code>active file + nearby code
+       + cursor position
+              ↓
+          ghost text
+              ↓
+      accept / edit / reject</code></pre>
+          </div>
+        </div>
+        <div class="footnote"><a href="https://github.blog/news-insights/product-news/introducing-github-copilot-ai-pair-programmer/">GitHub Copilot technical preview</a></div>
+        <aside class="notes">Early Copilot was prefix-only. The model suggested; it did not decide to change another file or run tests.</aside>
+      </section>
+
+      <section id="prefix-only-problem">
+        <h2>Why left-to-right completion is not enough</h2>
+        <div class="content" style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: stretch;">
+          <div class="card">
+            <p class="branch-label completion">Prefix-only model</p>
+            <pre><code><span class="code-key">def</span> clamp(x, low, high):
+    <span class="code-comment"># cursor ▌</span>
+
+<span class="code-key">assert</span> clamp(12, 0, 10) == 10</code></pre>
+            <p class="text-lg">The model sees the function prefix. The assertion below may be invisible to its prompt.</p>
+          </div>
+          <div class="card green">
+            <p class="branch-label" style="color: var(--good-color);">Fill in the middle</p>
+            <pre><code><span class="code-key">PREFIX:</span> function + comment
+<span class="code-key">SUFFIX:</span> assertion below
+<span class="code-accent">MIDDLE:</span> ?</code></pre>
+            <p class="text-lg">Generate code constrained by <strong>both</strong> what comes before and what must still come after.</p>
+          </div>
+        </div>
+        <aside class="notes">Editor insertion is inherently bidirectional even when the underlying decoder remains autoregressive.</aside>
+      </section>
+
+      <section id="fim-transform">
+        <h2>FIM: rearrange the example, keep the same loss</h2>
+        <div class="content" style="display: grid; grid-template-columns: .9fr 1.1fr; gap: 28px; align-items: center;">
+          <div class="mermaid" style="height: 390px;">
+flowchart TD
+  D["Original file: P + M + S"] --> Q{"FIM transform?"}
+  Q -->|No| A["P · M · S · EOT"]
+  Q -->|PSM| B["PRE P · SUF S · MID M · EOT"]
+  Q -->|SPM| C["SUF S · PRE P · MID M · EOT"]
+  A --> L["Same next-token loss"]
+  B --> L
+  C --> L
+  L --> G["One decoder learns append + insert"]
+          </div>
+          <div>
+            <pre><code><span class="code-comment">Original</span>
+[ <span class="code-key">PREFIX</span> ][ <span class="code-accent">MIDDLE</span> ][ <span class="code-string">SUFFIX</span> ]
+
+<span class="code-comment">PSM</span>
+&lt;fim_prefix&gt; PREFIX
+&lt;fim_suffix&gt; SUFFIX
+&lt;fim_middle&gt; MIDDLE
+
+<span class="code-comment">SPM</span>
+&lt;fim_suffix&gt; SUFFIX
+&lt;fim_prefix&gt; PREFIX
+&lt;fim_middle&gt; MIDDLE</code></pre>
+            <p class="text-lg"><strong>The decoder is still left-to-right.</strong> The data transform ensures it has attended to both sides before predicting the hole.</p>
+          </div>
+        </div>
+        <div class="footnote"><a href="https://arxiv.org/abs/2207.14255">Bavarian et al., “Efficient Training of Language Models to Fill in the Middle,” 28 Jul 2022</a></div>
+        <aside class="notes">PSM means prefix–suffix–middle; SPM means suffix–prefix–middle. This is not BERT-style parallel masking.</aside>
+      </section>
+
+      <section id="fim-example">
+        <h2>What the suffix teaches the completion</h2>
+        <div class="content" style="display: grid; grid-template-columns: .92fr 1.08fr; gap: 28px; align-items: stretch;">
+          <div class="card">
+            <p class="branch-label completion">Editor buffer</p>
+            <pre><code><span class="code-key">function</span> total(items) {
+  <span class="code-accent">▋</span>
+}
+
+console.log(total([
+  { price: 2 },
+  { price: 3 }
+])); <span class="code-comment">// 5</span></code></pre>
+            <p>Prefix-only knows the function name. FIM also sees the call shape, input schema, closing brace, and expected output.</p>
+          </div>
+          <div class="card green">
+            <p class="branch-label" style="color: var(--good-color);">Generated middle</p>
+            <pre><code><span class="code-key">return</span> items.reduce(
+  (sum, { price }) => sum + price,
+  0
+);</code></pre>
+            <p class="text-lg">The suffix becomes a lightweight specification.</p>
+            <div class="warning"><p>FIM predicts a span. It still does not run the code or verify that the inferred behavior matches the user's real intent.</p></div>
+          </div>
+        </div>
+        <aside class="notes">Use this to make “bidirectional context with an autoregressive decoder” concrete.</aside>
+      </section>
+
+      <section id="fim-lineage">
+        <h2>FIM grew into a code-model lineage</h2>
+        <div class="content" style="justify-content: center;">
+          <table>
+            <thead><tr><th>Date</th><th>Model / work</th><th>What advanced</th></tr></thead>
+            <tbody>
+              <tr><td>15 Mar 2022</td><td><strong>OpenAI Insert</strong></td><td>Product API accepted prefix + suffix</td></tr>
+              <tr><td>12 Apr 2022</td><td><strong>InCoder</strong></td><td>Zero-shot arbitrary, multi-hole code infilling</td></tr>
+              <tr><td>28 Jul 2022</td><td><strong>OpenAI FIM study</strong></td><td>PSM/SPM recipe; little loss to normal completion</td></tr>
+              <tr><td>9 Jan 2023</td><td><strong>SantaCoder</strong></td><td>1.1B prototype; joint PSM + SPM</td></tr>
+              <tr><td>May 2023</td><td><strong>StarCoder</strong></td><td>15.5B, 8K context, FIM on 1T training tokens</td></tr>
+              <tr><td>24 Aug 2023</td><td><strong>Code Llama</strong></td><td>IDE-oriented infilling variants + long context</td></tr>
+              <tr><td>25 Jan 2024</td><td><strong>DeepSeek-Coder</strong></td><td>Project-level data, 16K windows, FIM insertion</td></tr>
+            </tbody>
+          </table>
+          <p class="text-lg"><strong>Result:</strong> autocomplete evolved from “append the next line” into insertion, refactoring, and multi-line next-edit prediction.</p>
+        </div>
+        <div class="footnote"><a href="https://arxiv.org/abs/2204.05999">InCoder</a> · <a href="https://arxiv.org/abs/2207.14255">OpenAI FIM</a> · <a href="https://arxiv.org/abs/2301.03988">SantaCoder</a> · <a href="https://arxiv.org/abs/2305.06161">StarCoder</a> · <a href="https://arxiv.org/abs/2308.12950">Code Llama</a> · <a href="https://arxiv.org/abs/2401.14196">DeepSeek-Coder</a></div>
+        <aside class="notes">StarCoder's own model card says it is not an instruction model—useful evidence that completion and instruction remained distinct tracks.</aside>
+      </section>
+
+      <section id="instruction-branch">
+        <h2>Meanwhile: the instruction branch</h2>
+        <div class="content" style="justify-content: center; gap: 24px;">
+          <div class="step-row" style="grid-template-columns: repeat(4, 1fr);">
+            <div class="step"><p class="num">BASE</p><h3>GPT-3</h3><p>Predict likely continuation</p></div>
+            <div class="step"><p class="num">SFT</p><h3>Demonstrations</h3><p>Learn desired responses</p></div>
+            <div class="step"><p class="num">RM</p><h3>Rankings</h3><p>Model human preference</p></div>
+            <div class="step"><p class="num">RLHF</p><h3>Optimize</h3><p>Follow intent more reliably</p></div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 26px;">
+            <div class="card amber"><h3>InstructGPT · 2022</h3><p>Making the model bigger did not automatically make it better at following user intent. Post-training shaped the assistant interface.</p></div>
+            <div class="card magenta"><h3>What it did not supply</h3><p>No repository state, no shell, no permissions, no autonomous action loop.</p></div>
+          </div>
+        </div>
+        <div class="footnote"><a href="https://arxiv.org/abs/2203.02155">Ouyang et al., “Training language models to follow instructions with human feedback,” 4 Mar 2022</a></div>
+        <aside class="notes">RLHF improved the interaction policy. It did not by itself turn the model into a software agent.</aside>
+      </section>
+
+      <section id="human-harness">
+        <h2>Chat coding: the human becomes the harness</h2>
+        <div class="content" style="justify-content: center;">
+          <div class="mermaid" style="height: 440px;">
+sequenceDiagram
+  actor Human
+  participant Chat as Chat model
+  participant Repo as Editor / repo
+  participant Test as Build / tests
+  Human->>Chat: “Implement feature X”
+  Chat-->>Human: code block
+  Human->>Repo: copy / paste
+  Human->>Test: run
+  Test-->>Human: error output
+  Human->>Chat: paste error
+  Chat-->>Human: revised code
+          </div>
+          <p class="text-center text-2xl">Conversation added iteration. <strong style="color: var(--secondary-color);">The human still moved every action and observation.</strong></p>
+        </div>
+        <aside class="notes">Ask where context gets truncated or mistranscribed in this workflow.</aside>
+      </section>
+
+      <section id="function-calling">
+        <h2>13 June 2023 · actions become grammatical</h2>
+        <div class="content" style="display: grid; grid-template-columns: .9fr 1.1fr; gap: 28px; align-items: center;">
+          <div>
+            <p class="kicker">OpenAI function calling</p>
+            <p class="text-xl">Fine-tuned models learned to:</p>
+            <ol>
+              <li><p>decide whether a function is needed;</p></li>
+              <li><p>choose the function;</p></li>
+              <li><p>emit structured JSON arguments.</p></li>
+            </ol>
+            <div class="warning"><p><strong>Proposal, not execution:</strong> application code still validates, authorizes, runs, and returns the result.</p></div>
+          </div>
+          <pre><code>{
+  <span class="code-key">"name"</span>: <span class="code-string">"run_tests"</span>,
+  <span class="code-key">"description"</span>: <span class="code-string">"Run a test target"</span>,
+  <span class="code-key">"parameters"</span>: {
+    <span class="code-key">"type"</span>: <span class="code-string">"object"</span>,
+    <span class="code-key">"properties"</span>: {
+      <span class="code-key">"target"</span>: { <span class="code-key">"type"</span>: <span class="code-string">"string"</span> }
+    },
+    <span class="code-key">"required"</span>: [<span class="code-string">"target"</span>]
+  }
+}</code></pre>
+        </div>
+        <div class="footnote"><a href="https://openai.com/index/function-calling-and-other-api-updates/">OpenAI, “Function calling and other API updates,” 13 Jun 2023</a></div>
+        <aside class="notes">This was a vendor API contract, not a universal transport protocol. The first parameters were functions/function_call, later generalized to tools.</aside>
+      </section>
+
+      <section id="tool-turn-protocol">
+        <h2>A tool call is one turn in a protocol</h2>
+        <div class="content" style="justify-content: center; gap: 28px;">
+          <div class="step-row">
+            <div class="step"><p class="num">01</p><h3>Describe</h3><p>Host sends schemas</p></div>
+            <div class="step"><p class="num">02</p><h3>Propose</h3><p>Model emits call + args</p></div>
+            <div class="step"><p class="num">03</p><h3>Authorize</h3><p>Host validates policy</p></div>
+            <div class="step"><p class="num">04</p><h3>Execute</h3><p>Tool returns result</p></div>
+            <div class="step"><p class="num">05</p><h3>Continue</h3><p>Result becomes next message</p></div>
+          </div>
+          <div class="big-equation text-center">messages + tool schemas → tool_call → execute → tool_result → model continues</div>
+          <p class="text-center text-xl"><strong>The security boundary lives in the host:</strong> schema validation · permissions · sandbox · timeouts · logging · stop conditions</p>
+        </div>
+        <aside class="notes">The model never directly runs a shell command. A host interprets model output and chooses whether and how to execute.</aside>
+      </section>
+
+      <section id="mcp-launch">
+        <h2>25 November 2024 · MCP standardizes the other side</h2>
+        <div class="content" style="display: grid; grid-template-columns: 1.08fr .92fr; gap: 28px; min-height: 0;">
+          <div class="artifact-frame"><img src="assets/anthropic-mcp-launch-2024.png" alt="Anthropic announcement page Introducing the Model Context Protocol" style="object-position: top left;"></div>
+          <div style="display: flex; flex-direction: column; justify-content: center; gap: 15px;">
+            <p class="kicker">Model Context Protocol</p>
+            <ul>
+              <li>Open standard announced by Anthropic</li>
+              <li>Host–client–server architecture over JSON-RPC 2.0</li>
+              <li>Servers expose <strong>tools, resources, prompts</strong></li>
+              <li>Reusable integrations across hosts and models</li>
+            </ul>
+            <div class="warning"><p><strong>MCP does not train the model.</strong> It standardizes discovery and transport between the host and external capabilities.</p></div>
+          </div>
+        </div>
+        <div class="footnote"><a href="https://www.anthropic.com/news/model-context-protocol">Anthropic announcement</a> · <a href="https://modelcontextprotocol.io/specification/2024-11-05/architecture/index">Original 2024-11-05 specification revision</a></div>
+        <aside class="notes">MCP was created at Anthropic by David Soria Parra and Justin Spahr-Summers. The spec revision predates the public announcement date.</aside>
+      </section>
+
+      <section id="two-specs">
+        <h2>OpenAI tool spec ≠ Anthropic MCP spec</h2>
+        <div class="content" style="display: grid; grid-template-columns: .82fr 1.18fr; gap: 28px; align-items: center;">
+          <div style="display: flex; flex-direction: column; gap: 18px;">
+            <div class="card">
+              <p class="branch-label completion">Model-facing contract</p>
+              <h3>Function / tool calling</h3>
+              <p>Schema in request; model emits tool name + arguments.</p>
+            </div>
+            <div class="card amber">
+              <p class="branch-label instruct">Integration-facing protocol</p>
+              <h3>MCP</h3>
+              <p>Client discovers servers and transports calls, results, and resources.</p>
+            </div>
+          </div>
+          <div class="protocol-ladder" style="height: 400px;">
+            <div class="protocol-node model"><p><strong>LLM</strong> · native tool-call format</p></div>
+            <p class="protocol-arrow">⇅ name + JSON / tool result</p>
+            <div class="protocol-node host"><p><strong>Agent host</strong> · state · policy · approvals</p></div>
+            <p class="protocol-arrow">⇅ bridge</p>
+            <div class="protocol-node mcp"><p><strong>MCP client</strong></p></div>
+            <p class="protocol-arrow">⇅ JSON-RPC · tools/list · tools/call</p>
+            <div class="protocol-node mcp"><p><strong>MCP server</strong></p></div>
+            <p class="protocol-arrow">⇅ integration</p>
+            <div class="protocol-node"><p><strong>Git · files · databases · APIs</strong></p></div>
+          </div>
+        </div>
+        <p class="text-center text-lg"><strong>The host bridges the two layers.</strong> Neither JSON Schema nor MCP executes anything by itself.</p>
+        <aside class="notes">Avoid the common claim that MCP replaced function calling. Model-native call syntax remains on one side of the host.</aside>
+      </section>
+
+      <section id="post-training-lessons">
+        <h2>Post-training: four different lessons</h2>
+        <div class="content" style="justify-content: center;">
+          <table>
+            <thead><tr><th>Stage</th><th>Signal</th><th>What the model learns</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Instruction SFT</strong></td><td>Expert demonstrations</td><td>Answer this kind of request</td></tr>
+              <tr><td><strong>Tool-call SFT</strong></td><td>Calls + valid arguments</td><td>When / which tool / what JSON</td></tr>
+              <tr><td><strong>RLHF</strong></td><td>Human preference rankings</td><td>Be helpful, safe, cooperative</td></tr>
+              <tr><td><strong>RLVR / execution RL</strong></td><td>Tests, compilers, environment outcomes</td><td>Prefer actions that actually work</td></tr>
+            </tbody>
+          </table>
+          <blockquote class="quote-big" style="margin-top: 26px;">Coding is unusually suitable for verification: programs can be parsed, compiled, run, and tested.</blockquote>
+        </div>
+        <div class="footnote"><a href="https://arxiv.org/abs/2203.02155">InstructGPT</a> · <a href="https://arxiv.org/abs/2207.01780">CodeRL</a> · <a href="https://arxiv.org/abs/2302.04761">Toolformer</a> · <a href="https://arxiv.org/abs/2506.11425">Agent-RLVR</a></div>
+        <aside class="notes">RLVR is not one fixed algorithm. The useful distinction here is learned preference rewards versus automatically checked outcomes.</aside>
+      </section>
+
+      <section id="model-not-agent">
+        <h2>Did RLHF / RLVR “make the model agentic”?</h2>
+        <div class="content" style="justify-content: center; gap: 24px;">
+          <p class="text-center text-4xl" style="margin: 0; color: var(--secondary-color);"><strong>Not by itself.</strong></p>
+          <p class="big-equation">agentic behavior = model policy + tools + stateful harness + environment feedback + permissions + stopping rules</p>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;">
+            <div class="card amber"><h3>RLHF</h3><p>Improves instruction-following and interaction quality.</p></div>
+            <div class="card"><h3>Tool training</h3><p>Improves structured action selection and arguments.</p></div>
+            <div class="card magenta"><h3>RLVR</h3><p>Rewards trajectories and outputs that survive verification.</p></div>
+          </div>
+          <p class="text-center text-xl"><strong>The harness supplies the loop in which these behaviors matter.</strong></p>
+        </div>
+        <aside class="notes">A checkpoint behind a one-shot text box is not an autonomous coding agent. To train agentic behavior, optimize multi-step trajectories in an environment.</aside>
+      </section>
+
+      <section id="rlvr-loop">
+        <h2>Verifiable rewards: from plausible to executable</h2>
+        <div class="content" style="display: grid; grid-template-columns: 1.15fr .85fr; gap: 28px; align-items: center;">
+          <div class="rl-stack" style="height: 430px;">
+            <div class="rl-node"><p><strong>Task + repository snapshot</strong></p></div>
+            <p class="rl-arrow">↓</p>
+            <div class="rl-node"><p><strong>Agent rollout</strong> · read · edit · run</p></div>
+            <p class="rl-arrow">⇅ observations · diffs</p>
+            <div class="rl-node"><p><strong>Sandboxed repository</strong></p></div>
+            <p class="rl-arrow">↓ patch + hidden tests</p>
+            <div class="rl-node reward"><p><strong>Verifier → scalar reward</strong></p></div>
+            <p class="rl-arrow">↓ optimize</p>
+            <div class="rl-node"><p><strong>Update policy θ</strong> ↺ next rollout</p></div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 18px;">
+            <div class="card green"><h3>Cheap outcome signals</h3><p>Parse · typecheck · lint · unit tests · integration tests</p></div>
+            <div class="warning"><p><strong>Proxy, not truth:</strong> passing tests can still miss security, maintainability, performance, or the actual requirement.</p></div>
+            <p class="text-lg">At <strong>training time</strong>, reward updates weights. At <strong>inference time</strong>, test output becomes context for the next attempt.</p>
+          </div>
+        </div>
+        <aside class="notes">Keep the training loop and inference loop distinct. Sparse or weak tests can invite reward hacking.</aside>
+      </section>
+
+      <section id="agentic-loop">
+        <h2>The agentic loop: chat and tool calls interleave</h2>
+        <div class="content" style="justify-content: center; min-height: 0;">
+          <div class="mermaid" style="height: 500px;">
+sequenceDiagram
+  actor U as User
+  participant H as Agent harness
+  participant M as LLM
+  participant E as Repo + tools
+  U->>H: Fix the failing parser test
+  H->>M: task + history + tool schemas
+  loop Until done, blocked, or budget exhausted
+    M-->>H: tool_call(name, arguments)
+    H->>H: validate policy / approval
+    H->>E: execute tool
+    E-->>H: observation: file / stdout / diff / error
+    H->>M: append call + tool result
+  end
+  M-->>H: final response, no tool call
+  H-->>U: summary + changed files + test evidence
+          </div>
+          <p class="text-center text-lg"><strong>One user turn can contain many model/tool subturns.</strong> The model proposes; the harness authorizes and executes; each observation becomes the next message.</p>
+        </div>
+        <div class="footnote"><a href="https://developers.openai.com/api/docs/guides/function-calling">Canonical five-step tool-calling loop</a> · <a href="https://openai.com/index/unrolling-the-codex-agent-loop/">OpenAI, “Unrolling the Codex agent loop”</a></div>
+        <aside class="notes">The model does not directly touch the filesystem. The host maintains conversation, environment, and control state.</aside>
+      </section>
+
+      <section id="closing" class="section-divider" data-state="is-section-divider">
+        <p class="kicker">The arc in one line</p>
+        <h1 style="font-size: 42pt;">completion → infilling → instruction → tool calls → verified action loops</h1>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; width: 1040px; margin-top: 38px;">
+          <div class="card"><h3>Model</h3><p>patterns · instructions · action policy</p></div>
+          <div class="card amber"><h3>Harness</h3><p>state · tools · permissions · loop</p></div>
+          <div class="card magenta"><h3>Evidence</h3><p>tests · diffs · logs · human judgment</p></div>
+        </div>
+        <p class="subtitle" style="font-size: 18pt;">The biggest leap was closing the loop between generation and evidence.</p>
+        <aside class="notes">Invite students to name which layer failed in their own experience: model, context, tool, environment, or verification.</aside>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/chart/plugin.js"></script>
+  <script>
+    Reveal.initialize({
+      width: 1280,
+      height: 720,
+      margin: 0,
+      controls: true,
+      progress: true,
+      slideNumber: 'c/t',
+      hash: true,
+      transition: 'slide',
+      center: false,
+      plugins: [ RevealChart ],
+      chart: {
+        defaults: Object.assign({
+          color: 'rgba(0, 0, 0, 0.8)',
+          borderColor: 'rgba(0, 0, 0, 0.8)',
+          devicePixelRatio: 2
+        }, window.location.search.includes('export') ? { animation: false } : {})
+      }
+    });
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'dark',
+      securityLevel: 'loose',
+      flowchart: { curve: 'basis', htmlLabels: false },
+      sequence: { useMaxWidth: true },
+      themeVariables: {
+        background: '#0b1020',
+        primaryColor: '#16233b',
+        primaryTextColor: '#f4f7ff',
+        primaryBorderColor: '#59d9ff',
+        lineColor: '#9facbf',
+        secondaryColor: '#322718',
+        tertiaryColor: '#2e1830',
+        noteBkgColor: '#16233b',
+        noteTextColor: '#f4f7ff',
+        actorBkg: '#16233b',
+        actorBorder: '#59d9ff',
+        actorTextColor: '#f4f7ff',
+        signalColor: '#ffbd59',
+        signalTextColor: '#f4f7ff',
+        labelBoxBkgColor: '#0b1020',
+        labelTextColor: '#f4f7ff',
+        loopTextColor: '#f4f7ff'
+      }
+    });
+  </script>
+</body>
+</html>
