@@ -2,7 +2,7 @@
 import BaseLayout from './BaseLayout.astro';
 import PostMeta from '../components/PostMeta.astro';
 import SpeakerDeckEmbed from '../components/SpeakerDeckEmbed.astro';
-import RevealDeckEmbed from '../components/RevealDeckEmbed.astro';
+import RevealSlides from '../components/RevealSlides.astro';
 import JsonLd from '../components/JsonLd.astro';
 import { SITE_AUTHOR } from '../consts';
 import { getCachedSlide } from '../lib/speakerdeck';
@@ -95,7 +95,7 @@ const breadcrumbs = {
 
 		{
 			type === 'revealjs' ? (
-				<RevealDeckEmbed slug={slug} title={title} />
+				<RevealSlides slug={slug} title={title} />
 			) : speakerdeck_link ? (
 				<SpeakerDeckEmbed url={speakerdeck_link} title={title} />
 			) : null

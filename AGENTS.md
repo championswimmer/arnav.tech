@@ -37,8 +37,8 @@ Content collections defined in `src/content.config.ts`:
   `.mdx` only when it needs to embed a component; Markdown cannot import one.
 - **Projects** are MDX so they can embed live interactive components.
 - **Slides** support two types in `src/data/slides.json`:
-  - `speakerdeck`: presentations hosted on SpeakerDeck, embedded via player.
-  - `revealjs`: interactive HTML decks stored as `src/data/slides/[slug]/` folders (containing `index.html`, `styles.css`, and `assets/`). Served at `/slides/[slug]/deck/` and embedded on the talk page with a fullscreen presentation option.
+  - `speakerdeck`: presentations hosted on SpeakerDeck. Requires `url` and `cover` in `src/data/slides.json`. Embedded via `<SpeakerDeckEmbed />`.
+  - `revealjs`: self-contained HTML presentations stored in `src/data/slides/[slug]/` containing `index.html`, `styles.css`, and `assets/` (exclude `.md` notes). Served statically at `/slides/[slug]/deck/` and embedded on talk pages via `<RevealSlides slug={slug} title={title} />` (`<reveal-slides>` iframe container with fullscreen launcher).
 - All schemas support `draft: true`, which excludes an entry from listings,
   routes, and RSS. Routes are generated in `src/pages/<collection>/[...slug].astro`.
 
