@@ -126,7 +126,7 @@ async function withDates(decks: Slide[]): Promise<Slide[]> {
 }
 
 /** Read the committed cache; an empty/missing/corrupt file yields []. */
-function readCache(): Slide[] {
+function readRawCache(): any[] {
 	try {
 		const data = JSON.parse(readFileSync(CACHE_PATH, 'utf8'));
 		return Array.isArray(data) ? data : [];
@@ -135,11 +135,18 @@ function readCache(): Slide[] {
 	}
 }
 
-/** Persist the cache, but only when it actually changed (avoids dev HMR loops). */
-function writeCache(slides: Slide[], previous: Slide[]): void {
-	if (JSON.stringify(slides) === JSON.stringify(previous)) return;
+function readCache(): Slide[] {
+	return readRawCache().filter((item) => item.type === 'speakerdeck' || (!item.type && item.url));
+}
+
+/** Persist the cache, but only when it actually changed (avoids dev HMR loops). Preserves non-speakerdeck slides. */
+function writeCache(speakerSlides: Slide[], previous: Slide[]): void {
+	const raw = readRawCache();
+	const otherSlides = raw.filter((item) => item.type && item.type !== 'speakerdeck');
+	const fullUpdated = [...otherSlides, ...speakerSlides];
+	if (JSON.stringify(fullUpdated) === JSON.stringify(raw)) return;
 	try {
-		writeFileSync(CACHE_PATH, JSON.stringify(slides, null, 2) + '\n');
+		writeFileSync(CACHE_PATH, JSON.stringify(fullUpdated, null, 2) + '\n');
 	} catch (err) {
 		console.warn('[speakerdeck] could not write cache:', err);
 	}
@@ -152,8 +159,9 @@ export function normalizeSpeakerDeckUrl(url: string): string {
 }
 
 export function getCachedSlide(url: string): Slide | undefined {
+	if (!url) return undefined;
 	const normalized = normalizeSpeakerDeckUrl(url);
-	return readCache().find((slide) => normalizeSpeakerDeckUrl(slide.url) === normalized);
+	return readCache().find((slide) => slide.url && normalizeSpeakerDeckUrl(slide.url) === normalized);
 }
 
 export async function getSpeakerDeckEmbed(url: string): Promise<SpeakerDeckEmbed | null> {

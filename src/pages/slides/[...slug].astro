@@ -1,20 +1,28 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection } from 'astro:content';
 import SlideLayout from '../../layouts/SlideLayout.astro';
 import { cleanSlug } from '../../lib/slug';
 
 export async function getStaticPaths() {
 	const slides = await getCollection('slides', ({ data }) => !data.draft);
 	return slides.map((entry) => ({
-		params: { slug: cleanSlug(entry.id) },
+		params: { slug: cleanSlug(entry.data.slug || entry.id) },
 		props: { entry },
 	}));
 }
 
 const { entry } = Astro.props;
-const { Content } = await render(entry);
+const data = entry.data;
+const pubDate = new Date(data.date);
+const slug = cleanSlug(data.slug || entry.id);
 ---
 
-<SlideLayout {...entry.data}>
-	<Content />
-</SlideLayout>
+<SlideLayout
+	title={data.title}
+	description={data.description}
+	pubDate={pubDate}
+	type={data.type}
+	slug={slug}
+	speakerdeck_link={data.url}
+	cover={data.cover}
+/>

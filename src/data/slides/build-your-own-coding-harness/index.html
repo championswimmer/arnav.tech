@@ -1,0 +1,816 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build Your Own Coding Harness — IIT Gandhinagar</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: 'dark',
+      securityLevel: 'loose',
+      themeVariables: {
+        darkMode: true,
+        background: '#030712',
+        primaryColor: '#111827',
+        primaryTextColor: '#eef2ff',
+        primaryBorderColor: '#67e8f9',
+        lineColor: '#67e8f9',
+        secondaryColor: '#0f172a',
+        tertiaryColor: '#1f2937',
+        fontSize: '13px',
+        fontFamily: 'IBM Plex Mono, monospace'
+      }
+    });
+  </script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <section id="title-slide" class="section-divider" data-state="is-section-divider">
+        <div class="kicker">IIT Gandhinagar · Agentic Engineering</div>
+        <h1>Build Your Own Coding Harness</h1>
+        <p class="subtitle">From one API call to a safe multi-tool coding agent</p>
+        <div class="course">Arnav Gupta · Lecture Deck</div>
+        <aside class="notes">
+          Start by telling students this is a systems lecture disguised as an API lecture. We are going to build the harness in layers.
+        </aside>
+      </section>
+
+      <section id="what-is-a-harness">
+        <h2>What is a coding harness?</h2>
+        <div class="content">
+          <div class="split even">
+            <div class="card cyan">
+              <h3><i class="fa-solid fa-gears"></i> Core idea</h3>
+              <p><strong>A coding harness is the runtime around the model.</strong></p>
+              <ul class="tight">
+                <li>keeps conversation and repo state</li>
+                <li>exposes tools, shell access, and file operations</li>
+                <li>applies policy, permissions, and budgets</li>
+                <li>verifies results against the environment</li>
+              </ul>
+              <blockquote style="margin-top: 14px;">
+                <p><strong>The model decides; the harness does.</strong></p>
+              </blockquote>
+            </div>
+
+            <div class="card amber">
+              <h3><i class="fa-solid fa-diagram-project"></i> Three boxes to remember</h3>
+              <div style="margin-bottom: 10px;">
+                <span class="pill">Model</span>
+                <span class="pill amber">Harness</span>
+                <span class="pill green">Environment</span>
+              </div>
+              <div class="mermaid">
+flowchart TD
+  U[User Goal] --> H[Harness]
+  H <--> M[LLM]
+  H <--> E[Files · Shell · APIs]
+              </div>
+              <ul class="tight" style="margin-top: 14px;">
+                <li><strong>Model</strong>: plans the next step</li>
+                <li><strong>Harness</strong>: runs actions and enforces rules</li>
+                <li><strong>Environment</strong>: provides reality and feedback</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footnote">Synthesis grounded in OpenAI Responses/function-calling docs and Anthropic's harness/tool engineering posts.</div>
+        <aside class="notes">
+          Keep this slide simple: three boxes and one sentence. The detailed architecture comes later.
+        </aside>
+      </section>
+
+      <section id="roadmap-slide">
+        <h2>Build path for today's harness</h2>
+        <div class="content">
+          <div class="roadmap">
+            <div class="step">
+              <span class="pill">Step 1</span>
+              <h3>One call</h3>
+              <p>Prompt in, text out.</p>
+            </div>
+            <div class="step">
+              <span class="pill amber">Step 2</span>
+              <h3>Chat loop</h3>
+              <p>Add state and repetition.</p>
+            </div>
+            <div class="step">
+              <span class="pill pink">Step 3</span>
+              <h3>One tool</h3>
+              <p>Image question answering.</p>
+            </div>
+            <div class="step">
+              <span class="pill purple">Step 4</span>
+              <h3>Many tools</h3>
+              <p><code>ls</code>, <code>read</code>, <code>edit</code>, <code>bash</code>.</p>
+            </div>
+            <div class="step">
+              <span class="pill green">Step 5</span>
+              <h3>Design choice</h3>
+              <p>MCP vs codemode.</p>
+            </div>
+          </div>
+
+          <div class="split even" style="margin-top: 22px;">
+            <div class="card cyan">
+              <h3><i class="fa-solid fa-diagram-project"></i> Repeated pattern</h3>
+              <ul>
+                <li>show the architecture</li>
+                <li>trace one turn with a timing diagram</li>
+                <li>highlight the code we added</li>
+              </ul>
+            </div>
+            <div class="card magenta">
+              <h3><i class="fa-solid fa-screwdriver-wrench"></i> Practical constraint</h3>
+              <p>We keep the harness intentionally small enough that you could build it in a weekend and still understand every moving piece.</p>
+            </div>
+          </div>
+        </div>
+        <div class="footnote">The point is not vendor lock-in. The point is the reusable control-loop pattern.</div>
+        <aside class="notes">
+          Make the incremental promise explicit. Students should feel that each layer is only a small extension over the last.
+        </aside>
+      </section>
+
+      <section id="step1-architecture">
+        <h2>Step 1 — one OpenAI call</h2>
+        <div class="content">
+          <div class="split even">
+            <div>
+              <h3 class="text-lg">Architecture</h3>
+              <div class="mermaid">
+flowchart TD
+  U[Prompt] --> A[Small App]
+  A --> API[Responses API]
+  API --> A
+  A --> OUT[Print output]
+              </div>
+            </div>
+            <div>
+              <h3 class="text-lg">Timing</h3>
+              <div class="mermaid">
+sequenceDiagram
+  autonumber
+  actor User
+  participant App
+  participant API as OpenAI API
+  User->>App: "Write a haiku about debugging"
+  App->>API: responses.create(model, input)
+  API-->>App: output_text
+  App-->>User: render text
+              </div>
+            </div>
+          </div>
+
+          <div class="card amber" style="margin-top: 16px;">
+            <h3><i class="fa-solid fa-circle-info"></i> What exists so far?</h3>
+            <p>Only a request-response wrapper. No memory. No tools. No environment. No verification.</p>
+          </div>
+        </div>
+        <div class="footnote">Source: OpenAI Responses API overview.</div>
+        <aside class="notes">
+          This first step should feel almost disappointingly simple. That is good. It makes the later layers legible.
+        </aside>
+      </section>
+
+      <section id="step1-code">
+        <h2>Step 1 — minimal pseudocode</h2>
+        <div class="content">
+          <div class="split left-heavy">
+            <div class="code-flow tree">
+              <code>
+<span class="line"><span class="kw">from</span> openai <span class="kw">import</span> OpenAI</span>
+<span class="line"></span>
+<span class="line code-focus fragment custom" data-fragment-index="1"><span class="fn">client</span> = OpenAI()</span>
+<span class="line"></span>
+<span class="line new code-focus fragment custom" data-fragment-index="2">response = client.responses.create(</span>
+<span class="line new code-focus fragment custom" data-fragment-index="2">    model=<span class="str">"gpt-5"</span>,</span>
+<span class="line new code-focus fragment custom" data-fragment-index="2">    input=<span class="str">"Write a haiku about debugging"</span></span>
+<span class="line new code-focus fragment custom" data-fragment-index="2">)</span>
+<span class="line"></span>
+<span class="line new code-focus fragment custom" data-fragment-index="3"><span class="fn">print</span>(response.output_text)</span>
+              </code>
+            </div>
+            <div class="explain-stack">
+              <div class="card purple hint-card">
+                <h3><i class="fa-solid fa-forward-step"></i> Walkthrough mode</h3>
+                <p>Advance through the slide: the full code stays visible, while the active lines and matching explanation come into focus.</p>
+              </div>
+              <div class="card cyan focus-card fragment current-visible" data-fragment-index="1">
+                <h3><i class="fa-solid fa-plug"></i> Create the client</h3>
+                <p>The harness first creates a client object that knows how to talk to the model API.</p>
+              </div>
+              <div class="card cyan focus-card fragment current-visible" data-fragment-index="2">
+                <h3><i class="fa-solid fa-paper-plane"></i> Send one request</h3>
+                <p>This is the entire one-shot harness: choose a model, send one input, and wait for one response.</p>
+              </div>
+              <div class="card cyan focus-card fragment current-visible" data-fragment-index="3">
+                <h3><i class="fa-solid fa-display"></i> Render the answer</h3>
+                <p>The app prints the model's output text. At this stage, there is still no memory, no tools, and no verification.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footnote">Treat this as the irreducible base case for the whole lecture.</div>
+        <aside class="notes">
+          Ask students: if I want a follow-up question, what extra state do I need? That naturally motivates the next step.
+        </aside>
+      </section>
+
+      <section id="step2-architecture">
+        <h2>Step 2 — turn it into a chat looper</h2>
+        <div class="content">
+          <div class="split even">
+            <div>
+              <h3 class="text-lg">Architecture</h3>
+              <div class="mermaid">
+flowchart LR
+  U[User input] --> H[Chat history]
+  H --> API[Responses API]
+  API --> R[Assistant reply]
+  R --> H
+  H --> U
+              </div>
+            </div>
+            <div>
+              <h3 class="text-lg">Timing</h3>
+              <div class="mermaid">
+sequenceDiagram
+  autonumber
+  actor User
+  participant Chat as Chat loop
+  participant API as OpenAI API
+  loop each turn
+    User->>Chat: next message
+    Chat->>Chat: append to history
+    Chat->>API: responses.create(history)
+    API-->>Chat: assistant text
+    Chat->>Chat: append reply
+    Chat-->>User: print reply
+  end
+              </div>
+            </div>
+          </div>
+
+          <div class="card green" style="margin-top: 16px;">
+            <h3><i class="fa-solid fa-rotate"></i> New idea</h3>
+            <p>A chatbot is not a different kind of model call. It is just a <strong>loop plus saved state</strong>.</p>
+          </div>
+        </div>
+        <div class="footnote">Source: OpenAI Responses API conversation/state mental model.</div>
+        <aside class="notes">
+          Stress that the model is still stateless between calls unless the application preserves and resends state.
+        </aside>
+      </section>
+
+      <section id="step2-code">
+        <h2>Step 2 — code delta: add history</h2>
+        <div class="content">
+          <div class="split left-heavy">
+            <div class="code-flow tree">
+              <code>
+<span class="line new code-focus fragment custom" data-fragment-index="1">history = [</span>
+<span class="line new code-focus fragment custom" data-fragment-index="1">    {<span class="str">"role"</span>: <span class="str">"system"</span>, <span class="str">"content"</span>: <span class="str">"You are a helpful assistant."</span>}</span>
+<span class="line new code-focus fragment custom" data-fragment-index="1">]</span>
+<span class="line"></span>
+<span class="line new code-focus fragment custom" data-fragment-index="2"><span class="kw">while</span> <span class="kw">True</span>:</span>
+<span class="line new code-focus fragment custom" data-fragment-index="2">    user_text = <span class="fn">input</span>(<span class="str">"> "</span>)</span>
+<span class="line new code-focus fragment custom" data-fragment-index="2">    history.append({<span class="str">"role"</span>: <span class="str">"user"</span>, <span class="str">"content"</span>: user_text})</span>
+<span class="line"></span>
+<span class="line dim code-focus fragment custom" data-fragment-index="3">    response = client.responses.create(</span>
+<span class="line dim code-focus fragment custom" data-fragment-index="3">        model=<span class="str">"gpt-5"</span>,</span>
+<span class="line new code-focus fragment custom" data-fragment-index="3">        input=history,</span>
+<span class="line dim code-focus fragment custom" data-fragment-index="3">    )</span>
+<span class="line"></span>
+<span class="line dim code-focus fragment custom" data-fragment-index="4">    <span class="fn">print</span>(response.output_text)</span>
+<span class="line new code-focus fragment custom" data-fragment-index="4">    history.append({<span class="str">"role"</span>: <span class="str">"assistant"</span>, <span class="str">"content"</span>: response.output_text})</span>
+              </code>
+            </div>
+            <div class="explain-stack">
+              <div class="card purple hint-card">
+                <h3><i class="fa-solid fa-forward-step"></i> Walkthrough mode</h3>
+                <p>The chat version adds only one big idea: preserve state and keep looping.</p>
+              </div>
+              <div class="card cyan focus-card fragment current-visible" data-fragment-index="1">
+                <h3><i class="fa-solid fa-database"></i> Start with history</h3>
+                <p>The harness owns the transcript. The system message seeds the assistant's behavior.</p>
+              </div>
+              <div class="card cyan focus-card fragment current-visible" data-fragment-index="2">
+                <h3><i class="fa-solid fa-rotate"></i> Add a turn loop</h3>
+                <p>Each user turn is appended to history before the next model call.</p>
+              </div>
+              <div class="card cyan focus-card fragment current-visible" data-fragment-index="3">
+                <h3><i class="fa-solid fa-clock-rotate-left"></i> Send the whole context</h3>
+                <p>The model only gets memory because the application resends the accumulated history.</p>
+              </div>
+              <div class="card cyan focus-card fragment current-visible" data-fragment-index="4">
+                <h3><i class="fa-solid fa-box-archive"></i> Store the reply</h3>
+                <p>After rendering the answer, save it too, so the next turn can refer back to it.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footnote">A chat harness is just state plus repetition.</div>
+        <aside class="notes">
+          Use this slide to distinguish model memory from application memory. The application owns the transcript.
+        </aside>
+      </section>
+
+      <section id="step3-architecture">
+        <h2>Step 3 — add one tool: inspect an image</h2>
+        <div class="content">
+          <div class="split even">
+            <div>
+              <h3 class="text-lg">Architecture</h3>
+              <div class="mermaid">
+flowchart LR
+  U[Question about screenshot.png] --> H[Harness]
+  H --> M[LLM + tool schema]
+  M -->|inspect_image call| H
+  H --> V[Vision helper]
+  V --> IMG[(Image file)]
+  V -->|tool result| H
+  H --> M
+  M --> A[Final answer]
+              </div>
+            </div>
+            <div>
+              <h3 class="text-lg">Timing</h3>
+              <div class="mermaid">
+sequenceDiagram
+  autonumber
+  actor User
+  participant H as Harness
+  participant M as Model
+  participant T as inspect_image tool
+  User->>H: "What error is visible in screenshot.png?"
+  H->>M: input + tool schema
+  M-->>H: tool call inspect_image(...)
+  H->>T: run tool with path and question
+  T-->>H: observed error text
+  H->>M: tool result
+  M-->>H: final answer
+  H-->>User: print answer
+              </div>
+            </div>
+          </div>
+
+          <div class="card magenta" style="margin-top: 16px;">
+            <h3><i class="fa-solid fa-wand-magic-sparkles"></i> Why this is a great first tool</h3>
+            <p>It has the exact same loop shape as later tools like <code>read_file</code>, <code>run_tests</code>, or <code>bash</code>, but with fewer destructive side effects.</p>
+          </div>
+        </div>
+        <div class="footnote">Sources: OpenAI function-calling guide; OpenAI images and vision guide.</div>
+        <aside class="notes">
+          Important nuance: the platform can often process images directly. We still use a custom tool here because it teaches the control loop cleanly.
+        </aside>
+      </section>
+
+      <section id="step3-code">
+        <h2>Step 3 — code delta: add tool calling</h2>
+        <div class="content">
+          <div class="split left-heavy">
+            <div class="code-flow tree">
+              <code>
+<span class="line new code-focus fragment custom" data-fragment-index="1">TOOLS = [{</span>
+<span class="line new code-focus fragment custom" data-fragment-index="1">    <span class="str">"type"</span>: <span class="str">"function"</span>,</span>
+<span class="line new code-focus fragment custom" data-fragment-index="1">    <span class="str">"name"</span>: <span class="str">"inspect_image"</span>,</span>
+<span class="line new code-focus fragment custom" data-fragment-index="1">    <span class="str">"parameters"</span>: { ... }</span>
+<span class="line new code-focus fragment custom" data-fragment-index="1">}]</span>
+<span class="line"></span>
+<span class="line dim code-focus fragment custom" data-fragment-index="2">response = client.responses.create(</span>
+<span class="line dim code-focus fragment custom" data-fragment-index="2">    model=<span class="str">"gpt-5"</span>,</span>
+<span class="line dim code-focus fragment custom" data-fragment-index="2">    input=items,</span>
+<span class="line new code-focus fragment custom" data-fragment-index="2">    tools=TOOLS,</span>
+<span class="line dim code-focus fragment custom" data-fragment-index="2">)</span>
+<span class="line"></span>
+<span class="line new code-focus fragment custom" data-fragment-index="3"><span class="kw">for</span> call <span class="kw">in</span> response.tool_calls:</span>
+<span class="line new code-focus fragment custom" data-fragment-index="3">    result = inspect_image(</span>
+<span class="line new code-focus fragment custom" data-fragment-index="3">        call.arguments[<span class="str">"path"</span>],</span>
+<span class="line new code-focus fragment custom" data-fragment-index="3">        call.arguments[<span class="str">"question"</span>],</span>
+<span class="line new code-focus fragment custom" data-fragment-index="3">    )</span>
+<span class="line new code-focus fragment custom" data-fragment-index="4">    items.extend([call, tool_result(call, result)])</span>
+              </code>
+            </div>
+            <div class="explain-stack">
+              <div class="card purple hint-card">
+                <h3><i class="fa-solid fa-forward-step"></i> Walkthrough mode</h3>
+                <p>This is the key transition from chat to agency: the model can now ask the harness to do structured work.</p>
+              </div>
+              <div class="card cyan focus-card fragment current-visible" data-fragment-index="1">
+                <h3><i class="fa-solid fa-list-check"></i> Declare the tool</h3>
+                <p>The schema tells the model what the tool is called and what arguments it expects.</p>
+              </div>
+              <div class="card cyan focus-card fragment current-visible" data-fragment-index="2">
+                <h3><i class="fa-solid fa-toolbox"></i> Expose it to the model</h3>
+                <p>Passing <code>tools=TOOLS</code> means the next response may include a tool call instead of only plain text.</p>
+              </div>
+              <div class="card cyan focus-card fragment current-visible" data-fragment-index="3">
+                <h3><i class="fa-solid fa-play"></i> Execute the requested action</h3>
+                <p>The harness reads the arguments, runs the tool, and turns the outside world into an observation.</p>
+              </div>
+              <div class="card cyan focus-card fragment current-visible" data-fragment-index="4">
+                <h3><i class="fa-solid fa-reply"></i> Feed the result back</h3>
+                <p>The loop continues only after the tool result is appended and returned to the model.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footnote">Tool use is structured I/O plus a control loop.</div>
+        <aside class="notes">
+          Slow down here. Students often blur “model emitted JSON” with “model executed a function.” Keep the boundary explicit.
+        </aside>
+      </section>
+
+      <section id="step4-architecture">
+        <h2>Step 4 — expand to a real coding surface</h2>
+        <div class="content">
+          <div class="split even">
+            <div>
+              <h3 class="text-lg">Architecture</h3>
+              <div class="mermaid">
+flowchart LR
+  U[Bug report or coding task] --> H[Harness loop]
+  H --> M[LLM planner]
+  M -->|ls / read_file / edit_file / bash| H
+  H --> G{policy gate}
+  G --> L[ls]
+  G --> R[read_file]
+  G --> E[edit_file]
+  G --> B[bash]
+  B --> ENV[(Repo · Tests · Shell)]
+  E --> ENV
+  R --> ENV
+  L --> ENV
+  ENV -->|results| H
+  H --> M
+              </div>
+            </div>
+            <div>
+              <h3 class="text-lg">Timing</h3>
+              <div class="mermaid">
+sequenceDiagram
+  autonumber
+  actor User
+  participant H as Harness
+  participant M as Model
+  participant Env as Tools + Repo
+  User->>H: "Fix the failing test"
+  H->>M: task + tool schemas
+  M-->>H: ls(".")
+  H->>Env: ls
+  Env-->>H: files
+  H->>M: tool result
+  M-->>H: read_file("app.py")
+  H->>Env: read_file
+  Env-->>H: source code
+  H->>M: tool result
+  M-->>H: bash("pytest -q")
+  H->>Env: run tests
+  Env-->>H: failing trace
+  H->>M: tool result
+  M-->>H: edit_file(...)
+  H->>Env: apply edit
+  Env-->>H: diff preview
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footnote">This is the smallest tool surface that still feels like a practical coding assistant.</div>
+        <aside class="notes">
+          Explain why this is intentionally narrow: `bash` gives power, while `ls`, `read`, and `edit` keep common operations reviewable and easy to reason about.
+        </aside>
+      </section>
+
+      <section id="step4-code">
+        <h2>Step 4 — code delta: dispatch multiple tools</h2>
+        <div class="content">
+          <div class="split left-heavy">
+            <div class="code-flow tree">
+              <code>
+<span class="line new code-focus fragment custom" data-fragment-index="1"><span class="kw">def</span> <span class="fn">run_tool</span>(name, args):</span>
+<span class="line new code-focus fragment custom" data-fragment-index="2">    <span class="kw">if</span> name == <span class="str">"ls"</span>:</span>
+<span class="line new code-focus fragment custom" data-fragment-index="2">        <span class="kw">return</span> ls(args[<span class="str">"path"</span>])</span>
+<span class="line new code-focus fragment custom" data-fragment-index="2">    <span class="kw">if</span> name == <span class="str">"read_file"</span>:</span>
+<span class="line new code-focus fragment custom" data-fragment-index="2">        <span class="kw">return</span> read_file(args[<span class="str">"path"</span>])</span>
+<span class="line new code-focus fragment custom" data-fragment-index="2">    <span class="kw">if</span> name == <span class="str">"edit_file"</span>:</span>
+<span class="line new code-focus fragment custom" data-fragment-index="2">        <span class="kw">return</span> edit_file(args)</span>
+<span class="line new code-focus fragment custom" data-fragment-index="2">    <span class="kw">if</span> name == <span class="str">"bash"</span>:</span>
+<span class="line new code-focus fragment custom" data-fragment-index="2">        <span class="kw">return</span> run_bash(args[<span class="str">"command"</span>])</span>
+<span class="line new code-focus fragment custom" data-fragment-index="2">    <span class="kw">return</span> {<span class="str">"ok"</span>: <span class="kw">False</span>, <span class="str">"error"</span>: <span class="str">"unknown tool"</span>}</span>
+<span class="line"></span>
+<span class="line new code-focus fragment custom" data-fragment-index="3"><span class="kw">def</span> <span class="fn">guarded_tool_call</span>(call):</span>
+<span class="line new code-focus fragment custom" data-fragment-index="3">    check_policy(call.name, call.arguments)</span>
+<span class="line new code-focus fragment custom" data-fragment-index="4">    result = run_tool(call.name, call.arguments)</span>
+<span class="line new code-focus fragment custom" data-fragment-index="4">    <span class="kw">return</span> normalize_result(result)</span>
+              </code>
+            </div>
+            <div class="explain-stack">
+              <div class="card purple hint-card">
+                <h3><i class="fa-solid fa-forward-step"></i> Walkthrough mode</h3>
+                <p>This slide turns one tool into a small coding platform: dispatch, gate, execute, then normalize the observation.</p>
+              </div>
+              <div class="card cyan focus-card fragment current-visible" data-fragment-index="1">
+                <h3><i class="fa-solid fa-route"></i> Start with a dispatcher</h3>
+                <p><code>run_tool</code> is the switchboard that maps tool names to actual host-side executors.</p>
+              </div>
+              <div class="card cyan focus-card fragment current-visible" data-fragment-index="2">
+                <h3><i class="fa-solid fa-sitemap"></i> Keep the tool surface explicit</h3>
+                <p>Each branch is a named capability. This keeps the action surface small enough to inspect and reason about.</p>
+              </div>
+              <div class="card cyan focus-card fragment current-visible" data-fragment-index="3">
+                <h3><i class="fa-solid fa-shield-halved"></i> Check policy before execution</h3>
+                <p>The harness should decide whether the call is allowed before any tool actually touches the environment.</p>
+              </div>
+              <div class="card cyan focus-card fragment current-visible" data-fragment-index="4">
+                <h3><i class="fa-solid fa-box-open"></i> Normalize the result</h3>
+                <p>Return a predictable shape so the model reasons over structured observations instead of executor noise.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footnote">Anthropic's tool-design guidance strongly supports small, clear tool interfaces and predictable result formats.</div>
+        <aside class="notes">
+          This is where the harness starts to become operational software rather than a demo script.
+        </aside>
+      </section>
+
+      <section id="tool-contracts">
+        <h2>Minimal tool contract for a coding harness</h2>
+        <div class="content">
+          <div class="split even">
+            <div class="card purple">
+              <h3><i class="fa-solid fa-file-code"></i> Structured tools</h3>
+              <ul>
+                <li><code>ls(path)</code></li>
+                <li><code>read_file(path)</code></li>
+                <li><code>edit_file(path, old_text, new_text)</code></li>
+              </ul>
+              <p class="mini">Great for common actions that should stay narrow, typed, and easy to audit.</p>
+            </div>
+            <div class="card amber">
+              <h3><i class="fa-solid fa-terminal"></i> General tool</h3>
+              <ul>
+                <li><code>bash(command)</code></li>
+              </ul>
+              <p class="mini">Powerful escape hatch for tests, package managers, formatters, scripts, and git.</p>
+            </div>
+          </div>
+
+          <table style="margin-top: 18px;">
+            <thead>
+              <tr>
+                <th>Field</th>
+                <th>Why the harness should return it</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>ok</code></td>
+                <td>Uniform success/failure signal across every tool</td>
+              </tr>
+              <tr>
+                <td><code>stdout</code> / <code>stderr</code></td>
+                <td>Lets the model reason over actual observations</td>
+              </tr>
+              <tr>
+                <td><code>exitCode</code></td>
+                <td>Separates command failure from command output</td>
+              </tr>
+              <tr>
+                <td><code>diffPreview</code></td>
+                <td>Gives edits a compact, inspectable summary</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="footnote">A small, well-shaped tool contract is better than a huge uncontrolled action surface.</div>
+        <aside class="notes">
+          This slide makes the design feel less mystical and more like ordinary interface design.
+        </aside>
+      </section>
+
+      <section id="mcp-vs-codemode">
+        <h2>MCP vs codemode: two philosophies of tool access</h2>
+        <div class="content">
+          <table>
+            <thead>
+              <tr>
+                <th>Question</th>
+                <th>MCP-style tools</th>
+                <th>Codemode / sandboxed execution</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>What can the model do?</td>
+                <td>Call a finite set of declared tools</td>
+                <td>Write arbitrary code or commands within the sandbox</td>
+              </tr>
+              <tr>
+                <td>Main trust boundary</td>
+                <td>Tool/server boundary</td>
+                <td>Runtime / VM / container boundary</td>
+              </tr>
+              <tr>
+                <td>Typical safety controls</td>
+                <td>schemas, auth scopes, validation, consent, logging</td>
+                <td>filesystem/network isolation, approvals, mounts, guardrails</td>
+              </tr>
+              <tr>
+                <td>Best use case</td>
+                <td>external systems like GitHub, Slack, cloud APIs</td>
+                <td>local repo work, scripts, tests, open-ended procedures</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="split even" style="margin-top: 18px;">
+            <div class="card cyan">
+              <h3><i class="fa-solid fa-toggle-on"></i> Teaching metaphor for MCP</h3>
+              <p>A control panel of labeled buttons.</p>
+            </div>
+            <div class="card magenta">
+              <h3><i class="fa-solid fa-warehouse"></i> Teaching metaphor for codemode</h3>
+              <p>A workshop inside a locked room.</p>
+            </div>
+          </div>
+        </div>
+        <div class="footnote">Sources: MCP specification/docs; OpenAI Codex security, sandbox, and approval docs. Comparative phrasing is synthesis.</div>
+        <aside class="notes">
+          The clean line to repeat is: MCP constrains what actions exist; codemode constrains the environment where actions run.
+        </aside>
+      </section>
+
+      <section id="boundary-diagrams" class="boundary-slide">
+        <h2>Where does safety live?</h2>
+        <div class="content">
+          <div class="compare-grid">
+            <div class="col">
+              <div class="card cyan boundary-card">
+                <h3>MCP-style boundary</h3>
+                <div class="mermaid boundary-mermaid">
+flowchart LR
+  M[Model] --> H[Host]
+  H --> S[MCP server]
+  S --> X[External API]
+  N[Safety focus] --> H
+  N --> S
+                </div>
+                <ul class="tight">
+                  <li>server exposes the tool menu</li>
+                  <li>server validates inputs and auth</li>
+                  <li>host decides whether to allow the call</li>
+                </ul>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card magenta boundary-card">
+                <h3>Codemode boundary</h3>
+                <div class="mermaid boundary-mermaid">
+flowchart LR
+  M2[Model] --> R[Sandbox runtime]
+  N2[Safety focus] --> R
+  R --> FS[Workspace files]
+  R --> SH[Shell or code]
+  R --> NET[Network]
+                </div>
+                <ul class="tight">
+                  <li>the model invents procedures on the fly</li>
+                  <li>the runtime decides what the process can touch</li>
+                  <li>approvals and isolation replace a narrow tool menu</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="card green boundary-summary" style="margin-top: 12px;">
+            <h3><i class="fa-solid fa-lightbulb"></i> Practical recommendation</h3>
+            <p>Use <strong>codemode</strong> to think and work locally. Use <strong>MCP-style tools</strong> to touch real external systems through narrower authenticated interfaces.</p>
+          </div>
+        </div>
+        <div class="footnote">Real harnesses often combine both models rather than choosing exactly one.</div>
+        <aside class="notes">
+          This is the architecture slide that turns the comparison into a concrete design recommendation.
+        </aside>
+      </section>
+
+      <section id="module-layout">
+        <h2>If you were building this for real</h2>
+        <div class="content">
+          <div class="split left-heavy">
+            <div class="code-flow tree">
+              <code>
+<span class="line">mini-harness/</span>
+<span class="line new">├── main.py              <span class="comment"># event loop</span></span>
+<span class="line new">├── llm.py               <span class="comment"># model calls</span></span>
+<span class="line new">├── tools.py             <span class="comment"># schemas + dispatch</span></span>
+<span class="line new">├── policy.py            <span class="comment"># approvals, limits</span></span>
+<span class="line new">├── state.py             <span class="comment"># transcript/history</span></span>
+<span class="line new">├── exec.py              <span class="comment"># bash, file ops, image tool</span></span>
+<span class="line new">└── verify.py            <span class="comment"># tests, lint, assertions</span></span>
+              </code>
+            </div>
+            <div>
+              <div class="card cyan">
+                <h3><i class="fa-solid fa-layer-group"></i> Keep responsibilities separate</h3>
+                <ul>
+                  <li><strong>llm.py</strong>: only speaks model API</li>
+                  <li><strong>tools.py</strong>: declares and dispatches tools</li>
+                  <li><strong>policy.py</strong>: decides what is allowed</li>
+                  <li><strong>exec.py</strong>: touches the environment</li>
+                </ul>
+              </div>
+              <div class="card amber" style="margin-top: 16px;">
+                <h3><i class="fa-solid fa-graduation-cap"></i> Course-friendly scope</h3>
+                <p>This is still small enough for students to read end-to-end and test with a few local tasks.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footnote">The educational goal is transparency, not industrial complexity.</div>
+        <aside class="notes">
+          If you want to tie this to an assignment, this slide gives the implementation scaffold.
+        </aside>
+      </section>
+
+      <section id="checklist-slide">
+        <h2>Build checklist: what makes it a harness?</h2>
+        <div class="content">
+          <div class="split even">
+            <div class="card green">
+              <h3><i class="fa-solid fa-list-check"></i> Must-have pieces</h3>
+              <ul class="checklist">
+                <li>clear system prompt</li>
+                <li>small tool surface</li>
+                <li>standardized tool results</li>
+                <li>state/history management</li>
+                <li>policy checks before execution</li>
+                <li>verification after mutation</li>
+              </ul>
+            </div>
+            <div class="card red">
+              <h3><i class="fa-solid fa-bug"></i> Common failure modes</h3>
+              <ul class="danger">
+                <li>letting transcripts grow without compaction</li>
+                <li>mixing tool execution with policy logic</li>
+                <li>returning messy tool output with no structure</li>
+                <li>granting shell power without sandbox or approvals</li>
+                <li>stopping after action without verification</li>
+              </ul>
+            </div>
+          </div>
+
+          <blockquote style="margin-top: 18px;">
+            <p><strong>call → observe → act → verify → repeat</strong></p>
+          </blockquote>
+        </div>
+        <div class="footnote">Verification is not a luxury feature. It is part of the architecture.</div>
+        <aside class="notes">
+          End the technical section by reinforcing that the verification loop is what makes agentic coding usable rather than theatrical.
+        </aside>
+      </section>
+
+      <section id="closing-slide" class="section-divider" data-state="is-section-divider">
+        <div class="kicker">Takeaway</div>
+        <h1>You can build the harness incrementally</h1>
+        <p class="subtitle">Start with one call. Add state. Add one tool. Add many tools. Then decide where the trust boundary belongs.</p>
+        <div class="course">Next step: turn this into a lab scaffold</div>
+        <aside class="notes">
+          Close by demystifying the whole stack. A harness is a loop, a set of interfaces, and a security boundary.
+        </aside>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+  <script>
+    Reveal.initialize({
+      width: 1280,
+      height: 720,
+      margin: 0.04,
+      controls: true,
+      progress: true,
+      slideNumber: 'c/t',
+      hash: true,
+      transition: 'fade',
+      plugins: [ RevealNotes ]
+    }).then(async () => {
+      await document.fonts.ready;
+      mermaid.run({ querySelector: '.mermaid' });
+    });
+  </script>
+</body>
+</html>

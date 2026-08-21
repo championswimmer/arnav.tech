@@ -1,25 +1,31 @@
 ---
 import { getCollection } from 'astro:content';
+import { Icon } from 'astro-icon/components';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { cleanSlug } from '../lib/slug';
 import { getCachedSlide } from '../lib/speakerdeck';
 
 const slides = (await getCollection('slides', ({ data }) => !data.draft))
-	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-	.map((entry) => ({
-		entry,
-		deck: getCachedSlide(entry.data.speakerdeck_link),
-	}));
+	.sort((a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf())
+	.map((entry) => {
+		const deck = entry.data.type === 'speakerdeck' && entry.data.url
+			? getCachedSlide(entry.data.url)
+			: undefined;
+		return {
+			entry,
+			cover: entry.data.cover || deck?.cover,
+		};
+	});
 ---
 
 <BaseLayout
 	title="Slides · Arnav Gupta"
-	description="Talks and presentations by Arnav Gupta, with embedded SpeakerDeck slides and notes."
+	description="Talks and presentations by Arnav Gupta, featuring interactive Reveal.js decks and SpeakerDeck slides."
 	wide
 >
 	<header class="page-head">
 		<h1 class="kicker">Slides</h1>
-		<p class="blurb">Talks I've given at meetups and conferences.</p>
+		<p class="blurb">Talks and lecture decks I've given at conferences, meetups, and universities.</p>
 	</header>
 
 	{
@@ -27,28 +33,46 @@ const slides = (await getCollection('slides', ({ data }) => !data.draft))
 			<p class="empty">No slide pages yet.</p>
 		) : (
 			<div class="grid">
-				{slides.map(({ entry, deck }) => (
-					<a class="card" href={`/slides/${cleanSlug(entry.id)}/`} title={entry.data.title}>
-						{deck?.cover ? (
-							<div class="thumb">
-								<img src={deck.cover} alt="" loading="lazy" width="710" height="399" />
+				{slides.map(({ entry, cover }) => {
+					const data = entry.data;
+					const isReveal = data.type === 'revealjs';
+					const pubDate = new Date(data.date);
+					const slug = cleanSlug(data.slug || entry.id);
+
+					return (
+						<a class="card" href={`/slides/${slug}/`} title={data.title}>
+							{cover ? (
+								<div class="thumb">
+									<img src={cover} alt="" loading="lazy" width="710" height="399" />
+									<span class={`pill ${data.type}`}>
+										{isReveal ? 'Reveal.js' : 'SpeakerDeck'}
+									</span>
+								</div>
+							) : (
+								<div class="thumb thumb-reveal">
+									<div class="thumb-reveal-content">
+										<Icon name="tabler:presentation" class="thumb-icon" />
+										<span class="thumb-title">{data.title}</span>
+									</div>
+									<span class={`pill ${data.type}`}>
+										{isReveal ? 'Reveal.js' : 'SpeakerDeck'}
+									</span>
+								</div>
+							)}
+							<div class="body">
+								<h2>{data.title}</h2>
+								{data.description && <p class="desc">{data.description}</p>}
+								<time class="date" datetime={pubDate.toISOString()}>
+									{pubDate.toLocaleDateString('en-US', {
+										year: 'numeric',
+										month: 'short',
+										day: 'numeric',
+									})}
+								</time>
 							</div>
-						) : (
-							<div class="thumb thumb-fallback" aria-hidden="true" />
-						)}
-						<div class="body">
-							<h2>{entry.data.title}</h2>
-							<p class="desc">{entry.data.description}</p>
-							<time class="date" datetime={entry.data.pubDate.toISOString()}>
-								{entry.data.pubDate.toLocaleDateString('en-US', {
-									year: 'numeric',
-									month: 'short',
-									day: 'numeric',
-								})}
-							</time>
-						</div>
-					</a>
-				))}
+						</a>
+					);
+				})}
 			</div>
 		)
 	}
@@ -95,9 +119,11 @@ const slides = (await getCollection('slides', ({ data }) => !data.draft))
 		transform: translateY(-2px);
 	}
 	.thumb {
+		position: relative;
 		aspect-ratio: 710 / 399;
 		background: var(--paper);
 		border-bottom: 1px solid var(--rule);
+		overflow: hidden;
 	}
 	.thumb img {
 		width: 100%;
@@ -106,8 +132,59 @@ const slides = (await getCollection('slides', ({ data }) => !data.draft))
 		display: block;
 		border-radius: 0;
 	}
-	.thumb-fallback {
-		background: linear-gradient(135deg, var(--highlight), var(--paper));
+	.thumb-reveal {
+		background: linear-gradient(135deg, #08111f 0%, #0d1e38 100%);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 1.5rem;
+		text-align: center;
+	}
+	.thumb-reveal-content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.5rem;
+		color: #eef2ff;
+	}
+	.thumb-icon {
+		width: 2.2rem;
+		height: 2.2rem;
+		color: var(--accent);
+	}
+	.thumb-title {
+		font-family: var(--font-sans);
+		font-weight: 600;
+		font-size: 0.95rem;
+		line-height: 1.25;
+		color: #eef2ff;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+	.pill {
+		position: absolute;
+		bottom: 0.6rem;
+		right: 0.6rem;
+		font-family: var(--font-mono);
+		font-size: 0.68rem;
+		padding: 0.2rem 0.55rem;
+		border-radius: 4px;
+		backdrop-filter: blur(8px);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		font-weight: 500;
+	}
+	.pill.speakerdeck {
+		background: rgba(0, 0, 0, 0.7);
+		color: #ffffff;
+		border: 1px solid rgba(255, 255, 255, 0.2);
+	}
+	.pill.revealjs {
+		background: rgba(103, 232, 249, 0.2);
+		color: #67e8f9;
+		border: 1px solid rgba(103, 232, 249, 0.4);
 	}
 	.body {
 		padding: 1em 1.05em 1.15em;
@@ -126,6 +203,7 @@ const slides = (await getCollection('slides', ({ data }) => !data.draft))
 		margin: 0.55em 0 0;
 		font-size: 0.95rem;
 		color: var(--ink-soft);
+		line-height: 1.4;
 	}
 	.date {
 		display: block;

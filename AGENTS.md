@@ -24,17 +24,21 @@ mono code). Keep new pages on the sepia palette — use the `--paper*`, `--ink*`
 
 ## Content model
 
-Three content collections, defined in `src/content.config.ts`:
+Content collections defined in `src/content.config.ts`:
 
 | Collection | Format    | Location                | Layout                | Notes                            |
 | ---------- | --------- | ----------------------- | --------------------- | -------------------------------- |
 | `essays`   | MD or MDX | `src/content/essays/`   | `EssayLayout.astro`   | Long-form writing, serif         |
 | `posts`    | MD or MDX | `src/content/posts/`    | `PostLayout.astro`    | Tech articles; code/math/mermaid |
 | `projects` | MDX       | `src/content/projects/` | `ProjectLayout.astro` | Showcases; embed Vue islands     |
+| `slides`   | JSON      | `src/data/slides.json`  | `SlideLayout.astro`   | Talk decks (SpeakerDeck / Reveal.js) |
 
 - **Essays and posts** are the written word — prefer Markdown. Switch a piece to
   `.mdx` only when it needs to embed a component; Markdown cannot import one.
 - **Projects** are MDX so they can embed live interactive components.
+- **Slides** support two types in `src/data/slides.json`:
+  - `speakerdeck`: presentations hosted on SpeakerDeck, embedded via player.
+  - `revealjs`: interactive HTML decks stored as `src/data/slides/[slug]/` folders (containing `index.html`, `styles.css`, and `assets/`). Served at `/slides/[slug]/deck/` and embedded on the talk page with a fullscreen presentation option.
 - All schemas support `draft: true`, which excludes an entry from listings,
   routes, and RSS. Routes are generated in `src/pages/<collection>/[...slug].astro`.
 

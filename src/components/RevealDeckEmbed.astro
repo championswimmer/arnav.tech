@@ -1,0 +1,109 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+	slug: string;
+	title: string;
+}
+
+const { slug, title } = Astro.props;
+const deckUrl = `/slides/${slug}/deck/`;
+---
+
+<div class="reveal-embed-wrapper">
+	<div class="frame">
+		<iframe
+			src={deckUrl}
+			title={title}
+			allow="fullscreen; clipboard-write; encrypted-media"
+			allowfullscreen
+			loading="lazy"
+		/>
+	</div>
+	<div class="bar">
+		<div class="tip">
+			<Icon name="tabler:info-circle" class="icon" />
+			<span>Use <strong>Arrow keys</strong> or <strong>Space</strong> to navigate. Press <strong>F</strong> for fullscreen, <strong>ESC</strong> for slide overview.</span>
+		</div>
+		<a href={deckUrl} target="_blank" rel="noopener" class="fullscreen-btn">
+			<Icon name="tabler:arrows-maximize" class="btn-icon" />
+			<span>Present Fullscreen</span>
+		</a>
+	</div>
+</div>
+
+<style>
+	.reveal-embed-wrapper {
+		margin: 2rem 0;
+		border: 1px solid var(--rule);
+		border-radius: 12px;
+		overflow: hidden;
+		background: var(--paper-raised);
+		box-shadow: var(--box-shadow);
+	}
+	.frame {
+		position: relative;
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		background: #08111f;
+	}
+	.frame iframe {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		border: 0;
+	}
+	.bar {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		padding: 0.75rem 1.25rem;
+		background: var(--paper);
+		border-top: 1px solid var(--rule);
+		font-family: var(--font-sans);
+		font-size: 0.88rem;
+		color: var(--ink-soft);
+	}
+	.tip {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+	.tip .icon {
+		width: 1.1rem;
+		height: 1.1rem;
+		color: var(--accent);
+		flex-shrink: 0;
+	}
+	.tip strong {
+		color: var(--ink);
+		font-weight: 600;
+	}
+	.fullscreen-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		padding: 0.35rem 0.8rem;
+		border-radius: 6px;
+		background: var(--paper-raised);
+		border: 1px solid var(--rule);
+		color: var(--accent);
+		text-decoration: none;
+		font-weight: 500;
+		font-size: 0.85rem;
+		transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+	}
+	.fullscreen-btn:hover {
+		background: var(--highlight);
+		border-color: var(--accent);
+		transform: translateY(-1px);
+	}
+	.fullscreen-btn .btn-icon {
+		width: 1rem;
+		height: 1rem;
+	}
+</style>

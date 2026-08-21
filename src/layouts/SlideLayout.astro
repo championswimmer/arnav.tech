@@ -2,6 +2,7 @@
 import BaseLayout from './BaseLayout.astro';
 import PostMeta from '../components/PostMeta.astro';
 import SpeakerDeckEmbed from '../components/SpeakerDeckEmbed.astro';
+import RevealDeckEmbed from '../components/RevealDeckEmbed.astro';
 import JsonLd from '../components/JsonLd.astro';
 import { SITE_AUTHOR } from '../consts';
 import { getCachedSlide } from '../lib/speakerdeck';
@@ -11,12 +12,26 @@ interface Props {
 	description: string;
 	pubDate: Date;
 	updatedDate?: Date;
-	speakerdeck_link: string;
+	type?: 'speakerdeck' | 'revealjs';
+	slug: string;
+	speakerdeck_link?: string;
+	cover?: string;
 }
 
-const { title, description, pubDate, updatedDate, speakerdeck_link } = Astro.props;
-const slide = getCachedSlide(speakerdeck_link);
+const {
+	title,
+	description,
+	pubDate,
+	updatedDate,
+	type = 'speakerdeck',
+	slug,
+	speakerdeck_link,
+	cover,
+} = Astro.props;
+
+const slide = speakerdeck_link ? getCachedSlide(speakerdeck_link) : undefined;
 const pageURL = new URL(Astro.url.pathname, Astro.site);
+const coverImage = cover || slide?.cover;
 
 const presentation = {
 	'@context': 'https://schema.org',
@@ -24,11 +39,11 @@ const presentation = {
 	name: title,
 	description,
 	url: pageURL.toString(),
-	sameAs: speakerdeck_link,
+	...(speakerdeck_link && { sameAs: speakerdeck_link }),
 	datePublished: pubDate.toISOString(),
 	...(updatedDate && { dateModified: updatedDate.toISOString() }),
 	author: { '@type': 'Person', name: SITE_AUTHOR, url: Astro.site?.toString() },
-	...(slide?.cover && { image: slide.cover, thumbnailUrl: slide.cover }),
+	...(coverImage && { image: coverImage, thumbnailUrl: coverImage }),
 };
 
 const breadcrumbs = {
@@ -50,7 +65,7 @@ const breadcrumbs = {
 <BaseLayout
 	title={title}
 	description={description}
-	image={slide?.cover}
+	image={coverImage}
 	type="article"
 	pubDate={pubDate}
 	updatedDate={updatedDate}
@@ -59,18 +74,32 @@ const breadcrumbs = {
 	<JsonLd data={[presentation, breadcrumbs]} />
 	<article class="slide-page">
 		<header class="slide-header">
-			<p class="eyebrow">Talk</p>
+			<p class="eyebrow">{type === 'revealjs' ? 'Talk · Reveal.js' : 'Talk · SpeakerDeck'}</p>
 			<h1>{title}</h1>
-			<p class="lede">{description}</p>
+			{description && <p class="lede">{description}</p>}
 			<div class="meta-row">
 				<PostMeta pubDate={pubDate} updatedDate={updatedDate} />
-				<a class="deck-link" href={speakerdeck_link} target="_blank" rel="noopener">
-					Open on SpeakerDeck
-				</a>
+				{
+					type === 'revealjs' ? (
+						<a class="deck-link deck-link-primary" href={`/slides/${slug}/deck/`} target="_blank" rel="noopener">
+							Present Fullscreen ↗
+						</a>
+					) : speakerdeck_link ? (
+						<a class="deck-link" href={speakerdeck_link} target="_blank" rel="noopener">
+							Open on SpeakerDeck ↗
+						</a>
+					) : null
+				}
 			</div>
 		</header>
 
-		<SpeakerDeckEmbed url={speakerdeck_link} title={title} />
+		{
+			type === 'revealjs' ? (
+				<RevealDeckEmbed slug={slug} title={title} />
+			) : speakerdeck_link ? (
+				<SpeakerDeckEmbed url={speakerdeck_link} title={title} />
+			) : null
+		}
 
 		<div class="reading-tech notes">
 			<slot />
@@ -97,12 +126,15 @@ const breadcrumbs = {
 		font-weight: 700;
 		letter-spacing: -0.02em;
 		font-size: 2.6rem;
+		line-height: 1.15;
+		margin: 0 0 0.2em;
 	}
 	.lede {
 		font-family: var(--font-sans);
 		font-size: 1.1rem;
 		color: var(--ink-soft);
 		margin: 0.45rem 0 1rem;
+		line-height: 1.5;
 	}
 	.meta-row {
 		display: flex;
@@ -112,8 +144,34 @@ const breadcrumbs = {
 		justify-content: space-between;
 	}
 	.deck-link {
+		font-family: var(--font-sans);
 		font-size: 0.9rem;
+		font-weight: 500;
 		text-decoration: none;
+		color: var(--accent);
+		transition: opacity 0.15s ease;
+	}
+	.deck-link:hover {
+		opacity: 0.8;
+		text-decoration: underline;
+	}
+	.deck-link-primary {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		padding: 0.3rem 0.75rem;
+		background: var(--paper-raised);
+		border: 1px solid var(--rule);
+		border-radius: 6px;
+		color: var(--accent);
+		text-decoration: none;
+		transition: all 0.15s ease;
+	}
+	.deck-link-primary:hover {
+		background: var(--highlight);
+		border-color: var(--accent);
+		text-decoration: none;
+		transform: translateY(-1px);
 	}
 	.notes {
 		margin-top: 2rem;

@@ -1,5 +1,5 @@
 import { defineCollection, z } from 'astro:content';
-import { glob } from 'astro/loaders';
+import { file, glob } from 'astro/loaders';
 
 /**
  * Essays — long-form, "written" pieces, rendered with the sepia/serif essay
@@ -62,17 +62,20 @@ const projects = defineCollection({
 });
 
 /**
- * Slides — talk pages backed by SpeakerDeck embeds, with room for event notes.
+ * Slides — presentations (SpeakerDeck embeds or local Reveal.js decks).
  */
 const slides = defineCollection({
-	loader: glob({ base: './src/content/slides', pattern: '**/*.mdx' }),
+	loader: file('src/data/slides.json'),
 	schema: () =>
 		z.object({
+			id: z.string(),
+			slug: z.string(),
+			type: z.enum(['speakerdeck', 'revealjs']),
 			title: z.string(),
-			description: z.string(),
-			pubDate: z.coerce.date(),
-			updatedDate: z.coerce.date().optional(),
-			speakerdeck_link: z.string().url(),
+			description: z.string().default(''),
+			date: z.string(),
+			url: z.string().url().optional(),
+			cover: z.string().optional(),
 			draft: z.boolean().default(false),
 		}),
 });

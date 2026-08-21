@@ -1,152 +1,260 @@
 [
   {
-    "cover": "https://files.speakerdeck.com/presentations/0e8d191e447a4d11875dcf87a501f513/preview_slide_0.jpg?22319277",
-    "url": "https://speakerdeck.com/championswimmer/startups-monoliths-and-microservices",
+    "id": "build-your-own-coding-harness",
+    "slug": "build-your-own-coding-harness",
+    "type": "revealjs",
+    "title": "Build Your Own Coding Harness",
+    "description": "From one API call to a safe multi-tool coding agent — IIT Gandhinagar lecture deck.",
+    "date": "2026-08-20"
+  },
+  {
+    "id": "startups-monoliths-and-microservices",
+    "slug": "startups-monoliths-and-microservices",
+    "type": "speakerdeck",
     "title": "Startups, Monoliths and Microservices",
-    "date": "2022-08-10"
+    "description": "Reflections on architecture trade-offs between monoliths and microservices in growing teams.",
+    "date": "2022-08-10",
+    "url": "https://speakerdeck.com/championswimmer/startups-monoliths-and-microservices",
+    "cover": "https://files.speakerdeck.com/presentations/0e8d191e447a4d11875dcf87a501f513/preview_slide_0.jpg?22319277"
   },
   {
-    "cover": "https://files.speakerdeck.com/presentations/64ada6b2438e4909a4fdcb711ba0a85a/preview_slide_0.jpg?21696897",
-    "url": "https://speakerdeck.com/championswimmer/mobile-product-engineering",
+    "id": "mobile-product-engineering",
+    "slug": "mobile-product-engineering",
+    "type": "speakerdeck",
     "title": "Mobile Product Engineering",
-    "date": "2022-06-09"
+    "description": "Lessons from leading mobile teams across multiple apps with more than 100 million users.",
+    "date": "2022-06-09",
+    "url": "https://speakerdeck.com/championswimmer/mobile-product-engineering",
+    "cover": "https://files.speakerdeck.com/presentations/64ada6b2438e4909a4fdcb711ba0a85a/preview_slide_0.jpg?21696897"
   },
   {
-    "cover": "https://files.speakerdeck.com/presentations/8d358c28754047838ab064c7680fc4a1/preview_slide_0.jpg?13798667",
-    "url": "https://speakerdeck.com/championswimmer/what-is-new-in-android-10-a-developer-preview",
+    "id": "what-is-new-in-android-10-a-developer-preview",
+    "slug": "what-is-new-in-android-10-a-developer-preview",
+    "type": "speakerdeck",
     "title": "What is new in Android 10 - A developer preview",
-    "date": "2019-10-06"
+    "description": "A developer-focused tour of the most relevant Android 10 changes.",
+    "date": "2019-10-06",
+    "url": "https://speakerdeck.com/championswimmer/what-is-new-in-android-10-a-developer-preview",
+    "cover": "https://files.speakerdeck.com/presentations/8d358c28754047838ab064c7680fc4a1/preview_slide_0.jpg?13798667"
   },
   {
-    "cover": "https://files.speakerdeck.com/presentations/0df99399c15b40bfaadc7379daf669d7/preview_slide_0.jpg?13836782",
-    "url": "https://speakerdeck.com/championswimmer/building-plugins-for-vue-and-vuex",
+    "id": "building-plugins-for-vue-and-vuex",
+    "slug": "building-plugins-for-vue-and-vuex",
+    "type": "speakerdeck",
     "title": "Building plugins for Vue and Vuex",
-    "date": "2019-09-06"
+    "description": "A guide to designing plugins and extension points in the Vue ecosystem.",
+    "date": "2019-09-06",
+    "url": "https://speakerdeck.com/championswimmer/building-plugins-for-vue-and-vuex",
+    "cover": "https://files.speakerdeck.com/presentations/0df99399c15b40bfaadc7379daf669d7/preview_slide_0.jpg?13836782"
   },
   {
-    "cover": "https://files.speakerdeck.com/presentations/275b52c9f73c4ebe9a9da53ac2f7f177/preview_slide_0.jpg?12967728",
-    "url": "https://speakerdeck.com/championswimmer/kotlin-vs-nativescript-vs-flutter-building-the-same-app-in-all-platforms",
+    "id": "kotlin-vs-nativescript-vs-flutter-building-the-same-app-in-all-platforms",
+    "slug": "kotlin-vs-nativescript-vs-flutter-building-the-same-app-in-all-platforms",
+    "type": "speakerdeck",
     "title": "Kotlin vs NativeScript vs Flutter - Building the same app in all platforms",
-    "date": "2019-03-09"
+    "description": "A comparative talk on building the same app across multiple cross-platform stacks.",
+    "date": "2019-03-09",
+    "url": "https://speakerdeck.com/championswimmer/kotlin-vs-nativescript-vs-flutter-building-the-same-app-in-all-platforms",
+    "cover": "https://files.speakerdeck.com/presentations/275b52c9f73c4ebe9a9da53ac2f7f177/preview_slide_0.jpg?12967728"
   },
   {
-    "cover": "https://files.speakerdeck.com/presentations/38e9230e19d74992ae4bccd28e3d3059/preview_slide_0.jpg?11062175",
-    "url": "https://speakerdeck.com/championswimmer/authentication-done-right-consuming-and-serving-oauth2-dot-0",
+    "id": "authentication-done-right-consuming-and-serving-oauth2-dot-0",
+    "slug": "authentication-done-right-consuming-and-serving-oauth2-dot-0",
+    "type": "speakerdeck",
     "title": "Authentication done right: Consuming (and Serving) Oauth2.0",
-    "date": "2018-10-26"
+    "description": "Lessons from implementing OAuth2 consumers and providers without getting auth horribly wrong.",
+    "date": "2018-10-26",
+    "url": "https://speakerdeck.com/championswimmer/authentication-done-right-consuming-and-serving-oauth2-dot-0",
+    "cover": "https://files.speakerdeck.com/presentations/38e9230e19d74992ae4bccd28e3d3059/preview_slide_0.jpg?11062175"
   },
   {
-    "cover": "https://files.speakerdeck.com/presentations/631d316c9e6d4b6ab16448dd57b266db/preview_slide_0.jpg?9938958",
-    "url": "https://speakerdeck.com/championswimmer/nativescript-vue-at-vue-bangalore-number-7",
+    "id": "nativescript-vue-at-vue-bangalore-number-7",
+    "slug": "nativescript-vue-at-vue-bangalore-number-7",
+    "type": "speakerdeck",
     "title": "Nativescript-Vue @ Vue Bangalore #7",
-    "date": "2018-04-28"
+    "description": "Sharing what NativeScript-Vue made possible for building native apps with Vue.",
+    "date": "2018-04-28",
+    "url": "https://speakerdeck.com/championswimmer/nativescript-vue-at-vue-bangalore-number-7",
+    "cover": "https://files.speakerdeck.com/presentations/631d316c9e6d4b6ab16448dd57b266db/preview_slide_0.jpg?9938958"
   },
   {
-    "cover": "https://files.speakerdeck.com/presentations/96855d5e2a5b4fadbd9c62f78896f945/preview_slide_0.jpg?8751204",
-    "url": "https://speakerdeck.com/championswimmer/sharesource",
+    "id": "sharesource",
+    "slug": "sharesource",
+    "type": "speakerdeck",
     "title": "shaResource",
-    "date": "2017-10-14"
+    "description": "A short presentation on shaResource and the idea behind it.",
+    "date": "2017-10-14",
+    "url": "https://speakerdeck.com/championswimmer/sharesource",
+    "cover": "https://files.speakerdeck.com/presentations/96855d5e2a5b4fadbd9c62f78896f945/preview_slide_0.jpg?8751204"
   },
   {
-    "cover": "https://files.speakerdeck.com/presentations/a7751afebe76430eb6a56698e700ddfc/preview_slide_0.jpg?8697957",
-    "url": "https://speakerdeck.com/championswimmer/your-own-google-home-with-android-things-on-raspberry-pi",
+    "id": "your-own-google-home-with-android-things-on-raspberry-pi",
+    "slug": "your-own-google-home-with-android-things-on-raspberry-pi",
+    "type": "speakerdeck",
     "title": "Your own Google Home with Android Things on Raspberry Pi",
-    "date": "2017-10-05"
+    "description": "A build-and-demo session on a DIY voice assistant with Android Things and Raspberry Pi.",
+    "date": "2017-10-05",
+    "url": "https://speakerdeck.com/championswimmer/your-own-google-home-with-android-things-on-raspberry-pi",
+    "cover": "https://files.speakerdeck.com/presentations/a7751afebe76430eb6a56698e700ddfc/preview_slide_0.jpg?8697957"
   },
   {
-    "cover": "https://files.speakerdeck.com/presentations/72dc9b91f40144a4816a6ca7fcd701f0/preview_slide_0.jpg?8697896",
-    "url": "https://speakerdeck.com/championswimmer/cd-with-zero-infrastructure",
+    "id": "cd-with-zero-infrastructure",
+    "slug": "cd-with-zero-infrastructure",
+    "type": "speakerdeck",
     "title": "Android CI/CD with Zero Infrastructure",
-    "date": "2017-10-05"
+    "description": "A talk on continuous delivery for Android without owning a pile of servers.",
+    "date": "2017-10-05",
+    "url": "https://speakerdeck.com/championswimmer/cd-with-zero-infrastructure",
+    "cover": "https://files.speakerdeck.com/presentations/72dc9b91f40144a4816a6ca7fcd701f0/preview_slide_0.jpg?8697896"
   },
   {
-    "cover": "https://files.speakerdeck.com/presentations/a08ebe5b315b4e10bb47f1a354b65156/preview_slide_0.jpg?8488353",
-    "url": "https://speakerdeck.com/championswimmer/learning-to-code-in-c-plus-plus",
+    "id": "learning-to-code-in-c-plus-plus",
+    "slug": "learning-to-code-in-c-plus-plus",
+    "type": "speakerdeck",
     "title": "Learning to Code in C++",
-    "date": "2017-08-30"
+    "description": "A beginner-friendly introduction to programming through C++.",
+    "date": "2017-08-30",
+    "url": "https://speakerdeck.com/championswimmer/learning-to-code-in-c-plus-plus",
+    "cover": "https://files.speakerdeck.com/presentations/a08ebe5b315b4e10bb47f1a354b65156/preview_slide_0.jpg?8488353"
   },
   {
-    "cover": "https://files.speakerdeck.com/presentations/05d31f50b3c54b5097954b4682b3c2af/preview_slide_0.jpg?8487464",
-    "url": "https://speakerdeck.com/championswimmer/blockchain-unblocked",
+    "id": "blockchain-unblocked",
+    "slug": "blockchain-unblocked",
+    "type": "speakerdeck",
     "title": "Blockchain Unblocked",
-    "date": "2017-08-30"
+    "description": "An attempt to make blockchain concepts concrete, approachable, and less buzzword-heavy.",
+    "date": "2017-08-30",
+    "url": "https://speakerdeck.com/championswimmer/blockchain-unblocked",
+    "cover": "https://files.speakerdeck.com/presentations/05d31f50b3c54b5097954b4682b3c2af/preview_slide_0.jpg?8487464"
   },
   {
-    "cover": "https://files.speakerdeck.com/presentations/2b8c03f8a2c0462b93966a0bfc008d81/preview_slide_0.jpg?7467668",
-    "url": "https://speakerdeck.com/championswimmer/everyone-can-see-your-credit-card-details-seriously",
+    "id": "everyone-can-see-your-credit-card-details-seriously",
+    "slug": "everyone-can-see-your-credit-card-details-seriously",
+    "type": "speakerdeck",
     "title": "Everyone can see your credit card details. Seriously.",
-    "date": "2017-01-25"
+    "description": "A security talk on just how exposed card details can be in the real world.",
+    "date": "2017-01-25",
+    "url": "https://speakerdeck.com/championswimmer/everyone-can-see-your-credit-card-details-seriously",
+    "cover": "https://files.speakerdeck.com/presentations/2b8c03f8a2c0462b93966a0bfc008d81/preview_slide_0.jpg?7467668"
   },
   {
-    "cover": "https://files.speakerdeck.com/presentations/73c727e0cb27403da67a380719117ee2/preview_slide_0.jpg?6954526",
-    "url": "https://speakerdeck.com/championswimmer/its-2016-and-we-need-to-start-coding",
+    "id": "its-2016-and-we-need-to-start-coding",
+    "slug": "its-2016-and-we-need-to-start-coding",
+    "type": "speakerdeck",
     "title": "It's 2016 - And we need to start coding",
-    "date": "2016-10-06"
+    "description": "Part of a university tour across India encouraging students to start learning to code.",
+    "date": "2016-10-06",
+    "url": "https://speakerdeck.com/championswimmer/its-2016-and-we-need-to-start-coding",
+    "cover": "https://files.speakerdeck.com/presentations/73c727e0cb27403da67a380719117ee2/preview_slide_0.jpg?6954526"
   },
   {
-    "cover": "https://files.speakerdeck.com/presentations/2bf7d74d029c4608b03dfeb5263e2993/preview_slide_0.jpg?6846971",
-    "url": "https://speakerdeck.com/championswimmer/nfc-one-small-tap-for-mankind",
+    "id": "nfc-one-small-tap-for-mankind",
+    "slug": "nfc-one-small-tap-for-mankind",
+    "type": "speakerdeck",
     "title": "NFC - One Small Tap for Mankind",
-    "date": "2016-09-16"
+    "description": "An early NFC experiment showing how a device could emulate a card well before tap-to-pay went mainstream.",
+    "date": "2016-09-16",
+    "url": "https://speakerdeck.com/championswimmer/nfc-one-small-tap-for-mankind",
+    "cover": "https://files.speakerdeck.com/presentations/2bf7d74d029c4608b03dfeb5263e2993/preview_slide_0.jpg?6846971"
   },
   {
-    "cover": "https://files.speakerdeck.com/presentations/104624dfb77a4865a8e0a0d75d366305/preview_slide_0.jpg?6842822",
-    "url": "https://speakerdeck.com/championswimmer/building-apps-for-android-auto",
+    "id": "building-apps-for-android-auto",
+    "slug": "building-apps-for-android-auto",
+    "type": "speakerdeck",
     "title": "Building Apps for Android Auto",
-    "date": "2016-09-16"
+    "description": "A session on designing and shipping apps for Android Auto.",
+    "date": "2016-09-16",
+    "url": "https://speakerdeck.com/championswimmer/building-apps-for-android-auto",
+    "cover": "https://files.speakerdeck.com/presentations/104624dfb77a4865a8e0a0d75d366305/preview_slide_0.jpg?6842822"
   },
   {
-    "cover": "https://files.speakerdeck.com/presentations/9917f217214348cf9b6ff5f6e93eb95f/preview_slide_0.jpg?6833110",
-    "url": "https://speakerdeck.com/championswimmer/electron-desktop-gui-with-node-dot-js",
+    "id": "electron-desktop-gui-with-node-dot-js",
+    "slug": "electron-desktop-gui-with-node-dot-js",
+    "type": "speakerdeck",
     "title": "Electron - Desktop GUI with Node.js ",
-    "date": "2016-09-15"
+    "description": "A practical introduction to building desktop apps with Electron and Node.js.",
+    "date": "2016-09-15",
+    "url": "https://speakerdeck.com/championswimmer/electron-desktop-gui-with-node-dot-js",
+    "cover": "https://files.speakerdeck.com/presentations/9917f217214348cf9b6ff5f6e93eb95f/preview_slide_0.jpg?6833110"
   },
   {
-    "cover": "https://files.speakerdeck.com/presentations/a61c8db03d0e455980ab09201ab0c802/preview_slide_0.jpg?5728546",
-    "url": "https://speakerdeck.com/championswimmer/setting-up-an-android-os-project",
+    "id": "setting-up-an-android-os-project",
+    "slug": "setting-up-an-android-os-project",
+    "type": "speakerdeck",
     "title": "Setting up an Android OS Project",
-    "date": "2015-12-19"
+    "description": "A walkthrough of building a complete Android OS image from scratch.",
+    "date": "2015-12-19",
+    "url": "https://speakerdeck.com/championswimmer/setting-up-an-android-os-project",
+    "cover": "https://files.speakerdeck.com/presentations/a61c8db03d0e455980ab09201ab0c802/preview_slide_0.jpg?5728546"
   },
   {
-    "cover": "https://files.speakerdeck.com/presentations/e331c4bf3b224a13afc3ff9071fbd795/preview_slide_0.jpg?5414038",
-    "url": "https://speakerdeck.com/championswimmer/home-automation-with-javascript",
+    "id": "home-automation-with-javascript",
+    "slug": "home-automation-with-javascript",
+    "type": "speakerdeck",
     "title": "Home Automation with Javascript",
-    "date": "2015-10-19"
+    "description": "A demo-driven session on Raspberry Pi projects and home automation with pi.js.",
+    "date": "2015-10-19",
+    "url": "https://speakerdeck.com/championswimmer/home-automation-with-javascript",
+    "cover": "https://files.speakerdeck.com/presentations/e331c4bf3b224a13afc3ff9071fbd795/preview_slide_0.jpg?5414038"
   },
   {
-    "cover": "https://files.speakerdeck.com/presentations/51322401ff9f4f0c84cd02df8869d016/preview_slide_0.jpg?5018121",
-    "url": "https://speakerdeck.com/championswimmer/software-development-the-open-source-way",
+    "id": "software-development-the-open-source-way",
+    "slug": "software-development-the-open-source-way",
+    "type": "speakerdeck",
     "title": "Software Development: The Open Source Way",
-    "date": "2015-07-06"
+    "description": "Thoughts on how open source changes the way software gets built and shared.",
+    "date": "2015-07-06",
+    "url": "https://speakerdeck.com/championswimmer/software-development-the-open-source-way",
+    "cover": "https://files.speakerdeck.com/presentations/51322401ff9f4f0c84cd02df8869d016/preview_slide_0.jpg?5018121"
   },
   {
-    "cover": "https://files.speakerdeck.com/presentations/fd02f2008c5a4f5dae85cf5c2dcc49e2/preview_slide_0.jpg?4744713",
-    "url": "https://speakerdeck.com/championswimmer/full-stack-development",
+    "id": "full-stack-development",
+    "slug": "full-stack-development",
+    "type": "speakerdeck",
     "title": "Full-stack Development",
-    "date": "2015-05-05"
+    "description": "A talk about working across the stack, from backend systems to user-facing apps.",
+    "date": "2015-05-05",
+    "url": "https://speakerdeck.com/championswimmer/full-stack-development",
+    "cover": "https://files.speakerdeck.com/presentations/fd02f2008c5a4f5dae85cf5c2dcc49e2/preview_slide_0.jpg?4744713"
   },
   {
-    "cover": "https://files.speakerdeck.com/presentations/a419052035370132eb590e038ae4b986/preview_slide_0.jpg?3713130",
-    "url": "https://speakerdeck.com/championswimmer/android-rooting",
+    "id": "android-rooting",
+    "slug": "android-rooting",
+    "type": "speakerdeck",
     "title": "Android Rooting",
-    "date": "2014-10-13"
+    "description": "An introduction to Android rooting, device control, and why people cared about it.",
+    "date": "2014-10-13",
+    "url": "https://speakerdeck.com/championswimmer/android-rooting",
+    "cover": "https://files.speakerdeck.com/presentations/a419052035370132eb590e038ae4b986/preview_slide_0.jpg?3713130"
   },
   {
-    "cover": "https://files.speakerdeck.com/presentations/c3d2860035380132eb5b0e038ae4b986/preview_slide_0.jpg?3713216",
-    "url": "https://speakerdeck.com/championswimmer/enhancing-and-modifying-the-core-android-os",
+    "id": "enhancing-and-modifying-the-core-android-os",
+    "slug": "enhancing-and-modifying-the-core-android-os",
+    "type": "speakerdeck",
     "title": "Enhancing and Modifying the core Android OS",
-    "date": "2014-10-09"
+    "description": "A session on digging into Android internals and modifying the OS itself.",
+    "date": "2014-10-09",
+    "url": "https://speakerdeck.com/championswimmer/enhancing-and-modifying-the-core-android-os",
+    "cover": "https://files.speakerdeck.com/presentations/c3d2860035380132eb5b0e038ae4b986/preview_slide_0.jpg?3713216"
   },
   {
-    "cover": "https://files.speakerdeck.com/presentations/052bc07035380132dd967e083072a8be/preview_slide_0.jpg?3713202",
-    "url": "https://speakerdeck.com/championswimmer/android-libraries-and-apis",
+    "id": "android-libraries-and-apis",
+    "slug": "android-libraries-and-apis",
+    "type": "speakerdeck",
     "title": "Android Libraries and APIs",
-    "date": "2014-05-13"
+    "description": "A talk on building with Android libraries and making sense of the platform APIs.",
+    "date": "2014-05-13",
+    "url": "https://speakerdeck.com/championswimmer/android-libraries-and-apis",
+    "cover": "https://files.speakerdeck.com/presentations/052bc07035380132dd967e083072a8be/preview_slide_0.jpg?3713202"
   },
   {
-    "cover": "https://files.speakerdeck.com/presentations/18bfd100353701328a4766ded83ef86d/preview_slide_0.jpg?3713110",
-    "url": "https://speakerdeck.com/championswimmer/what-to-do-after-rooting",
+    "id": "what-to-do-after-rooting",
+    "slug": "what-to-do-after-rooting",
+    "type": "speakerdeck",
     "title": "What to do after Rooting ?",
-    "date": "2013-11-05"
+    "description": "A follow-up to Android rooting: what you can actually do once you have full control.",
+    "date": "2013-11-05",
+    "url": "https://speakerdeck.com/championswimmer/what-to-do-after-rooting",
+    "cover": "https://files.speakerdeck.com/presentations/18bfd100353701328a4766ded83ef86d/preview_slide_0.jpg?3713110"
   }
 ]
