@@ -8,6 +8,14 @@
     "date": "2026-08-20"
   },
   {
+    "id": "the-evolution-of-the-harness",
+    "slug": "the-evolution-of-the-harness",
+    "type": "revealjs",
+    "title": "The Evolution of the Harness",
+    "description": "From Autocomplete Plugins to Autonomous Multi-Agent Fleets — IIT Gandhinagar lecture deck.",
+    "date": "2026-08-18"
+  },
+  {
     "id": "how-llms-began-to-code",
     "slug": "how-llms-began-to-code",
     "type": "revealjs",

@@ -1,0 +1,1221 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Evolution of the Harness — IIT Gandhinagar</title>
+
+  <!-- Reveal.js core -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+
+  <!-- Highlight.js theme for code snippets -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Mermaid.js for interactive diagrams -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: 'dark',
+      securityLevel: 'loose',
+      themeVariables: {
+        darkMode: true,
+        background: '#030712',
+        primaryColor: '#1e293b',
+        primaryTextColor: '#f1f5f9',
+        primaryBorderColor: '#38bdf8',
+        lineColor: '#38bdf8',
+        secondaryColor: '#0f172a',
+        tertiaryColor: '#1e1b4b',
+        fontSize: '13px',
+        fontFamily: 'IBM Plex Mono, monospace'
+      }
+    });
+  </script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- ===========================================
+           SLIDE 1: Title Slide
+           =========================================== -->
+      <section id="title-slide" class="section-divider" data-state="is-section-divider">
+        <div class="kicker">IIT Gandhinagar · Agentic Engineering</div>
+        <h1>The Evolution of the Harness</h1>
+        <p class="subtitle">From Autocomplete Plugins to Autonomous Multi-Agent Fleets</p>
+        <div class="course">Arnav Gupta · Session 02</div>
+        <aside class="notes">
+          <strong>Timing: 2 min.</strong> Welcome students. Emphasize that models are commodities; the true engineering leverage lives in the harness—the execution loop, context manager, tool sandbox, and coordination protocol.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 2: The Core Thesis
+           =========================================== -->
+      <section id="thesis-slide">
+        <h2>The Core Thesis</h2>
+        <div class="content">
+          <blockquote>
+            <p><strong>A raw LLM predicts tokens.</strong> A <strong>harness</strong> turns those predictions into a safe, stateful action loop.</p>
+          </blockquote>
+
+          <div class="split even" style="margin-top: 15px;">
+            <div class="card cyan">
+              <h3><i class="fa-solid fa-microchip"></i> The Model (Passive Predictor)</h3>
+              <ul>
+                <li>Probabilistic next-token distribution</li>
+                <li>Static weights + bounded context</li>
+                <li>No direct OS or file access</li>
+                <li>Cannot see whether code works</li>
+              </ul>
+            </div>
+            <div class="card amber">
+              <h3><i class="fa-solid fa-gears"></i> The Harness (Active Runtime)</h3>
+              <ul>
+                <li><strong>Context:</strong> repo rules, git, code</li>
+                <li><strong>Tools:</strong> read, edit, test, shell</li>
+                <li><strong>Safety:</strong> permissions + sandbox</li>
+                <li><strong>Control:</strong> queues + subagents</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footnote">The LLM does not execute commands. The harness parses model intent, performs system calls, and feeds results back.</div>
+        <aside class="notes">
+          <strong>Timing: 3 min.</strong> Remind students: The LLM generates text. The harness turns text into actions, intercepts errors, and creates closed-loop feedback.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 3: The Model Inside the Harness
+           =========================================== -->
+      <section id="capabilities-matrix-slide">
+        <h2>Where the Model Sits</h2>
+        <div class="content">
+          <div class="mermaid">
+flowchart LR
+  subgraph H[" "]
+    direction LR
+    C["①"] --> M["②"] --> G{"③"} --> T["④"] --> R["⑤"]
+    R -.-> C
+  end
+          </div>
+          <div class="card cyan compact-card" style="margin-top: 10px;">
+            <p>① Context → <strong>② Model</strong> → ③ Policy → ④ Tools → ⑤ Results</p>
+            <p><strong>The harness</strong> owns every step except the model’s proposal.</p>
+          </div>
+        </div>
+        <div class="footnote">The model is one component in the loop—not the component with file, shell, or permission authority.</div>
+        <aside class="notes">
+          <strong>Timing: 4 min.</strong> Trace the loop clockwise. The model only produces an action proposal; every environmental effect happens in the harness.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 4: The Evolutionary Arc
+           =========================================== -->
+      <section id="evolution-arc">
+        <h2>The Evolutionary Arc</h2>
+        <div class="content">
+          <div class="split four" style="margin-top: 10px;">
+            <div class="card cyan">
+              <span class="pill">2021</span>
+              <h3>Autocomplete</h3>
+              <p><strong>Ghost Text Inline</strong></p>
+              <ul><li>Cursor context</li><li>No tools</li></ul>
+            </div>
+
+            <div class="card amber">
+              <span class="pill amber">2023</span>
+              <h3>Sidecar &amp; Edit</h3>
+              <p><strong>In-Editor Chat &amp; Diff</strong></p>
+              <ul><li>Chat + targeted diffs</li><li>Human runs and checks</li></ul>
+            </div>
+
+            <div class="card magenta">
+              <span class="pill pink">2025</span>
+              <h3>Terminal CLI</h3>
+              <p><strong>Stateful Tool Loops</strong></p>
+              <ul><li>Shell, git, tests</li><li>Repair from feedback</li></ul>
+            </div>
+
+            <div class="card purple">
+              <span class="pill purple">2026</span>
+              <h3>Graphs &amp; Fleets</h3>
+              <p><strong>Distributed Swarms</strong></p>
+              <ul><li>Task graphs + workers</li><li>Persistent shared state</li></ul>
+            </div>
+          </div>
+        </div>
+        <div class="footnote">Notice the trajectory: From UI-constrained inline helpers to autonomous CLI engines to distributed agent networks.</div>
+        <aside class="notes">
+          <strong>Timing: 4 min.</strong> Walk through the timeline from 2021 to 2026. Each era expanded the harness's autonomy, context boundary, and execution authority.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 5: Act 1 Section Divider
+           =========================================== -->
+      <section id="act1-divider" class="section-divider" data-state="is-section-divider">
+        <div class="kicker">Act 1</div>
+        <h1>The IDE Plugin Era</h1>
+        <p class="subtitle">From Ghost Text to Full Workspace Context</p>
+        <aside class="notes">
+          <strong>Timing: 1 min.</strong> Transition to Act 1. How did we get here from the earliest days of natural language code generation?
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 6: 2020 Sharif Shameem Demo
+           =========================================== -->
+      <section id="sharif-shameem-slide">
+        <h2>2020: The First Spark — Sharif Shameem's Demo</h2>
+        <div class="content">
+          <div class="split left-heavy">
+            <div>
+              <p class="text-lg">July 2020: a plain-English prompt produced live React/JSX.</p>
+              <div class="card amber" style="margin-top: 15px;">
+                <h3><i class="fa-solid fa-lightbulb"></i> The Prototype Anatomy</h3>
+                <ul>
+                <li><strong>Prompt:</strong> “Add button + textbox + list”</li>
+                <li><strong>Output:</strong> JSX in a live preview</li>
+                <li><strong>Missing:</strong> files, tests, feedback, project context</li>
+                </ul>
+              </div>
+              <p style="margin-top: 12px; color: var(--muted-color); font-size: 13pt;"><em>The human still copied, ran, and debugged.</em></p>
+            </div>
+            <div class="artifact-frame">
+              <img src="assets/sharif-shameem-gpt3-jsx-tweet.png" alt="Sharif Shameem GPT-3 JSX Tweet (July 2020)">
+            </div>
+          </div>
+        </div>
+        <div class="footnote">Evidence: Sharif Shameem on Twitter (@sharifshameem, July 13, 2020). Demonstrated zero-shot code generation before Codex existed.</div>
+        <aside class="notes">
+          <strong>Timing: 4 min.</strong> Emphasize how this sparked the industry's realization that LLMs could write code, while simultaneously highlighting the complete absence of an automated execution harness.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 7: 2021 GitHub Copilot Autocomplete
+           =========================================== -->
+      <section id="copilot-2021-slide">
+        <h2>2021: GitHub Copilot &amp; Ghost Text Autocomplete</h2>
+        <div class="content">
+          <div class="split right-heavy">
+            <div class="artifact-frame">
+              <img src="assets/github-copilot-2021-autocomplete.jpg" alt="GitHub Copilot 2021 Ghost Text Autocomplete">
+            </div>
+            <div>
+              <div class="card cyan">
+                <h3><i class="fa-solid fa-code"></i> The Autocomplete Harness</h3>
+                <ul>
+                <li><strong>Model:</strong> Codex</li>
+                <li><strong>Context:</strong> code around the cursor</li>
+                <li><strong>UX:</strong> low-latency ghost text</li>
+                <li><strong>Control:</strong> <kbd>Tab</kbd> accept; type to dismiss</li>
+                </ul>
+              </div>
+              <div class="card amber" style="margin-top: 14px;">
+                <h3><i class="fa-solid fa-triangle-exclamation"></i> The Structural Limits</h3>
+                <p>Single file. No tools or compiler loop. The developer verifies every suggestion.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footnote">Reference: Chen et al., "Evaluating Large Language Models Trained on Code" (Codex Paper, July 2021).</div>
+        <aside class="notes">
+          <strong>Timing: 4 min.</strong> Point out the UX brilliance of Tab autocomplete: zero friction, but strictly confined to next-token continuation.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 8: 2023 Inline Edits & Sidecar Chat
+           =========================================== -->
+      <section id="inline-edit-slide">
+        <h2>2023: Inline Generation &amp; The Sidecar Chat</h2>
+        <div class="content">
+          <div class="split even">
+            <div class="card cyan">
+              <h3><i class="fa-solid fa-i-cursor"></i> Inline Edits (<code>Cmd+K</code>)</h3>
+              <img class="feature-screenshot" src="assets/cursor-inline-edit-cmdk.png" alt="Cursor's inline edit prompt bar directly over source code">
+              <ul>
+                <li>Select code + describe a change</li>
+                <li>Return a focused diff</li>
+              </ul>
+            </div>
+
+            <div class="card magenta">
+              <h3><i class="fa-solid fa-comments"></i> Sidecar Chat (<code>Cmd+L</code>)</h3>
+              <img class="feature-screenshot" src="assets/cursor-sidecar-chat-cmdl.jpeg" alt="Cursor's sidecar chat panel beside the editor">
+              <ul>
+                <li>Conversation beside the editor</li>
+                <li>Explicit context: <code>@file</code>, <code>@symbol</code></li>
+                <li><strong>Human bridge:</strong> paste code and errors</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footnote">In 2023, the human developer was still the execution and error-correction loop. Screenshots: <a href="https://wonderhows.com/post/cursor-cmdk/">Cmd+K</a> · <a href="https://forum.cursor.com/t/how-do-i-move-my-cursor-chat-window-to-the-right-side/42372">sidecar chat</a>.</div>
+        <aside class="notes">
+          <strong>Timing: 4 min.</strong> Walk through the evolution from Tab completion to inline rewriting and sidecar conversational assistants.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 9: Sequence: 2023 In-Editor Flow
+           =========================================== -->
+      <section id="inline-edit-sequence-slide">
+        <h2>Sequence: The 2023 In-Editor Flow</h2>
+        <div class="content">
+          <div class="mermaid">
+sequenceDiagram
+  autonumber
+  actor Dev as Developer
+  participant IDE as IDE Editor (Cursor or Copilot)
+  participant LLM as LLM API
+  Dev->>IDE: Highlight function + "Add error handling" (Cmd+K)
+  IDE->>LLM: Prefix + Selected Code + Suffix + User Instruction
+  LLM-->>IDE: Stream rewritten code block
+  IDE->>Dev: Show inline unified diff (Accept or Reject)
+          </div>
+        </div>
+        <div class="footnote">Notice that the IDE mediated context and diff presentation, but the human was the sole verification engine.</div>
+        <aside class="notes">
+          <strong>Timing: 4 min.</strong> Trace the request-response lifecycle of inline editing.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 10: 2024 Workspace Indexing & Speculative Workspaces
+           =========================================== -->
+      <section id="workspace-indexing-slide">
+        <h2>2024: Multi-File Context &amp; Speculative Workspaces</h2>
+        <div class="content">
+          <div class="split left-heavy">
+            <div class="card purple">
+              <h3><i class="fa-solid fa-layer-group"></i> Cursor Composer &amp; Windsurf Cascade</h3>
+              <ul>
+                <li><strong>Index:</strong> code symbols + repository context</li>
+                <li><strong>Shadow workspace:</strong> stage edits before disk</li>
+                <li><strong>LSP:</strong> check diagnostics before review</li>
+              </ul>
+            </div>
+
+            <div class="mermaid">
+flowchart TD
+  U["User Prompt"] --> IDX["AST & Repo Index"]
+  IDX --> CTX["Context Engine"]
+  CTX --> LLM["Model Generation"]
+  LLM --> SW["Shadow Buffers"]
+  SW --> LSP{"LSP Diagnostic"}
+  LSP -->|Clean| DIFF["Multi-File Diff"]
+  LSP -->|Error| CTX
+            </div>
+          </div>
+        </div>
+        <div class="footnote">The IDE harness evolved from a single cursor position to indexing thousands of repository symbols.</div>
+        <aside class="notes">
+          <strong>Timing: 4 min.</strong> Ask: If IDE plugins got this smart, why did developers start moving back to the command line in 2025?
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 11: The Ceiling of the IDE Harness
+           =========================================== -->
+      <section id="ide-ceiling-slide">
+        <h2>The Ceiling of the IDE Harness</h2>
+        <div class="content">
+          <div class="split even">
+            <div class="card amber">
+              <h3><i class="fa-solid fa-ban"></i> 1. UI Modality Bottleneck</h3>
+              <p>Click-to-accept creates fatigue; long jobs monopolize the editor.</p>
+              <h3 style="margin-top: 14px;"><i class="fa-solid fa-lock"></i> 2. Tool Sandbox Constraints</h3>
+              <p>Extensions are awkward homes for daemons, containers, and raw system tools.</p>
+            </div>
+
+            <div class="card magenta">
+              <h3><i class="fa-solid fa-terminal"></i> 3. No Headless or CI Automation</h3>
+              <p>Hard to run in CI, SSH sessions, hooks, or cron jobs.</p>
+              <h3 style="margin-top: 14px;"><i class="fa-solid fa-box-archive"></i> 4. Fragile Multi-Turn History</h3>
+              <p>Chat history mixes instruction, chatter, and noisy execution logs.</p>
+            </div>
+          </div>
+        </div>
+        <div class="footnote">This tension directly catalyzed the emergence of terminal CLI coding harnesses.</div>
+        <aside class="notes">
+          <strong>Timing: 4 min.</strong> Emphasize that developers don't just edit files; they run servers, migrate databases, execute tests, and configure deployments.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 12: Act 2 Section Divider
+           =========================================== -->
+      <section id="act2-divider" class="section-divider" data-state="is-section-divider">
+        <div class="kicker">Act 2</div>
+        <h1>The Return to the Terminal</h1>
+        <p class="subtitle">CLI Agents &amp; The Native Execution Loop</p>
+        <aside class="notes">
+          <strong>Timing: 1 min.</strong> Transition to Act 2. Why the command line became the dominant substrate for agentic engineering.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 13: Why the Terminal Won
+           =========================================== -->
+      <section id="why-terminal-slide">
+        <h2>Why the Terminal Won</h2>
+        <div class="content">
+          <div class="split even">
+            <div class="card cyan">
+              <h3><i class="fa-solid fa-terminal"></i> The Developer's Native Substrate</h3>
+              <ul>
+                <li>Real tools live here: <code>git</code>, <code>npm</code>, <code>pytest</code>, <code>docker</code></li>
+                <li>Fast, streamable, information-dense</li>
+                <li>Pipes, background jobs, and headless runs</li>
+              </ul>
+            </div>
+
+            <div class="card purple">
+              <h3><i class="fa-solid fa-code-branch"></i> The Lineage of CLI Agents</h3>
+              <ul>
+                <li><strong>Aider:</strong> repo maps + git-aware edits</li>
+                <li><strong>Claude Code:</strong> tools, subagents, compaction</li>
+                <li><strong>Goose / Pi / OpenCode:</strong> pluggable harnesses</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footnote">In the terminal, the LLM is directly adjacent to compilers, test runners, and git history.</div>
+        <aside class="notes">
+          <strong>Timing: 4 min.</strong> Point out how CLI harnesses give the model a tight feedback loop directly against the real operating environment.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 14: Anatomy of the CLI Agent Loop
+           =========================================== -->
+      <section id="cli-agent-loop-slide">
+        <h2>Anatomy of the CLI Agent Loop</h2>
+        <div class="content">
+          <div class="mermaid">
+flowchart LR
+  P["1. Context Assembly<br>(Prompt + Git)"] --> API["2. LLM API Request<br>(Streaming Response)"]
+  API -->|Tool Call JSON| G{"3. Policy Gate<br>Permission Check"}
+  G -->|Approved| E["4. Local Tool Run<br>(Bash/Edit/Grep)"]
+  G -->|Blocked| D["Policy Error"] --> API
+  E --> R["5. Format toolResult<br>(stdout/stderr/diff)"]
+  R -->|Next Turn Context| API
+  API -->|Text Only| DONE(["Display Response to User & Idle"])
+          </div>
+        </div>
+        <div class="footnote">The agent loop repeats automatically until the model emits a text response without tool calls.</div>
+        <aside class="notes">
+          <strong>Timing: 5 min.</strong> Trace every node in this loop. The harness is everything outside the LLM API box: assembling context, validating tool calls, running commands, and capturing results.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 15: Inside the Wire Protocol
+           =========================================== -->
+      <section id="wire-protocol-slide">
+        <h2>Inside the Wire Protocol: Tool Calls &amp; Results</h2>
+        <div class="content">
+          <div class="split even">
+            <div class="card cyan">
+              <h3><i class="fa-solid fa-arrow-right-from-bracket"></i> 1. Model Tool Call Emission</h3>
+              <pre><code>{
+  <span class="tok-kw">"id"</span>: <span class="tok-str">"call_987xyz"</span>,
+  <span class="tok-kw">"name"</span>: <span class="tok-str">"edit"</span>,
+  <span class="tok-kw">"arguments"</span>: <span class="tok-str">"{ path: 'src/auth.ts', … }"</span>
+}</code></pre>
+            </div>
+
+            <div class="card purple">
+              <h3><i class="fa-solid fa-arrow-right-to-bracket"></i> 2. Harness Execution &amp; Feedback</h3>
+              <pre><code>{
+  <span class="tok-kw">"tool_call_id"</span>: <span class="tok-str">"call_987xyz"</span>,
+  <span class="tok-kw">"status"</span>: <span class="tok-str">"success"</span>,
+  <span class="tok-kw">"content"</span>: <span class="tok-str">"1 line changed"</span>
+}</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="footnote">The harness serializes execution outcomes into standardized messages matching provider API schemas.</div>
+        <aside class="notes">
+          <strong>Timing: 4 min.</strong> Emphasize the protocol boundary. The model emits JSON strings, the harness executes native POSIX calls, and returns JSON payloads.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 16: The Four Stopping Conditions
+           =========================================== -->
+      <section id="stopping-conditions-slide">
+        <h2>The Four Stopping Conditions of the Loop</h2>
+        <div class="content">
+          <div class="split even">
+            <div class="card green">
+              <h3><i class="fa-solid fa-flag-checkered"></i> 1. Natural Completion</h3>
+              <p>The model sees enough evidence and replies with text—not another tool call.</p>
+              
+              <h3 style="margin-top: 14px;"><i class="fa-solid fa-hand"></i> 2. Explicit Termination (<code>terminate: true</code>)</h3>
+              <p>A tool or hook returns <code>terminate: true</code>.</p>
+            </div>
+
+            <div class="card amber">
+              <h3><i class="fa-solid fa-user-xmark"></i> 3. User Steering Interrupt</h3>
+              <p><kbd>Enter</kbd> steers; <kbd>Ctrl+C</kbd> stops the loop.</p>
+              
+              <h3 style="margin-top: 14px;"><i class="fa-solid fa-shield-halved"></i> 4. Circuit Breakers &amp; Budget Caps</h3>
+              <p>A turn, time, cost, or context budget is reached.</p>
+            </div>
+          </div>
+        </div>
+        <div class="footnote">Stopping conditions prevent infinite runaway loops and protect developers from runaway token billing.</div>
+        <aside class="notes">
+          <strong>Timing: 4 min.</strong> Walk through each stopping condition. Note the unanimous termination rule in batched tools.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 17: Guardrails, Permissions & Sandboxes
+           =========================================== -->
+      <section id="guardrails-slide">
+        <h2>Guardrails, Permissions &amp; Sandboxes</h2>
+        <div class="content">
+          <div class="split even">
+            <div class="card green">
+              <h3><i class="fa-solid fa-shield-halved"></i> Permission Tiers</h3>
+              <ul>
+                <li><span class="pill green">Auto</span> read, search, status</li>
+                <li><span class="pill amber">Guarded</span> write and edit in workspace</li>
+                <li><span class="pill pink">High-risk</span> shell commands: confirm or allowlist</li>
+              </ul>
+            </div>
+
+            <div class="card cyan">
+              <h3><i class="fa-solid fa-box"></i> Sandbox Containment</h3>
+              <ul>
+                <li><strong>Workspace jail:</strong> paths stay under project root</li>
+                <li><strong>OS sandbox:</strong> <code>bwrap</code> / containers</li>
+                <li><strong>Compaction:</strong> trim massive tool output</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footnote">A production harness must protect the developer's system from destructive commands or runaway processes.</div>
+        <aside class="notes">
+          <strong>Timing: 4 min.</strong> Discuss safety: Why running arbitrary bash tool calls requires containment, permission tiers, or container isolation.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 18: Act 3 Section Divider
+           =========================================== -->
+      <section id="act3-divider" class="section-divider" data-state="is-section-divider">
+        <div class="kicker">Act 3</div>
+        <h1>Context Scaling &amp; Subagents</h1>
+        <p class="subtitle">Concurrency, Isolation, and Task Trees</p>
+        <aside class="notes">
+          <strong>Timing: 1 min.</strong> Transition to Act 3. What happens when a single context window is overwhelmed by thousands of lines of logs and intermediate steps?
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 19: The Context Window Bottleneck
+           =========================================== -->
+      <section id="context-bottleneck-slide">
+        <h2>The Context Window Bottleneck &amp; Compression</h2>
+        <div class="content">
+          <div class="split even">
+            <div class="card magenta">
+              <h3><i class="fa-solid fa-triangle-exclamation"></i> Why Single-Context Loops Fail</h3>
+              <ul>
+                <li><strong>Pollution:</strong> logs bury the task</li>
+                <li><strong>Attention:</strong> long histories degrade recall</li>
+                <li><strong>Cost:</strong> every turn resends context</li>
+                <li><strong>Anchoring:</strong> dead ends linger</li>
+              </ul>
+            </div>
+
+            <div class="card cyan">
+              <h3><i class="fa-solid fa-sitemap"></i> The 100:1 Context Compression Ratio</h3>
+              <pre><code><span class="tok-com">// Single Thread (Saturated):</span>
+[Prompt] &rarr; [Grep 8k tokens] &rarr; [Test Log 25k]
+  &rarr; [Edit 1] &rarr; [Stacktrace 15k] &rarr; 💥 Bloat
+
+<span class="tok-com">// Subagent Architecture (Isolated):</span>
+[Main Thread: Clean Prompt &amp; Final Diff]
+  &boxvr;&HorizontalLine; 🔍 <span class="tok-type">[Researcher Child: 35k tokens]</span>
+  &boxv;    &boxur;&HorizontalLine; Returns: <span class="tok-str">"Bug: auth.ts:42"</span>
+  &boxvr;&HorizontalLine; 🛠️ <span class="tok-type">[Worker Child: 20k tokens]</span>
+  &boxv;    &boxur;&HorizontalLine; Returns: <span class="tok-str">"Fixed &amp; 14 tests passing"</span>
+  &boxur;&HorizontalLine; <span class="tok-fn">[Main Thread Context: &lt; 3k tokens Total]</span></code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="footnote">Subagents are primarily a context hygiene and token preservation mechanism, not just concurrency.</div>
+        <aside class="notes">
+          <strong>Timing: 4 min.</strong> Highlight how subagents act like function calls in programming: local variables are garbage collected when the subagent finishes.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 20: Subagent Orchestration Architecture
+           =========================================== -->
+      <section id="subagent-architecture-slide">
+        <h2>Subagent Orchestration Architecture</h2>
+        <div class="content">
+          <div class="mermaid">
+sequenceDiagram
+  autonumber
+  participant Parent as Parent Agent
+  participant Harness as Harness Runtime
+  participant Child as Isolated Child Subagent
+  participant Tools as Workspace Tools
+
+  Parent->>Harness: invoke_subagent(role: Researcher, task: Locate JWT leak)
+  Note over Harness: Allocates fresh session ID and isolated context transcript
+  Harness->>Child: Launch child execution loop
+  loop Subagent Tool Loop
+    Child->>Tools: grep_search, view_file, bash
+    Tools-->>Child: Raw tool outputs (25000 tokens)
+  end
+  Child->>Harness: Return structured summary (Leak found in src/jwt.ts line 58)
+  Note over Harness: Destroys child transcript and keeps only concise summary
+  Harness->>Parent: Deliver tool_result with concise summary (200 tokens)
+  Parent->>Tools: Apply targeted patch to src/jwt.ts
+          </div>
+        </div>
+        <div class="footnote">The child runs an internal loop, collapses its execution history into a summary artifact, and returns it to the parent.</div>
+        <aside class="notes">
+          <strong>Timing: 5 min.</strong> Walk through the sequence diagram. Emphasize that the parent agent's context is completely protected from the child's raw tool dumps.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 21: Forked vs Clean Slate Contexts
+           =========================================== -->
+      <section id="forked-vs-clean-slide">
+        <h2>Forked vs. Clean Slate Contexts</h2>
+        <div class="content">
+          <div class="split even">
+            <div class="card cyan">
+              <h3><i class="fa-solid fa-code-fork"></i> <code>fork_context = true</code> (Branching)</h3>
+              <p>Child inherits a complete clone of the parent's message history.</p>
+              <ul>
+                <li><strong>Use:</strong> review or alternative design</li>
+                <li><strong>Gain:</strong> inherits prior discussion</li>
+                <li><strong>Cost:</strong> inherits bloat and bias</li>
+              </ul>
+            </div>
+
+            <div class="card purple">
+              <h3><i class="fa-solid fa-file-circle-plus"></i> <code>fork_context = false</code> (Clean Slate)</h3>
+              <p>Child starts with a fresh system prompt and only the explicit task payload.</p>
+              <ul>
+                <li><strong>Use:</strong> research or verification</li>
+                <li><strong>Gain:</strong> focused and cheap</li>
+                <li><strong>Cost:</strong> needs a complete task brief</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footnote">In software terms: Forking is like a git branch; clean slate is like an independent microservice call.</div>
+        <aside class="notes">
+          <strong>Timing: 4 min.</strong> Connect to software engineering principles: state inheritance vs decoupled modular components.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 22: Act 4 Section Divider
+           =========================================== -->
+      <section id="act4-divider" class="section-divider" data-state="is-section-divider">
+        <div class="kicker">Act 4</div>
+        <h1>Agentic Graphs &amp; Swarms</h1>
+        <p class="subtitle">Beyond Linear Loops: OpenClaw, Hermes, and Gas Town</p>
+        <aside class="notes">
+          <strong>Timing: 1 min.</strong> Transition to Act 4. How modern systems organize networks of agents into stateful graphs and federated workspaces.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 23: From Loops to Agentic Graphs
+           =========================================== -->
+      <section id="agent-graphs-slide">
+        <h2>From Loops to Agentic Graphs</h2>
+        <div class="content">
+          <div class="split left-heavy">
+            <div class="card cyan">
+              <h3><i class="fa-solid fa-diagram-project"></i> Graph Engineering Primitives</h3>
+              <ul>
+                <li><strong>Nodes:</strong> Specialized agents (Architect, Backend, Frontend, Reviewer).</li>
+                <li><strong>Typed Edges:</strong> Explicit relationships (<code>DEPENDS_ON</code>, <code>IMPLEMENTS</code>).</li>
+                <li><strong>Cyclic Routing:</strong> Automated test/lint failure routing back to worker nodes.</li>
+              </ul>
+            </div>
+
+            <div class="mermaid">
+flowchart TD
+  REQ["Request"] --> ARCH["Architect Agent"]
+  ARCH --> W1["Backend Worker"]
+  ARCH --> W2["Frontend Worker"]
+  W1 --> REV["Reviewer & Tests"]
+  W2 --> REV
+  REV -->|Failure| W1
+  REV -->|Passed| MERGE(["Refinery Queue"])
+            </div>
+          </div>
+        </div>
+        <div class="footnote">Graphs replace monolithic prompts with structured state machines and automated quality checkpoints.</div>
+        <aside class="notes">
+          <strong>Timing: 4 min.</strong> Show how cyclic graphs allow automatic retry loops without restarting the whole process.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 24: Modern Agentic Architectures Compared
+           =========================================== -->
+      <section id="systems-comparison-slide">
+        <h2>Modern Agentic Architectures Compared</h2>
+        <div class="content">
+          <table>
+            <thead>
+              <tr>
+                <th>System</th>
+                <th>Core pattern</th>
+                <th>State lives in</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>OpenClaw</strong><br><span class="source-tag">Peter Steinberger</span></td>
+                <td>Scripted tool DAGs</td>
+                <td>Typed graph pipeline</td>
+              </tr>
+              <tr>
+                <td><strong>Nous Hermes</strong><br><span class="source-tag">NousResearch</span></td>
+                <td>Sessions as infrastructure</td>
+                <td>SQLite lineage tree</td>
+              </tr>
+              <tr>
+                <td><strong>Gas Town</strong><br><span class="source-tag">Steve Yegge</span></td>
+                <td>Git-backed swarm</td>
+                <td>Worktrees + DoltHub</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="footnote">Three patterns: script-driven DAGs, session lineage, and git-worktree fleets.</div>
+        <aside class="notes">
+          <strong>Timing: 5 min.</strong> Walk through the three approaches. Highlight how all three move beyond the single-process terminal session.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 25: Gas Town Architecture
+           =========================================== -->
+      <section id="gas-town-slide">
+        <h2>Gas Town: Persistent Git-Backed Fleets</h2>
+        <div class="content">
+          <div class="split even">
+            <div>
+              <p class="text-lg">A persistent swarm manager for large codebases.</p>
+              <div class="card purple" style="margin-top: 10px;">
+                <h3><i class="fa-solid fa-users-gear"></i> The Gas Town Cast</h3>
+                <ul>
+                <li><strong>Mayor:</strong> routes work</li>
+                <li><strong>Polecats:</strong> workers in worktrees</li>
+                <li><strong>Witness:</strong> watches for stuck work</li>
+                <li><strong>Refinery:</strong> tests and merges</li>
+                <li><strong>DoltHub:</strong> shared work state</li>
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <div class="mermaid">
+flowchart TD
+  M["Mayor Coordinator"] -->|gt sling| P1["Polecat 1 (Backend Worktree)"]
+  M -->|gt sling| P2["Polecat 2 (Frontend Worktree)"]
+  
+  W["Witness Patrol Daemon"] -.->|Monitors Health| P1
+  W -.->|Monitors Health| P2
+  
+  P1 -->|PR Complete| R["Refinery Merge Queue"]
+  P2 -->|PR Complete| R
+  R -->|Merge to Main| MAIN["Main Git Repo"]
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footnote">Gas Town uses git worktrees as isolated sandboxes so multiple agents work on the same repo simultaneously without conflicts.</div>
+        <aside class="notes">
+          <strong>Timing: 4 min.</strong> Emphasize the beauty of git worktrees: complete branch filesystem isolation with zero overhead of re-cloning.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 26: Act 5 Section Divider
+           =========================================== -->
+      <section id="act5-divider" class="section-divider" data-state="is-section-divider">
+        <div class="kicker">Act 5</div>
+        <h1>Case Study: The Pi Architecture</h1>
+        <p class="subtitle">A Transparent, Minimalist Coding Harness</p>
+        <aside class="notes">
+          <strong>Timing: 1 min.</strong> Transition to Act 5. Why study Pi? Because it exposes the bare essence of a harness in under 700 lines of readable TypeScript.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 27: Why Pi? The Anti-Bloat Philosophy
+           =========================================== -->
+      <section id="why-pi-slide">
+        <h2>Why Pi? The Anti-Bloat Philosophy</h2>
+        <div class="content">
+          <blockquote>
+            <p><em>"If I don't need it, it won't be built."</em> — Mario Zechner (<code>badlogic</code>)</p>
+          </blockquote>
+
+          <div class="split even" style="margin-top: 15px;">
+            <div class="card amber">
+              <h3><i class="fa-solid fa-box-archive"></i> What Typical Harnesses Do</h3>
+              <ul>
+                <li>Huge built-in prompts</li>
+                <li>Large, fixed toolsets</li>
+                <li>Hidden state and agents</li>
+                <li>Frequent confirmation popups</li>
+              </ul>
+            </div>
+
+            <div class="card green">
+              <h3><i class="fa-solid fa-feather"></i> What Pi Does</h3>
+              <ul>
+                <li><strong>~750-token</strong> prompt on disk</li>
+                <li><strong>4 tools:</strong> read, write, edit, bash</li>
+                <li>Plans are repo markdown files</li>
+                <li>Sandbox + readable JSONL sessions</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footnote">Pi demonstrates that an elegant, extensible harness does not require thousands of lines of framework bloat.</div>
+        <aside class="notes">
+          <strong>Timing: 4 min.</strong> Contrast Pi's explicit refusal of unnecessary abstractions with heavy framework architectures.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 28: Pi's Monorepo Architecture
+           =========================================== -->
+      <section id="pi-architecture-slide">
+        <h2>Pi's Modular Monorepo Architecture</h2>
+        <div class="content">
+          <div class="mermaid">
+flowchart TD
+  subgraph CLI["CLI Layer: @earendil-works/pi-coding-agent"]
+    TUI["pi-tui (Terminal UI)"]
+    SESS["Session Store (JSONL Tree)"]
+    EXT["Extension Loader (Plugins)"]
+  end
+
+  subgraph CORE["State Layer: @earendil-works/pi-agent-core"]
+    AGENT["Agent Class (State & Queues)"]
+    LOOP["agentLoop() (Async Generator ~683 LOC)"]
+    HOOKS["Lifecycle Hooks (before / after)"]
+  end
+
+  subgraph AI["Provider Layer: @earendil-works/pi-ai"]
+    UNIFIED["Multi-Provider API (Claude, GPT, Gemini)"]
+    SCHEMAS["TypeBox Tool Schemas & Cost Tracker"]
+  end
+
+  CLI --> CORE
+  CORE --> AI
+          </div>
+        </div>
+        <div class="footnote">The entire agent runtime fits in 683 lines of TypeScript across clean package boundaries.</div>
+        <aside class="notes">
+          <strong>Timing: 4 min.</strong> Walk through the three packages: <code>pi-ai</code> (provider normalization), <code>pi-agent-core</code> (stateful loop & hooks), and <code>pi-coding-agent</code> (TUI & session trees).
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 29: Pi's Event Stream & Lifecycle
+           =========================================== -->
+      <section id="pi-lifecycle-slide">
+        <h2>Inside Pi's Event Stream &amp; Lifecycle</h2>
+        <div class="content">
+          <div class="mermaid">
+flowchart LR
+  AS["agent_start"] --> TS["turn_start"]
+  TS --> MS["message_start"]
+  MS --> MU["message_update (delta)"]
+  MU --> ME["message_end"]
+  ME --> TXS["tool_execution_start"]
+  TXS --> TXE["tool_execution_end"]
+  TXE --> TE["turn_end"]
+  TE -->|More Tools / Queue| TS
+  TE -->|Settled & Idle| AE["agent_end"]
+          </div>
+
+          <div class="split even" style="margin-top: 15px;">
+            <div class="card cyan">
+              <h3><i class="fa-solid fa-bolt"></i> Low-Level <code>agentLoop()</code></h3>
+              <p>Async generator: yields events without waiting. Fast for headless work.</p>
+            </div>
+            <div class="card purple">
+              <h3><i class="fa-solid fa-hand"></i> High-Level <code>Agent</code> Class</h3>
+              <p>Awaits listeners in order. A message barrier ensures consistent state before tools run.</p>
+            </div>
+          </div>
+        </div>
+        <div class="footnote">The barrier pattern guarantees that hooks like beforeToolCall see agent state that already includes the assistant message.</div>
+        <aside class="notes">
+          <strong>Timing: 4 min.</strong> Emphasize the architectural beauty of separating the low-level event stream from the stateful barrier wrapper.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 30: Steering vs Follow-up Queues
+           =========================================== -->
+      <section id="pi-steering-slide">
+        <h2>Steering vs. Follow-up: Interruption Mechanics</h2>
+        <div class="content">
+          <div class="split even">
+            <div class="card amber">
+              <h3><i class="fa-solid fa-arrows-split-up-and-left"></i> <code>agent.steer(message)</code></h3>
+              <ul>
+                <li><strong>When:</strong> before the next model call</li>
+                <li><strong>Trigger:</strong> <kbd>Enter</kbd> while working</li>
+                <li><strong>Use:</strong> mid-flight correction</li>
+              </ul>
+            </div>
+
+            <div class="card cyan">
+              <h3><i class="fa-solid fa-list-check"></i> <code>agent.followUp(message)</code></h3>
+              <ul>
+                <li><strong>When:</strong> only when work would end</li>
+                <li><strong>Trigger:</strong> <kbd>Alt+Enter</kbd></li>
+                <li><strong>Use:</strong> queue the next phase</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card purple" style="margin-top: 14px;">
+            <h3><i class="fa-solid fa-sliders"></i> Queue Drain Modes</h3>
+            <p>Drain <code>"one-at-a-time"</code> for a response each turn, or <code>"all"</code> as one prompt batch.</p>
+          </div>
+        </div>
+        <div class="footnote">First-class steering and follow-up queues enable interactive human-in-the-loop control without aborting the session.</div>
+        <aside class="notes">
+          <strong>Timing: 4 min.</strong> Explain how steering allows safe user interruption without corrupting the LLM message history.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 31: The Pi Extension API
+           =========================================== -->
+      <section id="pi-extensions-api-slide">
+        <h2>The Pi Extension API</h2>
+        <div class="content">
+          <p class="text-lg">Extensions are ordinary TypeScript modules over one typed API:</p>
+          
+          <pre><code><span class="tok-kw">export default function</span> <span class="tok-fn">myExtension</span>(pi: <span class="tok-type">ExtensionAPI</span>) {
+  pi.<span class="tok-fn">registerTool</span>({ name: <span class="tok-str">"query_db"</span>, execute });
+  pi.<span class="tok-fn">registerCommand</span>(<span class="tok-str">"lint"</span>, runLint);
+
+  pi.agent.<span class="tok-fn">beforeToolCall</span> = <span class="tok-kw">async</span> (call) =&gt;
+    blocks(call) ? { block: <span class="tok-kw">true</span> } : undefined;
+
+  pi.agent.<span class="tok-fn">afterToolCall</span> = <span class="tok-kw">async</span> (call, result) =&gt;
+    augment(call, result);
+}</code></pre>
+        </div>
+        <div class="footnote">A small, typed API gives developers full power to shape tools, guardrails, and post-processing feedback.</div>
+        <aside class="notes">
+          <strong>Timing: 4 min.</strong> Point out how the extension API gives complete access to the before/after tool lifecycle.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 32: Act 6 Section Divider
+           =========================================== -->
+      <section id="act6-divider" class="section-divider" data-state="is-section-divider">
+        <div class="kicker">Act 6</div>
+        <h1>Building an Extension</h1>
+        <p class="subtitle">Walkthrough: Real-Time Auto-Linting in Pi</p>
+        <aside class="notes">
+          <strong>Timing: 1 min.</strong> Transition to Act 6. A hands-on, 5-slide code walkthrough building an autonomous linter extension.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 33: Extension Walkthrough 1 - Objective
+           =========================================== -->
+      <section id="walkthrough-step1">
+        <h2>Walkthrough · Step 1: Goal &amp; Hook Selection</h2>
+        <div class="content">
+          <div class="split left-heavy">
+            <div>
+              <div class="card cyan">
+                <h3><i class="fa-solid fa-bullseye"></i> The Objective</h3>
+              <p>After every TypeScript <code>edit</code> or <code>write</code>:</p>
+                <ol style="margin-left: 20px; font-size: 13.5pt;">
+                  <li>Run <code>eslint</code> / <code>tsc</code>.</li>
+                  <li>Append diagnostics to the tool result.</li>
+                  <li>Let the next turn repair them.</li>
+                </ol>
+              </div>
+
+              <div class="card purple" style="margin-top: 10px;">
+                <h3><i class="fa-solid fa-link"></i> Why <code>afterToolCall</code>?</h3>
+                <p>Linting needs the saved file. This hook augments the result before the model sees it.</p>
+              </div>
+            </div>
+
+            <div class="mermaid">
+flowchart TD
+  EDIT["edit(file)"] --> DISK["Harness Writes Disk"]
+  DISK --> HOOK["afterToolCall Hook"]
+  HOOK --> LINT["Execute eslint"]
+  LINT --> FEED["Inject Errors in toolResult"]
+            </div>
+          </div>
+        </div>
+        <div class="footnote">Zero manual prompt engineering required; the feedback loop is automated by the harness.</div>
+        <aside class="notes">
+          <strong>Timing: 3 min.</strong> Clarify why <code>afterToolCall</code> is the optimal hook point.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 34: Extension Walkthrough 2 - Skeleton
+           =========================================== -->
+      <section id="walkthrough-step2">
+        <h2>Walkthrough · Step 2: Registering the Hook</h2>
+        <div class="content">
+          <p class="text-lg">Create <code>extensions/auto-linter.ts</code> in your project repository:</p>
+
+          <pre><code><span class="tok-kw">export default function</span> <span class="tok-fn">autoLinter</span>(pi: <span class="tok-type">ExtensionAPI</span>) {
+  pi.agent.<span class="tok-fn">afterToolCall</span> = <span class="tok-kw">async</span> ({ toolCall, result, isError }) =&gt; {
+    <span class="tok-kw">if</span> (isError || ![<span class="tok-str">"edit"</span>, <span class="tok-str">"write"</span>].includes(toolCall.name)) <span class="tok-kw">return</span>;
+
+    <span class="tok-kw">const</span> path = toolCall.args?.path <span class="tok-kw">as string</span>;
+    <span class="tok-kw">if</span> (!path?.match(/\.tsx?$/)) <span class="tok-kw">return</span>;
+
+    <span class="tok-kw">return</span> <span class="tok-fn">runLinterOnPath</span>(path, result);
+  };
+}</code></pre>
+        </div>
+        <div class="footnote">Clean guard clauses ensure we only lint relevant TypeScript files that were successfully mutated.</div>
+        <aside class="notes">
+          <strong>Timing: 4 min.</strong> Show how concise the registration logic is.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 35: Extension Walkthrough 3 - Execution
+           =========================================== -->
+      <section id="walkthrough-step3">
+        <h2>Walkthrough · Step 3: Executing the Linter</h2>
+        <div class="content">
+          <p class="text-lg">Spawn the local linter process and augment the result text:</p>
+
+          <pre><code><span class="tok-kw">export async function</span> <span class="tok-fn">runLinterOnPath</span>(path, result) {
+  <span class="tok-kw">try</span> {
+    <span class="tok-kw">await</span> <span class="tok-fn">execFile</span>(<span class="tok-str">"npx"</span>, [<span class="tok-str">"eslint"</span>, path]);
+    <span class="tok-kw">return</span> result;
+  } <span class="tok-kw">catch</span> (error) {
+    <span class="tok-kw">const</span> output = error.stdout || error.stderr;
+    <span class="tok-kw">return</span> { ...result,
+      content: `${result.content}\n\n⚠️ Lint:\n${output}` };
+  }
+}</code></pre>
+        </div>
+        <div class="footnote">By appending diagnostic output to originalResult.content, the model sees compiler errors as native tool feedback.</div>
+        <aside class="notes">
+          <strong>Timing: 4 min.</strong> Highlight how appending the diagnostics to <code>content</code> makes the model instantly treat it as environment feedback.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 36: Extension Walkthrough 4 - Trace
+           =========================================== -->
+      <section id="walkthrough-step4">
+        <h2>Walkthrough · Step 4: The Autonomous Repair Trace</h2>
+        <div class="content">
+          <div class="mermaid">
+sequenceDiagram
+  autonumber
+  participant LLM as Model
+  participant Pi as Pi Harness
+  participant Ext as Auto-Linter Extension
+  participant ESLint as ESLint CLI
+
+  LLM->>Pi: edit(src/calc.ts, add(a, b))
+  Pi->>Pi: Write changes to disk
+  Pi->>Ext: Trigger afterToolCall()
+  Ext->>ESLint: npx eslint src/calc.ts
+  ESLint-->>Ext: Error: add is not defined (no-undef)
+  Ext-->>Pi: Return result + Warning: add is not defined
+  Pi-->>LLM: Deliver toolResult containing lint error
+  Note over LLM: Model notices missing import in tool output
+  LLM->>Pi: edit(src/calc.ts, import add and return)
+  Pi->>Ext: Trigger afterToolCall()
+  Ext->>ESLint: npx eslint src/calc.ts
+  ESLint-->>Ext: Exit 0 (Clean)
+  Ext-->>Pi: Return clean original result
+  Pi-->>LLM: Deliver clean toolResult
+          </div>
+        </div>
+        <div class="footnote">The agent self-corrects in a single seamless session without human copy-pasting.</div>
+        <aside class="notes">
+          <strong>Timing: 5 min.</strong> Contrast this with naive chat where the developer would have had to copy-paste the error message back to ChatGPT.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 37: Extension Walkthrough 5 - Takeaways
+           =========================================== -->
+      <section id="walkthrough-step5">
+        <h2>Walkthrough · Step 5: Harness Engineering Takeaways</h2>
+        <div class="content">
+          <div class="split even">
+            <div class="card cyan">
+              <h3><i class="fa-solid fa-check-double"></i> Why Hook-Driven Feedback Wins</h3>
+              <ul>
+                <li><strong>Zero prompt bloat:</strong> tools enforce quality</li>
+                <li><strong>Deterministic truth:</strong> linters beat guesses</li>
+                <li><strong>Self-correction:</strong> repair before review</li>
+              </ul>
+            </div>
+
+            <div class="card amber">
+              <h3><i class="fa-solid fa-scale-balanced"></i> The Golden Rule of Harness Engineering</h3>
+              <blockquote>
+                <p><strong>"Don't prompt what you can verify with a tool, and don't verify by hand what your harness can hook into the loop."</strong></p>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+        <div class="footnote">Harness engineering is about creating closed-loop deterministic verification around probabilistic generation.</div>
+        <aside class="notes">
+          <strong>Timing: 4 min.</strong> Emphasize this core takeaway: Combine probabilistic LLM reasoning with deterministic harness verification.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 38: Synthesis & Course Reflection
+           =========================================== -->
+      <section id="reflection-slide">
+        <h2>The Expert Blind Spot in Agentic Coding</h2>
+        <div class="content">
+          <div class="split even">
+            <div class="card magenta">
+              <h3><i class="fa-solid fa-user-xmark"></i> The Novice Perspective (Prompt-Centric)</h3>
+              <ul>
+                <li>Chases the perfect prompt</li>
+                <li>Copies code and errors by hand</li>
+                <li>Treats the model as an oracle</li>
+              </ul>
+            </div>
+
+            <div class="card green">
+              <h3><i class="fa-solid fa-user-check"></i> The Agentic Engineer (Harness-Centric)</h3>
+              <ul>
+                <li>Designs tools and sandboxes</li>
+                <li>Automates verification</li>
+                <li>Protects context with task structure</li>
+                <li>Uses the LLM inside a deterministic loop</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footnote">Adapted from Brown University's Agentic Studio (Krishnamurthi, Fisler, Littman) &amp; IIT Gandhinagar.</div>
+        <aside class="notes">
+          <strong>Timing: 4 min.</strong> Connect back to the course pedagogical objectives: developing the mental models of an Agentic Engineer.
+        </aside>
+      </section>
+
+      <!-- ===========================================
+           SLIDE 39: Summary & Key Takeaways
+           =========================================== -->
+      <section id="summary-slide">
+        <h2>Summary &amp; Key Takeaways</h2>
+        <div class="content">
+          <div class="step-grid">
+            <div class="step-item">
+              <div class="num">01</div>
+              <h4>The Paradigm Shift</h4>
+              <p>Ghost text → chat → CLI loops → fleets.</p>
+            </div>
+
+            <div class="step-item">
+              <div class="num">02</div>
+              <h4>The Atomic Loop</h4>
+              <p>Context → call → policy → tool → feedback.</p>
+            </div>
+
+            <div class="step-item">
+              <div class="num">03</div>
+              <h4>Context Hygiene</h4>
+              <p>Subagents keep noisy exploration out of the main thread.</p>
+            </div>
+
+            <div class="step-item">
+              <div class="num">04</div>
+              <h4>Deterministic Truth</h4>
+              <p>Hook compilers and linters into every edit.</p>
+            </div>
+
+            <div class="step-item">
+              <div class="num">05</div>
+              <h4>Minimalist Rigor</h4>
+              <p>Prefer transparent, testable, typed kernels.</p>
+            </div>
+          </div>
+
+          <div style="margin-top: 20px; text-align: center;">
+            <p class="text-xl" style="color: var(--primary-color);"><strong>Next: Lab 02 — Building Custom Lifecycle Hooks for CLI Agents</strong></p>
+          </div>
+        </div>
+        <div class="footnote">IIT Gandhinagar · Agentic Engineering Course · Questions &amp; Discussion</div>
+        <aside class="notes">
+          <strong>Timing: 3 min.</strong> Wrap up the session and transition to the hands-on lab exercise.
+        </aside>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Reveal.js & Plugins -->
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+  <script>
+    Reveal.initialize({
+      width: 1280,
+      height: 720,
+      margin: 0.04,
+      controls: true,
+      progress: true,
+      slideNumber: 'c/t',
+      hash: true,
+      transition: 'fade',
+      plugins: [ RevealNotes ]
+    }).then(async () => {
+      await document.fonts.ready;
+      mermaid.run({
+        querySelector: '.mermaid'
+      });
+    });
+  </script>
+</body>
+</html>
