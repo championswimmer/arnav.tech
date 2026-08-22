@@ -4,7 +4,7 @@
     "slug": "build-your-own-coding-harness",
     "type": "revealjs",
     "title": "Build Your Own Coding Harness",
-    "description": "From one API call to a safe multi-tool coding agent — IIT Gandhinagar lecture deck.",
+    "description": "From one API call to a safe multi-tool coding agent (IIT-GN).",
     "date": "2026-08-20",
     "cover": "/slides/build-your-own-coding-harness/deck/cover.png"
   },
@@ -13,7 +13,7 @@
     "slug": "the-evolution-of-the-harness",
     "type": "revealjs",
     "title": "The Evolution of the Harness",
-    "description": "From Autocomplete Plugins to Autonomous Multi-Agent Fleets — IIT Gandhinagar lecture deck.",
+    "description": "From Autocomplete Plugins to Autonomous Multi-Agent Fleets (IIT-GN).",
     "date": "2026-08-18",
     "cover": "/slides/the-evolution-of-the-harness/deck/cover.png"
   },
@@ -22,7 +22,7 @@
     "slug": "how-llms-began-to-code",
     "type": "revealjs",
     "title": "How LLMs Began to Code",
-    "description": "From next-token prediction to tool-using software agents — IIT Gandhinagar lecture deck.",
+    "description": "From next-token prediction to tool-using software agents (IIT-GN).",
     "date": "2026-08-17",
     "cover": "/slides/how-llms-began-to-code/deck/cover.png"
   },
