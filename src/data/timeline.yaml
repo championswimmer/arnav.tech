@@ -11,7 +11,8 @@
 #   end        Free-text end, or "Present" for the current role
 #   location   Optional city/region
 #   url        Optional link on the company name
-#   highlights List of key things you did there
+#   highlights List of key things you did there.
+#              Markdown links work: [label](https://example.com)
 
 entries:
   - company: Meta
@@ -70,7 +71,7 @@ entries:
     location: New Delhi, India
     url: https://www.zomato.com
     highlights:
-      - Made the Android app smaller and faster, and cut our build times by 95% so nobody had time for coffee anymore.
+      - Made the Android app [smaller](https://www.zomato.com/blog/our-android-app-has-been-eating-but-shedding-weight/) and [faster](https://www.zomato.com/blog/how-we-cut-the-build-time-for-our-android-app-by-95/), and cut our build times by 95% so nobody had time for coffee anymore.
       - Handled moving Uber Eats users over after the acquisition.
       - Built and open-sourced Sushi, Zomato's design library.
 
@@ -82,5 +83,5 @@ entries:
     url: https://www.codingblocks.com
     highlights:
       - Started a company, bootstrapped it to ~$2M ARR, and actually made money doing it.
-      - Built the SSO, an online IDE, and a code judge that ran everyone's questionable code in Docker.
+      - Built the SSO, an [online IDE](https://ide.codingblocks.com/), and a code judge that ran everyone's questionable code in Docker.
       - Taught a lot of people Android and Node, and wrote the courses too.

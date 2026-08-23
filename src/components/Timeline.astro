@@ -13,6 +13,25 @@ interface Entry {
 }
 
 const entries = (timeline.entries ?? []) as Entry[];
+
+function escapeHtml(value: string): string {
+	return value
+		.replace(/&/g, '&amp;')
+		.replace(/</g, '&lt;')
+		.replace(/>/g, '&gt;')
+		.replace(/"/g, '&quot;');
+}
+
+/** Render author-written markdown links inside a highlight. */
+function renderHighlight(text: string): string {
+	return escapeHtml(text).replace(
+		/\[([^\]]+)\]\(([^)\s]+)\)/g,
+		(_match, label: string, href: string) => {
+			const attrs = /^https?:\/\//.test(href) ? ' target="_blank" rel="noopener"' : '';
+			return `<a href="${href}"${attrs}>${label}</a>`;
+		},
+	);
+}
 ---
 
 <ol class="timeline">
@@ -45,7 +64,7 @@ const entries = (timeline.entries ?? []) as Entry[];
 					{entry.highlights && entry.highlights.length > 0 && (
 						<ul class="highlights">
 							{entry.highlights.map((h) => (
-								<li>{h}</li>
+								<li set:html={renderHighlight(h)} />
 							))}
 						</ul>
 					)}
