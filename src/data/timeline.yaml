@@ -73,7 +73,7 @@ entries:
     highlights:
       - Made the Android app [smaller](https://www.zomato.com/blog/our-android-app-has-been-eating-but-shedding-weight/) and [faster](https://www.zomato.com/blog/how-we-cut-the-build-time-for-our-android-app-by-95/), and cut our build times by 95% so nobody had time for coffee anymore.
       - Handled moving Uber Eats users over after the acquisition.
-      - Built and open-sourced Sushi, Zomato's design library.
+      - Built and open-sourced [Sushi](https://android.sushi.design/), Zomato's design library.
 
   - company: Coding Blocks
     role: Co-Founder & CTO
