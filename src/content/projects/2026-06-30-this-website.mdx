@@ -15,19 +15,60 @@ draft: false
 
 import Counter from '../../components/vue/Counter.vue';
 
-Project pages are written in **MDX**, so they can mix prose with live,
-interactive components. Below is a Vue island — fully interactive in the
-browser, hydrated on load:
+arnav.tech is a deliberately small, content-first publishing system. It pairs
+the feeling of a printed notebook—warm paper, ink, generous reading space—with
+the parts of the web that make technical writing useful: source code, maths,
+diagrams, living demos, and talks that can be read or presented in the browser.
+
+## A site for a few kinds of work
+
+The content model keeps the different modes of writing distinct without making
+publishing cumbersome. Essays use an editorial serif and a more literary
+reading treatment; technical posts switch to a geometric sans and monospace
+code; project pages use MDX when an explanation needs an interactive element.
+Each collection has typed front matter for the things readers encounter—title,
+date, description, tags, cover image, and publication status—so drafts stay
+out of the public listings and RSS feed until they are ready.
+
+The writing surface has a few capabilities built in rather than bolted on per
+post:
+
+- Code fences are highlighted with a palette chosen to sit comfortably on the
+  sepia theme.
+- Inline and display mathematics are rendered with KaTeX.
+- Mermaid blocks become diagrams that follow the site’s light and dark modes.
+- Images, metadata, RSS, a sitemap, and structured data are produced as part
+  of the same publishing pass.
+
+## Mostly static, selectively alive
+
+Astro compiles the site into static HTML, CSS, JavaScript, and optimised assets.
+That keeps the ordinary act of reading fast and resilient: there is no server
+application to wake up for an essay or a project page. A GitHub Actions workflow
+runs the production build on every push to `main` and publishes the generated
+`dist` directory to GitHub Pages.
+
+Static does not mean inert. Shared Astro components provide the site frame,
+navigation, theme control, metadata, and the reading layouts. When a page needs
+behaviour, it can embed a Vue component as an island: the component’s JavaScript
+is sent only for that feature and hydrates when it becomes visible. This little
+counter is the simplest example:
 
 <Counter client:visible start={3} label="Stars" />
 
-Because projects are MDX, anything you can express as a Vue component can live
-inline: demos, playgrounds, charts, embeds.
+Because project pages are MDX, a component can sit alongside its explanation
+instead of being exiled to a separate demo page—useful for small playgrounds,
+charts, embeds, or an interface worth trying in place.
 
-## How it's built
+## Talks as part of the archive
 
-- **Essays** are Markdown, set in an editorial serif on sepia paper.
-- **Tech Posts** are Markdown/MDX with syntax highlighting, Mermaid, and KaTeX.
-- **Projects** (like this one) are MDX with embedded Vue components.
+The slides section treats presentations as first-class work rather than a list
+of outbound links. Older talks remain embedded from SpeakerDeck. Newer talks
+can live in the repository as self-contained Reveal.js decks—HTML, CSS, and any
+images—served at their own stable deck URL. The talk page frames each local deck
+in the site, with a direct full-screen launcher for presenting it; visitors can
+also browse the slides archive like the rest of the writing.
 
-The whole thing is static, fast, and content-first.
+The result is intentionally not a general-purpose CMS. It is a lightweight,
+version-controlled place to publish essays, notes, projects, and presentations
+in forms that suit the material.
