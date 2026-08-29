@@ -12,6 +12,7 @@ import { readdirSync } from 'node:fs';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import { remarkMermaid } from './src/plugins/remark-mermaid.mjs';
+import { singleSitemap } from './src/plugins/single-sitemap.mjs';
 
 // Old Hashnode served every article at `/<slug>`. This site namespaces by
 // collection (`/posts/<slug>`, `/essays/<slug>`, `/projects/<slug>`). Emit an
@@ -35,7 +36,7 @@ const legacyRedirects = Object.fromEntries(
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://arnav.tech',
-	integrations: [mdx(), sitemap(), vue(), icon()],
+	integrations: [mdx(), sitemap(), singleSitemap(), vue(), icon()],
 	redirects: legacyRedirects,
 
 	// Lets us `import ... from '*.yaml'` (e.g. src/data/social.yaml).
