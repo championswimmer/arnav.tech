@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import { Icon } from 'astro-icon/components';
 import BaseLayout from './BaseLayout.astro';
+import PostMeta from '../components/PostMeta.astro';
 import Mermaid from '../components/Mermaid.astro';
 
 type Props = CollectionEntry<'projects'>['data'];
@@ -31,6 +32,7 @@ const statusLabel: Record<string, string> = {
 			<p class="kicker">Project · {statusLabel[status]}</p>
 			<h1>{title}</h1>
 			<p class="lede">{description}</p>
+			<PostMeta tags={tags} />
 			<div class="actions">
 				{url && <a class="btn" href={url} target="_blank" rel="noopener">Visit <Icon name="tabler:arrow-up-right" /></a>}
 				{repo && <a class="btn ghost" href={repo} target="_blank" rel="noopener">Source <Icon name="tabler:arrow-up-right" /></a>}
@@ -83,6 +85,9 @@ const statusLabel: Record<string, string> = {
 		font-size: 1.15rem;
 		color: var(--ink-soft);
 		margin: 0.4em 0 1em;
+	}
+	.project-header :global(.meta) {
+		margin-bottom: 1em;
 	}
 	.actions {
 		display: flex;

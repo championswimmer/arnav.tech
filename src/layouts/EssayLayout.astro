@@ -3,17 +3,17 @@ import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import FormattedDate from '../components/FormattedDate.astro';
+import PostMeta from '../components/PostMeta.astro';
 import AiUsage from '../components/vue/AiUsage.vue';
 import JsonLd from '../components/JsonLd.astro';
 import { SITE_AUTHOR } from '../consts';
+import { isAiUsageTag } from '../lib/tags';
 
 type Props = CollectionEntry<'essays'>['data'];
 
 const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.props;
 
-const AI_USAGE_TAGS = ['ai-free', 'ai-assisted', 'ai-generated'] as const;
-type AiUsageType = typeof AI_USAGE_TAGS[number];
-const aiUsage = tags.find((t): t is AiUsageType => AI_USAGE_TAGS.includes(t as AiUsageType)) ?? null;
+const aiUsage = tags.find(isAiUsageTag) ?? null;
 
 const pageURL = new URL(Astro.url.pathname, Astro.site);
 const heroURL = heroImage ? new URL(heroImage.src, Astro.url).toString() : undefined;
@@ -66,6 +66,7 @@ const breadcrumbs = {
 				<FormattedDate date={pubDate} />
 				{updatedDate && <span> · revised <FormattedDate date={updatedDate} /></span>}
 			</p>
+			<PostMeta tags={tags} />
 		</header>
 		{
 			heroImage && (
@@ -109,6 +110,10 @@ const breadcrumbs = {
 		font-family: var(--font-sans);
 		font-size: 0.85rem;
 		color: var(--ink-faint);
+	}
+	.essay-header :global(.meta) {
+		justify-content: center;
+		margin-top: 0.75em;
 	}
 	.hero {
 		width: 100%;

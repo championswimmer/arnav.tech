@@ -7,14 +7,13 @@ import Mermaid from '../components/Mermaid.astro';
 import AiUsage from '../components/vue/AiUsage.vue';
 import JsonLd from '../components/JsonLd.astro';
 import { SITE_AUTHOR } from '../consts';
+import { isAiUsageTag } from '../lib/tags';
 
 type Props = CollectionEntry<'posts'>['data'];
 
 const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.props;
 
-const AI_USAGE_TAGS = ['ai-free', 'ai-assisted', 'ai-generated'] as const;
-type AiUsageType = typeof AI_USAGE_TAGS[number];
-const aiUsage = tags.find((t): t is AiUsageType => AI_USAGE_TAGS.includes(t as AiUsageType)) ?? null;
+const aiUsage = tags.find(isAiUsageTag) ?? null;
 
 const pageURL = new URL(Astro.url.pathname, Astro.site);
 const heroURL = heroImage ? new URL(heroImage.src, Astro.url).toString() : undefined;

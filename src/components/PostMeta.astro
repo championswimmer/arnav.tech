@@ -1,28 +1,38 @@
 ---
 import FormattedDate from './FormattedDate.astro';
+import { tagSlug, isTopicalTag } from '../lib/tags';
 
 interface Props {
-	pubDate: Date;
+	pubDate?: Date;
 	updatedDate?: Date;
 	tags?: string[];
 }
 
 const { pubDate, updatedDate, tags = [] } = Astro.props;
+const topicalTags = tags.filter(isTopicalTag);
 ---
 
-<div class="meta">
-	<FormattedDate date={pubDate} />
-	{updatedDate && <span class="updated">· updated <FormattedDate date={updatedDate} /></span>}
-	{
-		tags.length > 0 && (
-			<span class="tags">
-				{tags.map((tag) => (
-					<span class="tag">#{tag}</span>
-				))}
-			</span>
-		)
-	}
-</div>
+{
+	(pubDate || topicalTags.length > 0) && (
+		<div class="meta">
+			{pubDate && <FormattedDate date={pubDate} />}
+			{updatedDate && (
+				<span class="updated">
+					· updated <FormattedDate date={updatedDate} />
+				</span>
+			)}
+			{topicalTags.length > 0 && (
+				<span class="tags">
+					{topicalTags.map((tag) => (
+						<a class="tag" href={`/tags/${tagSlug(tag)}/`}>
+							#{tag}
+						</a>
+					))}
+				</span>
+			)}
+		</div>
+	)
+}
 <style>
 	.meta {
 		color: var(--ink-faint);
@@ -40,5 +50,9 @@ const { pubDate, updatedDate, tags = [] } = Astro.props;
 	}
 	.tag {
 		color: var(--accent);
+		text-decoration: none;
+	}
+	.tag:hover {
+		text-decoration: underline;
 	}
 </style>
