@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getAllTags } from '../../lib/tags';
+
+const tags = [...(await getAllTags()).values()].sort((a, b) => a.label.localeCompare(b.label));
+---
+
+<BaseLayout
+	title="Tags · Arnav Gupta"
+	description="Topics across essays, posts, and projects."
+>
+	<header class="page-head">
+		<h1 class="kicker">Tags</h1>
+		<p class="blurb">Topics across essays, posts, and projects.</p>
+	</header>
+	<ul class="tag-list">
+		{
+			tags.map((tag) => (
+				<li>
+					<a href={`/tags/${tag.slug}/`}>
+						<span class="label">#{tag.label}</span>
+						<span class="count">{tag.count}</span>
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</BaseLayout>
+
+<style>
+	.kicker {
+		font-family: var(--font-sans);
+		text-transform: uppercase;
+		letter-spacing: 0.18em;
+		font-size: 0.8rem;
+		font-weight: normal;
+		color: var(--accent);
+		margin: 0 0 0.2em;
+	}
+	.blurb {
+		font-family: var(--font-sans);
+		font-size: 1.15rem;
+		color: var(--ink-soft);
+		margin-bottom: 2em;
+	}
+	.tag-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6em 0.8em;
+	}
+	.tag-list a {
+		display: inline-flex;
+		align-items: baseline;
+		gap: 0.45em;
+		text-decoration: none;
+		font-family: var(--font-sans);
+		color: var(--accent);
+		padding: 0.4em 0.75em;
+		background: var(--paper-raised);
+		border: 1px solid var(--rule);
+	}
+	.tag-list a:hover {
+		text-decoration: underline;
+	}
+	.count {
+		font-family: var(--font-mono);
+		font-size: 0.8em;
+		color: var(--ink-faint);
+	}
+</style>

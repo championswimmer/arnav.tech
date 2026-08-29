@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EntryList from '../../components/EntryList.astro';
+import { getAllTags } from '../../lib/tags';
+import type { TaggedEntry } from '../../lib/tags';
+
+export async function getStaticPaths() {
+	const tags = await getAllTags();
+	return [...tags.values()].map((bucket) => ({
+		params: { tag: bucket.slug },
+		props: { label: bucket.label, entries: bucket.entries },
+	}));
+}
+
+interface Props {
+	label: string;
+	entries: TaggedEntry[];
+}
+
+const { label, entries } = Astro.props;
+const count = entries.length;
+const blurb = count === 1 ? `1 piece tagged ${label}.` : `${count} pieces tagged ${label}.`;
+---
+
+<BaseLayout
+	title={`#${label} · Arnav Gupta`}
+	description={`Writing and projects tagged ${label}.`}
+>
+	<header class="page-head">
+		<h1 class="kicker">#{label}</h1>
+		<p class="blurb">{blurb}</p>
+	</header>
+	<EntryList items={entries} variant="tech" />
+</BaseLayout>
+
+<style>
+	.kicker {
+		font-family: var(--font-sans);
+		text-transform: uppercase;
+		letter-spacing: 0.18em;
+		font-size: 0.8rem;
+		font-weight: normal;
+		color: var(--accent);
+		margin: 0 0 0.2em;
+	}
+	.blurb {
+		font-family: var(--font-sans);
+		font-size: 1.15rem;
+		color: var(--ink-soft);
+		margin-bottom: 2em;
+	}
+</style>
