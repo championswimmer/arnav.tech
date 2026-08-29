@@ -7,15 +7,36 @@ import icon from 'astro-icon';
 import { defineConfig, fontProviders } from 'astro/config';
 import { unified } from '@astrojs/markdown-remark';
 import yaml from '@rollup/plugin-yaml';
+import { readdirSync } from 'node:fs';
 
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import { remarkMermaid } from './src/plugins/remark-mermaid.mjs';
 
+// Old Hashnode served every article at `/<slug>`. This site namespaces by
+// collection (`/posts/<slug>`, `/essays/<slug>`, `/projects/<slug>`). Emit an
+// HTML redirect for each legacy path so GitHub Pages can serve the old URLs.
+// Date prefixes are stripped to match `cleanSlug` in src/lib/slug.ts.
+const DATE_PREFIX = /^\d{4}-\d{2}-\d{2}-/;
+const legacyRedirects = Object.fromEntries(
+	['essays', 'posts', 'projects'].flatMap((collection) =>
+		readdirSync(`./src/content/${collection}`, { withFileTypes: true })
+			.filter((entry) => {
+				if (entry.name.startsWith('.')) return false;
+				return entry.isDirectory() || /\.(md|mdx)$/.test(entry.name);
+			})
+			.map((entry) => {
+				const slug = entry.name.replace(/\.(md|mdx)$/, '').replace(DATE_PREFIX, '');
+				return [`/${slug}`, `/${collection}/${slug}`];
+			}),
+	),
+);
+
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://arnav.tech',
 	integrations: [mdx(), sitemap(), vue(), icon()],
+	redirects: legacyRedirects,
 
 	// Lets us `import ... from '*.yaml'` (e.g. src/data/social.yaml).
 	vite: {
