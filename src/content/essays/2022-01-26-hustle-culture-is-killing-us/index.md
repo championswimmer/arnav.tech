@@ -4,6 +4,7 @@ description: "Side projects, creator economy, remote work — the hustle got lou
 pubDate: 2022-01-26
 heroImage: ./images/hustle-culture.jpeg
 tags: [culture, work]
+originalUrl: https://threads.championswimmer.in/p/hustle-culture
 ---
 
 The last few years I have been at the intersection of tech, content, hustle
