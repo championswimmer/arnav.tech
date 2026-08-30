@@ -1,5 +1,5 @@
 ---
-status: planned # planned | in-progress | complete
+status: in-progress # planned | in-progress | complete
 ---
 
 # Original-source banner
