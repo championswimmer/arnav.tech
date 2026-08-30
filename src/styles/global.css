@@ -20,6 +20,8 @@
 	--accent: #9c5a34; /* burnt sienna — links & highlights */
 	--accent-dark: #6f3d20;
 	--highlight: #e8dcc0; /* inline code / mark background */
+	--code-bg: #f8f0dc; /* code blocks — slightly brighter than raised paper */
+	--code-border: #d3c2a6;
 
 	--box-shadow:
 		0 1px 2px rgba(43, 33, 23, 0.08), 0 6px 18px rgba(43, 33, 23, 0.08);
@@ -40,6 +42,8 @@
 		--accent: #e0a374;
 		--accent-dark: #f0c19b;
 		--highlight: #3a2f21;
+		--code-bg: #241c14; /* code blocks — a touch deeper than raised paper */
+		--code-border: #4a3c2d;
 		--box-shadow:
 			0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 18px rgba(0, 0, 0, 0.3);
 	}
@@ -54,6 +58,8 @@
 	--accent: #e0a374;
 	--accent-dark: #f0c19b;
 	--highlight: #3a2f21;
+	--code-bg: #241c14; /* code blocks — a touch deeper than raised paper */
+	--code-border: #4a3c2d;
 	--box-shadow:
 		0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 18px rgba(0, 0, 0, 0.3);
 }
@@ -170,10 +176,10 @@ code {
 /* Shiki code blocks */
 pre {
 	font-family: var(--font-mono);
-	background-color: var(--paper-raised);
+	background-color: var(--code-bg);
 	padding: 1.25em 1.5em;
 	border-radius: 8px;
-	border: 1px solid var(--rule);
+	border: 1px solid var(--code-border);
 	overflow-x: auto;
 	font-size: 0.9rem;
 	line-height: 1.6;
