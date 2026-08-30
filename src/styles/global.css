@@ -191,6 +191,11 @@ pre > code {
   itself stays on --paper-raised in both modes; only the tokens switch.
   Light is the default; dark applies under the system preference unless the
   reader has explicitly picked light, and [data-theme='dark'] wins outright.
+
+  Rose Pine Dawn's light token colors are a little too airy on our warm paper,
+  especially for comments and shell strings. Where `color-mix()` is available,
+  pull those light-mode tokens toward the site's ink to keep the palette but
+  materially improve legibility.
 */
 .astro-code,
 .astro-code span {
@@ -198,6 +203,13 @@ pre > code {
 	font-style: var(--shiki-light-font-style);
 	font-weight: var(--shiki-light-font-weight);
 	text-decoration: var(--shiki-light-text-decoration);
+}
+
+@supports (color: color-mix(in srgb, black, white)) {
+	.astro-code,
+	.astro-code span {
+		color: color-mix(in srgb, var(--shiki-light) 55%, var(--ink) 45%);
+	}
 }
 
 @media (prefers-color-scheme: dark) {
