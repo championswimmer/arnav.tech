@@ -1,5 +1,5 @@
 ---
-status: planned # planned | in-progress | complete
+status: complete # planned | in-progress | complete
 ---
 
 # Make AiUsage a static Astro component
@@ -11,10 +11,10 @@ interactivity. Astro already server-renders it to HTML at build time, so the
 that's already there. Convert it to a plain `.astro` component so it renders as
 static HTML with **zero** client JS.
 
-- [ ] Port `src/components/vue/AiUsage.vue` → `src/components/AiUsage.astro`
-- [ ] Update the imports + usages in `EssayLayout.astro` and `PostLayout.astro` (drop `client:load`)
-- [ ] Delete `src/components/vue/AiUsage.vue`
-- [ ] Verify with `bun run build` (banner HTML present, no Vue chunk emitted for it)
+- [x] Port `src/components/vue/AiUsage.vue` → `src/components/AiUsage.astro`
+- [x] Update the imports + usages in `EssayLayout.astro` and `PostLayout.astro` (drop `client:load`)
+- [x] Delete `src/components/vue/AiUsage.vue`
+- [x] Verify with `bun run build` (banner HTML present, no Vue chunk emitted for it)
 
 ## Context
 

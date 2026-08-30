@@ -4,7 +4,7 @@ import type { CollectionEntry } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import PostMeta from '../components/PostMeta.astro';
 import Mermaid from '../components/Mermaid.astro';
-import AiUsage from '../components/vue/AiUsage.vue';
+import AiUsage from '../components/AiUsage.astro';
 import JsonLd from '../components/JsonLd.astro';
 import OriginalSource from '../components/OriginalSource.astro';
 import { SITE_AUTHOR } from '../consts';
@@ -73,7 +73,7 @@ const breadcrumbs = {
 		}
 		<div class="reading-tech">
 			{originalUrl && <OriginalSource url={originalUrl} />}
-			{aiUsage && <AiUsage type={aiUsage} client:load />}
+			{aiUsage && <AiUsage type={aiUsage} />}
 			<slot />
 		</div>
 	</article>
