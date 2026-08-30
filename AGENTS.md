@@ -112,6 +112,20 @@ Slash commands scaffold front-matter-correct files:
 - `/new-post <title>` — a tech post in `src/content/posts/`
 - `/new-project <title>` — an MDX project page in `src/content/projects/`
 
+## Plans
+
+Implementation plans live in `.claude/plans/`. Each plan file:
+
+- Is named with a `yyyy-mm-dd-` date prefix followed by a kebab-case slug,
+  e.g. `2026-08-30-add-search.md`.
+- Opens with a Markdown checklist of the plan's steps, right below the title.
+- Carries a `status` field in its YAML frontmatter (`planned`, `in-progress`,
+  or `complete`). Mark a plan `complete` when all its steps are done.
+- When you start a new plan, first delete every older plan already marked
+  `complete` — run `.claude/skills/planning/scripts/clean-plans.sh`.
+
+See the `planning` skill for the full workflow and a plan template to copy.
+
 ## Git workflow
 
 Always commit and push after making changes — don't leave work uncommitted
