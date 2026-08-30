@@ -37,7 +37,11 @@ const legacyRedirects = Object.fromEntries(
 export default defineConfig({
 	site: 'https://arnav.tech',
 	integrations: [mdx(), sitemap(), singleSitemap(), vue(), icon()],
-	redirects: legacyRedirects,
+	redirects: {
+		...legacyRedirects,
+		'/tags': '/tag',
+		'/tags/[tag]': '/tag/[tag]',
+	},
 
 	// Lets us `import ... from '*.yaml'` (e.g. src/data/social.yaml).
 	vite: {

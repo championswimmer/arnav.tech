@@ -17,7 +17,7 @@ const tags = [...(await getAllTags()).values()].sort((a, b) => a.label.localeCom
 		{
 			tags.map((tag) => (
 				<li>
-					<a href={`/tags/${tag.slug}/`}>
+					<a href={`/tag/${tag.slug}/`}>
 						<span class="label">#{tag.label}</span>
 						<span class="count">{tag.count}</span>
 					</a>

@@ -24,7 +24,7 @@ const topicalTags = tags.filter(isTopicalTag);
 			{topicalTags.length > 0 && (
 				<span class="tags">
 					{topicalTags.map((tag) => (
-						<a class="tag" href={`/tags/${tagSlug(tag)}/`}>
+						<a class="tag" href={`/tag/${tagSlug(tag)}/`}>
 							#{tag}
 						</a>
 					))}
