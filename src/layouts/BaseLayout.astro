@@ -17,6 +17,7 @@ interface Props {
 	updatedDate?: Date;
 	tags?: string[];
 	author?: string;
+	canonical?: string;
 }
 
 const {
@@ -29,6 +30,7 @@ const {
 	updatedDate,
 	tags,
 	author,
+	canonical,
 } = Astro.props;
 ---
 
@@ -44,6 +46,7 @@ const {
 			updatedDate={updatedDate}
 			tags={tags}
 			author={author}
+			canonical={canonical}
 		/>
 	</head>
 	<body>

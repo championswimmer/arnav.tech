@@ -1,5 +1,5 @@
 ---
-status: in-progress # planned | in-progress | complete
+status: complete # planned | in-progress | complete
 ---
 
 # Original-source banner
@@ -9,11 +9,11 @@ as **originally published elsewhere** (my newsletter, another of my sites, or a
 publication I wrote for) and renders a banner at the top of the article — styled
 to match the existing AI-usage banners — that links out to the original.
 
-- [ ] Add `originalUrl` (optional URL) to the `essays` and `posts` schemas in `src/content.config.ts`
-- [ ] Build a new static `OriginalSource.astro` banner component in `src/components/`
-- [ ] Render the banner in `EssayLayout.astro` and `PostLayout.astro`, above the `<slot />` alongside the AI banner
-- [ ] Optionally add `<link rel="canonical">` pointing at the original URL in `BaseHead.astro`
-- [ ] Verify with `bun run build` and a spot-check on a piece carrying the field
+- [x] Add `originalUrl` (optional URL) to the `essays` and `posts` schemas in `src/content.config.ts`
+- [x] Build a new static `OriginalSource.astro` banner component in `src/components/`
+- [x] Render the banner in `EssayLayout.astro` and `PostLayout.astro`, above the `<slot />` alongside the AI banner
+- [x] Optionally add `<link rel="canonical">` pointing at the original URL in `BaseHead.astro`
+- [x] Verify with `bun run build` and a spot-check on a piece carrying the field
 
 ## Context
 

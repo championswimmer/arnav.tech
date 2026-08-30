@@ -6,12 +6,13 @@ import PostMeta from '../components/PostMeta.astro';
 import Mermaid from '../components/Mermaid.astro';
 import AiUsage from '../components/vue/AiUsage.vue';
 import JsonLd from '../components/JsonLd.astro';
+import OriginalSource from '../components/OriginalSource.astro';
 import { SITE_AUTHOR } from '../consts';
 import { isAiUsageTag } from '../lib/tags';
 
 type Props = CollectionEntry<'posts'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, tags, originalUrl } = Astro.props;
 
 const aiUsage = tags.find(isAiUsageTag) ?? null;
 
@@ -29,6 +30,7 @@ const blogPosting = {
 	...(heroURL && { image: heroURL }),
 	mainEntityOfPage: { '@type': 'WebPage', '@id': pageURL.toString() },
 	...(tags.length > 0 && { keywords: tags.join(', ') }),
+	...(originalUrl && { isBasedOn: originalUrl }),
 };
 
 const breadcrumbs = {
@@ -55,6 +57,7 @@ const breadcrumbs = {
 	pubDate={pubDate}
 	updatedDate={updatedDate}
 	tags={tags}
+	canonical={originalUrl}
 >
 	<JsonLd data={[blogPosting, breadcrumbs]} />
 	<article class="post">
@@ -69,6 +72,7 @@ const breadcrumbs = {
 			)
 		}
 		<div class="reading-tech">
+			{originalUrl && <OriginalSource url={originalUrl} />}
 			{aiUsage && <AiUsage type={aiUsage} client:load />}
 			<slot />
 		</div>

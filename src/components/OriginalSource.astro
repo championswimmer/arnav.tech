@@ -1,0 +1,87 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+	url: string;
+}
+
+const { url } = Astro.props;
+const hostname = new URL(url).hostname.replace(/^www\./, '');
+---
+
+<aside class="original-source" role="note">
+	<Icon name="tabler:external-link" class="original-source__icon" />
+	<div class="original-source__text">
+		<strong class="original-source__label">Originally Published</strong>
+		<p class="original-source__body">
+			This article first appeared on <a href={url} target="_blank" rel="noopener">{hostname}</a> →
+		</p>
+	</div>
+</aside>
+
+<style>
+	.original-source {
+		display: flex;
+		gap: 0.85em;
+		align-items: flex-start;
+		padding: 0.9em 1.1em;
+		border-radius: 8px;
+		border-left: 4px solid;
+		margin: 0 0 2em;
+		font-family: var(--font-sans, sans-serif);
+		background: var(--usage-bg);
+		border-color: var(--usage-border);
+		color: var(--usage-fg);
+		--usage-bg: #f5efe2;
+		--usage-border: #a9762f;
+		--usage-fg: #5c3f14;
+	}
+
+	.original-source__icon {
+		width: 1.4em;
+		height: 1.4em;
+		flex-shrink: 0;
+		margin-top: 0.1em;
+		color: currentColor;
+	}
+
+	.original-source__text {
+		display: flex;
+		flex-direction: column;
+		gap: 0.15em;
+	}
+
+	.original-source__label {
+		font-size: 0.82rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		font-weight: 700;
+	}
+
+	.original-source__body {
+		font-size: 0.88rem;
+		line-height: 1.55;
+		margin: 0;
+		color: inherit;
+		opacity: 0.85;
+	}
+
+	.original-source__body a {
+		color: var(--usage-fg);
+		text-decoration: underline;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		:global(:root:not([data-theme='light'])) .original-source {
+			--usage-bg: #2b2416;
+			--usage-border: #c79a4e;
+			--usage-fg: #e6d4a8;
+		}
+	}
+
+	:global(:root[data-theme='dark']) .original-source {
+		--usage-bg: #2b2416;
+		--usage-border: #c79a4e;
+		--usage-fg: #e6d4a8;
+	}
+</style>

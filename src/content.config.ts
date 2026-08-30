@@ -16,6 +16,7 @@ const essays = defineCollection({
 			updatedDate: z.coerce.date().optional(),
 			heroImage: image().optional(),
 			tags: z.array(z.string()).default([]),
+			originalUrl: z.string().url().optional(),
 			draft: z.boolean().default(false),
 		}),
 });
@@ -34,6 +35,7 @@ const posts = defineCollection({
 			updatedDate: z.coerce.date().optional(),
 			heroImage: image().optional(),
 			tags: z.array(z.string()).default([]),
+			originalUrl: z.string().url().optional(),
 			draft: z.boolean().default(false),
 		}),
 });
