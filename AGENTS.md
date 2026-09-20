@@ -15,7 +15,7 @@ font API in `astro.config.mjs`:
 | --------------- | -------------- | -------------- | --------------------------------- |
 | Editorial serif | `--font-essay` | Newsreader     | Essays — inky, written, drop-caps |
 | Geometric sans  | `--font-sans`  | Space Grotesk  | Tech posts & all UI chrome        |
-| Monospace       | `--font-mono`  | JetBrains Mono | Code snippets, chips, diagrams    |
+| Monospace       | `--font-mono`  | Maple Mono     | Code snippets, chips, diagrams    |
 
 Layouts apply a reading treatment via a class on `<article>`:
 `.reading-essay` (serif, drop-cap) or `.reading-tech` (geometric sans body,

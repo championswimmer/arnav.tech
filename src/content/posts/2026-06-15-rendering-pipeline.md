@@ -9,7 +9,7 @@ draft: false
 
 This post exists to exercise every rendering feature the site supports. Tech
 writing is set in **Space Grotesk** — a chunky geometric sans — with code in
-**JetBrains Mono**.
+**Maple Mono**.
 
 ## Syntax-highlighted code
 

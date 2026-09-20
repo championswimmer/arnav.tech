@@ -88,10 +88,11 @@ export default defineConfig({
 			styles: ['normal'],
 			fallbacks: ['system-ui', 'sans-serif'],
 		},
-		// Tech articles & code — monospace.
+		// Tech articles & code — monospace. Maple Mono (OFL-1.1) isn't on Google
+		// Fonts, so it comes from Fontsource.
 		{
-			provider: fontProviders.google(),
-			name: 'JetBrains Mono',
+			provider: fontProviders.fontsource(),
+			name: 'Maple Mono',
 			cssVariable: '--font-mono',
 			weights: [400, 500, 700],
 			styles: ['normal', 'italic'],

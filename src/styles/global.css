@@ -4,7 +4,7 @@
   Three typographic voices:
     --font-essay : Newsreader      — long-form essays (inky, editorial serif)
     --font-sans  : Space Grotesk   — tech posts & UI (chunky geometric sans)
-    --font-mono  : JetBrains Mono  — code snippets
+    --font-mono  : Maple Mono      — code snippets
 
   Base layout/reset is adapted from Bear Blog's default CSS (MIT).
 */
