@@ -342,6 +342,26 @@ pre.mermaid {
 	*/
 	font-size: 1.2rem;
 	line-height: 1.7;
+	/*
+	  Pull the letters within a word slightly closer. `letter-spacing` is added
+	  after every character including the space, so a word gap would otherwise
+	  close by roughly twice this — `word-spacing` adds that back, leaving only
+	  the intra-word tracking changed.
+	*/
+	letter-spacing: -0.015em;
+	word-spacing: 0.03em;
+}
+/*
+  Things the tracking must not reach. Headings already set their own
+  letter-spacing but would still inherit the word-spacing; monospace depends on
+  a uniform advance; KaTeX positions glyphs itself and drifts if either is set.
+*/
+.reading-tech :is(h1, h2, h3, h4, h5, h6) {
+	word-spacing: normal;
+}
+.reading-tech :is(code, pre, .katex) {
+	letter-spacing: normal;
+	word-spacing: normal;
 }
 .reading-tech h1,
 .reading-tech h2,
