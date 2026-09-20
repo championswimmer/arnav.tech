@@ -81,15 +81,16 @@ export default defineConfig({
 			styles: ['normal', 'italic'],
 			fallbacks: ['Georgia', 'serif'],
 		},
-		// Tech posts & UI chrome — a display grotesque that widens as it gets
-		// heavier, which the heading scale in global.css leans on. Syne has no
-		// italic, so only the normal style is loaded.
+		// Tech posts & UI chrome — a squarish technical sans. Share ships only
+		// 400 and 700 (there is no 500/600/800), so the heading scale in
+		// global.css separates levels by size and tracking rather than weight.
+		// It does have true italics, unlike the display faces before it.
 		{
 			provider: fontProviders.google(),
-			name: 'Syne',
+			name: 'Share',
 			cssVariable: '--font-sans',
-			weights: [400, 500, 600, 700, 800],
-			styles: ['normal'],
+			weights: [400, 700],
+			styles: ['normal', 'italic'],
 			fallbacks: ['system-ui', 'sans-serif'],
 		},
 		// Tech articles & code — monospace. Maple Mono (OFL-1.1) isn't on Google

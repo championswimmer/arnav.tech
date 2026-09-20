@@ -14,7 +14,7 @@ font API in `astro.config.mjs`:
 | Voice           | CSS var        | Font           | Used for                          |
 | --------------- | -------------- | -------------- | --------------------------------- |
 | Editorial serif | `--font-essay` | Labrada        | Essays — dense, written, drop-caps |
-| Display sans    | `--font-sans`  | Syne           | Tech posts, headings & UI chrome  |
+| Technical sans  | `--font-sans`  | Share          | Tech posts, headings & UI chrome  |
 | Monospace       | `--font-mono`  | Maple Mono     | Code snippets, chips, diagrams    |
 
 Layouts apply a reading treatment via a class on `<article>`:
