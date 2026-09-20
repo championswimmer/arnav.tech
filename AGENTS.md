@@ -14,11 +14,11 @@ font API in `astro.config.mjs`:
 | Voice           | CSS var        | Font           | Used for                          |
 | --------------- | -------------- | -------------- | --------------------------------- |
 | Editorial serif | `--font-essay` | Newsreader     | Essays — inky, written, drop-caps |
-| Geometric sans  | `--font-sans`  | Space Grotesk  | Tech posts & all UI chrome        |
+| Display sans    | `--font-sans`  | Syne           | Tech posts, headings & UI chrome  |
 | Monospace       | `--font-mono`  | Maple Mono     | Code snippets, chips, diagrams    |
 
 Layouts apply a reading treatment via a class on `<article>`:
-`.reading-essay` (serif, drop-cap) or `.reading-tech` (geometric sans body,
+`.reading-essay` (serif, drop-cap) or `.reading-tech` (display sans body,
 mono code). Keep new pages on the sepia palette — use the `--paper*`, `--ink*`,
 `--rule`, and `--accent` variables rather than hard-coded colors.
 

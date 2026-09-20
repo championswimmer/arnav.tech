@@ -3,7 +3,7 @@
 
   Three typographic voices:
     --font-essay : Newsreader      — long-form essays (inky, editorial serif)
-    --font-sans  : Space Grotesk   — tech posts & UI (chunky geometric sans)
+    --font-sans  : Syne            — tech posts & UI (display grotesque)
     --font-mono  : Maple Mono      — code snippets
 
   Base layout/reset is adapted from Bear Blog's default CSS (MIT).
@@ -99,6 +99,12 @@ main {
 	padding: 3em 1em;
 }
 
+/*
+  Heading scale. Syne widens as it gets heavier, so the weight ramp below is
+  doing double duty — each step up the scale is both bolder and wider, which
+  is where the display character comes from. Essay headings opt out of this
+  and stay in Newsreader (see `.reading-essay` below).
+*/
 h1,
 h2,
 h3,
@@ -107,20 +113,32 @@ h5,
 h6 {
 	margin: 0 0 0.5rem 0;
 	color: var(--ink);
-	line-height: 1.2;
+	font-family: var(--font-sans);
+	line-height: 1.15;
 	font-weight: 600;
 }
 h1 {
 	font-size: 2.6rem;
+	font-weight: 800;
+	letter-spacing: -0.02em;
 }
 h2 {
 	font-size: 2rem;
+	font-weight: 700;
+	letter-spacing: -0.015em;
 }
 h3 {
 	font-size: 1.55rem;
+	font-weight: 600;
+	letter-spacing: -0.01em;
 }
 h4 {
 	font-size: 1.25rem;
+	font-weight: 600;
+}
+h5,
+h6 {
+	font-weight: 500;
 }
 
 strong,
@@ -281,6 +299,7 @@ pre.mermaid {
 .reading-essay h3 {
 	font-family: var(--font-essay);
 	font-weight: 600;
+	letter-spacing: normal;
 }
 .reading-essay > p:first-of-type::first-letter {
 	font-size: 3.2em;
@@ -291,7 +310,7 @@ pre.mermaid {
 	font-weight: 600;
 }
 
-/* Tech posts — chunky geometric sans body, monospace code */
+/* Tech posts — display grotesque body, monospace code */
 .reading-tech {
 	font-family: var(--font-sans);
 }
@@ -300,8 +319,21 @@ pre.mermaid {
 .reading-tech h3,
 .reading-tech h4 {
 	font-family: var(--font-sans);
+}
+.reading-tech h1 {
+	font-weight: 800;
+	letter-spacing: -0.02em;
+}
+.reading-tech h2 {
 	font-weight: 700;
+	letter-spacing: -0.015em;
+}
+.reading-tech h3 {
+	font-weight: 600;
 	letter-spacing: -0.01em;
+}
+.reading-tech h4 {
+	font-weight: 600;
 }
 
 /* Accessibility helper */

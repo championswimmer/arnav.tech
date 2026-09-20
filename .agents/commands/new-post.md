@@ -22,8 +22,8 @@ Steps:
 
 3. Posts support fenced code blocks (Shiki), ` ```mermaid ` diagrams, and
    KaTeX math (`$...$`, `$$...$$`). Add a brief intro paragraph.
-4. Posts render with the `.reading-tech` treatment (Space Grotesk body,
-   Maple Mono code). Leave `draft: true` until ready.
+4. Posts render with the `.reading-tech` treatment (Syne body, Maple Mono
+   code). Leave `draft: true` until ready.
 5. The date prefix is stripped from the URL at build time (see
    `src/lib/slug.ts`) — it only exists so files sort chronologically on disk.
    Report the path and the URL (`/posts/<slug>/`).

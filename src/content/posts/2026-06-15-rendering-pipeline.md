@@ -8,8 +8,8 @@ draft: false
 ---
 
 This post exists to exercise every rendering feature the site supports. Tech
-writing is set in **Space Grotesk** — a chunky geometric sans — with code in
-**Maple Mono**.
+writing is set in **Syne** — a display grotesque that widens as it gets
+heavier — with code in **Maple Mono**.
 
 ## Syntax-highlighted code
 

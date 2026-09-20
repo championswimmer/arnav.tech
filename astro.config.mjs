@@ -79,12 +79,14 @@ export default defineConfig({
 			styles: ['normal', 'italic'],
 			fallbacks: ['Georgia', 'serif'],
 		},
-		// Tech posts & UI chrome — a chunky geometric sans.
+		// Tech posts & UI chrome — a display grotesque that widens as it gets
+		// heavier, which the heading scale in global.css leans on. Syne has no
+		// italic, so only the normal style is loaded.
 		{
 			provider: fontProviders.google(),
-			name: 'Space Grotesk',
+			name: 'Syne',
 			cssVariable: '--font-sans',
-			weights: [400, 500, 600, 700],
+			weights: [400, 500, 600, 700, 800],
 			styles: ['normal'],
 			fallbacks: ['system-ui', 'sans-serif'],
 		},
