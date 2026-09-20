@@ -70,12 +70,14 @@ export default defineConfig({
 	},
 
 	fonts: [
-		// Essays — an editorial, "written/printy" serif with characterful italics.
+		// Essays — a dense editorial serif with true italics across a wide weight
+		// spectrum. The light end (200/300) carries the large display titles;
+		// see the essay title treatment in global.css.
 		{
 			provider: fontProviders.google(),
-			name: 'Newsreader',
+			name: 'Labrada',
 			cssVariable: '--font-essay',
-			weights: [400, 500, 600, 700],
+			weights: [200, 300, 400, 500, 600, 700],
 			styles: ['normal', 'italic'],
 			fallbacks: ['Georgia', 'serif'],
 		},

@@ -17,7 +17,7 @@ line of its own.
 > We forget all too soon the things we thought we could never forget.
 > — Joan Didion
 
-This essay collection is set in **Newsreader**, an editorial serif with
+This essay collection is set in **Labrada**, a dense editorial serif with
 generous italics, on a sepia page. It is meant to feel *written* rather than
 *typed* — the difference between a letter and a form.
 

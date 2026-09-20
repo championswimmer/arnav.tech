@@ -107,8 +107,9 @@ const projects = (await getCollection('projects', notDraft))
 	.intro h1 {
 		font-family: var(--font-essay);
 		letter-spacing: normal;
-		font-weight: 600;
-		font-size: 3rem;
+		font-weight: 200;
+		font-size: clamp(2.4rem, 9vw, 3.8rem);
+		line-height: 1.05;
 	}
 	.tagline {
 		font-family: var(--font-essay);

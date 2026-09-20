@@ -2,7 +2,7 @@
   arnav.tech — a sepia, "written" personal site.
 
   Three typographic voices:
-    --font-essay : Newsreader      — long-form essays (inky, editorial serif)
+    --font-essay : Labrada         — long-form essays (dense editorial serif)
     --font-sans  : Syne            — tech posts & UI (display grotesque)
     --font-mono  : Maple Mono      — code snippets
 
@@ -103,7 +103,7 @@ main {
   Heading scale. Syne widens as it gets heavier, so the weight ramp below is
   doing double duty — each step up the scale is both bolder and wider, which
   is where the display character comes from. Essay headings opt out of this
-  and stay in Newsreader (see `.reading-essay` below).
+  and stay in Labrada (see `.reading-essay` below).
 */
 h1,
 h2,
@@ -291,23 +291,42 @@ pre.mermaid {
 /* Essays — editorial serif, generous measure, drop-cap first line */
 .reading-essay {
 	font-family: var(--font-essay);
-	font-size: 1.18rem;
-	line-height: 1.8;
+	font-size: 1.15rem;
+	line-height: 1.75;
 }
+/*
+  Essay headings run the weight ramp backwards from the Syne scale: Labrada is
+  dense, so the bigger a serif title gets the *lighter* it wants to be. Large
+  and thin reads as editorial; large and bold reads as shouting.
+*/
 .reading-essay h1,
 .reading-essay h2,
 .reading-essay h3 {
 	font-family: var(--font-essay);
-	font-weight: 600;
 	letter-spacing: normal;
 }
+.reading-essay h1 {
+	font-size: clamp(2.1rem, 7vw, 3rem);
+	font-weight: 300;
+	line-height: 1.12;
+}
+.reading-essay h2 {
+	font-size: clamp(1.7rem, 5vw, 2.1rem);
+	font-weight: 400;
+	line-height: 1.2;
+}
+.reading-essay h3 {
+	font-size: 1.5rem;
+	font-weight: 500;
+}
 .reading-essay > p:first-of-type::first-letter {
-	font-size: 3.2em;
-	line-height: 0.8;
+	font-size: 3.6em;
+	line-height: 0.78;
 	float: left;
 	padding: 0.05em 0.1em 0 0;
 	color: var(--accent);
-	font-weight: 600;
+	/* light, to sit with the thin display titles rather than fight them */
+	font-weight: 300;
 }
 
 /* Tech posts — display grotesque body, monospace code */

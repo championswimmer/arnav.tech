@@ -99,9 +99,11 @@ const breadcrumbs = {
 	}
 	.essay-header h1 {
 		font-family: var(--font-essay);
-		font-weight: 600;
-		font-size: 2.8rem;
-		line-height: 1.1;
+		/* Labrada is dense, so the display titles go large and thin. */
+		font-weight: 200;
+		/* fluid: the element-level mobile h1 rule can't reach this selector */
+		font-size: clamp(2.3rem, 8vw, 3.6rem);
+		line-height: 1.05;
 		/* opt out of the Syne heading ramp's tracking — it cramps the serif */
 		letter-spacing: normal;
 	}
