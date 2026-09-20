@@ -333,8 +333,14 @@ pre.mermaid {
 /* Tech posts — technical sans body, monospace code */
 .reading-tech {
 	font-family: var(--font-sans);
-	/* Share runs small and narrow for its em, so the body nudges up. */
-	font-size: 1.05rem;
+	/*
+	  Share is narrow rather than small — its x-height is generous (~0.5em),
+	  but the tight set width makes a line of it read lighter than the serif.
+	  Tech body therefore sits a step above the 18px base. Careful: `rem`
+	  resolves against the 16px root, not the 18px on `body`, so 1.2rem is
+	  19.2px — anything under 1.125rem would be *smaller* than the base.
+	*/
+	font-size: 1.2rem;
 	line-height: 1.7;
 }
 .reading-tech h1,
