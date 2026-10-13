@@ -54,6 +54,13 @@ Configured globally in `astro.config.mjs` so it works in every md/mdx file:
   before highlighting; `src/components/Mermaid.astro` renders them client-side,
   themed to the palette. Layouts that may contain diagrams include `<Mermaid />`.
 
+- **Video** — use image syntax with a video file kept next to the piece, e.g.
+  `![caption](./images/demo.mp4)`, on its own line. `src/plugins/remark-video.mjs`
+  turns it into a captioned `<video>` (alt text becomes the caption); a
+  same-named `demo.jpg`/`.png`/`.webp` beside it becomes the poster frame.
+  The `contentMedia()` integration in the same file serves these at
+  `/media/<path under src/content>` in dev and copies them into `dist/`.
+
 Note: remark/rehype plugins are passed through `markdown.processor = unified({...})`
 (the Astro v7 API), **not** the deprecated `markdown.remarkPlugins`.
 
