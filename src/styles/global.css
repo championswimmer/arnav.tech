@@ -190,7 +190,7 @@ video {
 	border-radius: 6px;
 }
 
-/* Media figures written directly in Markdown (e.g. an embedded video). */
+/* Video figures emitted by src/plugins/remark-video.mjs. */
 figure.media {
 	margin: 2em 0;
 }

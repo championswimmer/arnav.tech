@@ -12,6 +12,7 @@ import { readdirSync } from 'node:fs';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import { remarkMermaid } from './src/plugins/remark-mermaid.mjs';
+import { contentMedia, remarkVideo } from './src/plugins/remark-video.mjs';
 import { singleSitemap } from './src/plugins/single-sitemap.mjs';
 
 // Old Hashnode served every article at `/<slug>`. This site namespaces by
@@ -36,7 +37,7 @@ const legacyRedirects = Object.fromEntries(
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://arnav.tech',
-	integrations: [mdx(), sitemap(), singleSitemap(), vue(), icon()],
+	integrations: [mdx(), sitemap(), singleSitemap(), vue(), icon(), contentMedia()],
 	redirects: {
 		...legacyRedirects,
 		'/tags': '/tag',
@@ -51,8 +52,10 @@ export default defineConfig({
 	markdown: {
 		// Custom unified processor (Astro v7 way of adding remark/rehype plugins).
 		// Mermaid must run before highlighting so Shiki skips those blocks.
+		// Video must run before Astro collects images, or it would try to
+		// optimise an .mp4 as one.
 		processor: unified({
-			remarkPlugins: [remarkMermaid, remarkMath],
+			remarkPlugins: [remarkMermaid, remarkVideo, remarkMath],
 			rehypePlugins: [rehypeKatex],
 		}),
 		shikiConfig: {

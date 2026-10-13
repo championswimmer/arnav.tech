@@ -13,12 +13,7 @@ While I will not get on a detour into fanboing over Pi in the second paragraph i
 
 Anyway, so about subagents.
 
-<figure class="media">
-	<video controls playsinline preload="metadata" poster="/media/2026-10-07-i-wrote-my-own-pi-subagent-manager-and-heres-why/subagents-demo-poster.jpg" width="1492" height="1080">
-		<source src="/media/2026-10-07-i-wrote-my-own-pi-subagent-manager-and-heres-why/subagents-demo.mp4" type="video/mp4" />
-	</video>
-	<figcaption>(quick little video to hook you in so that you read the rest of my ramblings)</figcaption>
-</figure>
+![(quick little video to hook you in so that you read the rest of my ramblings)](./images/subagents-demo.mp4)
 
 ## upto H1'26: subagents = too fancy for my taste
 
