@@ -183,6 +183,27 @@ img {
 	border-radius: 6px;
 }
 
+video {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	border-radius: 6px;
+}
+
+/* Media figures written directly in Markdown (e.g. an embedded video). */
+figure.media {
+	margin: 2em 0;
+}
+
+figure.media figcaption {
+	font-family: var(--font-sans);
+	font-size: 0.82rem;
+	line-height: 1.5;
+	color: var(--ink-faint);
+	text-align: center;
+	margin-top: 0.7em;
+}
+
 /* Inline code */
 code {
 	font-family: var(--font-mono);
