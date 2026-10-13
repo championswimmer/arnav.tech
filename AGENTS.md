@@ -53,7 +53,6 @@ Configured globally in `astro.config.mjs` so it works in every md/mdx file:
   (`src/plugins/remark-mermaid.mjs`) rewrites them to `<pre class="mermaid">`
   before highlighting; `src/components/Mermaid.astro` renders them client-side,
   themed to the palette. Layouts that may contain diagrams include `<Mermaid />`.
-
 - **Video** — use image syntax with a video file kept next to the piece, e.g.
   `![caption](./images/demo.mp4)`, on its own line. `src/plugins/remark-video.mjs`
   turns it into a captioned `<video>` (alt text becomes the caption); a
